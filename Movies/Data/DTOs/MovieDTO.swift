@@ -19,6 +19,10 @@ struct MovieDTO: Decodable {
 
 struct MoviesResponse: Decodable {
     let movies: [MovieDTO]
+}
+
+struct MoviesPagedResponse: Decodable {
+    let movies: [MovieDTO]
     let pageInfo: PageInfo
 
     struct PageInfo: Decodable {

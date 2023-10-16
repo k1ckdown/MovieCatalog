@@ -27,6 +27,7 @@
 		49330CF92ADD854800BFA4C6 /* ProfileDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CF82ADD854800BFA4C6 /* ProfileDTO.swift */; };
 		49330CFB2ADD856D00BFA4C6 /* GenderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CFA2ADD856D00BFA4C6 /* GenderDTO.swift */; };
 		49330CFD2ADD85E500BFA4C6 /* UserNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CFC2ADD85E500BFA4C6 /* UserNetworkConfig.swift */; };
+		49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CFE2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift */; };
 		49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49612AC22ADAD8AF0081832B /* MoviesApp.swift */; };
 		49612AC52ADAD8AF0081832B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49612AC42ADAD8AF0081832B /* ContentView.swift */; };
 		49612AC72ADAD8B10081832B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC62ADAD8B10081832B /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		49330CF82ADD854800BFA4C6 /* ProfileDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDTO.swift; sourceTree = "<group>"; };
 		49330CFA2ADD856D00BFA4C6 /* GenderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderDTO.swift; sourceTree = "<group>"; };
 		49330CFC2ADD85E500BFA4C6 /* UserNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkConfig.swift; sourceTree = "<group>"; };
+		49330CFE2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMoviesNetworkConfig.swift; sourceTree = "<group>"; };
 		49612ABF2ADAD8AF0081832B /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49612AC22ADAD8AF0081832B /* MoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesApp.swift; sourceTree = "<group>"; };
 		49612AC42ADAD8AF0081832B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				49330CD92ADD2AA500BFA4C6 /* MovieNetworkConfig.swift */,
 				49330CEA2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift */,
 				49330CFC2ADD85E500BFA4C6 /* UserNetworkConfig.swift */,
+				49330CFE2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				49330CD22ADD278900BFA4C6 /* GenreDTO.swift in Sources */,
 				49330CF62ADD7C8B00BFA4C6 /* HTTPTask.swift in Sources */,
 				49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */,
+				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,
 				4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */,
 				49330CDE2ADD2EB500BFA4C6 /* ReviewDTO.swift in Sources */,
 			);

@@ -16,20 +16,23 @@ final class NetworkService {
 // MARK: - MovieNetworkService
 
 extension NetworkService: MovieNetworkService {
-    func fetchMovies(page: Int) async throws -> MoviesResponse {
-        let config = MovieNetworkConfig.listByPage(page)
-        return try await request(with: config)
-    }
 
     func fetchDetails(id: String) async throws -> MovieDetailsDTO {
         let config = MovieNetworkConfig.detailsById(id)
         return try await request(with: config)
     }
+    
+    func fetchMovies(page: Int) async throws -> MoviesPagedResponse {
+        let config = MovieNetworkConfig.listByPage(page)
+        return try await request(with: config)
+    }
+
 }
 
 // MARK: - UserNetworkService
 
 extension NetworkService: UserNetworkService {
+
     func fetchProfile(token: String) async throws -> ProfileDTO {
         let config = UserNetworkConfig.retrieveProfile
         return try await request(with: config, token: token)
@@ -42,11 +45,36 @@ extension NetworkService: UserNetworkService {
         let (_, response) = try await networkRouter.request(config: config, token: token)
         try checkResponse(response)
     }
+
+}
+
+// MARK: - FavoriteMoviesNetworkService
+
+extension NetworkService: FavoriteMoviesNetworkService {
+
+    func addFavoriteMovie(token: String, movieId: String) async throws {
+        let config = FavoriteMoviesNetworkConfig.add(movieId: movieId)
+        let (_, response) = try await networkRouter.request(config: config, token: token)
+        try checkResponse(response)
+    }
+    
+    func deleteFavoriteMovie(token: String, movieId: String) async throws {
+        let config = FavoriteMoviesNetworkConfig.delete(movieId: movieId)
+        let (_, response) = try await networkRouter.request(config: config, token: token)
+        try checkResponse(response)
+    }
+    
+    func fetchFavoriteMovies(token: String) async throws -> MoviesResponse {
+        let config = FavoriteMoviesNetworkConfig.list
+        return try await request(with: config, token: token)
+    }
+
 }
 
 // MARK: - AuthNetworkService
 
 extension NetworkService: AuthNetworkService {
+
     func logout(token: String) async throws -> LogoutResponse {
         let config = AuthNetworkConfig.logout
         return try await request(with: config)
@@ -65,6 +93,7 @@ extension NetworkService: AuthNetworkService {
 
         return try await request(with: config)
     }
+
 }
 
 // MARK: - Private methods
@@ -79,6 +108,15 @@ private extension NetworkService {
         return encoded
     }
 
+    func checkResponse(_ response: URLResponse) throws {
+        guard
+            let httpResponse = response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode)
+        else {
+            throw NetworkError.invalidResponse
+        }
+    }
+
     func request<Model: Decodable>(
         with config: NetworkConfig,
         token: String? = nil
@@ -91,15 +129,6 @@ private extension NetworkService {
         }
 
         return model
-    }
-
-    func checkResponse(_ response: URLResponse) throws {
-        guard
-            let httpResponse = response as? HTTPURLResponse,
-            (200...299).contains(httpResponse.statusCode)
-        else {
-            throw NetworkError.invalidResponse
-        }
     }
 
 }
