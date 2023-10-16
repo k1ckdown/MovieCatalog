@@ -17,10 +17,27 @@ final class NetworkService {
     private let decoder = JSONDecoder()
 }
 
+// MARK: - MovieNetworkService
+
+extension NetworkService: MovieNetworkService {
+    func fetchMovies(page: Int) async throws -> MoviesResponse {
+        let url = try getAbsoluteURL(endPoint: MovieEndPoint.listByPage(page))
+        let request = Request<MoviesResponse>(url: url, method: .get())
+
+        return try await decode(request: request)
+    }
+
+    func fetchDetails(id: String) async throws -> MovieDetailsDTO {
+        let url = try getAbsoluteURL(endPoint: MovieEndPoint.detailsById(id))
+        let request = Request<MovieDetailsDTO>(url: url, method: .get())
+
+        return try await decode(request: request)
+    }
+}
+
 // MARK: - Private methods
 
 private extension NetworkService {
-
     func addAuthHeader(_ headers: inout HTTPHeaders, with token: String) {
         headers["Authorization"] = "Bearer \(token)"
     }
@@ -65,5 +82,4 @@ private extension NetworkService {
 
         return data
     }
-
 }
