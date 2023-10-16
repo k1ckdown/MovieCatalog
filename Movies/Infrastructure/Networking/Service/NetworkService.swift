@@ -42,8 +42,7 @@ extension NetworkService: UserNetworkService {
         let data = try encode(profile)
         let config = UserNetworkConfig.updateProfile(data)
 
-        let (_, response) = try await networkRouter.request(config: config, token: token)
-        try checkResponse(response)
+        try await request(with: config, token: token)
     }
 
 }
@@ -54,19 +53,42 @@ extension NetworkService: FavoriteMoviesNetworkService {
 
     func addFavoriteMovie(token: String, movieId: String) async throws {
         let config = FavoriteMoviesNetworkConfig.add(movieId: movieId)
-        let (_, response) = try await networkRouter.request(config: config, token: token)
-        try checkResponse(response)
+        try await request(with: config, token: token)
     }
     
     func deleteFavoriteMovie(token: String, movieId: String) async throws {
         let config = FavoriteMoviesNetworkConfig.delete(movieId: movieId)
-        let (_, response) = try await networkRouter.request(config: config, token: token)
-        try checkResponse(response)
+        try await request(with: config, token: token)
     }
-    
+
     func fetchFavoriteMovies(token: String) async throws -> MoviesResponse {
         let config = FavoriteMoviesNetworkConfig.list
         return try await request(with: config, token: token)
+    }
+
+}
+
+// MARK: - ReviewNetworkService
+
+extension NetworkService: ReviewNetworkService {
+
+    func deleteReview(token: String, movieId: String, reviewId: String) async throws {
+        let config = ReviewNetworkConfig.delete(movieId: movieId, reviewId: reviewId)
+        try await request(with: config, token: token)
+    }
+
+    func addReview(token: String, movieId: String, review: ReviewModifyDTO) async throws {
+        let data = try encode(review)
+        let config = ReviewNetworkConfig.add(movieId: movieId, review: data)
+
+        try await request(with: config, token: token)
+    }
+
+    func updateReview(token: String, movieId: String, reviewId: String, review: ReviewModifyDTO) async throws {
+        let data = try encode(review)
+        let config = ReviewNetworkConfig.edit(movieId: movieId, reviewId: reviewId, review: data)
+
+        try await request(with: config, token: token)
     }
 
 }
@@ -115,6 +137,11 @@ private extension NetworkService {
         else {
             throw NetworkError.invalidResponse
         }
+    }
+
+    func request(with config: NetworkConfig, token: String? = nil) async throws {
+        let (_, response) = try await networkRouter.request(config: config, token: token)
+        try checkResponse(response)
     }
 
     func request<Model: Decodable>(

@@ -28,6 +28,8 @@
 		49330CFB2ADD856D00BFA4C6 /* GenderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CFA2ADD856D00BFA4C6 /* GenderDTO.swift */; };
 		49330CFD2ADD85E500BFA4C6 /* UserNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CFC2ADD85E500BFA4C6 /* UserNetworkConfig.swift */; };
 		49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CFE2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift */; };
+		49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330D002ADD992F00BFA4C6 /* ReviewModifyDTO.swift */; };
+		49330D032ADD996300BFA4C6 /* ReviewNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */; };
 		49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49612AC22ADAD8AF0081832B /* MoviesApp.swift */; };
 		49612AC52ADAD8AF0081832B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49612AC42ADAD8AF0081832B /* ContentView.swift */; };
 		49612AC72ADAD8B10081832B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC62ADAD8B10081832B /* Assets.xcassets */; };
@@ -59,6 +61,8 @@
 		49330CFA2ADD856D00BFA4C6 /* GenderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderDTO.swift; sourceTree = "<group>"; };
 		49330CFC2ADD85E500BFA4C6 /* UserNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkConfig.swift; sourceTree = "<group>"; };
 		49330CFE2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMoviesNetworkConfig.swift; sourceTree = "<group>"; };
+		49330D002ADD992F00BFA4C6 /* ReviewModifyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModifyDTO.swift; sourceTree = "<group>"; };
+		49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNetworkConfig.swift; sourceTree = "<group>"; };
 		49612ABF2ADAD8AF0081832B /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49612AC22ADAD8AF0081832B /* MoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesApp.swift; sourceTree = "<group>"; };
 		49612AC42ADAD8AF0081832B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 				49330CDF2ADD2ED200BFA4C6 /* UserShortDTO.swift */,
 				49330CF82ADD854800BFA4C6 /* ProfileDTO.swift */,
 				49330CFA2ADD856D00BFA4C6 /* GenderDTO.swift */,
+				49330D002ADD992F00BFA4C6 /* ReviewModifyDTO.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				49330CEA2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift */,
 				49330CFC2ADD85E500BFA4C6 /* UserNetworkConfig.swift */,
 				49330CFE2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift */,
+				49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -296,12 +302,14 @@
 				49330CDA2ADD2AA500BFA4C6 /* MovieNetworkConfig.swift in Sources */,
 				49330CF22ADD741F00BFA4C6 /* URLParameterEncoder.swift in Sources */,
 				4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */,
+				49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */,
 				49330CCF2ADD278900BFA4C6 /* ReviewShortDTO.swift in Sources */,
 				4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */,
 				49330CF42ADD7C7B00BFA4C6 /* NetworkConfig.swift in Sources */,
 				49330CEB2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift in Sources */,
 				49330CE22ADD41B600BFA4C6 /* UserRegisterDTO.swift in Sources */,
 				49330CD22ADD278900BFA4C6 /* GenreDTO.swift in Sources */,
+				49330D032ADD996300BFA4C6 /* ReviewNetworkConfig.swift in Sources */,
 				49330CF62ADD7C8B00BFA4C6 /* HTTPTask.swift in Sources */,
 				49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */,
 				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,

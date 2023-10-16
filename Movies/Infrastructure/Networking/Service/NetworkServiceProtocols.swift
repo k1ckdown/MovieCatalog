@@ -28,3 +28,9 @@ protocol FavoriteMoviesNetworkService {
     func deleteFavoriteMovie(token: String, movieId: String) async throws
     func fetchFavoriteMovies(token: String) async throws -> MoviesResponse
 }
+
+protocol ReviewNetworkService {
+    func deleteReview(token: String, movieId: String, reviewId: String) async throws
+    func addReview(token: String, movieId: String, review: ReviewModifyDTO) async throws
+    func updateReview(token: String, movieId: String, reviewId: String, review: ReviewModifyDTO) async throws
+}
