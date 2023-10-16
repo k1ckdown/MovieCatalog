@@ -27,6 +27,23 @@ extension NetworkService: MovieNetworkService {
     }
 }
 
+// MARK: - UserNetworkService
+
+extension NetworkService: UserNetworkService {
+    func fetchProfile(token: String) async throws -> ProfileDTO {
+        let config = UserNetworkConfig.retrieveProfile
+        return try await request(with: config, token: token)
+    }
+
+    func updateProfile(token: String, profile: ProfileDTO) async throws {
+        let data = try encode(profile)
+        let config = UserNetworkConfig.updateProfile(data)
+
+        let (_, response) = try await networkRouter.request(config: config, token: token)
+        try checkResponse(response)
+    }
+}
+
 // MARK: - AuthNetworkService
 
 extension NetworkService: AuthNetworkService {
@@ -62,21 +79,27 @@ private extension NetworkService {
         return encoded
     }
 
-    func request<Model: Decodable>(with config: NetworkConfig) async throws -> Model {
-        let (data, response) = try await networkRouter.request(config: config)
+    func request<Model: Decodable>(
+        with config: NetworkConfig,
+        token: String? = nil
+    ) async throws -> Model {
+        let (data, response) = try await networkRouter.request(config: config, token: token)
 
+        try checkResponse(response)
+        guard let model = try? decoder.decode(Model.self, from: data) else {
+            throw NetworkError.decodingError
+        }
+
+        return model
+    }
+
+    func checkResponse(_ response: URLResponse) throws {
         guard
             let httpResponse = response as? HTTPURLResponse,
             (200...299).contains(httpResponse.statusCode)
         else {
             throw NetworkError.invalidResponse
         }
-
-        guard let model = try? decoder.decode(Model.self, from: data) else {
-            throw NetworkError.decodingError
-        }
-
-        return model
     }
 
 }

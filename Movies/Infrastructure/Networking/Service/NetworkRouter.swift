@@ -13,10 +13,7 @@ struct NetworkRouter {
         static let movieBaseUrl = "https://react-midterm.kreosoft.space/api/"
     }
 
-    func request(
-        config: NetworkConfig,
-        token: String? = nil
-    ) async throws -> (Data, URLResponse) {
+    func request(config: NetworkConfig, token: String?) async throws -> (Data, URLResponse) {
         let urlRequest = try buildRequest(with: config, token: token)
         return try await URLSession.shared.data(for: urlRequest)
     }
