@@ -10,7 +10,7 @@ import Foundation
 struct MovieDTO: Decodable {
     let id: String
     let name: String?
-    let poster: URL?
+    let poster: String?
     let year: Int
     let country: String?
     let genres: [GenreDTO]?

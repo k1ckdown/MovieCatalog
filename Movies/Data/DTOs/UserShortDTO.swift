@@ -10,5 +10,5 @@ import Foundation
 struct UserShortDTO: Decodable {
     let userId: String
     let nickName: String?
-    let avatar: URL?
+    let avatar: String?
 }
