@@ -89,6 +89,7 @@
 		49145D7F2ADEBEFC0082E048 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				49612AC42ADAD8AF0081832B /* ContentView.swift */,
 				49145D802ADEBF020082E048 /* Scenes */,
 			);
 			path = Presentation;
@@ -182,13 +183,11 @@
 		49612AC12ADAD8AF0081832B /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				49C3F86F2ADEDC71008BAE92 /* Resources */,
+				49C3F86E2ADEDC56008BAE92 /* Application */,
 				49145D7F2ADEBEFC0082E048 /* Presentation */,
 				49330CC72ADD277200BFA4C6 /* Data */,
 				4977E3C02ADBCF33008CE679 /* Infrastructure */,
-				49612AC22ADAD8AF0081832B /* MoviesApp.swift */,
-				49612AC42ADAD8AF0081832B /* ContentView.swift */,
-				49612AC62ADAD8B10081832B /* Assets.xcassets */,
-				49612AC82ADAD8B10081832B /* Preview Content */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -242,6 +241,23 @@
 				49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */,
 			);
 			path = Configs;
+			sourceTree = "<group>";
+		};
+		49C3F86E2ADEDC56008BAE92 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				49612AC22ADAD8AF0081832B /* MoviesApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		49C3F86F2ADEDC71008BAE92 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				49612AC62ADAD8B10081832B /* Assets.xcassets */,
+				49612AC82ADAD8B10081832B /* Preview Content */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,7 +491,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Movies/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Movies/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 9KT4MKX52L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -505,7 +521,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Movies/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Movies/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 9KT4MKX52L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

@@ -22,7 +22,7 @@
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="DFP-zF-1qV">
+                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="DFP-zF-1qV">
                                 <rect key="frame" x="149" y="378.66666666666669" width="95" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="GWa-P0-fWa"/>
@@ -57,7 +57,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="30.333333969116211" height="25.666666030883789"/>
         <image name="launch" width="130" height="280.66665649414062"/>
+        <image name="logo" width="30.333333969116211" height="25.666666030883789"/>
     </resources>
 </document>
