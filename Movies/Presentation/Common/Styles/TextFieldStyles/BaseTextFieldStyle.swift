@@ -19,10 +19,11 @@ struct BaseTextFieldStyle: TextFieldStyle {
                 RoundedRectangle(cornerRadius: Constants.cornerRadius)
                     .stroke(.appGray, lineWidth: Constants.borderWidth)
             }
+            .padding(1)
     }
 
     private enum Constants {
-        static let height: CGFloat = 42
+        static let height: CGFloat = 40
         static let borderWidth: CGFloat = 1
         static let cornerRadius: CGFloat = 10
         static let verticalInset: CGFloat = 2
