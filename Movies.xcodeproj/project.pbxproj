@@ -35,7 +35,6 @@
 		49612AC72ADAD8B10081832B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC62ADAD8B10081832B /* Assets.xcassets */; };
 		49612ACA2ADAD8B10081832B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC92ADAD8B10081832B /* Preview Assets.xcassets */; };
 		4961F45B2ADFDF9700A717AB /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F45A2ADFDF9700A717AB /* WelcomeView.swift */; };
-		4961F45F2ADFE80000A717AB /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F45E2ADFE80000A717AB /* BaseButton.swift */; };
 		4961F4612ADFEACD00A717AB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4961F4602ADFEACD00A717AB /* Localizable.xcstrings */; };
 		4961F4652AE0009E00A717AB /* AppBackgroundViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F4642AE0009E00A717AB /* AppBackgroundViewModifier.swift */; };
 		4961F46F2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F46E2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift */; };
@@ -47,6 +46,7 @@
 		4961F48D2AE045A700A717AB /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F48C2AE045A700A717AB /* SecureInputView.swift */; };
 		4961F48F2AE0490B00A717AB /* BaseTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F48E2AE0490B00A717AB /* BaseTextFieldStyle.swift */; };
 		4961F4932AE0520F00A717AB /* CalloutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F4922AE0520F00A717AB /* CalloutButton.swift */; };
+		4961F4982AE05CAE00A717AB /* BaseButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F4972AE05CAE00A717AB /* BaseButtonStyle.swift */; };
 		4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */; };
 		4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */; };
 		4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4984BE142ADC6ABB00364027 /* NetworkService.swift */; };
@@ -82,7 +82,6 @@
 		49612AC62ADAD8B10081832B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49612AC92ADAD8B10081832B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4961F45A2ADFDF9700A717AB /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		4961F45E2ADFE80000A717AB /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		4961F4602ADFEACD00A717AB /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		4961F4642AE0009E00A717AB /* AppBackgroundViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackgroundViewModifier.swift; sourceTree = "<group>"; };
 		4961F46E2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationTitleViewModifier.swift; sourceTree = "<group>"; };
@@ -94,6 +93,7 @@
 		4961F48C2AE045A700A717AB /* SecureInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
 		4961F48E2AE0490B00A717AB /* BaseTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextFieldStyle.swift; sourceTree = "<group>"; };
 		4961F4922AE0520F00A717AB /* CalloutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalloutButton.swift; sourceTree = "<group>"; };
+		4961F4972AE05CAE00A717AB /* BaseButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonStyle.swift; sourceTree = "<group>"; };
 		4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		4984BE142ADC6ABB00364027 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -254,7 +254,6 @@
 		4961F45D2ADFE7E400A717AB /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				4961F45E2ADFE80000A717AB /* BaseButton.swift */,
 				4961F4922AE0520F00A717AB /* CalloutButton.swift */,
 			);
 			path = Buttons;
@@ -326,6 +325,7 @@
 		4961F4872AE036F200A717AB /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				4961F4942AE0584B00A717AB /* ButtonStyles */,
 				4961F4882AE036FC00A717AB /* TextFieldStyles */,
 			);
 			path = Styles;
@@ -345,6 +345,14 @@
 				4961F48C2AE045A700A717AB /* SecureInputView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		4961F4942AE0584B00A717AB /* ButtonStyles */ = {
+			isa = PBXGroup;
+			children = (
+				4961F4972AE05CAE00A717AB /* BaseButtonStyle.swift */,
+			);
+			path = ButtonStyles;
 			sourceTree = "<group>";
 		};
 		4977E3C02ADBCF33008CE679 /* Infrastructure */ = {
@@ -500,9 +508,9 @@
 				4961F48A2AE0370400A717AB /* LabeledViewModifier.swift in Sources */,
 				4961F45B2ADFDF9700A717AB /* WelcomeView.swift in Sources */,
 				4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */,
-				4961F45F2ADFE80000A717AB /* BaseButton.swift in Sources */,
 				49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */,
 				49330CCF2ADD278900BFA4C6 /* ReviewShortDTO.swift in Sources */,
+				4961F4982AE05CAE00A717AB /* BaseButtonStyle.swift in Sources */,
 				4961F4932AE0520F00A717AB /* CalloutButton.swift in Sources */,
 				4961F47C2AE021C800A717AB /* ViewModel.swift in Sources */,
 				4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */,

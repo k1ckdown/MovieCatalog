@@ -29,10 +29,11 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
                 .textFieldStyle(BaseTextFieldStyle())
-                
-                BaseButton(title: "Log In") {
-                    
+
+                Button("Log In") {
+
                 }
+                .buttonStyle(BaseButtonStyle())
             }
             
             Spacer()

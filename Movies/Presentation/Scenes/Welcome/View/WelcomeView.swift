@@ -30,13 +30,15 @@ struct WelcomeView: View {
                 .padding()
 
                 VStack(spacing: Constants.ButtonStack.spacing) {
-                    BaseButton(title: "Registration") {
+                    Button("Registration") {
 
                     }
+                    .buttonStyle(BaseButtonStyle())
 
-                    BaseButton(title: "Log In", isProminent: false) {
+                    Button("Log In") {
 
                     }
+                    .buttonStyle(BaseButtonStyle(isProminent: false))
                 }
 
                 Spacer()
