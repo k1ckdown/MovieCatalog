@@ -8,33 +8,51 @@
 import SwiftUI
 
 struct LoginView<ViewModel: LoginViewModelProtocol>: View {
-
+    
     @ObservedObject private(set) var viewModel: ViewModel
-
+    
     var body: some View {
         VStack {
-            VStack(spacing: 23) {
-                TextField("", text: login)
-                    .textFieldStyle(LabeledTextFieldStyle(title: "Login"))
-
-                TextField("", text: password)
-                    .textFieldStyle(LabeledTextFieldStyle(title: "Password"))
+            Text("Entrance")
+                .font(.title2)
+                .bold()
+                .padding(.vertical)
+            
+            VStack(spacing: 30) {
+                VStack(spacing: 23) {
+                    TextField("", text: login)
+                        .labeled("Login")
+                    
+                    SecureInputView(text: password)
+                        .labeled("Password")
+                }
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
+                .textFieldStyle(BaseTextFieldStyle())
+                
+                BaseButton(title: "Log In") {
+                    
+                }
             }
-            .textInputAutocapitalization(.never)
-
+            
             Spacer()
+            
+            CalloutButton(text: "Don't have an account yet?",
+                          buttonTitle: "Register") {
+                
+            }
         }
         .appBackground()
         .appNavigationTitle()
     }
-
+    
     private var login: Binding<String> {
         Binding(
             get: { viewModel.state.login },
             set: { viewModel.handle(.loginChanged($0)) }
         )
     }
-
+    
     private var password: Binding<String> {
         Binding(
             get: { viewModel.state.password },

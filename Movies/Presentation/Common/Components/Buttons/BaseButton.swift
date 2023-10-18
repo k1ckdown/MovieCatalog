@@ -13,7 +13,11 @@ struct BaseButton: View {
     let isProminent: Bool
     let action: () -> Void
     
-    init(title: LocalizedStringKey, isProminent: Bool = true, action: @escaping () -> Void) {
+    init(
+        title: LocalizedStringKey,
+        isProminent: Bool = true,
+        action: @escaping () -> Void
+    ) {
         self.title = title
         self.isProminent = isProminent
         self.action = action
