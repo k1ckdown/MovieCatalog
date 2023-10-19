@@ -8,40 +8,53 @@
 import SwiftUI
 
 struct LoginView<ViewModel: LoginViewModelProtocol>: View {
-    
+
     @ObservedObject private(set) var viewModel: ViewModel
-    
+
     var body: some View {
         VStack {
             Text("Entrance")
                 .font(.title2)
                 .bold()
                 .padding(.vertical)
-            
-            VStack(spacing: 30) {
-                VStack(spacing: 23) {
-                    TextField("", text: login)
-                        .labeled("Login")
-                    
-                    SecureInputView(text: password)
-                        .labeled("Password")
+
+            Form {
+                Group {
+                    Section {
+                        TextField("", text: login)
+                    } header: {
+                        AuthFormHeader(title: "Login")
+                    }
+
+                    Section {
+                        SecureInputView(text: password)
+                    } header: {
+                        AuthFormHeader(title: "Password")
+                    }
+
+                    Section {
+                        Button("Log In") {
+
+                        }
+                        .buttonStyle(BaseButtonStyle())
+                        .disabled(isLogInButtonDisabled)
+                    }
                 }
-                .autocorrectionDisabled()
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.clear)
                 .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
                 .textFieldStyle(BaseTextFieldStyle())
-
-                Button("Log In") {
-
-                }
-                .buttonStyle(BaseButtonStyle())
-                .disabled(isLogInButtonDisabled)
             }
-            
+            .scrollDisabled(true)
+            .scrollContentBackground(.hidden)
+            .padding(.horizontal, -3)
+
             Spacer()
-            
+
             CalloutButton(text: "Don't have an account yet?",
                           buttonTitle: "Register") {
-                
+
             }
         }
         .appBackground()
@@ -58,7 +71,7 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
             set: { viewModel.handle(.loginChanged($0)) }
         )
     }
-    
+
     private var password: Binding<String> {
         Binding(
             get: { viewModel.state.password },

@@ -50,6 +50,7 @@
 		4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */; };
 		4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */; };
 		4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4984BE142ADC6ABB00364027 /* NetworkService.swift */; };
+		49B422FD2AE0E0020032F773 /* AuthFormHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		4984BE142ADC6ABB00364027 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFormHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +285,7 @@
 		4961F4702AE020EF00A717AB /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				49B422FA2AE0DFE60032F773 /* Components */,
 				4961F4712AE020FA00A717AB /* Login */,
 			);
 			path = Auth;
@@ -396,6 +399,22 @@
 				49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */,
 			);
 			path = Configs;
+			sourceTree = "<group>";
+		};
+		49B422FA2AE0DFE60032F773 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				49B422FB2AE0DFF20032F773 /* Labels */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		49B422FB2AE0DFF20032F773 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */,
+			);
+			path = Labels;
 			sourceTree = "<group>";
 		};
 		49C3F86E2ADEDC56008BAE92 /* Application */ = {
@@ -527,6 +546,7 @@
 				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,
 				4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */,
 				4961F4742AE0210900A717AB /* LoginView.swift in Sources */,
+				49B422FD2AE0E0020032F773 /* AuthFormHeader.swift in Sources */,
 				49330CDE2ADD2EB500BFA4C6 /* ReviewDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
