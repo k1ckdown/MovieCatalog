@@ -42,7 +42,6 @@
 		4961F4772AE021A200A717AB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F4762AE021A200A717AB /* LoginViewModel.swift */; };
 		4961F4792AE021AC00A717AB /* LoginViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F4782AE021AC00A717AB /* LoginViewState.swift */; };
 		4961F47C2AE021C800A717AB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F47B2AE021C800A717AB /* ViewModel.swift */; };
-		4961F48A2AE0370400A717AB /* LabeledViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F4892AE0370400A717AB /* LabeledViewModifier.swift */; };
 		4961F48D2AE045A700A717AB /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F48C2AE045A700A717AB /* SecureInputView.swift */; };
 		4961F48F2AE0490B00A717AB /* BaseTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F48E2AE0490B00A717AB /* BaseTextFieldStyle.swift */; };
 		4961F4932AE0520F00A717AB /* CalloutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F4922AE0520F00A717AB /* CalloutButton.swift */; };
@@ -90,7 +89,6 @@
 		4961F4762AE021A200A717AB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4961F4782AE021AC00A717AB /* LoginViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewState.swift; sourceTree = "<group>"; };
 		4961F47B2AE021C800A717AB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		4961F4892AE0370400A717AB /* LabeledViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabeledViewModifier.swift; sourceTree = "<group>"; };
 		4961F48C2AE045A700A717AB /* SecureInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
 		4961F48E2AE0490B00A717AB /* BaseTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextFieldStyle.swift; sourceTree = "<group>"; };
 		4961F4922AE0520F00A717AB /* CalloutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalloutButton.swift; sourceTree = "<group>"; };
@@ -275,7 +273,6 @@
 		4961F4632AE0007900A717AB /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
-				4961F4892AE0370400A717AB /* LabeledViewModifier.swift */,
 				4961F4642AE0009E00A717AB /* AppBackgroundViewModifier.swift */,
 				4961F46E2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift */,
 			);
@@ -524,7 +521,6 @@
 				49330CDC2ADD2E7C00BFA4C6 /* MovieDetailsDTO.swift in Sources */,
 				49330CDA2ADD2AA500BFA4C6 /* MovieNetworkConfig.swift in Sources */,
 				49330CF22ADD741F00BFA4C6 /* URLParameterEncoder.swift in Sources */,
-				4961F48A2AE0370400A717AB /* LabeledViewModifier.swift in Sources */,
 				4961F45B2ADFDF9700A717AB /* WelcomeView.swift in Sources */,
 				4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */,
 				49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */,
