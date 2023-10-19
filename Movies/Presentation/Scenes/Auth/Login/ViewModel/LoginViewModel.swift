@@ -15,7 +15,7 @@ final class LoginViewModel: LoginViewModelProtocol {
     @Published private(set) var state: LoginViewState
     
     init() {
-        self.state = .init()
+        state = .init()
     }
     
     func handle(_ event: LoginViewEvent) {

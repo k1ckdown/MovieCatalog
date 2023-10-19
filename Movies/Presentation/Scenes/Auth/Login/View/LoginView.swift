@@ -13,10 +13,7 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
 
     var body: some View {
         VStack {
-            Text("Entrance")
-                .font(.title2)
-                .bold()
-                .padding(.vertical)
+            ScreenTitle(text: "Entrance")
 
             Form {
                 Group {

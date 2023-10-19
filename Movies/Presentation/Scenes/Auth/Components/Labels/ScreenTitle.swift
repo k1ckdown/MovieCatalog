@@ -1,0 +1,20 @@
+//
+//  ScreenTitle.swift
+//  Movies
+//
+//  Created by Ivan Semenov on 19.10.2023.
+//
+
+import SwiftUI
+
+struct ScreenTitle: View {
+
+    let text: LocalizedStringKey
+
+    var body: some View {
+        Text(text)
+            .font(.title2)
+            .bold()
+            .padding(.vertical)
+    }
+}
