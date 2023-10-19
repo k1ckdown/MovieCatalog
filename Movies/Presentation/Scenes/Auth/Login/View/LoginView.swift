@@ -47,8 +47,6 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
             .scrollContentBackground(.hidden)
             .padding(.horizontal, -3)
 
-            Spacer()
-
             CalloutButton(text: "Don't have an account yet?",
                           buttonTitle: "Register") {
 

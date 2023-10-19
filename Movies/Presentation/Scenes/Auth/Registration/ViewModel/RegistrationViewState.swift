@@ -9,7 +9,7 @@ import Foundation
 
 struct RegistrationViewState: Equatable {
     var name = ""
-    var gender = 0
+    var gender = Gender.male
     var login = ""
     var email = ""
     var birthdate = Date.now
@@ -17,7 +17,7 @@ struct RegistrationViewState: Equatable {
 
 enum RegistrationViewEvent {
     case nameChanged(String)
-    case genderChanged(Int)
+    case genderChanged(Gender)
     case loginChanged(String)
     case emailChanged(String)
     case birthdateChanged(Date)

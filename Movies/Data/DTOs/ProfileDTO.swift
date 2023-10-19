@@ -14,5 +14,5 @@ struct ProfileDTO: Codable {
     let avatarLink: String?
     let name: String
     let birthDate: String
-    let gender: Gender
+    let gender: GenderDTO
 }

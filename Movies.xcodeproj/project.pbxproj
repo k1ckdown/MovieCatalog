@@ -54,6 +54,9 @@
 		49A562872AE0EBB000222062 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562862AE0EBB000222062 /* RegistrationViewModel.swift */; };
 		49A562892AE0EBC100222062 /* RegistrationViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562882AE0EBC100222062 /* RegistrationViewState.swift */; };
 		49B422FD2AE0E0020032F773 /* AuthFormHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */; };
+		49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C12AE1172B00AA05C5 /* Gender.swift */; };
+		49E3A8C52AE11C3700AA05C5 /* SegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C42AE11C3700AA05C5 /* SegmentedPicker.swift */; };
+		49E3A8C82AE1266F00AA05C5 /* IconDatePickerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C72AE1266F00AA05C5 /* IconDatePickerStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +108,9 @@
 		49A562862AE0EBB000222062 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		49A562882AE0EBC100222062 /* RegistrationViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewState.swift; sourceTree = "<group>"; };
 		49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFormHeader.swift; sourceTree = "<group>"; };
+		49E3A8C12AE1172B00AA05C5 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		49E3A8C42AE11C3700AA05C5 /* SegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPicker.swift; sourceTree = "<group>"; };
+		49E3A8C72AE1266F00AA05C5 /* IconDatePickerStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconDatePickerStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +223,7 @@
 		49612AC12ADAD8AF0081832B /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				49E3A8C02AE1172400AA05C5 /* Domain */,
 				49C3F86F2ADEDC71008BAE92 /* Resources */,
 				49C3F86E2ADEDC56008BAE92 /* Application */,
 				49145D7F2ADEBEFC0082E048 /* Presentation */,
@@ -253,6 +260,7 @@
 		4961F45C2ADFE7DA00A717AB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				49E3A8C32AE11C1C00AA05C5 /* Picker */,
 				4961F48B2AE0459400A717AB /* CustomViews */,
 				4961F45D2ADFE7E400A717AB /* Buttons */,
 			);
@@ -334,6 +342,7 @@
 		4961F4872AE036F200A717AB /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				49E3A8C62AE1266600AA05C5 /* DatePickerStyles */,
 				4961F4942AE0584B00A717AB /* ButtonStyles */,
 				4961F4882AE036FC00A717AB /* TextFieldStyles */,
 			);
@@ -468,6 +477,30 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		49E3A8C02AE1172400AA05C5 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				49E3A8C12AE1172B00AA05C5 /* Gender.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		49E3A8C32AE11C1C00AA05C5 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				49E3A8C42AE11C3700AA05C5 /* SegmentedPicker.swift */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
+		49E3A8C62AE1266600AA05C5 /* DatePickerStyles */ = {
+			isa = PBXGroup;
+			children = (
+				49E3A8C72AE1266F00AA05C5 /* IconDatePickerStyle.swift */,
+			);
+			path = DatePickerStyles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -551,8 +584,10 @@
 				49330CE82ADD424000BFA4C6 /* LoginCredentials.swift in Sources */,
 				49330CFB2ADD856D00BFA4C6 /* GenderDTO.swift in Sources */,
 				4961F4652AE0009E00A717AB /* AppBackgroundViewModifier.swift in Sources */,
+				49E3A8C82AE1266F00AA05C5 /* IconDatePickerStyle.swift in Sources */,
 				49330CE42ADD420100BFA4C6 /* TokenInfo.swift in Sources */,
 				49330CE02ADD2ED200BFA4C6 /* UserShortDTO.swift in Sources */,
+				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
 				49330CD12ADD278900BFA4C6 /* MovieDTO.swift in Sources */,
 				49330CDC2ADD2E7C00BFA4C6 /* MovieDetailsDTO.swift in Sources */,
 				49330CDA2ADD2AA500BFA4C6 /* MovieNetworkConfig.swift in Sources */,
@@ -579,6 +614,7 @@
 				4961F4792AE021AC00A717AB /* LoginViewState.swift in Sources */,
 				49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */,
 				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,
+				49E3A8C52AE11C3700AA05C5 /* SegmentedPicker.swift in Sources */,
 				4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */,
 				4961F4742AE0210900A717AB /* LoginView.swift in Sources */,
 				49B422FD2AE0E0020032F773 /* AuthFormHeader.swift in Sources */,
