@@ -1,5 +1,5 @@
 //
-//  ScreenTitle.swift
+//  AuthScreenTitle.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 19.10.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ScreenTitle: View {
+struct AuthScreenTitle: View {
 
     let text: LocalizedStringKey
 
@@ -21,6 +21,6 @@ struct ScreenTitle: View {
     }
 
     private enum Constants {
-        static let bottomInset: CGFloat = -20
+        static let bottomInset: CGFloat = -15
     }
 }

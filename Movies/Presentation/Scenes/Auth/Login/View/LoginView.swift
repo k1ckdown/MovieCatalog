@@ -15,7 +15,7 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
         VStack {
             Form {
                 Group {
-                    ScreenTitle(text: "Entrance")
+                    AuthScreenTitle(text: "Entrance")
 
                     Section {
                         TextField("", text: login)

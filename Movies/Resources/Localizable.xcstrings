@@ -48,6 +48,23 @@
         }
       }
     },
+    "Confirm password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm password"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторите пароль"
+          }
+        }
+      }
+    },
     "Don't have an account yet?" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -264,6 +281,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Зарегистрируйтесь"
+          }
+        }
+      }
+    },
+    "Register account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зарегистрироваться"
           }
         }
       }

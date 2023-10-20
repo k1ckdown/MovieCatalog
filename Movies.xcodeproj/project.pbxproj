@@ -53,8 +53,9 @@
 		4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4984BE142ADC6ABB00364027 /* NetworkService.swift */; };
 		4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995FF1E2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift */; };
 		4995FF212AE2D97600948457 /* BaseFormStyleViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995FF202AE2D97600948457 /* BaseFormStyleViewModifier.swift */; };
-		49A562822AE0EA9C00222062 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562812AE0EA9C00222062 /* RegistrationView.swift */; };
-		49A562842AE0EAD400222062 /* ScreenTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562832AE0EAD400222062 /* ScreenTitle.swift */; };
+		499B23E82AE2ECD100069EC9 /* RegistrationSecondStageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B23E72AE2ECD100069EC9 /* RegistrationSecondStageView.swift */; };
+		49A562822AE0EA9C00222062 /* RegistrationFirstStageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562812AE0EA9C00222062 /* RegistrationFirstStageView.swift */; };
+		49A562842AE0EAD400222062 /* AuthScreenTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562832AE0EAD400222062 /* AuthScreenTitle.swift */; };
 		49A562872AE0EBB000222062 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562862AE0EBB000222062 /* RegistrationViewModel.swift */; };
 		49A562892AE0EBC100222062 /* RegistrationViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562882AE0EBC100222062 /* RegistrationViewState.swift */; };
 		49B422FD2AE0E0020032F773 /* AuthFormHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */; };
@@ -111,8 +112,9 @@
 		4984BE142ADC6ABB00364027 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		4995FF1E2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+ContentHugging.swift"; sourceTree = "<group>"; };
 		4995FF202AE2D97600948457 /* BaseFormStyleViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFormStyleViewModifier.swift; sourceTree = "<group>"; };
-		49A562812AE0EA9C00222062 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationView.swift; path = Movies/Presentation/Scenes/Auth/Components/Labels/RegistrationView.swift; sourceTree = SOURCE_ROOT; };
-		49A562832AE0EAD400222062 /* ScreenTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTitle.swift; sourceTree = "<group>"; };
+		499B23E72AE2ECD100069EC9 /* RegistrationSecondStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondStageView.swift; sourceTree = "<group>"; };
+		49A562812AE0EA9C00222062 /* RegistrationFirstStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationFirstStageView.swift; path = Movies/Presentation/Scenes/Auth/Components/Labels/RegistrationFirstStageView.swift; sourceTree = SOURCE_ROOT; };
+		49A562832AE0EAD400222062 /* AuthScreenTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenTitle.swift; sourceTree = "<group>"; };
 		49A562862AE0EBB000222062 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		49A562882AE0EBC100222062 /* RegistrationViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewState.swift; sourceTree = "<group>"; };
 		49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFormHeader.swift; sourceTree = "<group>"; };
@@ -446,18 +448,19 @@
 		49A5627F2AE0EA8A00222062 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				49A562802AE0EA9200222062 /* View */,
+				49A562802AE0EA9200222062 /* Views */,
 				49A562852AE0EB9200222062 /* ViewModel */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
 		};
-		49A562802AE0EA9200222062 /* View */ = {
+		49A562802AE0EA9200222062 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				49A562812AE0EA9C00222062 /* RegistrationView.swift */,
+				49A562812AE0EA9C00222062 /* RegistrationFirstStageView.swift */,
+				499B23E72AE2ECD100069EC9 /* RegistrationSecondStageView.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		49A562852AE0EB9200222062 /* ViewModel */ = {
@@ -482,7 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */,
-				49A562832AE0EAD400222062 /* ScreenTitle.swift */,
+				49A562832AE0EAD400222062 /* AuthScreenTitle.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -630,7 +633,7 @@
 				4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */,
 				4961F47C2AE021C800A717AB /* ViewModel.swift in Sources */,
 				4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */,
-				49A562842AE0EAD400222062 /* ScreenTitle.swift in Sources */,
+				49A562842AE0EAD400222062 /* AuthScreenTitle.swift in Sources */,
 				49330CF42ADD7C7B00BFA4C6 /* NetworkConfig.swift in Sources */,
 				4961F48D2AE045A700A717AB /* SecureInputView.swift in Sources */,
 				49330CEB2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift in Sources */,
@@ -644,6 +647,7 @@
 				4961F4792AE021AC00A717AB /* LoginViewState.swift in Sources */,
 				49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */,
 				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,
+				499B23E82AE2ECD100069EC9 /* RegistrationSecondStageView.swift in Sources */,
 				49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */,
 				4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */,
 				4961F4742AE0210900A717AB /* LoginView.swift in Sources */,
@@ -651,7 +655,7 @@
 				49B422FD2AE0E0020032F773 /* AuthFormHeader.swift in Sources */,
 				493BB4E92AE198AA004C879F /* GrayBorderedViewModifier.swift in Sources */,
 				49330CDE2ADD2EB500BFA4C6 /* ReviewDTO.swift in Sources */,
-				49A562822AE0EA9C00222062 /* RegistrationView.swift in Sources */,
+				49A562822AE0EA9C00222062 /* RegistrationFirstStageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RegistrationView<ViewModel: RegistrationViewModelProtocol>: View {
+struct RegistrationFirstStageView<ViewModel: RegistrationViewModelProtocol>: View {
 
     @ObservedObject private(set) var viewModel: ViewModel
 
@@ -15,7 +15,7 @@ struct RegistrationView<ViewModel: RegistrationViewModelProtocol>: View {
         VStack {
             Form {
                 Group {
-                    ScreenTitle(text: "Registration")
+                    AuthScreenTitle(text: "Registration")
 
                     Section {
                         TextField("", text: name)
@@ -114,7 +114,7 @@ struct RegistrationView<ViewModel: RegistrationViewModelProtocol>: View {
 
 #Preview {
     NavigationStack {
-        RegistrationView(viewModel: RegistrationViewModel())
+        RegistrationFirstStageView(viewModel: RegistrationViewModel())
             .environment(\.locale, .init(identifier: "ru"))
     }
 }
