@@ -31,6 +31,8 @@
 		49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CFE2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift */; };
 		49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330D002ADD992F00BFA4C6 /* ReviewModifyDTO.swift */; };
 		49330D032ADD996300BFA4C6 /* ReviewNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */; };
+		493BB4E72AE1901D004C879F /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493BB4E62AE1901D004C879F /* DatePickerField.swift */; };
+		493BB4E92AE198AA004C879F /* GrayBorderedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493BB4E82AE198AA004C879F /* GrayBorderedViewModifier.swift */; };
 		49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49612AC22ADAD8AF0081832B /* MoviesApp.swift */; };
 		49612AC72ADAD8B10081832B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC62ADAD8B10081832B /* Assets.xcassets */; };
 		49612ACA2ADAD8B10081832B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC92ADAD8B10081832B /* Preview Assets.xcassets */; };
@@ -84,6 +86,8 @@
 		49330CFE2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMoviesNetworkConfig.swift; sourceTree = "<group>"; };
 		49330D002ADD992F00BFA4C6 /* ReviewModifyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModifyDTO.swift; sourceTree = "<group>"; };
 		49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNetworkConfig.swift; sourceTree = "<group>"; };
+		493BB4E62AE1901D004C879F /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
+		493BB4E82AE198AA004C879F /* GrayBorderedViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayBorderedViewModifier.swift; sourceTree = "<group>"; };
 		49612ABF2ADAD8AF0081832B /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49612AC22ADAD8AF0081832B /* MoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesApp.swift; sourceTree = "<group>"; };
 		49612AC62ADAD8B10081832B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,6 +128,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		490BFABF2AE2B841003C921F /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				493BB4E62AE1901D004C879F /* DatePickerField.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		49145D7F2ADEBEFC0082E048 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +303,7 @@
 			children = (
 				4961F4642AE0009E00A717AB /* AppBackgroundViewModifier.swift */,
 				4961F46E2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift */,
+				493BB4E82AE198AA004C879F /* GrayBorderedViewModifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -445,6 +458,7 @@
 		49B422FA2AE0DFE60032F773 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				490BFABF2AE2B841003C921F /* CustomViews */,
 				49B422FB2AE0DFF20032F773 /* Labels */,
 			);
 			path = Components;
@@ -617,7 +631,9 @@
 				49E3A8C52AE11C3700AA05C5 /* SegmentedPicker.swift in Sources */,
 				4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */,
 				4961F4742AE0210900A717AB /* LoginView.swift in Sources */,
+				493BB4E72AE1901D004C879F /* DatePickerField.swift in Sources */,
 				49B422FD2AE0E0020032F773 /* AuthFormHeader.swift in Sources */,
+				493BB4E92AE198AA004C879F /* GrayBorderedViewModifier.swift in Sources */,
 				49330CDE2ADD2EB500BFA4C6 /* ReviewDTO.swift in Sources */,
 				49A562822AE0EA9C00222062 /* RegistrationView.swift in Sources */,
 			);

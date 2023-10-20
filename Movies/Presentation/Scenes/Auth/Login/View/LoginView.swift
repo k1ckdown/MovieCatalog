@@ -19,6 +19,7 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
                 Group {
                     Section {
                         TextField("", text: login)
+                            .textFieldStyle(BaseTextFieldStyle())
                     } header: {
                         AuthFormHeader(title: "Login")
                     }
@@ -41,11 +42,12 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
                 .listRowBackground(Color.clear)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
-                .textFieldStyle(BaseTextFieldStyle())
             }
             .scrollDisabled(true)
             .scrollContentBackground(.hidden)
             .padding(.horizontal, -3)
+
+            Spacer()
 
             CalloutButton(text: "Don't have an account yet?",
                           buttonTitle: "Register") {

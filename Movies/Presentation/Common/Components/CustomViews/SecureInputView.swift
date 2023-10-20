@@ -14,6 +14,9 @@ struct SecureInputView: View {
 
     var body: some View {
         textField
+            .textFieldStyle(
+                BaseTextFieldStyle(trailingInset: Constants.textFieldTrailingInset)
+            )
             .overlay(alignment: .trailing) {
                 Image(systemName: isSecured ? "eye.slash" : "eye")
                     .imageScale(.medium)
@@ -26,6 +29,7 @@ struct SecureInputView: View {
     }
 
     private enum Constants {
+        static let textFieldTrailingInset: CGFloat = 45
         static let eyeButtonTrailingInset: CGFloat = 12
     }
 

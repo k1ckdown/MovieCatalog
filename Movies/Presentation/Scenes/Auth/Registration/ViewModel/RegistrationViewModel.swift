@@ -19,7 +19,18 @@ final class RegistrationViewModel: RegistrationViewModelProtocol {
     }
 
     func handle(_ event: RegistrationViewEvent) {
-        
+        switch event {
+        case .nameChanged(let name):
+            state.name = name
+        case .genderChanged(let gender):
+            state.gender = gender
+        case .loginChanged(let login):
+            state.login = login
+        case .emailChanged(let email):
+            state.email = email
+        case .birthdateChanged(let date):
+            state.birthdate = date
+        }
     }
 }
 

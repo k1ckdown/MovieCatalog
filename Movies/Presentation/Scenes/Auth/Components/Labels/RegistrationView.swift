@@ -36,6 +36,7 @@ struct RegistrationView<ViewModel: RegistrationViewModelProtocol>: View {
 
                     Section {
                         TextField("", text: login)
+                            .textInputAutocapitalization(.never)
                     } header: {
                         AuthFormHeader(title: "Login")
                     }
@@ -48,17 +49,7 @@ struct RegistrationView<ViewModel: RegistrationViewModelProtocol>: View {
                     }
 
                     Section {
-                        TextField("", text: name)
-                            .disabled(true)
-                            .overlay(alignment: .trailing) {
-                                DatePicker("",
-                                           selection: birthdate,
-                                           in: ...Date.now,
-                                           displayedComponents: .date
-                                )
-                                .padding(.trailing, 10)
-                                .datePickerStyle(IconDatePickerStyle())
-                            }
+                        DatePickerField(date: birthdate)
                     } header: {
                         AuthFormHeader(title: "Birthdate")
                     }
@@ -79,7 +70,7 @@ struct RegistrationView<ViewModel: RegistrationViewModelProtocol>: View {
 
             CalloutButton(text: "Already have an account?",
                           buttonTitle: "Log in to account") {
-                
+
             }
         }
         .appBackground()
