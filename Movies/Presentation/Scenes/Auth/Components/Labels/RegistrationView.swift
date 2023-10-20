@@ -13,10 +13,10 @@ struct RegistrationView<ViewModel: RegistrationViewModelProtocol>: View {
 
     var body: some View {
         VStack {
-            ScreenTitle(text: "Registration")
-
             Form {
                 Group {
+                    ScreenTitle(text: "Registration")
+
                     Section {
                         TextField("", text: name)
                     } header: {
@@ -64,12 +64,12 @@ struct RegistrationView<ViewModel: RegistrationViewModelProtocol>: View {
                 .listRowBackground(Color.clear)
                 .textFieldStyle(BaseTextFieldStyle())
             }
-            .scrollContentBackground(.hidden)
-            .padding(.horizontal, -3)
+            .baseFormStyle()
+
+            Spacer()
 
             CalloutButton(text: "Already have an account?",
                           buttonTitle: "Log in to account") {
-
             }
         }
         .appBackground()

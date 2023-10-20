@@ -52,6 +52,7 @@
 		4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */; };
 		4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4984BE142ADC6ABB00364027 /* NetworkService.swift */; };
 		4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995FF1E2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift */; };
+		4995FF212AE2D97600948457 /* BaseFormStyleViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995FF202AE2D97600948457 /* BaseFormStyleViewModifier.swift */; };
 		49A562822AE0EA9C00222062 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562812AE0EA9C00222062 /* RegistrationView.swift */; };
 		49A562842AE0EAD400222062 /* ScreenTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562832AE0EAD400222062 /* ScreenTitle.swift */; };
 		49A562872AE0EBB000222062 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562862AE0EBB000222062 /* RegistrationViewModel.swift */; };
@@ -109,6 +110,7 @@
 		4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		4984BE142ADC6ABB00364027 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		4995FF1E2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+ContentHugging.swift"; sourceTree = "<group>"; };
+		4995FF202AE2D97600948457 /* BaseFormStyleViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFormStyleViewModifier.swift; sourceTree = "<group>"; };
 		49A562812AE0EA9C00222062 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationView.swift; path = Movies/Presentation/Scenes/Auth/Components/Labels/RegistrationView.swift; sourceTree = SOURCE_ROOT; };
 		49A562832AE0EAD400222062 /* ScreenTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTitle.swift; sourceTree = "<group>"; };
 		49A562862AE0EBB000222062 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				4961F4642AE0009E00A717AB /* AppBackgroundViewModifier.swift */,
 				4961F46E2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift */,
 				493BB4E82AE198AA004C879F /* GrayBorderedViewModifier.swift */,
+				4995FF202AE2D97600948457 /* BaseFormStyleViewModifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				49330CF22ADD741F00BFA4C6 /* URLParameterEncoder.swift in Sources */,
 				4961F45B2ADFDF9700A717AB /* WelcomeView.swift in Sources */,
 				4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */,
+				4995FF212AE2D97600948457 /* BaseFormStyleViewModifier.swift in Sources */,
 				49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */,
 				49330CCF2ADD278900BFA4C6 /* ReviewShortDTO.swift in Sources */,
 				4961F4982AE05CAE00A717AB /* BaseButtonStyle.swift in Sources */,

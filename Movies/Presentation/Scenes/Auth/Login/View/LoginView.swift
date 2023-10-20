@@ -13,10 +13,10 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
 
     var body: some View {
         VStack {
-            ScreenTitle(text: "Entrance")
-
             Form {
                 Group {
+                    ScreenTitle(text: "Entrance")
+
                     Section {
                         TextField("", text: login)
                             .textFieldStyle(BaseTextFieldStyle())
@@ -43,9 +43,8 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
             }
+            .baseFormStyle()
             .scrollDisabled(true)
-            .scrollContentBackground(.hidden)
-            .padding(.horizontal, -3)
 
             Spacer()
 
