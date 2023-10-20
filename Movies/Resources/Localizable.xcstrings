@@ -11,6 +11,9 @@
         }
       }
     },
+    "%@" : {
+
+    },
     "Already have an account?" : {
       "extractionState" : "manual",
       "localizations" : {

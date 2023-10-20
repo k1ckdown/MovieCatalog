@@ -25,6 +25,7 @@ struct CalloutButton: View {
             .fontWeight(.medium)
         }
         .font(.callout)
+        .padding(.bottom)
     }
 
     private enum Constants {

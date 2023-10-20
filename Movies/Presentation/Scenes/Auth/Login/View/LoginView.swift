@@ -49,8 +49,7 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
 
             Spacer()
 
-            CalloutButton(text: "Don't have an account yet?",
-                          buttonTitle: "Register") {
+            CalloutButton(text: "Don't have an account yet?", buttonTitle: "Register") {
 
             }
         }

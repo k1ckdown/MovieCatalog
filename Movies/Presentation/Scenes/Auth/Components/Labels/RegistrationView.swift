@@ -24,12 +24,11 @@ struct RegistrationView<ViewModel: RegistrationViewModelProtocol>: View {
                     }
 
                     Section {
-                        Picker("", selection: gender) {
+                        BaseSegmentedPicker(selection: gender) {
                             ForEach(Gender.allCases) { gender in
                                 Text(LocalizedStringKey(gender.rawValue)).tag(gender)
                             }
                         }
-                        .pickerStyle(.segmented)
                     } header: {
                         AuthFormHeader(title: "Gender")
                     }
