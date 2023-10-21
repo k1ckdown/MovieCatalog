@@ -15,23 +15,23 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
         VStack {
             Form {
                 Group {
-                    AuthScreenTitle(text: "Entrance")
+                    AuthScreenTitle(text: LocalizedKeysConstants.entrance)
 
                     Section {
                         TextField("", text: login)
                             .textFieldStyle(BaseTextFieldStyle())
                     } header: {
-                        AuthFormHeader(title: "Login")
+                        AuthFormHeader(title: LocalizedKeysConstants.login)
                     }
 
                     Section {
                         SecureInputView(text: password)
                     } header: {
-                        AuthFormHeader(title: "Password")
+                        AuthFormHeader(title: LocalizedKeysConstants.password)
                     }
 
                     Section {
-                        Button("Log In") {
+                        Button(LocalizedKeysConstants.logIn) {
 
                         }
                         .buttonStyle(BaseButtonStyle())
@@ -48,7 +48,8 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
 
             Spacer()
 
-            CalloutButton(text: "Don't have an account yet?", buttonTitle: "Register") {
+            CalloutButton(text: LocalizedKeysConstants.noAccountYet, 
+                          buttonTitle: LocalizedKeysConstants.register) {
 
             }
         }

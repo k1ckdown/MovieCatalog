@@ -5,11 +5,16 @@
 //  Created by Ivan Semenov on 21.10.2023.
 //
 
-import Foundation
+import SwiftUI
 
 enum LocalizedKeysConstants {
-    static let welcomeTitle = "WelcomeTitle"
-    static let welcomeBody = "WelcomeBody"
-    static let registration = "Registration"
-    static let logIn = "Log In"
+    static let welcomeTitle = LocalizedStringKey("WelcomeTitle")
+    static let welcomeBody = LocalizedStringKey("WelcomeBody")
+    static let registration = LocalizedStringKey("Registration")
+    static let logIn = LocalizedStringKey("Log In")
+    static let entrance = LocalizedStringKey("Entrance")
+    static let login = LocalizedStringKey("Login")
+    static let password = LocalizedStringKey("Password")
+    static let noAccountYet = LocalizedStringKey("Don't have an account yet?")
+    static let register = LocalizedStringKey("Register")
 }
