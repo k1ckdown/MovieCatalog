@@ -16,22 +16,22 @@ struct RegistrationSecondStageView: View {
         VStack {
             Form {
                 Group {
-                    AuthScreenTitle(text: "Registration")
+                    AuthScreenTitle(text: LocalizedKeysConstants.registration)
 
                     Section {
                         SecureInputView(text: $password)
                     } header: {
-                        AuthFormHeader(title: "Password")
+                        AuthFormHeader(title: LocalizedKeysConstants.password)
                     }
 
                     Section {
                         SecureInputView(text: $confirmPassword)
                     } header: {
-                        AuthFormHeader(title: "Confirm password")
+                        AuthFormHeader(title: LocalizedKeysConstants.confirmPassword)
                     }
 
                     Section {
-                        Button("Register account") {
+                        Button(LocalizedKeysConstants.registerAccount) {
 
                         }
                         .buttonStyle(BaseButtonStyle())
@@ -47,8 +47,8 @@ struct RegistrationSecondStageView: View {
 
             Spacer()
 
-            CalloutButton(text: "Already have an account?",
-                          buttonTitle: "Log in to account") {
+            CalloutButton(text: LocalizedKeysConstants.alreadyHaveAccount,
+                          buttonTitle: LocalizedKeysConstants.logInToAccount) {
             }
         }
         .appBackground()

@@ -12,7 +12,14 @@
       }
     },
     "%@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "Already have an account?" : {
       "extractionState" : "manual",
@@ -183,7 +190,7 @@
         }
       }
     },
-    "Log in to account" : {
+    "Log In to account" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
