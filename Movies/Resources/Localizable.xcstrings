@@ -141,6 +141,7 @@
       }
     },
     "FИЛЬМУС" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

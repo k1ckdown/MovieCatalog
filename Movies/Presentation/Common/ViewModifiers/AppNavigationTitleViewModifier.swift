@@ -17,6 +17,7 @@ struct AppNavigationTitleViewModifier: ViewModifier {
         content
             .navigationTitle(Constants.title)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarRole(.editor)
     }
 
     private enum Constants {

@@ -59,6 +59,13 @@
 		49A562872AE0EBB000222062 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562862AE0EBB000222062 /* RegistrationViewModel.swift */; };
 		49A562892AE0EBC100222062 /* RegistrationViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562882AE0EBC100222062 /* RegistrationViewState.swift */; };
 		49B422FD2AE0E0020032F773 /* AuthFormHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */; };
+		49C189BF2AE3F70D0029BAF9 /* RouteLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189BE2AE3F70D0029BAF9 /* RouteLink.swift */; };
+		49C189C12AE3F7750029BAF9 /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189C02AE3F7750029BAF9 /* NavigationState.swift */; };
+		49C189C42AE3F80A0029BAF9 /* WelcomeNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189C32AE3F80A0029BAF9 /* WelcomeNavigationState.swift */; };
+		49C189C62AE3F9AF0029BAF9 /* WelcomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189C52AE3F9AF0029BAF9 /* WelcomeCoordinator.swift */; };
+		49C189C82AE3FA940029BAF9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189C72AE3FA940029BAF9 /* AppCoordinator.swift */; };
+		49C189CB2AE3FC090029BAF9 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189CA2AE3FC090029BAF9 /* WelcomeViewModel.swift */; };
+		49C189CD2AE3FC2F0029BAF9 /* WelcomeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189CC2AE3FC2F0029BAF9 /* WelcomeViewState.swift */; };
 		49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C12AE1172B00AA05C5 /* Gender.swift */; };
 		49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */; };
 		49E9280C2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */; };
@@ -118,6 +125,13 @@
 		49A562862AE0EBB000222062 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		49A562882AE0EBC100222062 /* RegistrationViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewState.swift; sourceTree = "<group>"; };
 		49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFormHeader.swift; sourceTree = "<group>"; };
+		49C189BE2AE3F70D0029BAF9 /* RouteLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteLink.swift; sourceTree = "<group>"; };
+		49C189C02AE3F7750029BAF9 /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
+		49C189C32AE3F80A0029BAF9 /* WelcomeNavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeNavigationState.swift; sourceTree = "<group>"; };
+		49C189C52AE3F9AF0029BAF9 /* WelcomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCoordinator.swift; sourceTree = "<group>"; };
+		49C189C72AE3FA940029BAF9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		49C189CA2AE3FC090029BAF9 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
+		49C189CC2AE3FC2F0029BAF9 /* WelcomeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewState.swift; sourceTree = "<group>"; };
 		49E3A8C12AE1172B00AA05C5 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSegmentedPicker.swift; sourceTree = "<group>"; };
 		49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedKeysConstants.swift; sourceTree = "<group>"; };
@@ -154,6 +168,7 @@
 		49145D802ADEBF020082E048 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				49C189C72AE3FA940029BAF9 /* AppCoordinator.swift */,
 				49145D812ADEBF060082E048 /* Launch */,
 				4961F4582ADFDF8800A717AB /* Welcome */,
 				4961F4702AE020EF00A717AB /* Auth */,
@@ -263,6 +278,8 @@
 			isa = PBXGroup;
 			children = (
 				4961F4592ADFDF8F00A717AB /* View */,
+				49C189C92AE3FC000029BAF9 /* ViewModel */,
+				49C189C22AE3F7F50029BAF9 /* Coordinator */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -357,6 +374,8 @@
 			isa = PBXGroup;
 			children = (
 				4961F47B2AE021C800A717AB /* ViewModel.swift */,
+				49C189BE2AE3F70D0029BAF9 /* RouteLink.swift */,
+				49C189C02AE3F7750029BAF9 /* NavigationState.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -490,6 +509,24 @@
 			path = Labels;
 			sourceTree = "<group>";
 		};
+		49C189C22AE3F7F50029BAF9 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				49C189C52AE3F9AF0029BAF9 /* WelcomeCoordinator.swift */,
+				49C189C32AE3F80A0029BAF9 /* WelcomeNavigationState.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		49C189C92AE3FC000029BAF9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				49C189CA2AE3FC090029BAF9 /* WelcomeViewModel.swift */,
+				49C189CC2AE3FC2F0029BAF9 /* WelcomeViewState.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		49C3F86E2ADEDC56008BAE92 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,6 +648,7 @@
 				4961F4772AE021A200A717AB /* LoginViewModel.swift in Sources */,
 				49330CEF2ADD663B00BFA4C6 /* NetworkRouter.swift in Sources */,
 				49330CED2ADD60E400BFA4C6 /* LogoutResponse.swift in Sources */,
+				49C189C12AE3F7750029BAF9 /* NavigationState.swift in Sources */,
 				49330CF92ADD854800BFA4C6 /* ProfileDTO.swift in Sources */,
 				49330CE82ADD424000BFA4C6 /* LoginCredentials.swift in Sources */,
 				49330CFB2ADD856D00BFA4C6 /* GenderDTO.swift in Sources */,
@@ -620,9 +658,12 @@
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
 				49330CD12ADD278900BFA4C6 /* MovieDTO.swift in Sources */,
 				49330CDC2ADD2E7C00BFA4C6 /* MovieDetailsDTO.swift in Sources */,
+				49C189C42AE3F80A0029BAF9 /* WelcomeNavigationState.swift in Sources */,
 				49330CDA2ADD2AA500BFA4C6 /* MovieNetworkConfig.swift in Sources */,
 				49330CF22ADD741F00BFA4C6 /* URLParameterEncoder.swift in Sources */,
+				49C189CD2AE3FC2F0029BAF9 /* WelcomeViewState.swift in Sources */,
 				4961F45B2ADFDF9700A717AB /* WelcomeView.swift in Sources */,
+				49C189C82AE3FA940029BAF9 /* AppCoordinator.swift in Sources */,
 				4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */,
 				4995FF212AE2D97600948457 /* BaseFormStyleViewModifier.swift in Sources */,
 				49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */,
@@ -630,12 +671,14 @@
 				4961F4982AE05CAE00A717AB /* BaseButtonStyle.swift in Sources */,
 				4961F4932AE0520F00A717AB /* CalloutButton.swift in Sources */,
 				4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */,
+				49C189C62AE3F9AF0029BAF9 /* WelcomeCoordinator.swift in Sources */,
 				4961F47C2AE021C800A717AB /* ViewModel.swift in Sources */,
 				4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */,
 				49A562842AE0EAD400222062 /* AuthScreenTitle.swift in Sources */,
 				49330CF42ADD7C7B00BFA4C6 /* NetworkConfig.swift in Sources */,
 				4961F48D2AE045A700A717AB /* SecureInputView.swift in Sources */,
 				49330CEB2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift in Sources */,
+				49C189BF2AE3F70D0029BAF9 /* RouteLink.swift in Sources */,
 				49330CE22ADD41B600BFA4C6 /* UserRegisterDTO.swift in Sources */,
 				49330CD22ADD278900BFA4C6 /* GenreDTO.swift in Sources */,
 				49330D032ADD996300BFA4C6 /* ReviewNetworkConfig.swift in Sources */,
@@ -655,6 +698,7 @@
 				49B422FD2AE0E0020032F773 /* AuthFormHeader.swift in Sources */,
 				493BB4E92AE198AA004C879F /* GrayBorderedViewModifier.swift in Sources */,
 				49330CDE2ADD2EB500BFA4C6 /* ReviewDTO.swift in Sources */,
+				49C189CB2AE3FC090029BAF9 /* WelcomeViewModel.swift in Sources */,
 				49A562822AE0EA9C00222062 /* RegistrationFirstStageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

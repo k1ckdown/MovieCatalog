@@ -9,44 +9,44 @@ import SwiftUI
 
 struct WelcomeView: View {
 
+    @ObservedObject private(set) var viewModel: WelcomeViewModel
+
     var body: some View {
-        NavigationStack {
-            VStack(spacing: Constants.ContentStack.spacing) {
-                Image(.amico)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxHeight: Constants.AmicoImage.height)
-                    .padding(.top, Constants.AmicoImage.topInset)
+        VStack(spacing: Constants.ContentStack.spacing) {
+            Image(.amico)
+                .resizable()
+                .scaledToFit()
+                .frame(maxHeight: Constants.AmicoImage.height)
+                .padding(.top, Constants.AmicoImage.topInset)
 
-                VStack(spacing: Constants.DescriptionStack.spacing) {
-                    Text(LocalizedKeysConstants.welcomeTitle)
-                        .bold()
-                        .font(.title2)
+            VStack(spacing: Constants.DescriptionStack.spacing) {
+                Text(LocalizedKeysConstants.welcomeTitle)
+                    .bold()
+                    .font(.title2)
 
-                    Text(LocalizedKeysConstants.welcomeBody)
-                        .font(.body)
-                }
-                .multilineTextAlignment(.center)
-                .padding()
-
-                VStack(spacing: Constants.ButtonStack.spacing) {
-                    Button(LocalizedKeysConstants.registration) {
-
-                    }
-                    .buttonStyle(BaseButtonStyle())
-
-                    Button(LocalizedKeysConstants.logIn) {
-
-                    }
-                    .buttonStyle(BaseButtonStyle(isProminent: false))
-                }
-                .padding(.horizontal)
-
-                Spacer()
+                Text(LocalizedKeysConstants.welcomeBody)
+                    .font(.body)
             }
-            .appBackground()
-            .appNavigationTitle()
+            .multilineTextAlignment(.center)
+            .padding()
+
+            VStack(spacing: Constants.ButtonStack.spacing) {
+                Button(LocalizedKeysConstants.registration) {
+                    viewModel.handle(.onTapRegistration)
+                }
+                .buttonStyle(BaseButtonStyle())
+
+                Button(LocalizedKeysConstants.logIn) {
+                    viewModel.handle(.onTapLogIn)
+                }
+                .buttonStyle(BaseButtonStyle(isProminent: false))
+            }
+            .padding(.horizontal)
+
+            Spacer()
         }
+        .appBackground()
+        .appNavigationTitle()
     }
 
     private enum Constants {
@@ -67,9 +67,4 @@ struct WelcomeView: View {
             static let spacing: CGFloat = 15
         }
     }
-}
-
-#Preview {
-    WelcomeView()
-        .environment(\.locale, .init(identifier: "ru"))
 }
