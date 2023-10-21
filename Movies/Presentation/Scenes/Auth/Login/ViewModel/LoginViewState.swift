@@ -10,6 +10,10 @@ import Foundation
 struct LoginViewState: Equatable {
     var login = ""
     var password = ""
+
+    var isDataEmpty: Bool {
+        login.isEmpty || password.isEmpty
+    }
 }
 
 enum LoginViewEvent {

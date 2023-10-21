@@ -20,7 +20,8 @@ struct BaseButtonStyle: ButtonStyle {
         configuration.label
             .fontWeight(.semibold)
             .foregroundStyle(isProminent ? Color(.label) : .appAccent)
-            .frame(width: Constants.width, height: Constants.height)
+            .frame(maxWidth: .infinity)
+            .frame(height: Constants.height)
             .background(isProminent ? .appAccent : .appDarkGray)
             .clipShape(.rect(cornerRadius: Constants.borderRadius))
             .opacity(configuration.isPressed ? Constants.opacityPressed : opacity)
@@ -28,10 +29,8 @@ struct BaseButtonStyle: ButtonStyle {
     }
 
     private enum Constants {
-        static let borderRadius: CGFloat = 10
-
         static let height: CGFloat = 42
-        static let width: CGFloat = 360
+        static let borderRadius: CGFloat = 10
 
         static let scaleEffect: CGFloat = 1
         static let scaleEffectPressed: CGFloat = 0.98

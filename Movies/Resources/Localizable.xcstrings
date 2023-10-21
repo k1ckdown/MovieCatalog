@@ -11,6 +11,60 @@
         }
       }
     },
+    "%@" : {
+
+    },
+    "Already have an account?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Already have an account?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уже есть аккаунт?"
+          }
+        }
+      }
+    },
+    "Birthdate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birthdate"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата рождения"
+          }
+        }
+      }
+    },
+    "Confirm password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm password"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторите пароль"
+          }
+        }
+      }
+    },
     "Don't have an account yet?" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -24,6 +78,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Еще нет аккаунта?"
+          }
+        }
+      }
+    },
+    "Email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Электронная почта"
           }
         }
       }
@@ -45,6 +116,23 @@
         }
       }
     },
+    "female" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Female"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Женщина"
+          }
+        }
+      }
+    },
     "FИЛЬМУС" : {
       "localizations" : {
         "en" : {
@@ -57,6 +145,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "FИЛЬМУС"
+          }
+        }
+      }
+    },
+    "Gender" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gender"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пол"
           }
         }
       }
@@ -78,6 +183,23 @@
         }
       }
     },
+    "Log in to account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log In"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Войдите"
+          }
+        }
+      }
+    },
     "Login" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -91,6 +213,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Логин"
+          }
+        }
+      }
+    },
+    "male" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Male"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мужчина"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя"
           }
         }
       }
@@ -125,6 +281,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Зарегистрируйтесь"
+          }
+        }
+      }
+    },
+    "Register account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зарегистрироваться"
           }
         }
       }
@@ -176,6 +349,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Погрузись в мир кино"
+          }
+        }
+      }
+    },
+    "Сontinue" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сontinue"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить"
           }
         }
       }

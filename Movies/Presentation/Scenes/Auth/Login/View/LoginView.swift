@@ -13,15 +13,13 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
 
     var body: some View {
         VStack {
-            Text("Entrance")
-                .font(.title2)
-                .bold()
-                .padding(.vertical)
-
             Form {
                 Group {
+                    AuthScreenTitle(text: "Entrance")
+
                     Section {
                         TextField("", text: login)
+                            .textFieldStyle(BaseTextFieldStyle())
                     } header: {
                         AuthFormHeader(title: "Login")
                     }
@@ -37,32 +35,25 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
 
                         }
                         .buttonStyle(BaseButtonStyle())
-                        .disabled(isLogInButtonDisabled)
+                        .disabled(viewModel.state.isDataEmpty)
                     }
                 }
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
-                .textFieldStyle(BaseTextFieldStyle())
             }
+            .baseFormStyle()
             .scrollDisabled(true)
-            .scrollContentBackground(.hidden)
-            .padding(.horizontal, -3)
 
             Spacer()
 
-            CalloutButton(text: "Don't have an account yet?",
-                          buttonTitle: "Register") {
+            CalloutButton(text: "Don't have an account yet?", buttonTitle: "Register") {
 
             }
         }
         .appBackground()
         .appNavigationTitle()
-    }
-
-    private var isLogInButtonDisabled: Bool {
-        viewModel.state.login.isEmpty || viewModel.state.password.isEmpty
     }
 
     private var login: Binding<String> {

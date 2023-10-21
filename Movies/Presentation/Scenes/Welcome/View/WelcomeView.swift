@@ -40,6 +40,7 @@ struct WelcomeView: View {
                     }
                     .buttonStyle(BaseButtonStyle(isProminent: false))
                 }
+                .padding(.horizontal)
 
                 Spacer()
             }

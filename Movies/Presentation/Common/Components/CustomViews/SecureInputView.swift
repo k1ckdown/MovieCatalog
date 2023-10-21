@@ -14,11 +14,15 @@ struct SecureInputView: View {
 
     var body: some View {
         textField
+            .labelsHidden()
+            .textFieldStyle(
+                BaseTextFieldStyle(trailingInset: Constants.TextField.trailingInset)
+            )
             .overlay(alignment: .trailing) {
-                Image(systemName: isSecured ? "eye.slash" : "eye")
+                Image(systemName: isSecured ? Constants.Image.eyeSlash : Constants.Image.eye)
                     .imageScale(.medium)
                     .foregroundStyle(.secondary)
-                    .padding(.horizontal, Constants.eyeButtonTrailingInset)
+                    .padding(.horizontal, Constants.Image.trailingInset)
                     .onTapGesture {
                         isSecured.toggle()
                     }
@@ -26,7 +30,15 @@ struct SecureInputView: View {
     }
 
     private enum Constants {
-        static let eyeButtonTrailingInset: CGFloat = 12
+        enum TextField {
+            static let trailingInset: CGFloat = 45
+        }
+
+        enum Image {
+            static let eye = "eye"
+            static let eyeSlash = "eye.slash"
+            static let trailingInset: CGFloat = 12
+        }
     }
 
     @ViewBuilder

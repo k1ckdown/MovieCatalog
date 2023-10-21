@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Gender: Int, Codable {
+enum GenderDTO: Int, Codable {
     case male
     case female
 }

@@ -13,5 +13,5 @@ struct UserRegisterDTO: Encodable {
     let password: String
     let email: String
     let birthDate: String
-    let gender: Gender
+    let gender: GenderDTO
 }
