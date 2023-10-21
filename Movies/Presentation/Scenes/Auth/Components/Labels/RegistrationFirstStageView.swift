@@ -15,12 +15,12 @@ struct RegistrationFirstStageView<ViewModel: RegistrationViewModelProtocol>: Vie
         VStack {
             Form {
                 Group {
-                    AuthScreenTitle(text: "Registration")
+                    AuthScreenTitle(text: LocalizedKeysConstants.registration)
 
                     Section {
                         TextField("", text: name)
                     } header: {
-                        AuthFormHeader(title: "Name")
+                        AuthFormHeader(title: LocalizedKeysConstants.name)
                     }
 
                     Section {
@@ -30,31 +30,31 @@ struct RegistrationFirstStageView<ViewModel: RegistrationViewModelProtocol>: Vie
                             }
                         }
                     } header: {
-                        AuthFormHeader(title: "Gender")
+                        AuthFormHeader(title: LocalizedKeysConstants.gender)
                     }
 
                     Section {
                         TextField("", text: login)
                             .textInputAutocapitalization(.never)
                     } header: {
-                        AuthFormHeader(title: "Login")
+                        AuthFormHeader(title: LocalizedKeysConstants.login)
                     }
 
                     Section {
                         TextField("", text: email)
                             .keyboardType(.emailAddress)
                     } header: {
-                        AuthFormHeader(title: "Email")
+                        AuthFormHeader(title: LocalizedKeysConstants.email)
                     }
 
                     Section {
                         DatePickerField(date: birthdate)
                     } header: {
-                        AuthFormHeader(title: "Birthdate")
+                        AuthFormHeader(title: LocalizedKeysConstants.birthdate)
                     }
 
                     Section {
-                        Button("Сontinue") {
+                        Button(LocalizedKeysConstants.continue) {
 
                         }
                         .buttonStyle(BaseButtonStyle())
@@ -68,8 +68,8 @@ struct RegistrationFirstStageView<ViewModel: RegistrationViewModelProtocol>: Vie
 
             Spacer()
 
-            CalloutButton(text: "Already have an account?",
-                          buttonTitle: "Log in to account") {
+            CalloutButton(text: LocalizedKeysConstants.alreadyHaveAccount,
+                          buttonTitle: LocalizedKeysConstants.logInToAccount) {
             }
         }
         .appBackground()

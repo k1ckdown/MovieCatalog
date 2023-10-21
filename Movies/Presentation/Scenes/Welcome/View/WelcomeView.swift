@@ -19,23 +19,23 @@ struct WelcomeView: View {
                     .padding(.top, Constants.AmicoImage.topInset)
 
                 VStack(spacing: Constants.DescriptionStack.spacing) {
-                    Text("WelcomeTitle")
+                    Text(LocalizedKeysConstants.welcomeTitle)
                         .bold()
                         .font(.title2)
 
-                    Text("WelcomeBody")
+                    Text(LocalizedKeysConstants.welcomeBody)
                         .font(.body)
                 }
                 .multilineTextAlignment(.center)
                 .padding()
 
                 VStack(spacing: Constants.ButtonStack.spacing) {
-                    Button("Registration") {
+                    Button(LocalizedKeysConstants.registration) {
 
                     }
                     .buttonStyle(BaseButtonStyle())
 
-                    Button("Log In") {
+                    Button(LocalizedKeysConstants.logIn) {
 
                     }
                     .buttonStyle(BaseButtonStyle(isProminent: false))

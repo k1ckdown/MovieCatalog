@@ -61,6 +61,7 @@
 		49B422FD2AE0E0020032F773 /* AuthFormHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */; };
 		49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C12AE1172B00AA05C5 /* Gender.swift */; };
 		49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */; };
+		49E9280C2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,7 @@
 		49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFormHeader.swift; sourceTree = "<group>"; };
 		49E3A8C12AE1172B00AA05C5 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSegmentedPicker.swift; sourceTree = "<group>"; };
+		49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedKeysConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 		4961F4622AE0006400A717AB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				49E9280A2AE3E4D2006CC6EF /* Constants */,
 				4995FF1D2AE2C28C00948457 /* Extensions */,
 				4961F4872AE036F200A717AB /* Styles */,
 				4961F47A2AE021C100A717AB /* Protocols */,
@@ -521,6 +524,14 @@
 			path = Pickers;
 			sourceTree = "<group>";
 		};
+		49E9280A2AE3E4D2006CC6EF /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -636,6 +647,7 @@
 				49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */,
 				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,
 				499B23E82AE2ECD100069EC9 /* RegistrationSecondStageView.swift in Sources */,
+				49E9280C2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift in Sources */,
 				49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */,
 				4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */,
 				4961F4742AE0210900A717AB /* LoginView.swift in Sources */,
