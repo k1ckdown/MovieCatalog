@@ -22,6 +22,7 @@ struct BaseSegmentedPicker<SelectionValue, Content>: View where SelectionValue: 
         Picker("", selection: $selection) {
             content()
         }
+        .labelsHidden()
         .pickerStyle(.segmented)
     }
     

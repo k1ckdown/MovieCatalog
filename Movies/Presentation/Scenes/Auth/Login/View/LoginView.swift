@@ -35,7 +35,7 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
 
                         }
                         .buttonStyle(BaseButtonStyle())
-                        .disabled(isLogInButtonDisabled)
+                        .disabled(viewModel.state.isDataEmpty)
                     }
                 }
                 .listRowInsets(EdgeInsets())
@@ -54,10 +54,6 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
         }
         .appBackground()
         .appNavigationTitle()
-    }
-
-    private var isLogInButtonDisabled: Bool {
-        viewModel.state.login.isEmpty || viewModel.state.password.isEmpty
     }
 
     private var login: Binding<String> {

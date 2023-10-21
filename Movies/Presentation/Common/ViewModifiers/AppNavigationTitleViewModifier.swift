@@ -8,18 +8,26 @@
 import SwiftUI
 
 struct AppNavigationTitleViewModifier: ViewModifier {
-    
+
     init() {
-        let uiColor = UIColor(.appAccent)
-        
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: uiColor ]
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: uiColor ]
+        updateAppearance()
     }
-    
+
     func body(content: Content) -> some View {
         content
-            .navigationTitle("FИЛЬМУС")
+            .navigationTitle(Constants.title)
             .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private enum Constants {
+        static let title = "FИЛЬМУС"
+    }
+
+    private func updateAppearance() {
+        let uiColor = UIColor(.appAccent)
+
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: uiColor]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: uiColor]
     }
 }
 

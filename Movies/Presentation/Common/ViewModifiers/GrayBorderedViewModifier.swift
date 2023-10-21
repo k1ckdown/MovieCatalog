@@ -15,10 +15,11 @@ struct GrayBorderedViewModifier: ViewModifier {
                 RoundedRectangle(cornerRadius: Constants.cornerRadius)
                     .stroke(.appGray, lineWidth: Constants.borderWidth)
             }
-            .padding(1)
+            .padding(Constants.inset)
     }
 
     private enum Constants {
+        static let inset: CGFloat = 1
         static let borderWidth: CGFloat = 1
         static let cornerRadius: CGFloat = 10
     }
