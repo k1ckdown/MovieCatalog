@@ -51,6 +51,9 @@
 		4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */; };
 		4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */; };
 		4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4984BE142ADC6ABB00364027 /* NetworkService.swift */; };
+		49878FDE2AE43BB50076BF85 /* LoginNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49878FDD2AE43BB50076BF85 /* LoginNavigationState.swift */; };
+		49878FE02AE43C5D0076BF85 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49878FDF2AE43C5D0076BF85 /* LoginCoordinator.swift */; };
+		49878FE72AE43E080076BF85 /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49878FE62AE43E080076BF85 /* CoordinatorFactory.swift */; };
 		4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995FF1E2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift */; };
 		4995FF212AE2D97600948457 /* BaseFormStyleViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995FF202AE2D97600948457 /* BaseFormStyleViewModifier.swift */; };
 		499B23E82AE2ECD100069EC9 /* RegistrationSecondStageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B23E72AE2ECD100069EC9 /* RegistrationSecondStageView.swift */; };
@@ -59,7 +62,7 @@
 		49A562872AE0EBB000222062 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562862AE0EBB000222062 /* RegistrationViewModel.swift */; };
 		49A562892AE0EBC100222062 /* RegistrationViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562882AE0EBC100222062 /* RegistrationViewState.swift */; };
 		49B422FD2AE0E0020032F773 /* AuthFormHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */; };
-		49C189BF2AE3F70D0029BAF9 /* RouteLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189BE2AE3F70D0029BAF9 /* RouteLink.swift */; };
+		49C189BF2AE3F70D0029BAF9 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189BE2AE3F70D0029BAF9 /* Routable.swift */; };
 		49C189C12AE3F7750029BAF9 /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189C02AE3F7750029BAF9 /* NavigationState.swift */; };
 		49C189C42AE3F80A0029BAF9 /* WelcomeNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189C32AE3F80A0029BAF9 /* WelcomeNavigationState.swift */; };
 		49C189C62AE3F9AF0029BAF9 /* WelcomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189C52AE3F9AF0029BAF9 /* WelcomeCoordinator.swift */; };
@@ -117,6 +120,9 @@
 		4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		4984BE142ADC6ABB00364027 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		49878FDD2AE43BB50076BF85 /* LoginNavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigationState.swift; sourceTree = "<group>"; };
+		49878FDF2AE43C5D0076BF85 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		49878FE62AE43E080076BF85 /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
 		4995FF1E2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+ContentHugging.swift"; sourceTree = "<group>"; };
 		4995FF202AE2D97600948457 /* BaseFormStyleViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFormStyleViewModifier.swift; sourceTree = "<group>"; };
 		499B23E72AE2ECD100069EC9 /* RegistrationSecondStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondStageView.swift; sourceTree = "<group>"; };
@@ -125,7 +131,7 @@
 		49A562862AE0EBB000222062 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		49A562882AE0EBC100222062 /* RegistrationViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewState.swift; sourceTree = "<group>"; };
 		49B422FC2AE0E0020032F773 /* AuthFormHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFormHeader.swift; sourceTree = "<group>"; };
-		49C189BE2AE3F70D0029BAF9 /* RouteLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteLink.swift; sourceTree = "<group>"; };
+		49C189BE2AE3F70D0029BAF9 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		49C189C02AE3F7750029BAF9 /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
 		49C189C32AE3F80A0029BAF9 /* WelcomeNavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeNavigationState.swift; sourceTree = "<group>"; };
 		49C189C52AE3F9AF0029BAF9 /* WelcomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCoordinator.swift; sourceTree = "<group>"; };
@@ -349,6 +355,7 @@
 			children = (
 				4961F4722AE020FF00A717AB /* View */,
 				4961F4752AE0219800A717AB /* ViewModel */,
+				49878FDC2AE43B9D0076BF85 /* Coordinator */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -374,7 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				4961F47B2AE021C800A717AB /* ViewModel.swift */,
-				49C189BE2AE3F70D0029BAF9 /* RouteLink.swift */,
+				49C189BE2AE3F70D0029BAF9 /* Routable.swift */,
 				49C189C02AE3F7750029BAF9 /* NavigationState.swift */,
 			);
 			path = Protocols;
@@ -456,6 +463,23 @@
 			path = Configs;
 			sourceTree = "<group>";
 		};
+		49878FDC2AE43B9D0076BF85 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				49878FDF2AE43C5D0076BF85 /* LoginCoordinator.swift */,
+				49878FDD2AE43BB50076BF85 /* LoginNavigationState.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		49878FE12AE43DC80076BF85 /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				49878FE62AE43E080076BF85 /* CoordinatorFactory.swift */,
+			);
+			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
 		4995FF1D2AE2C28C00948457 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,6 +555,7 @@
 			isa = PBXGroup;
 			children = (
 				49612AC22ADAD8AF0081832B /* MoviesApp.swift */,
+				49878FE12AE43DC80076BF85 /* DependencyInjection */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -585,6 +610,8 @@
 			dependencies = (
 			);
 			name = Movies;
+			packageProductDependencies = (
+			);
 			productName = Movies;
 			productReference = 49612ABF2ADAD8AF0081832B /* Movies.app */;
 			productType = "com.apple.product-type.application";
@@ -614,6 +641,8 @@
 				ru,
 			);
 			mainGroup = 49612AB62ADAD8AF0081832B;
+			packageReferences = (
+			);
 			productRefGroup = 49612AC02ADAD8AF0081832B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -653,6 +682,7 @@
 				49330CE82ADD424000BFA4C6 /* LoginCredentials.swift in Sources */,
 				49330CFB2ADD856D00BFA4C6 /* GenderDTO.swift in Sources */,
 				4961F4652AE0009E00A717AB /* AppBackgroundViewModifier.swift in Sources */,
+				49878FDE2AE43BB50076BF85 /* LoginNavigationState.swift in Sources */,
 				49330CE42ADD420100BFA4C6 /* TokenInfo.swift in Sources */,
 				49330CE02ADD2ED200BFA4C6 /* UserShortDTO.swift in Sources */,
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
@@ -678,11 +708,12 @@
 				49330CF42ADD7C7B00BFA4C6 /* NetworkConfig.swift in Sources */,
 				4961F48D2AE045A700A717AB /* SecureInputView.swift in Sources */,
 				49330CEB2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift in Sources */,
-				49C189BF2AE3F70D0029BAF9 /* RouteLink.swift in Sources */,
+				49C189BF2AE3F70D0029BAF9 /* Routable.swift in Sources */,
 				49330CE22ADD41B600BFA4C6 /* UserRegisterDTO.swift in Sources */,
 				49330CD22ADD278900BFA4C6 /* GenreDTO.swift in Sources */,
 				49330D032ADD996300BFA4C6 /* ReviewNetworkConfig.swift in Sources */,
 				49A562872AE0EBB000222062 /* RegistrationViewModel.swift in Sources */,
+				49878FE02AE43C5D0076BF85 /* LoginCoordinator.swift in Sources */,
 				49330CF62ADD7C8B00BFA4C6 /* HTTPTask.swift in Sources */,
 				4961F46F2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift in Sources */,
 				49A562892AE0EBC100222062 /* RegistrationViewState.swift in Sources */,
@@ -690,6 +721,7 @@
 				49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */,
 				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,
 				499B23E82AE2ECD100069EC9 /* RegistrationSecondStageView.swift in Sources */,
+				49878FE72AE43E080076BF85 /* CoordinatorFactory.swift in Sources */,
 				49E9280C2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift in Sources */,
 				49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */,
 				4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */,
@@ -842,6 +874,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -872,6 +905,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

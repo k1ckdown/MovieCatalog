@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct LoginView<ViewModel: LoginViewModelProtocol>: View {
+struct LoginView: View {
 
-    @ObservedObject private(set) var viewModel: ViewModel
+    @ObservedObject private(set) var viewModel: LoginViewModel
 
     var body: some View {
         VStack {
@@ -48,10 +48,10 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
 
             Spacer()
 
-            CalloutButton(text: LocalizedKeysConstants.noAccountYet, 
-                          buttonTitle: LocalizedKeysConstants.register) {
-
+            Button(LocalizedKeysConstants.register) {
+                viewModel.handle(.onTapRegister)
             }
+            .buttonStyle(CalloutButtonStyle(calloutText: LocalizedKeysConstants.noAccountYet))
         }
         .appBackground()
         .appNavigationTitle()
@@ -72,9 +72,6 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        LoginView(viewModel: LoginViewModel())
-    }
-    .environment(\.locale, .init(identifier: "ru"))
-}
+//#Preview {
+//    LoginView(viewModel: LoginViewModel(navigationState: .init(path: .constant(.init()))))
+//}

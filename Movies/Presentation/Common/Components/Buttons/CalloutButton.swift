@@ -7,22 +7,18 @@
 
 import SwiftUI
 
-struct CalloutButton: View {
+struct CalloutButtonStyle: ButtonStyle {
 
-    let text: LocalizedStringKey
-    let buttonTitle: LocalizedStringKey
-    let action: () -> Void
+    let calloutText: LocalizedStringKey
 
-    var body: some View {
+    func makeBody(configuration: Configuration) -> some View {
         HStack(spacing: Constants.spacing) {
-            Text(text)
+            Text(calloutText)
                 .foregroundStyle(.appLightGray)
 
-            Button(buttonTitle) {
-                action()
-            }
-            .tint(.appAccent)
-            .fontWeight(.medium)
+            configuration.label
+                .foregroundStyle(.appAccent)
+                .fontWeight(.medium)
         }
         .font(.callout)
         .padding(.bottom)

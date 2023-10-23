@@ -10,15 +10,20 @@ import SwiftUI
 struct AppCoordinator: View {
 
     @State private var path = NavigationPath()
+    private let coordinatorFactory: CoordinatorFactory
+
+    init(coordinatorFactory: CoordinatorFactory) {
+        self.coordinatorFactory = coordinatorFactory
+    }
 
     var body: some View {
         NavigationStack(path: $path) {
-            WelcomeCoordinator(state: .init(path: $path))
+            coordinatorFactory.makeWelcomeCoordinator(with: .init(path: $path))
         }
     }
 }
 
 #Preview {
-    AppCoordinator()
+    AppCoordinator(coordinatorFactory: .init())
         .environment(\.locale, .init(identifier: "ru"))
 }

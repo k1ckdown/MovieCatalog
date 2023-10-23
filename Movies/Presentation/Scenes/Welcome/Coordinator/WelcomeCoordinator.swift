@@ -11,18 +11,29 @@ struct WelcomeCoordinator: View {
 
     @ObservedObject private(set) var state: WelcomeNavigationState
 
+    private let welcomeViewModel: WelcomeViewModel
+    private let loginCoordinator: LoginCoordinator
+
+    init(
+        state: WelcomeNavigationState,
+        welcomeViewModel: WelcomeViewModel,
+        coordinatorFactory: CoordinatorFactory
+    ) {
+        self.state = state
+        self.welcomeViewModel = welcomeViewModel
+        loginCoordinator = coordinatorFactory.makeLoginCoordinator(with: .init(path: state.$path))
+    }
+
     var body: some View {
-        WelcomeView(viewModel: .init(navigationState: state))
-            .navigationDestination(for: WelcomeNavigationState.Screen.self) { screen in
-                makeCoordinator(for: screen)
-            }
+        WelcomeView(viewModel: welcomeViewModel)
+            .navigationDestination(for: WelcomeNavigationState.Screen.self, destination: coordinator)
     }
 
     @ViewBuilder
-    private func makeCoordinator(for screen: WelcomeNavigationState.Screen) -> some View {
+    private func coordinator(for screen: WelcomeNavigationState.Screen) -> some View {
         switch screen {
         case .login:
-            LoginView(viewModel: LoginViewModel())
+            loginCoordinator
         case .registration:
             RegistrationFirstStageView(viewModel: RegistrationViewModel())
         }

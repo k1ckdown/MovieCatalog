@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct RegistrationFirstStageView<ViewModel: RegistrationViewModelProtocol>: View {
+struct RegistrationFirstStageView: View {
 
-    @ObservedObject private(set) var viewModel: ViewModel
+    @ObservedObject private(set) var viewModel: RegistrationViewModel
 
     var body: some View {
         VStack {
@@ -68,9 +68,10 @@ struct RegistrationFirstStageView<ViewModel: RegistrationViewModelProtocol>: Vie
 
             Spacer()
 
-            CalloutButton(text: LocalizedKeysConstants.alreadyHaveAccount,
-                          buttonTitle: LocalizedKeysConstants.logInToAccount) {
+            Button(LocalizedKeysConstants.logInToAccount) {
+
             }
+            .buttonStyle(CalloutButtonStyle(calloutText: LocalizedKeysConstants.alreadyHaveAccount))
         }
         .appBackground()
         .appNavigationTitle()

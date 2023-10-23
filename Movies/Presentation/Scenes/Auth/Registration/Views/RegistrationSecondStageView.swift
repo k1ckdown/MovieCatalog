@@ -47,9 +47,10 @@ struct RegistrationSecondStageView: View {
 
             Spacer()
 
-            CalloutButton(text: LocalizedKeysConstants.alreadyHaveAccount,
-                          buttonTitle: LocalizedKeysConstants.logInToAccount) {
+            Button(LocalizedKeysConstants.logInToAccount) {
+
             }
+            .buttonStyle(CalloutButtonStyle(calloutText: LocalizedKeysConstants.alreadyHaveAccount))
         }
         .appBackground()
         .appNavigationTitle()

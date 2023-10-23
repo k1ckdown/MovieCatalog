@@ -20,9 +20,10 @@ final class WelcomeViewModel: ViewModel {
     func handle(_ event: WelcomeViewEvent) {
         switch event {
         case .onTapLogIn:
-            navigationState.execute(.showLogin)
+            navigationState.push(.login)
+
         case .onTapRegistration:
-            navigationState.execute(.showRegistration)
+            navigationState.push(.registration)
         }
     }
 }

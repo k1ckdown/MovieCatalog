@@ -8,10 +8,7 @@
 import SwiftUI
 
 @MainActor
-protocol NavigationState: ObservableObject where Screen: RouteLink {
+protocol NavigationState: ObservableObject where Screen: Routable {
     associatedtype Screen
-    associatedtype Action
-
     var path: NavigationPath { get }
-    func execute(_ action: Action)
 }

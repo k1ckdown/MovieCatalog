@@ -1,13 +1,13 @@
 //
-//  WelcomeNavigationState.swift
+//  LoginNavigationState.swift
 //  Movies
 //
-//  Created by Ivan Semenov on 21.10.2023.
+//  Created by Ivan Semenov on 22.10.2023.
 //
 
 import SwiftUI
 
-final class WelcomeNavigationState: NavigationState {
+final class LoginNavigationState: NavigationState {
 
     @Binding private(set) var path: NavigationPath
 
@@ -16,9 +16,8 @@ final class WelcomeNavigationState: NavigationState {
     }
 }
 
-extension WelcomeNavigationState {
+extension LoginNavigationState {
     enum Screen: Routable {
-        case login
         case registration
     }
 
