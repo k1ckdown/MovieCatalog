@@ -15,7 +15,5 @@ struct AuthScreenTitle: View {
         Text(text)
             .font(.title2)
             .bold()
-            .padding(.top)
-            .frame(maxWidth: .infinity)
     }
 }

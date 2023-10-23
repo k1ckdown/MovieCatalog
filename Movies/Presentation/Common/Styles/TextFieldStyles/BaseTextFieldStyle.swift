@@ -17,7 +17,7 @@ struct BaseTextFieldStyle: TextFieldStyle {
 
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
-            .tint(.appAccent)
+            .tintColor(.appAccent)
             .frame(height: Constants.height)
             .padding(.leading, Constants.horizontalInset)
             .padding(.trailing, trailingInset)

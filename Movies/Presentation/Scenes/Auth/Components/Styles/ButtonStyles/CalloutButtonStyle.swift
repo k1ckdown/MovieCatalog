@@ -1,5 +1,5 @@
 //
-//  CalloutButton.swift
+//  CalloutButtonStyle.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 19.10.2023.

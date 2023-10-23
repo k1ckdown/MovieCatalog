@@ -12,69 +12,46 @@ struct RegistrationFirstStageView: View {
     @ObservedObject private(set) var viewModel: RegistrationViewModel
 
     var body: some View {
-        VStack {
-            Form {
-                Group {
-                    AuthScreenTitle(text: LocalizedKeysConstants.registration)
+        AuthView(
+            style: .registrationFirstStage,
+            screenTitle: LocalizedKeysConstants.registration,
+            formButtonTitle: LocalizedKeysConstants.continue,
+            calloutText: LocalizedKeysConstants.alreadyHaveAccount,
+            calloutButtonTitle: LocalizedKeysConstants.logInToAccount
+        ) {
+            Group {
+                TextField("", text: name)
+                    .labeled(LocalizedKeysConstants.name)
 
-                    Section {
-                        TextField("", text: name)
-                    } header: {
-                        AuthFormHeader(title: LocalizedKeysConstants.name)
-                    }
-
-                    Section {
-                        BaseSegmentedPicker(selection: gender) {
-                            ForEach(Gender.allCases) { gender in
-                                Text(LocalizedStringKey(gender.rawValue)).tag(gender)
-                            }
-                        }
-                    } header: {
-                        AuthFormHeader(title: LocalizedKeysConstants.gender)
-                    }
-
-                    Section {
-                        TextField("", text: login)
-                            .textInputAutocapitalization(.never)
-                    } header: {
-                        AuthFormHeader(title: LocalizedKeysConstants.login)
-                    }
-
-                    Section {
-                        TextField("", text: email)
-                            .keyboardType(.emailAddress)
-                    } header: {
-                        AuthFormHeader(title: LocalizedKeysConstants.email)
-                    }
-
-                    Section {
-                        DatePickerField(date: birthdate)
-                    } header: {
-                        AuthFormHeader(title: LocalizedKeysConstants.birthdate)
-                    }
-
-                    Section {
-                        Button(LocalizedKeysConstants.continue) {
-
-                        }
-                        .buttonStyle(BaseButtonStyle())
+                BaseSegmentedPicker(selection: gender) {
+                    ForEach(Gender.allCases) { gender in
+                        Text(LocalizedStringKey(gender.rawValue)).tag(gender)
                     }
                 }
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
-                .textFieldStyle(BaseTextFieldStyle())
+                .frame(height: Constants.genderPickerHeight)
+                .labeled(LocalizedKeysConstants.gender)
+
+                TextField("", text: login)
+                    .textInputAutocapitalization(.never)
+                    .labeled(LocalizedKeysConstants.login)
+
+                TextField("", text: email)
+                    .keyboardType(.emailAddress)
+                    .labeled(LocalizedKeysConstants.email)
+
+                DatePickerField(date: birthdate)
+                    .labeled(LocalizedKeysConstants.birthdate)
             }
-            .baseFormStyle()
+            .textFieldStyle(BaseTextFieldStyle())
+        } formAction: {
 
-            Spacer()
+        } calloutAction: {
 
-            Button(LocalizedKeysConstants.logInToAccount) {
-
-            }
-            .buttonStyle(CalloutButtonStyle(calloutText: LocalizedKeysConstants.alreadyHaveAccount))
         }
-        .appBackground()
-        .appNavigationTitle()
+    }
+
+    private enum Constants {
+        static let genderPickerHeight: CGFloat = 43
     }
 
     private var name: Binding<String> {

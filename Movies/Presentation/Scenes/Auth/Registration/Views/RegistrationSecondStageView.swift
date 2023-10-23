@@ -13,47 +13,26 @@ struct RegistrationSecondStageView: View {
     @State private var confirmPassword = ""
 
     var body: some View {
-        VStack {
-            Form {
+        AuthView(
+            style: .registrationSecondStage,
+            screenTitle: LocalizedKeysConstants.registration,
+            formButtonTitle: LocalizedKeysConstants.registerAccount,
+            calloutText: LocalizedKeysConstants.alreadyHaveAccount,
+            calloutButtonTitle: LocalizedKeysConstants.logInToAccount) {
                 Group {
-                    AuthScreenTitle(text: LocalizedKeysConstants.registration)
+                    SecureInputView(text: $password)
+                        .labeled(LocalizedKeysConstants.password)
 
-                    Section {
-                        SecureInputView(text: $password)
-                    } header: {
-                        AuthFormHeader(title: LocalizedKeysConstants.password)
-                    }
-
-                    Section {
-                        SecureInputView(text: $confirmPassword)
-                    } header: {
-                        AuthFormHeader(title: LocalizedKeysConstants.confirmPassword)
-                    }
-
-                    Section {
-                        Button(LocalizedKeysConstants.registerAccount) {
-
-                        }
-                        .buttonStyle(BaseButtonStyle())
-                    }
+                    SecureInputView(text: $confirmPassword)
+                        .labeled(LocalizedKeysConstants.confirmPassword)
                 }
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
-                .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
-            }
-            .baseFormStyle()
-            .scrollDisabled(true)
+                .textInputAutocapitalization(.never)
+            } formAction: {
 
-            Spacer()
-
-            Button(LocalizedKeysConstants.logInToAccount) {
+            } calloutAction: {
 
             }
-            .buttonStyle(CalloutButtonStyle(calloutText: LocalizedKeysConstants.alreadyHaveAccount))
-        }
-        .appBackground()
-        .appNavigationTitle()
     }
 }
 

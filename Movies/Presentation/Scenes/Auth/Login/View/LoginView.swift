@@ -12,49 +12,28 @@ struct LoginView: View {
     @ObservedObject private(set) var viewModel: LoginViewModel
 
     var body: some View {
-        VStack {
-            Form {
-                Group {
-                    AuthScreenTitle(text: LocalizedKeysConstants.entrance)
+        AuthView(
+            style: .login,
+            screenTitle: LocalizedKeysConstants.entrance,
+            formButtonTitle: LocalizedKeysConstants.logIn,
+            calloutText: LocalizedKeysConstants.noAccountYet,
+            calloutButtonTitle: LocalizedKeysConstants.register
+        ) {
+            Group {
+                TextField("", text: login)
+                    .textFieldStyle(BaseTextFieldStyle())
+                    .labeled(LocalizedKeysConstants.login)
 
-                    Section {
-                        TextField("", text: login)
-                            .textFieldStyle(BaseTextFieldStyle())
-                    } header: {
-                        AuthFormHeader(title: LocalizedKeysConstants.login)
-                    }
-
-                    Section {
-                        SecureInputView(text: password)
-                    } header: {
-                        AuthFormHeader(title: LocalizedKeysConstants.password)
-                    }
-
-                    Section {
-                        Button(LocalizedKeysConstants.logIn) {
-
-                        }
-                        .buttonStyle(BaseButtonStyle())
-                        .disabled(viewModel.state.isDataEmpty)
-                    }
-                }
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
-                .textInputAutocapitalization(.never)
-                .autocorrectionDisabled()
+                SecureInputView(text: password)
+                    .labeled(LocalizedKeysConstants.password)
             }
-            .baseFormStyle()
-            .scrollDisabled(true)
+            .autocorrectionDisabled()
+            .textInputAutocapitalization(.never)
+        } formAction: {
 
-            Spacer()
+        } calloutAction: {
 
-            Button(LocalizedKeysConstants.register) {
-                viewModel.handle(.onTapRegister)
-            }
-            .buttonStyle(CalloutButtonStyle(calloutText: LocalizedKeysConstants.noAccountYet))
         }
-        .appBackground()
-        .appNavigationTitle()
     }
 
     private var login: Binding<String> {
@@ -72,6 +51,8 @@ struct LoginView: View {
     }
 }
 
-//#Preview {
-//    LoginView(viewModel: LoginViewModel(navigationState: .init(path: .constant(.init()))))
-//}
+#Preview {
+    NavigationStack {
+        LoginView(viewModel: LoginViewModel(navigationState: .init(path: .constant(.init()))))
+    }
+}

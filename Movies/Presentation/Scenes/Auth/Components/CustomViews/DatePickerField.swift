@@ -32,7 +32,7 @@ struct DatePickerField: View {
                                    in: ...Date.now,
                                    displayedComponents: .date
                         )
-                        .tint(.appAccent)
+                        .tintColor(.appAccent)
                         .labelsHidden()
                         .datePickerStyle(.compact)
                         .blendMode(.destinationOver)
