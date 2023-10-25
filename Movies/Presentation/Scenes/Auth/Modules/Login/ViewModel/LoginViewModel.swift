@@ -7,22 +7,26 @@
 
 import Foundation
 
-protocol LoginViewModelProtocol:
-    ViewModel where State == LoginViewState, Event == LoginViewEvent {}
+final class LoginViewModel: ViewModel {
 
-final class LoginViewModel: LoginViewModelProtocol {
-    
     @Published private(set) var state: LoginViewState
-    
-    init() {
+    private let router: LoginRouter
+
+    init(router: LoginRouter) {
         state = .init()
+        self.router = router
     }
-    
+
     func handle(_ event: LoginViewEvent) {
         switch event {
+        case .onTapLogIn: break
+
+        case .onTapRegister:
+            router.showRegistration()
+
         case .loginChanged(let login):
             state.login = login
-            
+
         case .passwordChanged(let password):
             state.password = password
         }

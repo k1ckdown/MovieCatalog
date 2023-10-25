@@ -13,7 +13,7 @@ struct DatePickerField: View {
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
+        formatter.dateFormat = "dd.MM.yy"
         return formatter
     }()
 
@@ -32,7 +32,7 @@ struct DatePickerField: View {
                                    in: ...Date.now,
                                    displayedComponents: .date
                         )
-                        .tint(.appAccent)
+                        .tintColor(.appAccent)
                         .labelsHidden()
                         .datePickerStyle(.compact)
                         .blendMode(.destinationOver)

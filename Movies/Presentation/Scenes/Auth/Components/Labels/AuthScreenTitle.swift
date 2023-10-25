@@ -8,19 +8,12 @@
 import SwiftUI
 
 struct AuthScreenTitle: View {
-
+    
     let text: LocalizedStringKey
-
+    
     var body: some View {
         Text(text)
             .font(.title2)
             .bold()
-            .padding(.vertical)
-            .frame(maxWidth: .infinity)
-            .listRowInsets(.init(top: 0, leading: 0, bottom: Constants.bottomInset, trailing: 0))
-    }
-
-    private enum Constants {
-        static let bottomInset: CGFloat = -15
     }
 }

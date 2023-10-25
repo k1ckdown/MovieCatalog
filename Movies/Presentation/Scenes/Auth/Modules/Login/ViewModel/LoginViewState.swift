@@ -17,6 +17,8 @@ struct LoginViewState: Equatable {
 }
 
 enum LoginViewEvent {
+    case onTapLogIn
+    case onTapRegister
     case loginChanged(String)
     case passwordChanged(String)
 }
