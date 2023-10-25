@@ -21,6 +21,6 @@ struct AppFlow: View {
 }
 
 #Preview {
-    AppFlow(flowFactory: .init())
+    AppFlow(flowFactory: .init(appFactory: .init()))
         .environment(\.locale, .init(identifier: "ru"))
 }

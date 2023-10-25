@@ -10,13 +10,24 @@ import Foundation
 @MainActor
 final class FlowFactory {
 
+    private let appFactory: AppFactory
+
+    init(appFactory: AppFactory) {
+        self.appFactory = appFactory
+    }
 }
 
 extension FlowFactory {
+
     func makeAuthFlow() -> AuthFlow {
-        let factory = AuthScreenFactory()
+        let dependencies = AuthScreenFactory.Dependencies(
+            validateEmailUseCase: appFactory.makeValidateEmailUseCase()
+        )
+
+        let factory = AuthScreenFactory(dependencies: dependencies)
         let flow = AuthFlow(factory: factory)
 
         return flow
     }
+
 }

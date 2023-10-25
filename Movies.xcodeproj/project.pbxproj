@@ -66,6 +66,8 @@
 		49A562892AE0EBC100222062 /* RegistrationViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562882AE0EBC100222062 /* RegistrationViewState.swift */; };
 		49A620652AE6EBD800CEE994 /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A620642AE6EBD800CEE994 /* TintColor.swift */; };
 		49A620672AE6EC0000CEE994 /* LabeledViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A620662AE6EC0000CEE994 /* LabeledViewModifier.swift */; };
+		49B6D75D2AE9A41B00451DAF /* ValidateEmailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6D75C2AE9A41B00451DAF /* ValidateEmailUseCase.swift */; };
+		49B6D75F2AE9A7AD00451DAF /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6D75E2AE9A7AD00451DAF /* AppFactory.swift */; };
 		49C189BF2AE3F70D0029BAF9 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189BE2AE3F70D0029BAF9 /* Routable.swift */; };
 		49C189C12AE3F7750029BAF9 /* FlowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189C02AE3F7750029BAF9 /* FlowState.swift */; };
 		49C189C42AE3F80A0029BAF9 /* WelcomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189C32AE3F80A0029BAF9 /* WelcomeRouter.swift */; };
@@ -138,6 +140,8 @@
 		49A562882AE0EBC100222062 /* RegistrationViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewState.swift; sourceTree = "<group>"; };
 		49A620642AE6EBD800CEE994 /* TintColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
 		49A620662AE6EC0000CEE994 /* LabeledViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledViewModifier.swift; sourceTree = "<group>"; };
+		49B6D75C2AE9A41B00451DAF /* ValidateEmailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateEmailUseCase.swift; sourceTree = "<group>"; };
+		49B6D75E2AE9A7AD00451DAF /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		49C189BE2AE3F70D0029BAF9 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		49C189C02AE3F7750029BAF9 /* FlowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowState.swift; sourceTree = "<group>"; };
 		49C189C32AE3F80A0029BAF9 /* WelcomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeRouter.swift; sourceTree = "<group>"; };
@@ -304,9 +308,9 @@
 		49612AC12ADAD8AF0081832B /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				49C3F86E2ADEDC56008BAE92 /* Application */,
 				49E3A8C02AE1172400AA05C5 /* Domain */,
 				49C3F86F2ADEDC71008BAE92 /* Resources */,
-				49C3F86E2ADEDC56008BAE92 /* Application */,
 				49145D7F2ADEBEFC0082E048 /* Presentation */,
 				49330CC72ADD277200BFA4C6 /* Data */,
 				4977E3C02ADBCF33008CE679 /* Infrastructure */,
@@ -491,6 +495,7 @@
 		49878FE12AE43DC80076BF85 /* DependencyInjection */ = {
 			isa = PBXGroup;
 			children = (
+				49B6D75E2AE9A7AD00451DAF /* AppFactory.swift */,
 				490186D52AE945D700A57C07 /* FlowFactory */,
 			);
 			path = DependencyInjection;
@@ -559,6 +564,14 @@
 			path = Labels;
 			sourceTree = "<group>";
 		};
+		49B6D75B2AE9A41200451DAF /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				49B6D75C2AE9A41B00451DAF /* ValidateEmailUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 		49C189C92AE3FC000029BAF9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,6 +603,7 @@
 		49E3A8C02AE1172400AA05C5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				49B6D75B2AE9A41200451DAF /* UseCases */,
 				49E3A8C12AE1172B00AA05C5 /* Gender.swift */,
 			);
 			path = Domain;
@@ -700,6 +714,7 @@
 				49330CFB2ADD856D00BFA4C6 /* GenderDTO.swift in Sources */,
 				4961F4652AE0009E00A717AB /* AppBackgroundViewModifier.swift in Sources */,
 				49878FDE2AE43BB50076BF85 /* LoginRouter.swift in Sources */,
+				49B6D75F2AE9A7AD00451DAF /* AppFactory.swift in Sources */,
 				49330CE42ADD420100BFA4C6 /* TokenInfo.swift in Sources */,
 				49330CE02ADD2ED200BFA4C6 /* UserShortDTO.swift in Sources */,
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
@@ -746,6 +761,7 @@
 				49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */,
 				4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */,
 				4961F4742AE0210900A717AB /* LoginView.swift in Sources */,
+				49B6D75D2AE9A41B00451DAF /* ValidateEmailUseCase.swift in Sources */,
 				493BB4E72AE1901D004C879F /* DatePickerField.swift in Sources */,
 				493BB4E92AE198AA004C879F /* BorderedViewModifier.swift in Sources */,
 				49330CDE2ADD2EB500BFA4C6 /* ReviewDTO.swift in Sources */,

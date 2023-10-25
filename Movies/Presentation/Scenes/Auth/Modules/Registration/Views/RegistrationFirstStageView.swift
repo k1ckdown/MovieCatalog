@@ -95,5 +95,10 @@ struct RegistrationFirstStageView: View {
 }
 
 #Preview {
-    RegistrationFirstStageView(viewModel: .init(router: .init(path: .constant(.init()))))
+    RegistrationFirstStageView(
+        viewModel: .init(
+            router: .init(path: .constant(.init())),
+            validateEmailUseCase: .init()
+        )
+    )
 }

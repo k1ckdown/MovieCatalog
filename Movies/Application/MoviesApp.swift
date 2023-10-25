@@ -10,9 +10,11 @@ import SwiftUI
 @main
 struct MoviesApp: App {
 
+    private let appFactory = AppFactory()
+
     var body: some Scene {
         WindowGroup {
-            AppFlow(flowFactory: .init())
+            AppFlow(flowFactory: .init(appFactory: appFactory))
         }
     }
 }
