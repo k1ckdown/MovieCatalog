@@ -1,5 +1,5 @@
 //
-//  GrayBorderedViewModifier.swift
+//  BorderedViewModifier.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 20.10.2023.
@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-struct GrayBorderedViewModifier: ViewModifier {
+struct BorderedViewModifier: ViewModifier {
+
+    let color: Color
 
     func body(content: Content) -> some View {
         content
             .overlay {
                 RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                    .stroke(.appGray, lineWidth: Constants.borderWidth)
+                    .stroke(color, lineWidth: Constants.borderWidth)
             }
             .padding(Constants.inset)
     }
@@ -26,7 +28,7 @@ struct GrayBorderedViewModifier: ViewModifier {
 }
 
 extension View {
-    func grayBordered() -> some View {
-        modifier(GrayBorderedViewModifier())
+    func bordered(_ color: Color = .appGray) -> some View {
+        modifier(BorderedViewModifier(color: color))
     }
 }
