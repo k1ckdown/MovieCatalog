@@ -10,20 +10,20 @@ import Foundation
 final class WelcomeViewModel: ViewModel {
 
     @Published private(set) var state: WelcomeViewState
-    private let navigationState: WelcomeNavigationState
+    private let router: WelcomeRouter
 
-    init(navigationState: WelcomeNavigationState) {
+    init(router: WelcomeRouter) {
         state = .idle
-        self.navigationState = navigationState
+        self.router = router
     }
 
     func handle(_ event: WelcomeViewEvent) {
         switch event {
         case .onTapLogIn:
-            navigationState.push(.login)
+            router.showLogin()
 
         case .onTapRegistration:
-            navigationState.push(.registration)
+            router.showRegistration()
         }
     }
 }

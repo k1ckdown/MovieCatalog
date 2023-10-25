@@ -13,12 +13,19 @@ struct RegistrationViewState: Equatable {
     var login = ""
     var email = ""
     var birthdate = Date.now
+    var password = ""
+    var confirmPassword = ""
 }
 
 enum RegistrationViewEvent {
+    case onTapContinue
+    case onTapLogIn
+    case onTapRegister
     case nameChanged(String)
     case genderChanged(Gender)
     case loginChanged(String)
     case emailChanged(String)
     case birthdateChanged(Date)
+    case passwordChanged(String)
+    case confirmPasswordChanged(String)
 }

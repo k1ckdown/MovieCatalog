@@ -12,7 +12,7 @@ struct MoviesApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppCoordinator(coordinatorFactory: .init())
+            AppFlow(flowFactory: .init())
         }
     }
 }

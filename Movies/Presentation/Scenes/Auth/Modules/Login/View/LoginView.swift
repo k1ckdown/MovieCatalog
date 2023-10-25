@@ -30,9 +30,9 @@ struct LoginView: View {
             .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
         } formAction: {
-
+            viewModel.handle(.onTapLogIn)
         } calloutAction: {
-
+            viewModel.handle(.onTapRegister)
         }
     }
 
@@ -48,11 +48,5 @@ struct LoginView: View {
             get: { viewModel.state.password },
             set: { viewModel.handle(.passwordChanged($0)) }
         )
-    }
-}
-
-#Preview {
-    NavigationStack {
-        LoginView(viewModel: LoginViewModel(navigationState: .init(path: .constant(.init()))))
     }
 }

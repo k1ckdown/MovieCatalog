@@ -10,7 +10,7 @@ import SwiftUI
 struct WelcomeView: View {
 
     @ObservedObject private(set) var viewModel: WelcomeViewModel
-
+    
     var body: some View {
         VStack(spacing: Constants.ContentStack.spacing) {
             Image(.amico)

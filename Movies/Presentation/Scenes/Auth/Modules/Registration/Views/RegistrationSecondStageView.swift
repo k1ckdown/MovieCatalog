@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct RegistrationSecondStageView: View {
-
-    @State private var password = ""
-    @State private var confirmPassword = ""
-
+    
+    @ObservedObject private(set) var viewModel: RegistrationViewModel
+    
     var body: some View {
         AuthView(
             style: .registrationSecondStage,
@@ -20,25 +19,32 @@ struct RegistrationSecondStageView: View {
             calloutText: LocalizedKeysConstants.alreadyHaveAccount,
             calloutButtonTitle: LocalizedKeysConstants.logInToAccount) {
                 Group {
-                    SecureInputView(text: $password)
+                    SecureInputView(text: password)
                         .labeled(LocalizedKeysConstants.password)
-
-                    SecureInputView(text: $confirmPassword)
+                    
+                    SecureInputView(text: confirmPassword)
                         .labeled(LocalizedKeysConstants.confirmPassword)
                 }
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
             } formAction: {
-
+                viewModel.handle(.onTapRegister)
             } calloutAction: {
-
+                viewModel.handle(.onTapLogIn)
             }
     }
-}
-
-#Preview {
-    NavigationStack {
-        RegistrationSecondStageView()
+    
+    private var password: Binding<String> {
+        Binding(
+            get: { viewModel.state.password },
+            set: { viewModel.handle(.passwordChanged($0)) }
+        )
     }
-    .environment(\.locale, .init(identifier: "ru"))
+    
+    private var confirmPassword: Binding<String> {
+        Binding(
+            get: { viewModel.state.confirmPassword },
+            set: { viewModel.handle(.confirmPasswordChanged($0)) }
+        )
+    }
 }
