@@ -50,7 +50,7 @@ private extension PersonalInfoRegistrationViewModel {
 
     func emailUpdated(_ email: String) {
         state.email = email
-        state.isValidEmail = validateEmailUseCase.execute(email)
+        state.isValidEmail = (try? validateEmailUseCase.execute(email)) != nil
     }
 
 }
