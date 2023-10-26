@@ -1,5 +1,5 @@
 //
-//  RegistrationFirstStageView.swift
+//  PersonalInfoRegistrationView.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 19.10.2023.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct RegistrationFirstStageView: View {
+struct PersonalInfoRegistrationView: View {
     
-    @ObservedObject private(set) var viewModel: RegistrationViewModel
+    @ObservedObject private(set) var viewModel: PersonalInfoRegistrationViewModel
     
     var body: some View {
         AuthView(
@@ -22,6 +22,7 @@ struct RegistrationFirstStageView: View {
             Group {
                 TextField("", text: name)
                     .labeled(LocalizedKeysConstants.name)
+                    .textFieldStyle(BaseTextFieldStyle())
                 
                 BaseSegmentedPicker(selection: gender) {
                     ForEach(Gender.allCases) { gender in
@@ -34,15 +35,18 @@ struct RegistrationFirstStageView: View {
                 TextField("", text: login)
                     .textInputAutocapitalization(.never)
                     .labeled(LocalizedKeysConstants.login)
+                    .textFieldStyle(BaseTextFieldStyle())
                 
                 TextField("", text: email)
                     .keyboardType(.emailAddress)
                     .labeled(LocalizedKeysConstants.email)
+                    .textFieldStyle(BaseTextFieldStyle(
+                        (viewModel.state.email.isEmpty || viewModel.state.isValidEmail) ? .default : .error
+                    ))
                 
                 DatePickerField(date: birthdate)
                     .labeled(LocalizedKeysConstants.birthdate)
             }
-            .textFieldStyle(BaseTextFieldStyle())
         } formAction: {
             viewModel.handle(.onTapContinue)
         } calloutAction: {
@@ -88,4 +92,13 @@ struct RegistrationFirstStageView: View {
             set: { viewModel.handle(.birthdateChanged($0)) }
         )
     }
+}
+
+#Preview {
+    PersonalInfoRegistrationView(
+        viewModel: .init(
+            router: .init(path: .constant(.init())),
+            validateEmailUseCase: .init()
+        )
+    )
 }

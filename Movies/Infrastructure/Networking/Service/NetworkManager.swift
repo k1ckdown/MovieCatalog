@@ -1,5 +1,5 @@
 //
-//  NetworkRouter.swift
+//  NetworkManager.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 16.10.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NetworkRouter {
+struct NetworkManager {
 
     private enum Constants {
         static let movieBaseUrl = "https://react-midterm.kreosoft.space/api/"
@@ -20,7 +20,7 @@ struct NetworkRouter {
 
 }
 
-private extension NetworkRouter {
+private extension NetworkManager {
 
     func buildRequest(with config: NetworkConfig, token: String?) throws -> URLRequest {
         let urlString = Constants.movieBaseUrl + config.path + config.endPoint

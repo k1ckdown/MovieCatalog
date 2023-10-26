@@ -9,9 +9,9 @@ import SwiftUI
 
 final class WelcomeRouter {
 
-    @Binding private var path: [AuthFlowState.Screen]
+    @Binding private var path: AuthNavigationPath
 
-    init(path: Binding<[AuthFlowState.Screen]>) {
+    init(path: Binding<AuthNavigationPath>) {
         _path = path
     }
 }
@@ -23,7 +23,7 @@ extension WelcomeRouter {
     }
 
     func showRegistration() {
-        path.append(.registrationFirstStage)
+        path.append(.personalInfoRegistration)
     }
 
 }
