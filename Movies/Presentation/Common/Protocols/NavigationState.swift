@@ -1,5 +1,5 @@
 //
-//  FlowState.swift
+//  NavigationState.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 21.10.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol FlowState: ObservableObject where Screen: Routable {
+protocol NavigationState: ObservableObject where Screen: Routable {
     associatedtype Screen
     var navigationPath: [Screen] { get }
 }

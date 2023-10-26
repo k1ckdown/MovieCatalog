@@ -9,14 +9,15 @@ import SwiftUI
 
 final class PersonalInfoRegistrationRouter {
 
-    @Binding private var path: [AuthFlowState.Screen]
+    @Binding private var path: AuthNavigationPath
 
-    init(path: Binding<[AuthFlowState.Screen]>) {
+    init(path: Binding<AuthNavigationPath>) {
         _path = path
     }
 }
 
 extension PersonalInfoRegistrationRouter {
+
     func showPasswordRegistration() {
         path.append(.passwordRegistration)
     }
@@ -25,4 +26,5 @@ extension PersonalInfoRegistrationRouter {
         path.removeLast()
         path.append(.login)
     }
+
 }
