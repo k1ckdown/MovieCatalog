@@ -15,6 +15,7 @@ struct RegistrationViewState: Equatable {
     var birthdate = Date.now
     var password = ""
     var confirmPassword = ""
+    var isValidEmail = false
 }
 
 enum RegistrationViewEvent {

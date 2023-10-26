@@ -9,7 +9,17 @@ import Foundation
 
 @MainActor
 final class AuthScreenFactory {
+
+    struct Dependencies {
+        let validateEmailUseCase: ValidateEmailUseCase
+    }
+
+    private let dependencies: Dependencies
     private var registrationViewModel: RegistrationViewModel?
+
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+    }
 }
 
 extension AuthScreenFactory {
@@ -29,18 +39,35 @@ extension AuthScreenFactory {
     }
 
     func makeRegistrationFirstStageView(router: RegistrationRouter) -> RegistrationFirstStageView {
-        let registrationViewModel = registrationViewModel ?? .init(router: router)
-        let view = RegistrationFirstStageView(viewModel: registrationViewModel)
-        self.registrationViewModel = registrationViewModel
+        let viewModel = makeRegistrationViewModel(router: router)
+        let view = RegistrationFirstStageView(viewModel: viewModel)
 
         return view
     }
 
     func makeRegistrationSecondStageView(router: RegistrationRouter) -> RegistrationSecondStageView {
-        let viewModel = registrationViewModel ?? .init(router: router)
+        let viewModel = makeRegistrationViewModel(router: router)
         let view = RegistrationSecondStageView(viewModel: viewModel)
 
         return view
+    }
+
+}
+
+private extension AuthScreenFactory {
+
+    func makeRegistrationViewModel(router: RegistrationRouter) -> RegistrationViewModel {
+        guard let registrationViewModel else {
+            let viewModel = RegistrationViewModel(
+                router: router,
+                validateEmailUseCase: dependencies.validateEmailUseCase
+            )
+            self.registrationViewModel = viewModel
+
+            return viewModel
+        }
+
+        return registrationViewModel
     }
 
 }
