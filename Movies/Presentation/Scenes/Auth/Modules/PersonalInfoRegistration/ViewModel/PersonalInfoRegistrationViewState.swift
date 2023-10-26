@@ -1,32 +1,27 @@
 //
-//  RegistrationViewState.swift
+//  PersonalInfoRegistrationViewState.swift
 //  Movies
 //
-//  Created by Ivan Semenov on 19.10.2023.
+//  Created by Ivan Semenov on 26.10.2023.
 //
 
 import Foundation
 
-struct RegistrationViewState: Equatable {
+struct PersonalInfoRegistrationViewState: Equatable {
     var name = ""
     var gender = Gender.male
     var login = ""
     var email = ""
     var birthdate = Date.now
-    var password = ""
-    var confirmPassword = ""
     var isValidEmail = false
 }
 
-enum RegistrationViewEvent {
-    case onTapContinue
+enum PersonalInfoRegistrationViewEvent {
     case onTapLogIn
-    case onTapRegister
+    case onTapContinue
     case nameChanged(String)
     case genderChanged(Gender)
     case loginChanged(String)
     case emailChanged(String)
     case birthdateChanged(Date)
-    case passwordChanged(String)
-    case confirmPasswordChanged(String)
 }
