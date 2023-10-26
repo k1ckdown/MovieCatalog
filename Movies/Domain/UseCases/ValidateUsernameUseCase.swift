@@ -1,5 +1,5 @@
 //
-//  ValidateUsenameUseCase.swift
+//  ValidateUsernameUseCase.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 26.10.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ValidateUsenameUseCase {
+final class ValidateUsernameUseCase {
 
     enum UsernameValidationError: LocalizedError {
         case invalidUsername
