@@ -11,10 +11,10 @@ final class AppFactory {
 
 }
 
-extension AppFactory {
+// MARK: - ValidateEmailUseCaseFactory
 
+extension AppFactory: ValidateEmailUseCaseFactory {
     func makeValidateEmailUseCase() -> ValidateEmailUseCase {
         ValidateEmailUseCase()
     }
-
 }

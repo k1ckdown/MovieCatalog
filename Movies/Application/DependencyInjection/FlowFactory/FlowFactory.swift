@@ -20,13 +20,9 @@ final class FlowFactory {
 extension FlowFactory {
 
     func makeAuthFlow() -> AuthFlow {
-        let dependencies = AuthScreenFactory.Dependencies(
-            validateEmailUseCase: appFactory.makeValidateEmailUseCase()
-        )
-
-        let factory = AuthScreenFactory(dependencies: dependencies)
+        let factory = AuthScreenFactory(appFactory: appFactory)
         let flow = AuthFlow(factory: factory)
-
+        
         return flow
     }
 

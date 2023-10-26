@@ -77,6 +77,7 @@
 		49C3CEA42AEA5B10009FACF4 /* PasswordRegistrationViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEA32AEA5B10009FACF4 /* PasswordRegistrationViewState.swift */; };
 		49C3CEA62AEA6026009FACF4 /* PasswordRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEA52AEA6026009FACF4 /* PasswordRegistrationView.swift */; };
 		49C3CEA82AEA603D009FACF4 /* PasswordRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEA72AEA603D009FACF4 /* PasswordRegistrationViewModel.swift */; };
+		49C3CEAB2AEA68D2009FACF4 /* AppFactoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEAA2AEA68D2009FACF4 /* AppFactoryProtocols.swift */; };
 		49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C12AE1172B00AA05C5 /* Gender.swift */; };
 		49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */; };
 		49E9280C2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */; };
@@ -154,6 +155,7 @@
 		49C3CEA32AEA5B10009FACF4 /* PasswordRegistrationViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRegistrationViewState.swift; sourceTree = "<group>"; };
 		49C3CEA52AEA6026009FACF4 /* PasswordRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRegistrationView.swift; sourceTree = "<group>"; };
 		49C3CEA72AEA603D009FACF4 /* PasswordRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRegistrationViewModel.swift; sourceTree = "<group>"; };
+		49C3CEAA2AEA68D2009FACF4 /* AppFactoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactoryProtocols.swift; sourceTree = "<group>"; };
 		49E3A8C12AE1172B00AA05C5 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSegmentedPicker.swift; sourceTree = "<group>"; };
 		49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedKeysConstants.swift; sourceTree = "<group>"; };
@@ -502,7 +504,7 @@
 		49878FE12AE43DC80076BF85 /* DependencyInjection */ = {
 			isa = PBXGroup;
 			children = (
-				49B6D75E2AE9A7AD00451DAF /* AppFactory.swift */,
+				49C3CEA92AEA68C5009FACF4 /* AppFactory */,
 				490186D52AE945D700A57C07 /* FlowFactory */,
 			);
 			path = DependencyInjection;
@@ -612,6 +614,15 @@
 				49C3CEA32AEA5B10009FACF4 /* PasswordRegistrationViewState.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		49C3CEA92AEA68C5009FACF4 /* AppFactory */ = {
+			isa = PBXGroup;
+			children = (
+				49B6D75E2AE9A7AD00451DAF /* AppFactory.swift */,
+				49C3CEAA2AEA68D2009FACF4 /* AppFactoryProtocols.swift */,
+			);
+			path = AppFactory;
 			sourceTree = "<group>";
 		};
 		49C3F86E2ADEDC56008BAE92 /* Application */ = {
@@ -749,6 +760,7 @@
 				49C3CE9C2AEA585D009FACF4 /* PersonalInfoRegistrationRouter.swift in Sources */,
 				49330CFB2ADD856D00BFA4C6 /* GenderDTO.swift in Sources */,
 				4961F4652AE0009E00A717AB /* AppBackgroundViewModifier.swift in Sources */,
+				49C3CEAB2AEA68D2009FACF4 /* AppFactoryProtocols.swift in Sources */,
 				49878FDE2AE43BB50076BF85 /* LoginRouter.swift in Sources */,
 				49B6D75F2AE9A7AD00451DAF /* AppFactory.swift in Sources */,
 				49330CE42ADD420100BFA4C6 /* TokenInfo.swift in Sources */,

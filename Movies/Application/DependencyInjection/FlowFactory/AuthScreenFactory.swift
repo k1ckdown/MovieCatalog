@@ -9,15 +9,12 @@ import Foundation
 
 @MainActor
 final class AuthScreenFactory {
+    typealias Factory = ValidateEmailUseCaseFactory
 
-    struct Dependencies {
-        let validateEmailUseCase: ValidateEmailUseCase
-    }
+    private let appFactory: Factory
 
-    private let dependencies: Dependencies
-
-    init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+    init(appFactory: Factory) {
+        self.appFactory = appFactory
     }
 }
 
@@ -40,7 +37,7 @@ extension AuthScreenFactory {
     func makePersonalInfoRegistration(router: PersonalInfoRegistrationRouter) -> PersonalInfoRegistrationView {
         let viewModel = PersonalInfoRegistrationViewModel(
             router: router,
-            validateEmailUseCase: dependencies.validateEmailUseCase
+            validateEmailUseCase: appFactory.makeValidateEmailUseCase()
         )
         let view = PersonalInfoRegistrationView(viewModel: viewModel)
 
