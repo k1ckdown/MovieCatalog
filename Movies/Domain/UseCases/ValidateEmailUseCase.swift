@@ -9,7 +9,7 @@ import Foundation
 
 final class ValidateEmailUseCase {
 
-    enum EmailValidationError: String, LocalizedError {
+    enum EmailValidationError: LocalizedError {
         case invalidUsername
         case missingKeySign
         case invalidDomainPart
@@ -50,11 +50,19 @@ private extension ValidateEmailUseCase {
         static let formatString = "SELF MATCHES %@"
         static let usernamePartRegex = "[A-Z0-9a-z._%+-]+"
         static let domainPartRegex = "[A-Za-z0-9.-]+"
-        static let topLevelDomainRegex = "^[A-Za-z]{2,64}$"
+        static let topLevelDomainRegex = "^[A-Za-z]{2,64}"
+    }
+
+    func isContainsKeySign(_ email: String) -> Bool {
+        email.contains("@")
     }
 
     func getEmailUsernamePart(_ email: String) -> String {
-        return email.components(separatedBy: "@").first ?? ""
+        email.components(separatedBy: "@").first ?? ""
+    }
+
+    func getEmailTopLevelDomain(_ email: String) -> String {
+        email.components(separatedBy: ".").last ?? ""
     }
 
     func getEmailDomainPart(_ email: String) -> String {
@@ -64,10 +72,6 @@ private extension ValidateEmailUseCase {
         return substring.components(separatedBy: ".").first ?? ""
     }
 
-    func getEmailTopLevelDomain(_ email: String) -> String {
-        return email.components(separatedBy: ".").last ?? ""
-    }
-
     func isValidUsername(_ email: String) -> Bool {
         let usernamePartPredicate = NSPredicate(
             format: Constants.formatString,
@@ -75,10 +79,6 @@ private extension ValidateEmailUseCase {
         )
 
         return usernamePartPredicate.evaluate(with: getEmailUsernamePart(email))
-    }
-
-    func isContainsKeySign(_ email: String) -> Bool {
-        return email.contains("@")
     }
 
     func isValidDomainPart(_ email: String) -> Bool {
