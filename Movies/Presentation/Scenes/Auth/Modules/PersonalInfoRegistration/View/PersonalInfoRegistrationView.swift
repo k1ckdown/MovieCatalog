@@ -95,7 +95,7 @@ struct PersonalInfoRegistrationView: View {
 }
 
 #Preview {
-    RegistrationFirstStageView(
+    PersonalInfoRegistrationView(
         viewModel: .init(
             router: .init(path: .constant(.init())),
             validateEmailUseCase: .init()

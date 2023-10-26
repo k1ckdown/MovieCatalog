@@ -18,7 +18,7 @@ final class PersonalInfoRegistrationRouter {
 
 extension PersonalInfoRegistrationRouter {
     func showPasswordRegistration() {
-        path.append(.registrationSecondStage)
+        path.append(.passwordRegistration)
     }
 
     func showLogin() {
