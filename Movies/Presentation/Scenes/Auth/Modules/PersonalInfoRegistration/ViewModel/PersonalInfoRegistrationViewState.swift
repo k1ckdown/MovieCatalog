@@ -17,8 +17,8 @@ struct PersonalInfoRegistrationViewState: Equatable {
 }
 
 enum PersonalInfoRegistrationViewEvent {
-    case onTapContinue
     case onTapLogIn
+    case onTapContinue
     case nameChanged(String)
     case genderChanged(Gender)
     case loginChanged(String)
