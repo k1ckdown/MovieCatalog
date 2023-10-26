@@ -20,7 +20,7 @@ extension LoginRouter {
 
     func showRegistration() {
         path.removeLast()
-        path.append(.registrationFirstStage)
+        path.append(.personalInfoRegistration)
     }
 
 }

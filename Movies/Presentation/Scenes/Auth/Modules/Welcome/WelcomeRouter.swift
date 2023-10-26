@@ -23,7 +23,7 @@ extension WelcomeRouter {
     }
 
     func showRegistration() {
-        path.append(.registrationFirstStage)
+        path.append(.personalInfoRegistration)
     }
 
 }

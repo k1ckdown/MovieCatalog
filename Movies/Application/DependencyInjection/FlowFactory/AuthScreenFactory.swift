@@ -15,7 +15,6 @@ final class AuthScreenFactory {
     }
 
     private let dependencies: Dependencies
-    private var registrationViewModel: RegistrationViewModel?
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
@@ -38,36 +37,21 @@ extension AuthScreenFactory {
         return view
     }
 
-    func makeRegistrationFirstStageView(router: RegistrationRouter) -> RegistrationFirstStageView {
-        let viewModel = makeRegistrationViewModel(router: router)
-        let view = RegistrationFirstStageView(viewModel: viewModel)
+    func makePersonalInfoRegistration(router: PersonalInfoRegistrationRouter) -> PersonalInfoRegistrationView {
+        let viewModel = PersonalInfoRegistrationViewModel(
+            router: router,
+            validateEmailUseCase: dependencies.validateEmailUseCase
+        )
+        let view = PersonalInfoRegistrationView(viewModel: viewModel)
 
         return view
     }
 
-    func makeRegistrationSecondStageView(router: RegistrationRouter) -> RegistrationSecondStageView {
-        let viewModel = makeRegistrationViewModel(router: router)
-        let view = RegistrationSecondStageView(viewModel: viewModel)
-
+    func makePasswordRegistration(router: PasswordRegistrationRouter) -> PasswordRegistrationView {
+        let viewModel = PasswordRegistrationViewModel(router: router)
+        let view = PasswordRegistrationView(viewModel: viewModel)
+        
         return view
-    }
-
-}
-
-private extension AuthScreenFactory {
-
-    func makeRegistrationViewModel(router: RegistrationRouter) -> RegistrationViewModel {
-        guard let registrationViewModel else {
-            let viewModel = RegistrationViewModel(
-                router: router,
-                validateEmailUseCase: dependencies.validateEmailUseCase
-            )
-            self.registrationViewModel = viewModel
-
-            return viewModel
-        }
-
-        return registrationViewModel
     }
 
 }

@@ -1,5 +1,5 @@
 //
-//  RegistrationSecondStageView.swift
+//  PasswordRegistrationView.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 21.10.2023.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct RegistrationSecondStageView: View {
-    
-    @ObservedObject private(set) var viewModel: RegistrationViewModel
-    
+struct PasswordRegistrationView: View {
+
+    @ObservedObject private(set) var viewModel: PasswordRegistrationViewModel
+
     var body: some View {
         AuthView(
             style: .registrationSecondStage,
@@ -21,7 +21,7 @@ struct RegistrationSecondStageView: View {
                 Group {
                     SecureInputView(text: password)
                         .labeled(LocalizedKeysConstants.password)
-                    
+
                     SecureInputView(text: confirmPassword)
                         .labeled(LocalizedKeysConstants.confirmPassword)
                 }
@@ -33,14 +33,14 @@ struct RegistrationSecondStageView: View {
                 viewModel.handle(.onTapLogIn)
             }
     }
-    
+
     private var password: Binding<String> {
         Binding(
             get: { viewModel.state.password },
             set: { viewModel.handle(.passwordChanged($0)) }
         )
     }
-    
+
     private var confirmPassword: Binding<String> {
         Binding(
             get: { viewModel.state.confirmPassword },

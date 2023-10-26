@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		490186D42AE93FA500A57C07 /* RegistrationFirstStageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490186D32AE93FA500A57C07 /* RegistrationFirstStageView.swift */; };
 		490186D72AE945EC00A57C07 /* FlowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490186D62AE945EC00A57C07 /* FlowFactory.swift */; };
 		4903B1F72AE7045F00BDA83D /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4903B1F62AE7045F00BDA83D /* AuthView.swift */; };
-		4903B1FA2AE70B0000BDA83D /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4903B1F92AE70B0000BDA83D /* RegistrationRouter.swift */; };
 		49145D832ADEBF1B0082E048 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49145D822ADEBF1B0082E048 /* LaunchScreen.storyboard */; };
 		49330CCF2ADD278900BFA4C6 /* ReviewShortDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CCA2ADD278900BFA4C6 /* ReviewShortDTO.swift */; };
 		49330CD12ADD278900BFA4C6 /* MovieDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CCC2ADD278900BFA4C6 /* MovieDTO.swift */; };
@@ -25,7 +23,7 @@
 		49330CE82ADD424000BFA4C6 /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CE72ADD424000BFA4C6 /* LoginCredentials.swift */; };
 		49330CEB2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CEA2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift */; };
 		49330CED2ADD60E400BFA4C6 /* LogoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CEC2ADD60E400BFA4C6 /* LogoutResponse.swift */; };
-		49330CEF2ADD663B00BFA4C6 /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CEE2ADD663B00BFA4C6 /* NetworkRouter.swift */; };
+		49330CEF2ADD663B00BFA4C6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CEE2ADD663B00BFA4C6 /* NetworkManager.swift */; };
 		49330CF22ADD741F00BFA4C6 /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CF12ADD741F00BFA4C6 /* URLParameterEncoder.swift */; };
 		49330CF42ADD7C7B00BFA4C6 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CF32ADD7C7B00BFA4C6 /* NetworkConfig.swift */; };
 		49330CF62ADD7C8B00BFA4C6 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CF52ADD7C8B00BFA4C6 /* HTTPTask.swift */; };
@@ -59,11 +57,8 @@
 		49878FDE2AE43BB50076BF85 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49878FDD2AE43BB50076BF85 /* LoginRouter.swift */; };
 		49878FE72AE43E080076BF85 /* AuthScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49878FE62AE43E080076BF85 /* AuthScreenFactory.swift */; };
 		4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995FF1E2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift */; };
-		499B23E82AE2ECD100069EC9 /* RegistrationSecondStageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B23E72AE2ECD100069EC9 /* RegistrationSecondStageView.swift */; };
 		499E67902AE80501008A3BDE /* AuthFlowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E678F2AE80501008A3BDE /* AuthFlowState.swift */; };
 		49A562842AE0EAD400222062 /* AuthScreenTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562832AE0EAD400222062 /* AuthScreenTitle.swift */; };
-		49A562872AE0EBB000222062 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562862AE0EBB000222062 /* RegistrationViewModel.swift */; };
-		49A562892AE0EBC100222062 /* RegistrationViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562882AE0EBC100222062 /* RegistrationViewState.swift */; };
 		49A620652AE6EBD800CEE994 /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A620642AE6EBD800CEE994 /* TintColor.swift */; };
 		49A620672AE6EC0000CEE994 /* LabeledViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A620662AE6EC0000CEE994 /* LabeledViewModifier.swift */; };
 		49B6D75D2AE9A41B00451DAF /* ValidateEmailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6D75C2AE9A41B00451DAF /* ValidateEmailUseCase.swift */; };
@@ -74,16 +69,22 @@
 		49C189C82AE3FA940029BAF9 /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189C72AE3FA940029BAF9 /* AppFlow.swift */; };
 		49C189CB2AE3FC090029BAF9 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189CA2AE3FC090029BAF9 /* WelcomeViewModel.swift */; };
 		49C189CD2AE3FC2F0029BAF9 /* WelcomeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189CC2AE3FC2F0029BAF9 /* WelcomeViewState.swift */; };
+		49C3CE972AEA56EE009FACF4 /* PersonalInfoRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CE962AEA56EE009FACF4 /* PersonalInfoRegistrationViewModel.swift */; };
+		49C3CE9A2AEA5716009FACF4 /* PersonalInfoRegistrationViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CE992AEA5716009FACF4 /* PersonalInfoRegistrationViewState.swift */; };
+		49C3CE9C2AEA585D009FACF4 /* PersonalInfoRegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CE9B2AEA585D009FACF4 /* PersonalInfoRegistrationRouter.swift */; };
+		49C3CE9E2AEA595A009FACF4 /* PersonalInfoRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CE9D2AEA595A009FACF4 /* PersonalInfoRegistrationView.swift */; };
+		49C3CEA02AEA5A5A009FACF4 /* PasswordRegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CE9F2AEA5A5A009FACF4 /* PasswordRegistrationRouter.swift */; };
+		49C3CEA42AEA5B10009FACF4 /* PasswordRegistrationViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEA32AEA5B10009FACF4 /* PasswordRegistrationViewState.swift */; };
+		49C3CEA62AEA6026009FACF4 /* PasswordRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEA52AEA6026009FACF4 /* PasswordRegistrationView.swift */; };
+		49C3CEA82AEA603D009FACF4 /* PasswordRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEA72AEA603D009FACF4 /* PasswordRegistrationViewModel.swift */; };
 		49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C12AE1172B00AA05C5 /* Gender.swift */; };
 		49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */; };
 		49E9280C2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		490186D32AE93FA500A57C07 /* RegistrationFirstStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFirstStageView.swift; sourceTree = "<group>"; };
 		490186D62AE945EC00A57C07 /* FlowFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowFactory.swift; sourceTree = "<group>"; };
 		4903B1F62AE7045F00BDA83D /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
-		4903B1F92AE70B0000BDA83D /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		49145D822ADEBF1B0082E048 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49330CCA2ADD278900BFA4C6 /* ReviewShortDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewShortDTO.swift; sourceTree = "<group>"; };
 		49330CCC2ADD278900BFA4C6 /* MovieDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDTO.swift; sourceTree = "<group>"; };
@@ -98,7 +99,7 @@
 		49330CE72ADD424000BFA4C6 /* LoginCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCredentials.swift; sourceTree = "<group>"; };
 		49330CEA2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkConfig.swift; sourceTree = "<group>"; };
 		49330CEC2ADD60E400BFA4C6 /* LogoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponse.swift; sourceTree = "<group>"; };
-		49330CEE2ADD663B00BFA4C6 /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
+		49330CEE2ADD663B00BFA4C6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		49330CF12ADD741F00BFA4C6 /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
 		49330CF32ADD7C7B00BFA4C6 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		49330CF52ADD7C8B00BFA4C6 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
@@ -133,11 +134,8 @@
 		49878FDD2AE43BB50076BF85 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		49878FE62AE43E080076BF85 /* AuthScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenFactory.swift; sourceTree = "<group>"; };
 		4995FF1E2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+ContentHugging.swift"; sourceTree = "<group>"; };
-		499B23E72AE2ECD100069EC9 /* RegistrationSecondStageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondStageView.swift; sourceTree = "<group>"; };
 		499E678F2AE80501008A3BDE /* AuthFlowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowState.swift; sourceTree = "<group>"; };
 		49A562832AE0EAD400222062 /* AuthScreenTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenTitle.swift; sourceTree = "<group>"; };
-		49A562862AE0EBB000222062 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
-		49A562882AE0EBC100222062 /* RegistrationViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewState.swift; sourceTree = "<group>"; };
 		49A620642AE6EBD800CEE994 /* TintColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
 		49A620662AE6EC0000CEE994 /* LabeledViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledViewModifier.swift; sourceTree = "<group>"; };
 		49B6D75C2AE9A41B00451DAF /* ValidateEmailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateEmailUseCase.swift; sourceTree = "<group>"; };
@@ -148,6 +146,14 @@
 		49C189C72AE3FA940029BAF9 /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 		49C189CA2AE3FC090029BAF9 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		49C189CC2AE3FC2F0029BAF9 /* WelcomeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewState.swift; sourceTree = "<group>"; };
+		49C3CE962AEA56EE009FACF4 /* PersonalInfoRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoRegistrationViewModel.swift; sourceTree = "<group>"; };
+		49C3CE992AEA5716009FACF4 /* PersonalInfoRegistrationViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoRegistrationViewState.swift; sourceTree = "<group>"; };
+		49C3CE9B2AEA585D009FACF4 /* PersonalInfoRegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoRegistrationRouter.swift; sourceTree = "<group>"; };
+		49C3CE9D2AEA595A009FACF4 /* PersonalInfoRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoRegistrationView.swift; sourceTree = "<group>"; };
+		49C3CE9F2AEA5A5A009FACF4 /* PasswordRegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRegistrationRouter.swift; sourceTree = "<group>"; };
+		49C3CEA32AEA5B10009FACF4 /* PasswordRegistrationViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRegistrationViewState.swift; sourceTree = "<group>"; };
+		49C3CEA52AEA6026009FACF4 /* PasswordRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRegistrationView.swift; sourceTree = "<group>"; };
+		49C3CEA72AEA603D009FACF4 /* PasswordRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRegistrationViewModel.swift; sourceTree = "<group>"; };
 		49E3A8C12AE1172B00AA05C5 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSegmentedPicker.swift; sourceTree = "<group>"; };
 		49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedKeysConstants.swift; sourceTree = "<group>"; };
@@ -169,7 +175,8 @@
 			children = (
 				4961F4582ADFDF8800A717AB /* Welcome */,
 				4961F4712AE020FA00A717AB /* Login */,
-				49A5627F2AE0EA8A00222062 /* Registration */,
+				49C3CE922AEA55A2009FACF4 /* PersonalInfoRegistration */,
+				49C3CE932AEA55B6009FACF4 /* PasswordRegistration */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -472,7 +479,7 @@
 		4977E3C22ADBCF47008CE679 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				49330CEE2ADD663B00BFA4C6 /* NetworkRouter.swift */,
+				49330CEE2ADD663B00BFA4C6 /* NetworkManager.swift */,
 				4984BE142ADC6ABB00364027 /* NetworkService.swift */,
 				49330CD52ADD29AD00BFA4C6 /* NetworkServiceProtocols.swift */,
 			);
@@ -518,34 +525,6 @@
 			path = Flow;
 			sourceTree = "<group>";
 		};
-		49A5627F2AE0EA8A00222062 /* Registration */ = {
-			isa = PBXGroup;
-			children = (
-				4903B1F92AE70B0000BDA83D /* RegistrationRouter.swift */,
-				49A562802AE0EA9200222062 /* Views */,
-				49A562852AE0EB9200222062 /* ViewModel */,
-			);
-			path = Registration;
-			sourceTree = "<group>";
-		};
-		49A562802AE0EA9200222062 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				490186D32AE93FA500A57C07 /* RegistrationFirstStageView.swift */,
-				499B23E72AE2ECD100069EC9 /* RegistrationSecondStageView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		49A562852AE0EB9200222062 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				49A562862AE0EBB000222062 /* RegistrationViewModel.swift */,
-				49A562882AE0EBC100222062 /* RegistrationViewState.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		49B422FA2AE0DFE60032F773 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,6 +556,60 @@
 			children = (
 				49C189CA2AE3FC090029BAF9 /* WelcomeViewModel.swift */,
 				49C189CC2AE3FC2F0029BAF9 /* WelcomeViewState.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		49C3CE922AEA55A2009FACF4 /* PersonalInfoRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				49C3CE9B2AEA585D009FACF4 /* PersonalInfoRegistrationRouter.swift */,
+				49C3CE942AEA56D8009FACF4 /* View */,
+				49C3CE952AEA56E2009FACF4 /* ViewModel */,
+			);
+			path = PersonalInfoRegistration;
+			sourceTree = "<group>";
+		};
+		49C3CE932AEA55B6009FACF4 /* PasswordRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				49C3CE9F2AEA5A5A009FACF4 /* PasswordRegistrationRouter.swift */,
+				49C3CEA12AEA5AF7009FACF4 /* View */,
+				49C3CEA22AEA5AFA009FACF4 /* ViewModel */,
+			);
+			path = PasswordRegistration;
+			sourceTree = "<group>";
+		};
+		49C3CE942AEA56D8009FACF4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				49C3CE9D2AEA595A009FACF4 /* PersonalInfoRegistrationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		49C3CE952AEA56E2009FACF4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				49C3CE962AEA56EE009FACF4 /* PersonalInfoRegistrationViewModel.swift */,
+				49C3CE992AEA5716009FACF4 /* PersonalInfoRegistrationViewState.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		49C3CEA12AEA5AF7009FACF4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				49C3CEA52AEA6026009FACF4 /* PasswordRegistrationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		49C3CEA22AEA5AFA009FACF4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				49C3CEA72AEA603D009FACF4 /* PasswordRegistrationViewModel.swift */,
+				49C3CEA32AEA5B10009FACF4 /* PasswordRegistrationViewState.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -706,16 +739,20 @@
 				49330CD62ADD29AD00BFA4C6 /* NetworkServiceProtocols.swift in Sources */,
 				4961F48F2AE0490B00A717AB /* BaseTextFieldStyle.swift in Sources */,
 				4961F4772AE021A200A717AB /* LoginViewModel.swift in Sources */,
-				49330CEF2ADD663B00BFA4C6 /* NetworkRouter.swift in Sources */,
+				49330CEF2ADD663B00BFA4C6 /* NetworkManager.swift in Sources */,
+				49C3CE9E2AEA595A009FACF4 /* PersonalInfoRegistrationView.swift in Sources */,
 				49330CED2ADD60E400BFA4C6 /* LogoutResponse.swift in Sources */,
 				49C189C12AE3F7750029BAF9 /* FlowState.swift in Sources */,
+				49C3CEA82AEA603D009FACF4 /* PasswordRegistrationViewModel.swift in Sources */,
 				49330CF92ADD854800BFA4C6 /* ProfileDTO.swift in Sources */,
 				49330CE82ADD424000BFA4C6 /* LoginCredentials.swift in Sources */,
+				49C3CE9C2AEA585D009FACF4 /* PersonalInfoRegistrationRouter.swift in Sources */,
 				49330CFB2ADD856D00BFA4C6 /* GenderDTO.swift in Sources */,
 				4961F4652AE0009E00A717AB /* AppBackgroundViewModifier.swift in Sources */,
 				49878FDE2AE43BB50076BF85 /* LoginRouter.swift in Sources */,
 				49B6D75F2AE9A7AD00451DAF /* AppFactory.swift in Sources */,
 				49330CE42ADD420100BFA4C6 /* TokenInfo.swift in Sources */,
+				49C3CEA42AEA5B10009FACF4 /* PasswordRegistrationViewState.swift in Sources */,
 				49330CE02ADD2ED200BFA4C6 /* UserShortDTO.swift in Sources */,
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
 				49330CD12ADD278900BFA4C6 /* MovieDTO.swift in Sources */,
@@ -726,13 +763,14 @@
 				49C189CD2AE3FC2F0029BAF9 /* WelcomeViewState.swift in Sources */,
 				4961F45B2ADFDF9700A717AB /* WelcomeView.swift in Sources */,
 				49C189C82AE3FA940029BAF9 /* AppFlow.swift in Sources */,
-				490186D42AE93FA500A57C07 /* RegistrationFirstStageView.swift in Sources */,
 				4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */,
+				49C3CE972AEA56EE009FACF4 /* PersonalInfoRegistrationViewModel.swift in Sources */,
 				49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */,
 				49330CCF2ADD278900BFA4C6 /* ReviewShortDTO.swift in Sources */,
 				4961F4982AE05CAE00A717AB /* BaseButtonStyle.swift in Sources */,
 				490186D72AE945EC00A57C07 /* FlowFactory.swift in Sources */,
 				4961F4932AE0520F00A717AB /* CalloutButtonStyle.swift in Sources */,
+				49C3CEA02AEA5A5A009FACF4 /* PasswordRegistrationRouter.swift in Sources */,
 				49A620652AE6EBD800CEE994 /* TintColor.swift in Sources */,
 				4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */,
 				4961F47C2AE021C800A717AB /* ViewModel.swift in Sources */,
@@ -746,15 +784,14 @@
 				49330CD22ADD278900BFA4C6 /* GenreDTO.swift in Sources */,
 				497BC4582AE790E70002336C /* AuthFlow.swift in Sources */,
 				49330D032ADD996300BFA4C6 /* ReviewNetworkConfig.swift in Sources */,
-				49A562872AE0EBB000222062 /* RegistrationViewModel.swift in Sources */,
 				49330CF62ADD7C8B00BFA4C6 /* HTTPTask.swift in Sources */,
 				4961F46F2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift in Sources */,
-				49A562892AE0EBC100222062 /* RegistrationViewState.swift in Sources */,
+				49C3CEA62AEA6026009FACF4 /* PasswordRegistrationView.swift in Sources */,
 				4961F4792AE021AC00A717AB /* LoginViewState.swift in Sources */,
+				49C3CE9A2AEA5716009FACF4 /* PersonalInfoRegistrationViewState.swift in Sources */,
 				49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */,
 				4903B1F72AE7045F00BDA83D /* AuthView.swift in Sources */,
 				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,
-				499B23E82AE2ECD100069EC9 /* RegistrationSecondStageView.swift in Sources */,
 				49878FE72AE43E080076BF85 /* AuthScreenFactory.swift in Sources */,
 				49E9280C2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift in Sources */,
 				49A620672AE6EC0000CEE994 /* LabeledViewModifier.swift in Sources */,
@@ -765,7 +802,6 @@
 				493BB4E72AE1901D004C879F /* DatePickerField.swift in Sources */,
 				493BB4E92AE198AA004C879F /* BorderedViewModifier.swift in Sources */,
 				49330CDE2ADD2EB500BFA4C6 /* ReviewDTO.swift in Sources */,
-				4903B1FA2AE70B0000BDA83D /* RegistrationRouter.swift in Sources */,
 				49C189CB2AE3FC090029BAF9 /* WelcomeViewModel.swift in Sources */,
 				499E67902AE80501008A3BDE /* AuthFlowState.swift in Sources */,
 			);

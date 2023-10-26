@@ -11,8 +11,8 @@ final class AuthFlowState: FlowState {
     
     enum Screen: Routable {
         case login
-        case registrationFirstStage
-        case registrationSecondStage
+        case personalInfoRegistration
+        case passwordRegistration
     }
     
     @Published var navigationPath = [Screen]()
