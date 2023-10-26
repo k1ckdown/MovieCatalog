@@ -8,13 +8,13 @@
 import Foundation
 
 final class AppFactory {
-
+    
 }
 
-// MARK: - ValidateEmailUseCaseFactory
-
-extension AppFactory: ValidateEmailUseCaseFactory {
+extension AppFactory {
+    
     func makeValidateEmailUseCase() -> ValidateEmailUseCase {
         ValidateEmailUseCase()
     }
+    
 }
