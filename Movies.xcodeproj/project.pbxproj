@@ -79,6 +79,7 @@
 		49C3CEBA2AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEB92AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift */; };
 		49CD15C42AEACE89003E6ADC /* ValidateUsernameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD15C32AEACE89003E6ADC /* ValidateUsernameUseCase.swift */; };
 		49CD15C62AEAD21A003E6ADC /* ValidatePasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD15C52AEAD21A003E6ADC /* ValidatePasswordUseCase.swift */; };
+		49CD15C92AEAF296003E6ADC /* ErrorableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD15C82AEAF296003E6ADC /* ErrorableTextField.swift */; };
 		49DA5D7C2AEA7B4100F96E97 /* AuthNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DA5D7B2AEA7B4100F96E97 /* AuthNavigationState.swift */; };
 		49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C12AE1172B00AA05C5 /* Gender.swift */; };
 		49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */; };
@@ -159,6 +160,7 @@
 		49C3CEB92AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryProtocols.swift; sourceTree = "<group>"; };
 		49CD15C32AEACE89003E6ADC /* ValidateUsernameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUsernameUseCase.swift; sourceTree = "<group>"; };
 		49CD15C52AEAD21A003E6ADC /* ValidatePasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatePasswordUseCase.swift; sourceTree = "<group>"; };
+		49CD15C82AEAF296003E6ADC /* ErrorableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorableTextField.swift; sourceTree = "<group>"; };
 		49DA5D7B2AEA7B4100F96E97 /* AuthNavigationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthNavigationState.swift; sourceTree = "<group>"; };
 		49E3A8C12AE1172B00AA05C5 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSegmentedPicker.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 		4961F45C2ADFE7DA00A717AB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				49CD15C72AEAF28A003E6ADC /* TextFields */,
 				49E3A8C32AE11C1C00AA05C5 /* Pickers */,
 			);
 			path = Components;
@@ -553,9 +556,7 @@
 		49B6D75B2AE9A41200451DAF /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				49B6D75C2AE9A41B00451DAF /* ValidateEmailUseCase.swift */,
-				49CD15C32AEACE89003E6ADC /* ValidateUsernameUseCase.swift */,
-				49CD15C52AEAD21A003E6ADC /* ValidatePasswordUseCase.swift */,
+				49CD15CA2AEAF788003E6ADC /* Validation */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -640,6 +641,24 @@
 				49612AC82ADAD8B10081832B /* Preview Content */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		49CD15C72AEAF28A003E6ADC /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				49CD15C82AEAF296003E6ADC /* ErrorableTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		49CD15CA2AEAF788003E6ADC /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				49B6D75C2AE9A41B00451DAF /* ValidateEmailUseCase.swift */,
+				49CD15C32AEACE89003E6ADC /* ValidateUsernameUseCase.swift */,
+				49CD15C52AEAD21A003E6ADC /* ValidatePasswordUseCase.swift */,
+			);
+			path = Validation;
 			sourceTree = "<group>";
 		};
 		49E3A8C02AE1172400AA05C5 /* Domain */ = {
@@ -745,6 +764,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49330CFD2ADD85E500BFA4C6 /* UserNetworkConfig.swift in Sources */,
+				49CD15C92AEAF296003E6ADC /* ErrorableTextField.swift in Sources */,
 				49330CD62ADD29AD00BFA4C6 /* NetworkServiceProtocols.swift in Sources */,
 				4961F48F2AE0490B00A717AB /* BaseTextFieldStyle.swift in Sources */,
 				4961F4772AE021A200A717AB /* LoginViewModel.swift in Sources */,

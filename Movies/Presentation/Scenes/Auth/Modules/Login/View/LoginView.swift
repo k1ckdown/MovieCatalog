@@ -22,7 +22,7 @@ struct LoginView: View {
             Group {
                 TextField("", text: login)
                     .textFieldStyle(BaseTextFieldStyle())
-                    .labeled(LocalizedKeysConstants.login)
+                    .labeled(LocalizedKeysConstants.username)
 
                 SecureInputView(text: password)
                     .labeled(LocalizedKeysConstants.password)

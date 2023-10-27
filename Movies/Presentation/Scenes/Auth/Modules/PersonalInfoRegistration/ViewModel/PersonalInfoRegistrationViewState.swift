@@ -10,10 +10,12 @@ import Foundation
 struct PersonalInfoRegistrationViewState: Equatable {
     var name = ""
     var gender = Gender.male
-    var login = ""
+    var username = ""
     var email = ""
     var birthdate = Date.now
-    var isValidEmail = false
+
+    var emailError: String?
+    var usernameError: String?
 }
 
 enum PersonalInfoRegistrationViewEvent {
@@ -21,7 +23,7 @@ enum PersonalInfoRegistrationViewEvent {
     case onTapContinue
     case nameChanged(String)
     case genderChanged(Gender)
-    case loginChanged(String)
+    case usernameChanged(String)
     case emailChanged(String)
     case birthdateChanged(Date)
 }

@@ -11,8 +11,8 @@ struct AuthView<Content: View>: View {
 
     enum Style {
         case login
-        case registrationFirstStage
-        case registrationSecondStage
+        case personalInfo
+        case passwords
 
         var contentSpacing: CGFloat {
             12
@@ -24,8 +24,8 @@ struct AuthView<Content: View>: View {
 
         var formSpacing: CGFloat {
             switch self {
-            case .registrationFirstStage: 12
-            case .login, .registrationSecondStage: 18
+            case .personalInfo: 14
+            case .login, .passwords: 18
             }
         }
     }

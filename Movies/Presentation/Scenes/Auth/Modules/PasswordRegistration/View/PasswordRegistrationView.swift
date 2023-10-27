@@ -13,7 +13,7 @@ struct PasswordRegistrationView: View {
 
     var body: some View {
         AuthView(
-            style: .registrationSecondStage,
+            style: .passwords,
             screenTitle: LocalizedKeysConstants.registration,
             formButtonTitle: LocalizedKeysConstants.registerAccount,
             calloutText: LocalizedKeysConstants.alreadyHaveAccount,

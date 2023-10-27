@@ -13,7 +13,7 @@ enum LocalizedKeysConstants {
     static let registration = LocalizedStringKey("Registration")
     static let logIn = LocalizedStringKey("Log In")
     static let entrance = LocalizedStringKey("Entrance")
-    static let login = LocalizedStringKey("Login")
+    static let username = LocalizedStringKey("Username")
     static let password = LocalizedStringKey("Password")
     static let confirmPassword = LocalizedStringKey("Confirm password")
     static let noAccountYet = LocalizedStringKey("Don't have an account yet?")

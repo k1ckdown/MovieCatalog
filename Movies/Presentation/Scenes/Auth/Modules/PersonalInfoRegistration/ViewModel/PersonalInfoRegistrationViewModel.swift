@@ -13,6 +13,7 @@ final class PersonalInfoRegistrationViewModel: ViewModel {
 
     private let router: PersonalInfoRegistrationRouter
     private let validateEmailUseCase: ValidateEmailUseCase
+    private let validateUsernameUseCase = ValidateUsernameUseCase()
 
     init(router: PersonalInfoRegistrationRouter, validateEmailUseCase: ValidateEmailUseCase) {
         self.state = .init()
@@ -34,8 +35,8 @@ final class PersonalInfoRegistrationViewModel: ViewModel {
         case .genderChanged(let gender):
             state.gender = gender
             
-        case .loginChanged(let login):
-            state.login = login
+        case .usernameChanged(let username):
+            usernameUpdated(username)
 
         case .emailChanged(let email):
             emailUpdated(email)
@@ -50,7 +51,22 @@ private extension PersonalInfoRegistrationViewModel {
 
     func emailUpdated(_ email: String) {
         state.email = email
-        state.isValidEmail = (try? validateEmailUseCase.execute(email)) != nil
+        do {
+            try validateEmailUseCase.execute(email)
+            state.emailError = nil
+        } catch {
+            state.emailError = error.localizedDescription
+        }
     }
 
+    func usernameUpdated(_ username: String) {
+        state.username = username
+
+        do {
+            try validateUsernameUseCase.execute(username)
+            state.usernameError = nil
+        } catch {
+            state.usernameError = error.localizedDescription
+        }
+    }
 }
