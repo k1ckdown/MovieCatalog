@@ -67,6 +67,29 @@ final class SecureStorage {
             throw convertError(status)
         }
     }
+
+    func retrieveToken() throws -> String? {
+        let query = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: Key.accessToken.rawValue,
+            kSecMatchLimit: kSecMatchLimitOne,
+            kSecReturnData: kCFBooleanTrue as Any
+        ] as CFDictionary
+
+        var result: AnyObject?
+        let status = SecItemCopyMatching(query, &result)
+
+        guard status == errSecSuccess else {
+            throw convertError(status)
+        }
+
+        guard let data = result as? Data else {
+            throw KeychainError.invalidData
+        }
+
+        let token = String(decoding: data, as: UTF8.self)
+        return token
+    }
 }
 
 private extension SecureStorage {
