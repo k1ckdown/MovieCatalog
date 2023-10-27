@@ -11,7 +11,7 @@ struct LoginViewState: Equatable {
     var login = ""
     var password = ""
 
-    var isDataEmpty: Bool {
+    var isLogInDisabled: Bool {
         login.isEmpty || password.isEmpty
     }
 }

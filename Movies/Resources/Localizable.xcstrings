@@ -21,7 +21,7 @@
         }
       }
     },
-    "Already have an account?" : {
+    "AlreadyHaveAccount" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -55,7 +55,7 @@
         }
       }
     },
-    "Confirm password" : {
+    "ConfirmPassword" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -68,23 +68,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Повторите пароль"
-          }
-        }
-      }
-    },
-    "Don't have an account yet?" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Don't have an account yet?"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Еще нет аккаунта?"
           }
         }
       }
@@ -174,7 +157,109 @@
         }
       }
     },
-    "Log In" : {
+    "InvalidConfirmPassword" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passwords don't match"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароли не совпадают"
+          }
+        }
+      }
+    },
+    "InvalidDomainPart" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid domain part"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недопустимая часть домена"
+          }
+        }
+      }
+    },
+    "InvalidEmailUsername" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid username"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недопустимое имя"
+          }
+        }
+      }
+    },
+    "InvalidPassword" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Must be at least 6 characters"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Должно быть не менее 6 символов"
+          }
+        }
+      }
+    },
+    "InvalidTopLevelDomain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid top-level domain"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недопустимый домен верхнего уровня"
+          }
+        }
+      }
+    },
+    "InvalidUsername" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid, can only contain letters or digits"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Может содержать только буквы или цифры"
+          }
+        }
+      }
+    },
+    "LogIn" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -191,7 +276,7 @@
         }
       }
     },
-    "Log In to account" : {
+    "LogInAccount" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -204,23 +289,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Войдите"
-          }
-        }
-      }
-    },
-    "Login" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Login"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Логин"
           }
         }
       }
@@ -242,6 +310,23 @@
         }
       }
     },
+    "MissingKeySign" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Missing @ sign"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отсутствует знак @"
+          }
+        }
+      }
+    },
     "Name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -255,6 +340,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Имя"
+          }
+        }
+      }
+    },
+    "NotAccountYet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't have an account yet?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еще нет аккаунта?"
           }
         }
       }
@@ -288,12 +390,12 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Зарегистрируйтесь"
+            "value" : "Зарегистрироваться"
           }
         }
       }
     },
-    "Register account" : {
+    "RegisterAccount" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -305,7 +407,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Зарегистрироваться"
+            "value" : "Зарегистрируйтесь"
           }
         }
       }
@@ -323,6 +425,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Регистрация"
+          }
+        }
+      }
+    },
+    "UnknownError" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown error"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестная ошибка"
+          }
+        }
+      }
+    },
+    "Username" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Username"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Логин"
           }
         }
       }

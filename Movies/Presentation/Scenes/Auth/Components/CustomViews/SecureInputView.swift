@@ -10,29 +10,33 @@ import SwiftUI
 struct SecureInputView: View {
 
     @Binding var text: String
+
+    var errorMessage: String?
+    var isErrorShowed: Bool = false
+
     @State private var isSecured = false
 
     var body: some View {
-        textField
-            .labelsHidden()
-            .textFieldStyle(
-                BaseTextFieldStyle(trailingInset: Constants.TextField.trailingInset)
-            )
-            .overlay(alignment: .trailing) {
-                Image(systemName: isSecured ? Constants.Image.eyeSlash : Constants.Image.eye)
-                    .imageScale(.medium)
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, Constants.Image.trailingInset)
-                    .onTapGesture {
-                        isSecured.toggle()
-                    }
-            }
+        HStack(spacing: Constants.contentSpacing) {
+            textField
+                .labelsHidden()
+
+            Image(systemName: isSecured ? Constants.Image.eyeSlash : Constants.Image.eye)
+                .imageScale(.medium)
+                .foregroundStyle(.secondary)
+                .padding(.trailing)
+                .onTapGesture {
+                    isSecured.toggle()
+                }
+        }
+        .formErrorableItem(
+            message: errorMessage,
+            isErrorShowed: isErrorShowed
+        )
     }
 
     private enum Constants {
-        enum TextField {
-            static let trailingInset: CGFloat = 45
-        }
+        static let contentSpacing: CGFloat = 0
 
         enum Image {
             static let eye = "eye"

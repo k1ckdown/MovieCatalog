@@ -10,6 +10,21 @@ import Foundation
 struct PasswordRegistrationViewState: Equatable {
     var password = ""
     var confirmPassword = ""
+
+    var passwordError: String? = ""
+    var confirmPasswordError: String? = ""
+
+    var isPasswordErrorShowing: Bool {
+        password.isEmpty == false && passwordError != nil
+    }
+
+    var isConfirmPasswordErrorShowing: Bool {
+        confirmPassword.isEmpty == false && confirmPasswordError != nil
+    }
+
+    var isRegisterDisabled: Bool {
+        passwordError != nil || confirmPasswordError != nil
+    }
 }
 
 enum PasswordRegistrationViewEvent {

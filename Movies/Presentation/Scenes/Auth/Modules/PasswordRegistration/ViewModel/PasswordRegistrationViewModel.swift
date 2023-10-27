@@ -10,11 +10,14 @@ import Foundation
 final class PasswordRegistrationViewModel: ViewModel {
 
     @Published private(set) var state: PasswordRegistrationViewState
-    private let router: PasswordRegistrationRouter
 
-    init(router: PasswordRegistrationRouter) {
+    private let router: PasswordRegistrationRouter
+    private let validatePasswordUseCase: ValidatePasswordUseCase
+
+    init(router: PasswordRegistrationRouter, validatePasswordUseCase: ValidatePasswordUseCase) {
         self.state = .init()
         self.router = router
+        self.validatePasswordUseCase = validatePasswordUseCase
     }
 
     func handle(_ event: PasswordRegistrationViewEvent) {
@@ -26,10 +29,38 @@ final class PasswordRegistrationViewModel: ViewModel {
             break
 
         case .passwordChanged(let password):
-            state.password = password
+            passwordUpdated(password)
 
         case .confirmPasswordChanged(let password):
-            state.confirmPassword = password
+            confirmPasswordUpdated(password)
+        }
+    }
+}
+
+private extension PasswordRegistrationViewModel {
+
+    func confirmPasswordUpdated(_ confirmPassword: String) {
+        state.confirmPassword = confirmPassword
+
+        if state.password == confirmPassword {
+            state.confirmPasswordError = nil
+        } else {
+            state.confirmPasswordError = LocalizedKeysConstants.ErrorMessage.Password.invalidConfirmPassword
+        }
+    }
+
+    func passwordUpdated(_ password: String) {
+        state.password = password
+
+        if password == state.confirmPassword {
+            state.confirmPasswordError = nil
+        }
+
+        do {
+            try validatePasswordUseCase.execute(password)
+            state.passwordError = nil
+        } catch {
+            state.passwordError = ValidationErrorHandler.message(for: error)
         }
     }
 }

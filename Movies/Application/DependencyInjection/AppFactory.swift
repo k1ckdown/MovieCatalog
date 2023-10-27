@@ -8,13 +8,20 @@
 import Foundation
 
 final class AppFactory {
-    
+
 }
 
 extension AppFactory {
-    
+
     func makeValidateEmailUseCase() -> ValidateEmailUseCase {
         ValidateEmailUseCase()
     }
-    
+
+    func makeValidateUsernameUseCase() -> ValidateUsernameUseCase {
+        ValidateUsernameUseCase()
+    }
+
+    func makeValidatePasswordUseCase() -> ValidatePasswordUseCase {
+        ValidatePasswordUseCase()
+    }
 }
