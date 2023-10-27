@@ -34,6 +34,7 @@ struct PersonalInfoRegistrationView: View {
                 .labeled(LocalizedKeysConstants.Profile.gender)
 
                 TextField("", text: username)
+                    .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                     .formErrorableItem(
                         message: viewModel.state.usernameError,

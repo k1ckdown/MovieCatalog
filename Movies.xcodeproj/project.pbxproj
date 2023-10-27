@@ -377,10 +377,10 @@
 			children = (
 				49C3F86E2ADEDC56008BAE92 /* Application */,
 				49E3A8C02AE1172400AA05C5 /* Domain */,
-				49C3F86F2ADEDC71008BAE92 /* Resources */,
 				49145D7F2ADEBEFC0082E048 /* Presentation */,
 				49330CC72ADD277200BFA4C6 /* Data */,
 				4977E3C02ADBCF33008CE679 /* Infrastructure */,
+				49C3F86F2ADEDC71008BAE92 /* Resources */,
 			);
 			path = Movies;
 			sourceTree = "<group>";

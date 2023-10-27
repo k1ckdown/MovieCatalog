@@ -39,17 +39,6 @@ final class PasswordRegistrationViewModel: ViewModel {
 
 private extension PasswordRegistrationViewModel {
 
-    func passwordUpdated(_ password: String) {
-        state.password = password
-
-        do {
-            try validatePasswordUseCase.execute(password)
-            state.passwordError = nil
-        } catch {
-            state.passwordError = ValidationErrorHandler.message(for: error)
-        }
-    }
-
     func confirmPasswordUpdated(_ confirmPassword: String) {
         state.confirmPassword = confirmPassword
 
@@ -57,6 +46,21 @@ private extension PasswordRegistrationViewModel {
             state.confirmPasswordError = nil
         } else {
             state.confirmPasswordError = LocalizedKeysConstants.ErrorMessage.Password.invalidConfirmPassword
+        }
+    }
+
+    func passwordUpdated(_ password: String) {
+        state.password = password
+
+        if password == state.confirmPassword {
+            state.confirmPasswordError = nil
+        }
+
+        do {
+            try validatePasswordUseCase.execute(password)
+            state.passwordError = nil
+        } catch {
+            state.passwordError = ValidationErrorHandler.message(for: error)
         }
     }
 }

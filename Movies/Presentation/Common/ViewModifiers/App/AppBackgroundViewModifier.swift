@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AppBackgroundViewModifier: ViewModifier {
+
     func body(content: Content) -> some View {
         ZStack {
             Color.background
