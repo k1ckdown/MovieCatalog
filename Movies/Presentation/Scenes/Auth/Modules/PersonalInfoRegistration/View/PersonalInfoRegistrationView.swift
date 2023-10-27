@@ -23,7 +23,7 @@ struct PersonalInfoRegistrationView: View {
             Group {
                 TextField("", text: name)
                     .labeled(LocalizedKeysConstants.name)
-                    .textFieldStyle(BaseTextFieldStyle())
+                    .formBorderedTextFieldStyle()
 
                 BaseSegmentedPicker(selection: gender) {
                     ForEach(Gender.allCases) { gender in
@@ -33,12 +33,20 @@ struct PersonalInfoRegistrationView: View {
                 .frame(height: Constants.genderPickerHeight)
                 .labeled(LocalizedKeysConstants.gender)
 
-                ErrorableTextField(message: viewModel.state.usernameError, text: username)
+                TextField("", text: username)
                     .textInputAutocapitalization(.never)
+                    .formErrorableItem(
+                        message: viewModel.state.usernameError,
+                        isErrorShowed: viewModel.state.isUsernameErrorShowing
+                    )
                     .labeled(LocalizedKeysConstants.username)
 
-                ErrorableTextField(message: viewModel.state.emailError, text: email)
+                TextField("", text: email)
                     .keyboardType(.emailAddress)
+                    .formErrorableItem(
+                        message: viewModel.state.emailError,
+                        isErrorShowed: viewModel.state.isEmailErrorShowing
+                    )
                     .labeled(LocalizedKeysConstants.email)
 
                 DatePickerField(date: birthdate)
@@ -95,7 +103,8 @@ struct PersonalInfoRegistrationView: View {
     PersonalInfoRegistrationView(
         viewModel: .init(
             router: .init(path: .constant(.init())),
-            validateEmailUseCase: .init()
+            validateEmailUseCase: .init(),
+            validateUsernameUseCase: .init()
         )
     )
 }

@@ -22,7 +22,7 @@ struct LoginView: View {
         ) {
             Group {
                 TextField("", text: login)
-                    .textFieldStyle(BaseTextFieldStyle())
+                    .formBorderedTextFieldStyle()
                     .labeled(LocalizedKeysConstants.username)
 
                 SecureInputView(text: password)
@@ -50,4 +50,8 @@ struct LoginView: View {
             set: { viewModel.handle(.passwordChanged($0)) }
         )
     }
+}
+
+#Preview {
+    LoginView(viewModel: .init(router: .init(path: .constant(.init()))))
 }

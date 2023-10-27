@@ -13,12 +13,17 @@ final class PersonalInfoRegistrationViewModel: ViewModel {
 
     private let router: PersonalInfoRegistrationRouter
     private let validateEmailUseCase: ValidateEmailUseCase
-    private let validateUsernameUseCase = ValidateUsernameUseCase()
+    private let validateUsernameUseCase: ValidateUsernameUseCase
 
-    init(router: PersonalInfoRegistrationRouter, validateEmailUseCase: ValidateEmailUseCase) {
+    init(
+        router: PersonalInfoRegistrationRouter,
+        validateEmailUseCase: ValidateEmailUseCase,
+        validateUsernameUseCase: ValidateUsernameUseCase
+    ) {
         self.state = .init()
         self.router = router
         self.validateEmailUseCase = validateEmailUseCase
+        self.validateUsernameUseCase = validateUsernameUseCase
     }
 
     func handle(_ event: PersonalInfoRegistrationViewEvent) {
@@ -66,7 +71,9 @@ private extension PersonalInfoRegistrationViewModel {
             try validateUsernameUseCase.execute(username)
             state.usernameError = nil
         } catch {
-            state.usernameError = error.localizedDescription
+            if username.isEmpty == false {
+                state.usernameError = error.localizedDescription
+            }
         }
     }
 }

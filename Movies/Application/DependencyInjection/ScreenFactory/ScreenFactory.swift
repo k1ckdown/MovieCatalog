@@ -46,7 +46,10 @@ extension ScreenFactory: WelcomeViewFactory {
 extension ScreenFactory: PasswordRegistrationViewFactory {
     func makePasswordRegistrationView(path: Binding<AuthNavigationPath>) -> PasswordRegistrationView {
         let router = PasswordRegistrationRouter(path: path)
-        let viewModel = PasswordRegistrationViewModel(router: router)
+        let viewModel = PasswordRegistrationViewModel(
+            router: router, validatePasswordUseCase:
+                appFactory.makeValidatePasswordUseCase()
+        )
         let view = PasswordRegistrationView(viewModel: viewModel)
 
         return view
@@ -60,7 +63,8 @@ extension ScreenFactory: PersonalInfoRegistrationViewFactory {
         let router = PersonalInfoRegistrationRouter(path: path)
         let viewModel = PersonalInfoRegistrationViewModel(
             router: router,
-            validateEmailUseCase: appFactory.makeValidateEmailUseCase()
+            validateEmailUseCase: appFactory.makeValidateEmailUseCase(),
+            validateUsernameUseCase: appFactory.makeValidateUsernameUseCase()
         )
         let view = PersonalInfoRegistrationView(viewModel: viewModel)
 

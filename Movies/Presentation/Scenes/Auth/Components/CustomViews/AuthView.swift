@@ -55,7 +55,7 @@ struct AuthView<Content: View>: View {
                 Button(formButtonTitle) {
                     formAction()
                 }
-                .buttonStyle(BaseButtonStyle())
+                .baseButtonStyle()
                 .disabled(isFormButtonDisabled)
             }
             .padding(.horizontal)

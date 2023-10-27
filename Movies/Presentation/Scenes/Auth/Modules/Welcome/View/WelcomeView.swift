@@ -34,12 +34,12 @@ struct WelcomeView: View {
                 Button(LocalizedKeysConstants.registration) {
                     viewModel.handle(.onTapRegistration)
                 }
-                .buttonStyle(BaseButtonStyle())
+                .baseButtonStyle()
 
                 Button(LocalizedKeysConstants.logIn) {
                     viewModel.handle(.onTapLogIn)
                 }
-                .buttonStyle(BaseButtonStyle(isProminent: false))
+                .baseButtonStyle(isProminent: false)
             }
             .padding(.horizontal)
 

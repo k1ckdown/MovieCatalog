@@ -11,8 +11,19 @@ struct PasswordRegistrationViewState: Equatable {
     var password = ""
     var confirmPassword = ""
 
+    var passwordError: String? = ""
+    var confirmPasswordError: String? = ""
+
+    var isPasswordErrorShowing: Bool {
+        password.isEmpty == false && passwordError != nil
+    }
+
+    var isConfirmPasswordErrorShowing: Bool {
+        confirmPassword.isEmpty == false && confirmPasswordError != nil
+    }
+
     var isRegisterDisabled: Bool {
-        password.isEmpty || confirmPassword.isEmpty
+        passwordError != nil || confirmPasswordError != nil
     }
 }
 

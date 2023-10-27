@@ -17,6 +17,14 @@ struct PersonalInfoRegistrationViewState: Equatable {
     var emailError: String? = ""
     var usernameError: String? = ""
 
+    var isEmailErrorShowing: Bool {
+        email.isEmpty == false && emailError != nil
+    }
+
+    var isUsernameErrorShowing: Bool {
+        username.isEmpty == false && usernameError != nil
+    }
+
     var isContinueDisabled: Bool {
         name.isEmpty || emailError != nil || usernameError != nil
     }
