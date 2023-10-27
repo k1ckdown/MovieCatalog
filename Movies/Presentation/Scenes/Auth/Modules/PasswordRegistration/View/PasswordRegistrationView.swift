@@ -68,14 +68,3 @@ struct PasswordRegistrationView: View {
         )
     }
 }
-
-#Preview {
-    PasswordRegistrationView(
-        viewModel: .init(
-            personalInfo: .init(userName: "t", name: "t", email: "t", birthDate: .now, gender: .male),
-            router: .init(path: .constant(.init())),
-            registerUserUseCase: .init(secureStorage: .init(), networkService: NetworkService()),
-            validatePasswordUseCase: .init()
-        )
-    )
-}

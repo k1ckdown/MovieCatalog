@@ -27,10 +27,17 @@ extension AppFactory {
         ValidatePasswordUseCase()
     }
 
+    func makeLoginUseCase() -> LoginUseCase {
+        LoginUseCase(
+            networkService: networkService,
+            secureStorage: secureStorage
+        )
+    }
+
     func makeRegisterUserUseCase() -> RegisterUserUseCase {
         RegisterUserUseCase(
-            secureStorage: secureStorage,
-            networkService: networkService
+            networkService: networkService,
+            secureStorage: secureStorage
         )
     }
 }

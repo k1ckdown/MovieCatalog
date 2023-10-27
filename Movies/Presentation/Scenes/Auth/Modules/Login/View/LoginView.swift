@@ -53,5 +53,10 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(viewModel: .init(router: .init(path: .constant(.init()))))
+    LoginView(
+        viewModel: .init(
+            router: .init(path: .constant(.init())),
+            loginUseCase: .init(networkService: NetworkService(), secureStorage: SecureStorage())
+        )
+    )
 }

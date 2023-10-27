@@ -1,5 +1,5 @@
 //
-//  RegisterUserUseCase.swift
+//  LoginUseCase.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 28.10.2023.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class RegisterUserUseCase {
-
+final class LoginUseCase {
+    
     private let networkService: AuthNetworkService
     private let secureStorage: SecureStorageProtocol
 
@@ -17,8 +17,9 @@ final class RegisterUserUseCase {
         self.secureStorage = secureStorage
     }
 
-    func execute(_ user: UserRegister) async throws {
-        let tokenInfo = try await networkService.register(user: user)
+    func execute(username: String, password: String) async throws {
+        let credentials = LoginCredentials(username: username, password: password)
+        let tokenInfo = try await networkService.login(credentials: credentials)
         try secureStorage.saveToken(tokenInfo.token)
     }
 }
