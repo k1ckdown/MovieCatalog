@@ -12,6 +12,8 @@
 		490297C62AEC41EB000AFDB4 /* AuthNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297C52AEC41EB000AFDB4 /* AuthNetworkService.swift */; };
 		490297C82AEC46D7000AFDB4 /* SecureStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297C72AEC46D7000AFDB4 /* SecureStorageProtocol.swift */; };
 		490297CB2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297CA2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift */; };
+		490297CD2AEC5DFC000AFDB4 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297CC2AEC5DFC000AFDB4 /* LoginUseCase.swift */; };
+		490297CF2AEC61ED000AFDB4 /* BaseProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297CE2AEC61ED000AFDB4 /* BaseProgressView.swift */; };
 		4903B1F72AE7045F00BDA83D /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4903B1F62AE7045F00BDA83D /* AuthView.swift */; };
 		49145D832ADEBF1B0082E048 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49145D822ADEBF1B0082E048 /* LaunchScreen.storyboard */; };
 		491EBBCE2AEBDA2600075FF0 /* ErrorFooterViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EBBCD2AEBDA2600075FF0 /* ErrorFooterViewModifier.swift */; };
@@ -101,6 +103,8 @@
 		490297C52AEC41EB000AFDB4 /* AuthNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkService.swift; sourceTree = "<group>"; };
 		490297C72AEC46D7000AFDB4 /* SecureStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageProtocol.swift; sourceTree = "<group>"; };
 		490297CA2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewModel.swift; sourceTree = "<group>"; };
+		490297CC2AEC5DFC000AFDB4 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
+		490297CE2AEC61ED000AFDB4 /* BaseProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProgressView.swift; sourceTree = "<group>"; };
 		4903B1F62AE7045F00BDA83D /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		49145D822ADEBF1B0082E048 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		491EBBCD2AEBDA2600075FF0 /* ErrorFooterViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorFooterViewModifier.swift; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 		490297C02AEC416E000AFDB4 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				490297CC2AEC5DFC000AFDB4 /* LoginUseCase.swift */,
 				490297C12AEC417C000AFDB4 /* RegisterUserUseCase.swift */,
 			);
 			path = Auth;
@@ -248,6 +253,14 @@
 				490297CA2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		490297D02AEC6203000AFDB4 /* ProgressViews */ = {
+			isa = PBXGroup;
+			children = (
+				490297CE2AEC61ED000AFDB4 /* BaseProgressView.swift */,
+			);
+			path = ProgressViews;
 			sourceTree = "<group>";
 		};
 		4903B1F42AE7031F00BDA83D /* Styles */ = {
@@ -468,8 +481,8 @@
 		4961F45C2ADFE7DA00A717AB /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				49CD15C72AEAF28A003E6ADC /* TextFields */,
 				49E3A8C32AE11C1C00AA05C5 /* Pickers */,
+				490297D02AEC6203000AFDB4 /* ProgressViews */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -750,13 +763,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		49CD15C72AEAF28A003E6ADC /* TextFields */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TextFields;
-			sourceTree = "<group>";
-		};
 		49CD15CA2AEAF788003E6ADC /* Validation */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,6 +908,7 @@
 				49330CF22ADD741F00BFA4C6 /* URLParameterEncoder.swift in Sources */,
 				49DA5D7C2AEA7B4100F96E97 /* AuthNavigationState.swift in Sources */,
 				491EBBD32AEBDA9800075FF0 /* FormItemBackground.swift in Sources */,
+				490297CF2AEC61ED000AFDB4 /* BaseProgressView.swift in Sources */,
 				49C189CD2AE3FC2F0029BAF9 /* WelcomeViewState.swift in Sources */,
 				4961F45B2ADFDF9700A717AB /* WelcomeView.swift in Sources */,
 				49C189C82AE3FA940029BAF9 /* AppCoordinator.swift in Sources */,
@@ -952,6 +959,7 @@
 				491EBBCE2AEBDA2600075FF0 /* ErrorFooterViewModifier.swift in Sources */,
 				49330CDE2ADD2EB500BFA4C6 /* ReviewDTO.swift in Sources */,
 				49C189CB2AE3FC090029BAF9 /* WelcomeViewModel.swift in Sources */,
+				490297CD2AEC5DFC000AFDB4 /* LoginUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

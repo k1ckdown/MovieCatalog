@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct PasswordRegistrationView: View {
-
+    
     @ObservedObject private(set) var viewModel: PasswordRegistrationViewModel
-
+    
     var body: some View {
         AuthView(
             style: .passwords,
@@ -26,18 +26,16 @@ struct PasswordRegistrationView: View {
                         isErrorShowed: viewModel.state.isPasswordErrorShowing
                     )
                     .labeled(LocalizedKeysConstants.Profile.password)
-
+                    
                     SecureInputView(
                         text: confirmPassword,
                         errorMessage: viewModel.state.confirmPasswordError,
                         isErrorShowed: viewModel.state.isConfirmPasswordErrorShowing
                     )
                     .labeled(LocalizedKeysConstants.Profile.confirmPassword)
-
+                    
                     if viewModel.state.isLoading {
-                        ProgressView()
-                            .tintColor(.appAccent)
-                            .frame(maxWidth: .infinity)
+                        BaseProgressView()
                     }
                 }
                 .autocorrectionDisabled()
@@ -53,29 +51,18 @@ struct PasswordRegistrationView: View {
                 viewModel.handle(.onTapLogIn)
             }
     }
-
+    
     private var password: Binding<String> {
         Binding(
             get: { viewModel.state.password },
             set: { viewModel.handle(.passwordChanged($0)) }
         )
     }
-
+    
     private var confirmPassword: Binding<String> {
         Binding(
             get: { viewModel.state.confirmPassword },
             set: { viewModel.handle(.confirmPasswordChanged($0)) }
         )
     }
-}
-
-#Preview {
-    PasswordRegistrationView(
-        viewModel: .init(
-            personalInfo: .init(userName: "t", name: "t", email: "t", birthDate: .now, gender: .male),
-            router: .init(path: .constant(.init())),
-            registerUserUseCase: .init(secureStorage: .init(), networkService: NetworkService()),
-            validatePasswordUseCase: .init()
-        )
-    )
 }

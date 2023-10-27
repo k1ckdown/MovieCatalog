@@ -14,7 +14,7 @@ struct SecureInputView: View {
     var errorMessage: String?
     var isErrorShowed: Bool = false
 
-    @State private var isSecured = false
+    @State private var isSecured = true
 
     var body: some View {
         HStack(spacing: Constants.contentSpacing) {
