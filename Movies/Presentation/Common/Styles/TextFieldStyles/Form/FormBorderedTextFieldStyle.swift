@@ -9,15 +9,19 @@ import SwiftUI
 
 struct FormBorderedTextFieldStyle: TextFieldStyle {
 
+    let style: FormItemBackgroundViewModifier.Style
+
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
             .formTextFieldStyle()
-            .formItemBackground()
+            .formItemBackground(style)
     }
 }
 
 extension View {
-    func formBorderedTextFieldStyle() -> some View {
-        textFieldStyle(FormBorderedTextFieldStyle())
+    func formBorderedTextFieldStyle(
+        style: FormItemBackgroundViewModifier.Style = .default
+    ) -> some View {
+        textFieldStyle(FormBorderedTextFieldStyle(style: style))
     }
 }

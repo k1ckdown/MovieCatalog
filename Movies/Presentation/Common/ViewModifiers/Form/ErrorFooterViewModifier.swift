@@ -16,7 +16,7 @@ struct ErrorFooterViewModifier: ViewModifier {
         VStack(alignment: .leading) {
             content
 
-            if isShowed {
+            if isShowed, message?.isEmpty == false {
                 Text(LocalizedStringKey(message ?? ""))
                     .font(.callout)
                     .foregroundStyle(.red)

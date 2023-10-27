@@ -293,6 +293,23 @@
         }
       }
     },
+    "LoginFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid username or password"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неверный логин или пароль"
+          }
+        }
+      }
+    },
     "male" : {
       "extractionState" : "manual",
       "localizations" : {

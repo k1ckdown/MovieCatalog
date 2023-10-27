@@ -21,15 +21,26 @@ struct LoginView: View {
             calloutButtonTitle: LocalizedKeysConstants.Auth.Callout.registerAccount
         ) {
             Group {
-                TextField("", text: login)
-                    .formBorderedTextFieldStyle()
+                TextField("", text: username)
+                    .formBorderedTextFieldStyle(
+                        style: viewModel.state.isLoginErrorShowing ? .error : .default
+                    )
                     .labeled(LocalizedKeysConstants.Profile.username)
 
-                SecureInputView(text: password)
+                SecureInputView(text: password, isErrorShowed: viewModel.state.isLoginErrorShowing)
                     .labeled(LocalizedKeysConstants.Profile.password)
+
+                if viewModel.state.isLoading {
+                    BaseProgressView()
+                }
             }
             .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
+            .padding(.bottom, Constants.formBottomInset)
+            .errorFooter(
+                message: viewModel.state.loginError,
+                isShowed: viewModel.state.isLoginErrorShowing
+            )
         } formAction: {
             viewModel.handle(.onTapLogIn)
         } calloutAction: {
@@ -37,10 +48,14 @@ struct LoginView: View {
         }
     }
 
-    private var login: Binding<String> {
+    private enum Constants {
+        static let formBottomInset: CGFloat = 5
+    }
+
+    private var username: Binding<String> {
         Binding(
-            get: { viewModel.state.login },
-            set: { viewModel.handle(.loginChanged($0)) }
+            get: { viewModel.state.username },
+            set: { viewModel.handle(.usernameChanged($0)) }
         )
     }
 

@@ -22,16 +22,34 @@ final class LoginViewModel: ViewModel {
 
     func handle(_ event: LoginViewEvent) {
         switch event {
-        case .onTapLogIn: break
+        case .onTapLogIn:
+            logInTapped()
 
         case .onTapRegister:
             router.showRegistration()
 
-        case .loginChanged(let login):
-            state.login = login
+        case .usernameChanged(let login):
+            state.username = login
 
         case .passwordChanged(let password):
             state.password = password
+        }
+    }
+}
+
+private extension LoginViewModel {
+
+    func logInTapped() {
+        state.isLoading = true
+        Task {
+            do {
+                try await loginUseCase.execute(username: state.username,
+                                               password: state.password)
+                state.loginError = nil
+            } catch {
+                state.loginError = LocalizedKeysConstants.ErrorMessage.loginFailed
+            }
+            state.isLoading = false
         }
     }
 }

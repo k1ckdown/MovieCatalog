@@ -8,17 +8,24 @@
 import Foundation
 
 struct LoginViewState: Equatable {
-    var login = ""
+    var username = ""
     var password = ""
 
+    var isLoading = false
+    var loginError: String?
+
     var isLogInDisabled: Bool {
-        login.isEmpty || password.isEmpty
+        username.isEmpty || password.isEmpty
+    }
+
+    var isLoginErrorShowing: Bool {
+        loginError != nil && isLoading == false
     }
 }
 
 enum LoginViewEvent {
     case onTapLogIn
     case onTapRegister
-    case loginChanged(String)
+    case usernameChanged(String)
     case passwordChanged(String)
 }
