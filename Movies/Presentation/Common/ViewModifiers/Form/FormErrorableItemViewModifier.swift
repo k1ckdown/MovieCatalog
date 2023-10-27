@@ -16,7 +16,7 @@ struct FormErrorableItemViewModifier: ViewModifier {
         content
             .formTextFieldStyle()
             .formItemBackground(isErrorShowed ? .error : .default)
-            .errorFooter(isShowed: isErrorShowed, message: message)
+            .errorFooter(message: message, isShowed: isErrorShowed)
     }
 }
 

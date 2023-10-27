@@ -61,7 +61,8 @@ private extension PasswordRegistrationViewModel {
     func passwordUpdated(_ password: String) {
         state.password = password
 
-        if password == state.confirmPassword {
+        if password == state.confirmPassword,
+           state.confirmPassword.isEmpty == false {
             state.confirmPasswordError = nil
         }
 
@@ -83,12 +84,16 @@ private extension PasswordRegistrationViewModel {
             gender: personalInfo.gender
         )
 
+        state.isLoading = true
         Task {
             do {
                 try await registerUserUseCase.execute(userRegister)
+                state.registerError = nil
             } catch {
-                print(error.localizedDescription)
+                print(error)
+                state.registerError = LocalizedKeysConstants.ErrorMessage.registrationFailed
             }
+            state.isLoading = false
         }
     }
 }

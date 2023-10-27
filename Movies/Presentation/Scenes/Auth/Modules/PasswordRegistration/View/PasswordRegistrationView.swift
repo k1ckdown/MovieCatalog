@@ -33,9 +33,20 @@ struct PasswordRegistrationView: View {
                         isErrorShowed: viewModel.state.isConfirmPasswordErrorShowing
                     )
                     .labeled(LocalizedKeysConstants.Profile.confirmPassword)
+
+                    if viewModel.state.isLoading {
+                        ProgressView()
+                            .tintColor(.appAccent)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
+                .padding(.bottom)
+                .errorFooter(
+                    message: viewModel.state.registerError,
+                    isShowed: viewModel.state.isRegisterErrorShowing
+                )
             } formAction: {
                 viewModel.handle(.onTapRegister)
             } calloutAction: {
@@ -58,6 +69,13 @@ struct PasswordRegistrationView: View {
     }
 }
 
-//#Preview {
-//    PasswordRegistrationView(viewModel: .init(router: .init(path: .constant(.init())), validatePasswordUseCase: .init()))
-//}
+#Preview {
+    PasswordRegistrationView(
+        viewModel: .init(
+            personalInfo: .init(userName: "t", name: "t", email: "t", birthDate: .now, gender: .male),
+            router: .init(path: .constant(.init())),
+            registerUserUseCase: .init(secureStorage: .init(), networkService: NetworkService()),
+            validatePasswordUseCase: .init()
+        )
+    )
+}

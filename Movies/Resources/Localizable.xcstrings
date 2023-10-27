@@ -429,6 +429,23 @@
         }
       }
     },
+    "RegistrationFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error: Something went wrong. User Registration Failed."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка: Что-то пошло не так. Не удалось выполнить регистрацию пользователя."
+          }
+        }
+      }
+    },
     "UnknownError" : {
       "extractionState" : "manual",
       "localizations" : {

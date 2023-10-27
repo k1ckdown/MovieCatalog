@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ErrorFooterViewModifier: ViewModifier {
 
-    var isShowed: Bool
     var message: String?
+    var isShowed: Bool
 
     func body(content: Content) -> some View {
         VStack(alignment: .leading) {
@@ -27,7 +27,7 @@ struct ErrorFooterViewModifier: ViewModifier {
 }
 
 extension View {
-    func errorFooter(isShowed: Bool, message: String?) -> some View {
-        modifier(ErrorFooterViewModifier(isShowed: isShowed, message: message))
+    func errorFooter(message: String?, isShowed: Bool) -> some View {
+        modifier(ErrorFooterViewModifier(message: message, isShowed: isShowed))
     }
 }

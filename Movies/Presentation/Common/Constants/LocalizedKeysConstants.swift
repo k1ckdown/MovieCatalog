@@ -48,6 +48,7 @@ enum LocalizedKeysConstants {
     enum ErrorMessage {
         static let unknownError = "UnknownError"
         static let invalidUsername = "InvalidUsername"
+        static let registrationFailed = "RegistrationFailed"
 
         enum Password {
             static let invalidPassword = "InvalidPassword"
