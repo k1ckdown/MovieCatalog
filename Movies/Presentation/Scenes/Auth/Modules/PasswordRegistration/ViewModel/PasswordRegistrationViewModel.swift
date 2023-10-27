@@ -8,14 +8,14 @@
 import Foundation
 
 final class PasswordRegistrationViewModel: ViewModel {
-
+    
     @Published private(set) var state: PasswordRegistrationViewState
-
+    
     private var personalInfo: PersonalInfoViewModel
     private let router: PasswordRegistrationRouter
     private let registerUserUseCase: RegisterUserUseCase
     private let validatePasswordUseCase: ValidatePasswordUseCase
-
+    
     init(
         personalInfo: PersonalInfoViewModel,
         router: PasswordRegistrationRouter,
@@ -28,18 +28,18 @@ final class PasswordRegistrationViewModel: ViewModel {
         self.registerUserUseCase = registerUserUseCase
         self.validatePasswordUseCase = validatePasswordUseCase
     }
-
+    
     func handle(_ event: PasswordRegistrationViewEvent) {
         switch event {
         case .onTapLogIn:
             router.showLogin()
-
+            
         case .onTapRegister:
             registerTapped()
-
+            
         case .passwordChanged(let password):
             passwordUpdated(password)
-
+            
         case .confirmPasswordChanged(let password):
             confirmPasswordUpdated(password)
         }
@@ -47,25 +47,25 @@ final class PasswordRegistrationViewModel: ViewModel {
 }
 
 private extension PasswordRegistrationViewModel {
-
+    
     func confirmPasswordUpdated(_ confirmPassword: String) {
         state.confirmPassword = confirmPassword
-
+        
         if state.password == confirmPassword {
             state.confirmPasswordError = nil
         } else {
             state.confirmPasswordError = LocalizedKeysConstants.ErrorMessage.Password.invalidConfirmPassword
         }
     }
-
+    
     func passwordUpdated(_ password: String) {
         state.password = password
-
+        
         if password == state.confirmPassword,
            state.confirmPassword.isEmpty == false {
             state.confirmPasswordError = nil
         }
-
+        
         do {
             try validatePasswordUseCase.execute(password)
             state.passwordError = nil
@@ -73,7 +73,7 @@ private extension PasswordRegistrationViewModel {
             state.passwordError = ValidationErrorHandler.message(for: error)
         }
     }
-
+    
     func registerTapped() {
         let userRegister = UserRegister(
             userName: personalInfo.userName,
@@ -83,14 +83,13 @@ private extension PasswordRegistrationViewModel {
             birthDate: personalInfo.birthDate.ISO8601Format(),
             gender: personalInfo.gender
         )
-
+        
         state.isLoading = true
         Task {
             do {
                 try await registerUserUseCase.execute(userRegister)
                 state.registerError = nil
             } catch {
-                print(error)
                 state.registerError = LocalizedKeysConstants.ErrorMessage.registrationFailed
             }
             state.isLoading = false
