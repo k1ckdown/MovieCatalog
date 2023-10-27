@@ -13,12 +13,13 @@ final class ValidatePasswordUseCase {
         case invalidPassword
 
         var errorDescription: String? {
-            "Must be at least \(Constants.minPasswordLength) characters"
+            Constants.invalidPasswordError
         }
     }
 
     private enum Constants {
         static let minPasswordLength = 6
+        static let invalidPasswordError = "Must be at least \(minPasswordLength) characters"
     }
 
     func execute(_ password: String) throws {

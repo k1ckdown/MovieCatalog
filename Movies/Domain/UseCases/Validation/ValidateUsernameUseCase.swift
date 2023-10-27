@@ -13,21 +13,27 @@ final class ValidateUsernameUseCase {
         case invalidUsername
 
         var errorDescription: String? {
-            "Invalid, can only contain letters or digits"
+            Constants.ErrorMessage.invalidUsername
         }
     }
 
     private enum Constants {
-        static let formatString = "SELF MATCHES %@"
-        static let regex = "[a-zA-Z0-9]+"
+        enum Regex {
+            static let username = "[a-zA-Z0-9]+"
+            static let formatString = "SELF MATCHES %@"
+        }
+
+        enum ErrorMessage {
+            static let invalidUsername = "Invalid, can only contain letters or digits"
+        }
     }
 
     func execute(_ username: String) throws {
         let usernamePredicate = NSPredicate(
-            format: Constants.formatString,
-            Constants.regex
+            format: Constants.Regex.formatString,
+            Constants.Regex.username
         )
-        
+
         guard usernamePredicate.evaluate(with: username) else {
             throw UsernameValidationError.invalidUsername
         }

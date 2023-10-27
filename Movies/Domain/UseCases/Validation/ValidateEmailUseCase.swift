@@ -17,10 +17,14 @@ final class ValidateEmailUseCase {
 
         var errorDescription: String? {
             switch self {
-            case .invalidUsername: "Invalid username"
-            case .missingKeySign: "Missing @ sign"
-            case .invalidDomainPart: "Invalid domain part"
-            case .invalidTopLevelDomain: "Invalid top-level domain"
+            case .invalidUsername:
+                return Constants.ErrorMessage.invalidUsername
+            case .missingKeySign:
+                return Constants.ErrorMessage.missingKeySign
+            case .invalidDomainPart:
+                return Constants.ErrorMessage.invalidDomainPart
+            case .invalidTopLevelDomain:
+                return Constants.ErrorMessage.invalidTopLevelDomain
             }
         }
     }
@@ -47,10 +51,19 @@ final class ValidateEmailUseCase {
 private extension ValidateEmailUseCase {
 
     enum Constants {
-        static let formatString = "SELF MATCHES %@"
-        static let usernamePartRegex = "[A-Z0-9a-z._%+-]+"
-        static let domainPartRegex = "[A-Za-z0-9.-]+"
-        static let topLevelDomainRegex = "^[A-Za-z]{2,64}"
+        enum Regex {
+            static let formatString = "SELF MATCHES %@"
+            static let usernamePart = "[A-Z0-9a-z._%+-]+"
+            static let domainPart = "[A-Za-z0-9.-]+"
+            static let topLevelDomain = "^[A-Za-z]{2,64}"
+        }
+
+        enum ErrorMessage {
+            static let invalidUsername = "Invalid username"
+            static let missingKeySign = "Missing @ sign"
+            static let invalidDomainPart = "Invalid domain part"
+            static let invalidTopLevelDomain = "Invalid top-level domain"
+        }
     }
 
     func isContainsKeySign(_ email: String) -> Bool {
@@ -74,8 +87,8 @@ private extension ValidateEmailUseCase {
 
     func isValidUsername(_ email: String) -> Bool {
         let usernamePartPredicate = NSPredicate(
-            format: Constants.formatString,
-            Constants.usernamePartRegex
+            format: Constants.Regex.formatString,
+            Constants.Regex.usernamePart
         )
 
         return usernamePartPredicate.evaluate(with: getEmailUsernamePart(email))
@@ -83,8 +96,8 @@ private extension ValidateEmailUseCase {
 
     func isValidDomainPart(_ email: String) -> Bool {
         let domainPartPredicate = NSPredicate(
-            format: Constants.formatString,
-            Constants.domainPartRegex
+            format: Constants.Regex.formatString,
+            Constants.Regex.domainPart
         )
 
         return domainPartPredicate.evaluate(with: getEmailDomainPart(email))
@@ -92,8 +105,8 @@ private extension ValidateEmailUseCase {
 
     func isValidTopLevelDomain(_ email: String) -> Bool {
         let topLevelDomainPredicate = NSPredicate(
-            format: Constants.formatString,
-            Constants.topLevelDomainRegex
+            format: Constants.Regex.formatString,
+            Constants.Regex.topLevelDomain
         )
 
         return topLevelDomainPredicate.evaluate(with: getEmailTopLevelDomain(email))
