@@ -17,7 +17,7 @@ struct ErrorFooterViewModifier: ViewModifier {
             content
 
             if isShowed {
-                Text(message ?? "")
+                Text(LocalizedStringKey(message ?? ""))
                     .font(.callout)
                     .foregroundStyle(.red)
                     .animation(.bouncy, value: message)

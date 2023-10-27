@@ -9,17 +9,12 @@ import Foundation
 
 final class ValidatePasswordUseCase {
 
-    enum PasswordValidationError: LocalizedError {
+    enum PasswordValidationError: Error {
         case invalidPassword
-
-        var errorDescription: String? {
-            Constants.invalidPasswordError
-        }
     }
 
     private enum Constants {
         static let minPasswordLength = 6
-        static let invalidPasswordError = "Must be at least \(minPasswordLength) characters"
     }
 
     func execute(_ password: String) throws {

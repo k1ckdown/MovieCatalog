@@ -46,7 +46,7 @@ private extension PasswordRegistrationViewModel {
             try validatePasswordUseCase.execute(password)
             state.passwordError = nil
         } catch {
-            state.passwordError = error.localizedDescription
+            state.passwordError = ValidationErrorHandler.message(for: error)
         }
     }
 
@@ -56,7 +56,7 @@ private extension PasswordRegistrationViewModel {
         if state.password == confirmPassword {
             state.confirmPasswordError = nil
         } else {
-            state.confirmPasswordError = "Passwords don't match"
+            state.confirmPasswordError = LocalizedKeysConstants.ErrorMessage.Password.invalidConfirmPassword
         }
     }
 }

@@ -9,31 +9,21 @@ import Foundation
 
 final class ValidateUsernameUseCase {
 
-    enum UsernameValidationError: LocalizedError {
+    enum UsernameValidationError: Error {
         case invalidUsername
-
-        var errorDescription: String? {
-            Constants.ErrorMessage.invalidUsername
-        }
     }
 
     private enum Constants {
-        enum Regex {
-            static let username = "[a-zA-Z0-9]+"
-            static let formatString = "SELF MATCHES %@"
-        }
-
-        enum ErrorMessage {
-            static let invalidUsername = "Invalid, can only contain letters or digits"
-        }
+        static let formatString = "SELF MATCHES %@"
+        static let regex = "[a-zA-Z0-9]+"
     }
 
     func execute(_ username: String) throws {
         let usernamePredicate = NSPredicate(
-            format: Constants.Regex.formatString,
-            Constants.Regex.username
+            format: Constants.formatString,
+            Constants.regex
         )
-
+        
         guard usernamePredicate.evaluate(with: username) else {
             throw UsernameValidationError.invalidUsername
         }

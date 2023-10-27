@@ -39,7 +39,7 @@ final class PersonalInfoRegistrationViewModel: ViewModel {
 
         case .genderChanged(let gender):
             state.gender = gender
-            
+
         case .usernameChanged(let username):
             usernameUpdated(username)
 
@@ -60,7 +60,7 @@ private extension PersonalInfoRegistrationViewModel {
             try validateEmailUseCase.execute(email)
             state.emailError = nil
         } catch {
-            state.emailError = error.localizedDescription
+            state.emailError = ValidationErrorHandler.message(for: error)
         }
     }
 
@@ -71,9 +71,7 @@ private extension PersonalInfoRegistrationViewModel {
             try validateUsernameUseCase.execute(username)
             state.usernameError = nil
         } catch {
-            if username.isEmpty == false {
-                state.usernameError = error.localizedDescription
-            }
+            state.usernameError = ValidationErrorHandler.message(for: error)
         }
     }
 }
