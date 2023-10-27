@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ErrorableTextField: View {
 
+    var message: String?
     @Binding var text: String
-    @Binding var message: String?
 
     var body: some View {
         VStack(alignment: .leading) {

@@ -14,6 +14,7 @@ struct PasswordRegistrationView: View {
     var body: some View {
         AuthView(
             style: .passwords,
+            isFormButtonDisabled: viewModel.state.isRegisterDisabled,
             screenTitle: LocalizedKeysConstants.registration,
             formButtonTitle: LocalizedKeysConstants.registerAccount,
             calloutText: LocalizedKeysConstants.alreadyHaveAccount,

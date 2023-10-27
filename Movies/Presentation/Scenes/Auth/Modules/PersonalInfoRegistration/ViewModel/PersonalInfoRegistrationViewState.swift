@@ -14,8 +14,12 @@ struct PersonalInfoRegistrationViewState: Equatable {
     var email = ""
     var birthdate = Date.now
 
-    var emailError: String?
-    var usernameError: String?
+    var emailError: String? = ""
+    var usernameError: String? = ""
+
+    var isContinueDisabled: Bool {
+        name.isEmpty || emailError != nil || usernameError != nil
+    }
 }
 
 enum PersonalInfoRegistrationViewEvent {

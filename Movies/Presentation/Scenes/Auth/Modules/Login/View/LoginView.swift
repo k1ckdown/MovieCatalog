@@ -14,6 +14,7 @@ struct LoginView: View {
     var body: some View {
         AuthView(
             style: .login,
+            isFormButtonDisabled: viewModel.state.isLogInDisabled,
             screenTitle: LocalizedKeysConstants.entrance,
             formButtonTitle: LocalizedKeysConstants.logIn,
             calloutText: LocalizedKeysConstants.noAccountYet,

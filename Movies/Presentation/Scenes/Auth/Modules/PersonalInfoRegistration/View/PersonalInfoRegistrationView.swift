@@ -14,6 +14,7 @@ struct PersonalInfoRegistrationView: View {
     var body: some View {
         AuthView(
             style: .personalInfo,
+            isFormButtonDisabled: viewModel.state.isContinueDisabled,
             screenTitle: LocalizedKeysConstants.registration,
             formButtonTitle: LocalizedKeysConstants.continue,
             calloutText: LocalizedKeysConstants.alreadyHaveAccount,
@@ -32,11 +33,11 @@ struct PersonalInfoRegistrationView: View {
                 .frame(height: Constants.genderPickerHeight)
                 .labeled(LocalizedKeysConstants.gender)
 
-                ErrorableTextField(text: username, message: usernameErrorMessage)
+                ErrorableTextField(message: viewModel.state.usernameError, text: username)
                     .textInputAutocapitalization(.never)
                     .labeled(LocalizedKeysConstants.username)
 
-                ErrorableTextField(text: email, message: emailErrorMessage)
+                ErrorableTextField(message: viewModel.state.emailError, text: email)
                     .keyboardType(.emailAddress)
                     .labeled(LocalizedKeysConstants.email)
 
@@ -86,20 +87,6 @@ struct PersonalInfoRegistrationView: View {
         Binding(
             get: { viewModel.state.birthdate },
             set: { viewModel.handle(.birthdateChanged($0)) }
-        )
-    }
-
-    private var emailErrorMessage: Binding<String?> {
-        Binding(
-            get: { viewModel.state.emailError },
-            set: { _ in }
-        )
-    }
-
-    private var usernameErrorMessage: Binding<String?> {
-        Binding(
-            get: { viewModel.state.usernameError },
-            set: { _ in }
         )
     }
 }

@@ -31,6 +31,8 @@ struct AuthView<Content: View>: View {
     }
 
     let style: Style
+    var isFormButtonDisabled: Bool
+
     let screenTitle: LocalizedStringKey
     let formButtonTitle: LocalizedStringKey
 
@@ -54,6 +56,7 @@ struct AuthView<Content: View>: View {
                     formAction()
                 }
                 .buttonStyle(BaseButtonStyle())
+                .disabled(isFormButtonDisabled)
             }
             .padding(.horizontal)
 
