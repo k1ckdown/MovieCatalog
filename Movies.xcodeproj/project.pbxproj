@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4903B1F72AE7045F00BDA83D /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4903B1F62AE7045F00BDA83D /* AuthView.swift */; };
 		49145D832ADEBF1B0082E048 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49145D822ADEBF1B0082E048 /* LaunchScreen.storyboard */; };
+		491EBBE22AEC20B100075FF0 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EBBE12AEC20B100075FF0 /* SecureStorage.swift */; };
 		49330CCF2ADD278900BFA4C6 /* ReviewShortDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CCA2ADD278900BFA4C6 /* ReviewShortDTO.swift */; };
 		49330CD12ADD278900BFA4C6 /* MovieDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CCC2ADD278900BFA4C6 /* MovieDTO.swift */; };
 		49330CD22ADD278900BFA4C6 /* GenreDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CCD2ADD278900BFA4C6 /* GenreDTO.swift */; };
@@ -86,6 +87,7 @@
 /* Begin PBXFileReference section */
 		4903B1F62AE7045F00BDA83D /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		49145D822ADEBF1B0082E048 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		491EBBE12AEC20B100075FF0 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 		49330CCA2ADD278900BFA4C6 /* ReviewShortDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewShortDTO.swift; sourceTree = "<group>"; };
 		49330CCC2ADD278900BFA4C6 /* MovieDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDTO.swift; sourceTree = "<group>"; };
 		49330CCD2ADD278900BFA4C6 /* GenreDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreDTO.swift; sourceTree = "<group>"; };
@@ -244,6 +246,14 @@
 				49145D822ADEBF1B0082E048 /* LaunchScreen.storyboard */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		491EBBE02AEC201300075FF0 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				491EBBE12AEC20B100075FF0 /* SecureStorage.swift */,
+			);
+			path = Keychain;
 			sourceTree = "<group>";
 		};
 		49330CC72ADD277200BFA4C6 /* Data */ = {
@@ -462,6 +472,7 @@
 		4977E3C02ADBCF33008CE679 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				491EBBE02AEC201300075FF0 /* Keychain */,
 				49330CE92ADD425200BFA4C6 /* Models */,
 				4977E3C12ADBCF37008CE679 /* Networking */,
 			);
@@ -751,6 +762,7 @@
 				49330CE82ADD424000BFA4C6 /* LoginCredentials.swift in Sources */,
 				49C3CE9C2AEA585D009FACF4 /* PersonalInfoRegistrationRouter.swift in Sources */,
 				49330CFB2ADD856D00BFA4C6 /* GenderDTO.swift in Sources */,
+				491EBBE22AEC20B100075FF0 /* SecureStorage.swift in Sources */,
 				4961F4652AE0009E00A717AB /* AppBackgroundViewModifier.swift in Sources */,
 				49878FDE2AE43BB50076BF85 /* LoginRouter.swift in Sources */,
 				49B6D75F2AE9A7AD00451DAF /* AppFactory.swift in Sources */,
