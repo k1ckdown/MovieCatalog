@@ -54,6 +54,19 @@ final class SecureStorage {
             throw convertError(status)
         }
     }
+
+    func updateToken(_ newToken: String) throws {
+        guard let data = newToken.data(using: .utf8) else { return }
+
+        let query = [kSecClass: kSecClassGenericPassword, kSecAttrAccount: Key.accessToken] as CFDictionary
+        let attributesToUpdate = [kSecValueData: data] as CFDictionary
+
+        let status = SecItemUpdate(query, attributesToUpdate)
+
+        guard status == errSecSuccess else {
+            throw convertError(status)
+        }
+    }
 }
 
 private extension SecureStorage {
