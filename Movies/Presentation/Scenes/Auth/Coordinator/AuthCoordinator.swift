@@ -30,8 +30,8 @@ struct AuthCoordinator: View {
             factory.makeLoginView(path: $state.navigationPath)
         case .personalInfoRegistration:
             factory.makePersonalInfoRegistrationView(path: $state.navigationPath)
-        case .passwordRegistration:
-            factory.makePasswordRegistrationView(path: $state.navigationPath)
+        case .passwordRegistration(let personalInfo):
+            factory.makePasswordRegistrationView(personalInfo: personalInfo, path: $state.navigationPath)
         }
     }
 }

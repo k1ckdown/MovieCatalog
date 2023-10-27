@@ -12,10 +12,6 @@ struct BaseButtonStyle: ButtonStyle {
     let isProminent: Bool
     @Environment(\.isEnabled) var isEnabled: Bool
 
-    init(isProminent: Bool = true) {
-        self.isProminent = isProminent
-    }
-
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .fontWeight(.semibold)
@@ -34,7 +30,7 @@ struct BaseButtonStyle: ButtonStyle {
 
         static let scaleEffect: CGFloat = 1
         static let scaleEffectPressed: CGFloat = 0.98
-        
+
         static let opacityEnabled: CGFloat = 1
         static let opacityPressed: CGFloat = 0.7
         static let opacityDisabled: CGFloat = 0.4
@@ -42,5 +38,11 @@ struct BaseButtonStyle: ButtonStyle {
 
     private var opacity: CGFloat {
         isEnabled ? Constants.opacityEnabled : Constants.opacityDisabled
+    }
+}
+
+extension View {
+    func baseButtonStyle(isProminent: Bool = true) -> some View {
+        buttonStyle(BaseButtonStyle(isProminent: isProminent))
     }
 }

@@ -40,7 +40,7 @@ struct DatePickerField: View {
                     }
                     .clipped()
             }
-            .bordered()
+            .formItemBackground()
     }
 
     private enum Constants {

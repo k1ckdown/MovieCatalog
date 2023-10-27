@@ -13,20 +13,40 @@ struct PasswordRegistrationView: View {
 
     var body: some View {
         AuthView(
-            style: .registrationSecondStage,
-            screenTitle: LocalizedKeysConstants.registration,
-            formButtonTitle: LocalizedKeysConstants.registerAccount,
-            calloutText: LocalizedKeysConstants.alreadyHaveAccount,
-            calloutButtonTitle: LocalizedKeysConstants.logInToAccount) {
+            style: .passwords,
+            isFormButtonDisabled: viewModel.state.isRegisterDisabled,
+            screenTitle: LocalizedKeysConstants.Auth.Label.registration,
+            formButtonTitle: LocalizedKeysConstants.Auth.Action.register,
+            calloutText: LocalizedKeysConstants.Auth.Callout.alreadyHaveAccount,
+            calloutButtonTitle: LocalizedKeysConstants.Auth.Callout.logInToAccount) {
                 Group {
-                    SecureInputView(text: password)
-                        .labeled(LocalizedKeysConstants.password)
+                    SecureInputView(
+                        text: password,
+                        errorMessage: viewModel.state.passwordError,
+                        isErrorShowed: viewModel.state.isPasswordErrorShowing
+                    )
+                    .labeled(LocalizedKeysConstants.Profile.password)
 
-                    SecureInputView(text: confirmPassword)
-                        .labeled(LocalizedKeysConstants.confirmPassword)
+                    SecureInputView(
+                        text: confirmPassword,
+                        errorMessage: viewModel.state.confirmPasswordError,
+                        isErrorShowed: viewModel.state.isConfirmPasswordErrorShowing
+                    )
+                    .labeled(LocalizedKeysConstants.Profile.confirmPassword)
+
+                    if viewModel.state.isLoading {
+                        ProgressView()
+                            .tintColor(.appAccent)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
+                .padding(.bottom)
+                .errorFooter(
+                    message: viewModel.state.registerError,
+                    isShowed: viewModel.state.isRegisterErrorShowing
+                )
             } formAction: {
                 viewModel.handle(.onTapRegister)
             } calloutAction: {
@@ -47,4 +67,15 @@ struct PasswordRegistrationView: View {
             set: { viewModel.handle(.confirmPasswordChanged($0)) }
         )
     }
+}
+
+#Preview {
+    PasswordRegistrationView(
+        viewModel: .init(
+            personalInfo: .init(userName: "t", name: "t", email: "t", birthDate: .now, gender: .male),
+            router: .init(path: .constant(.init())),
+            registerUserUseCase: .init(secureStorage: .init(), networkService: NetworkService()),
+            validatePasswordUseCase: .init()
+        )
+    )
 }
