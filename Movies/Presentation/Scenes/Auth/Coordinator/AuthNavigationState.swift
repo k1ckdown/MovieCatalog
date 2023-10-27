@@ -14,7 +14,7 @@ final class AuthNavigationState: NavigationState {
     enum Screen: Routable {
         case login
         case personalInfoRegistration
-        case passwordRegistration
+        case passwordRegistration(PersonalInfoViewModel)
     }
 
     @Published var navigationPath = [Screen]()

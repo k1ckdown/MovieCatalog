@@ -32,7 +32,7 @@ final class PersonalInfoRegistrationViewModel: ViewModel {
             router.showLogin()
 
         case .onTapContinue:
-            router.showPasswordRegistration()
+            continueTapped()
 
         case .nameChanged(let name):
             state.name = name
@@ -53,6 +53,18 @@ final class PersonalInfoRegistrationViewModel: ViewModel {
 }
 
 private extension PersonalInfoRegistrationViewModel {
+
+    func continueTapped() {
+        let personalInfo = PersonalInfoViewModel(
+            userName: state.username,
+            name: state.name,
+            email: state.email,
+            birthDate: state.birthdate,
+            gender: state.gender
+        )
+
+        router.showPasswordRegistration(personalInfo: personalInfo)
+    }
 
     func emailUpdated(_ email: String) {
         state.email = email

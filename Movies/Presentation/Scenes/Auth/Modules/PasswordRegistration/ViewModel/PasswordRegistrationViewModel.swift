@@ -11,16 +11,19 @@ final class PasswordRegistrationViewModel: ViewModel {
 
     @Published private(set) var state: PasswordRegistrationViewState
 
+    private var personalInfo: PersonalInfoViewModel
     private let router: PasswordRegistrationRouter
     private let registerUserUseCase: RegisterUserUseCase
     private let validatePasswordUseCase: ValidatePasswordUseCase
 
     init(
+        personalInfo: PersonalInfoViewModel,
         router: PasswordRegistrationRouter,
         registerUserUseCase: RegisterUserUseCase,
         validatePasswordUseCase: ValidatePasswordUseCase
     ) {
         self.state = .init()
+        self.personalInfo = personalInfo
         self.router = router
         self.registerUserUseCase = registerUserUseCase
         self.validatePasswordUseCase = validatePasswordUseCase
@@ -32,7 +35,7 @@ final class PasswordRegistrationViewModel: ViewModel {
             router.showLogin()
 
         case .onTapRegister:
-            break
+            registerTapped()
 
         case .passwordChanged(let password):
             passwordUpdated(password)
@@ -67,6 +70,25 @@ private extension PasswordRegistrationViewModel {
             state.passwordError = nil
         } catch {
             state.passwordError = ValidationErrorHandler.message(for: error)
+        }
+    }
+
+    func registerTapped() {
+        let userRegister = UserRegister(
+            userName: personalInfo.userName,
+            name: personalInfo.name,
+            password: state.password,
+            email: personalInfo.email,
+            birthDate: personalInfo.birthDate.ISO8601Format(),
+            gender: personalInfo.gender
+        )
+
+        Task {
+            do {
+                try await registerUserUseCase.execute(userRegister)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }
