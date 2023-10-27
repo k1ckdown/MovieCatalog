@@ -15,10 +15,15 @@ protocol WelcomeViewFactory {
     func makeWelcomeView(path: Binding<AuthNavigationPath>) -> WelcomeView
 }
 
-protocol PasswordRegistrationViewFactory {
-    func makePasswordRegistrationView(path: Binding<AuthNavigationPath>) -> PasswordRegistrationView
+protocol PersonalInfoRegistrationViewFactory {
+    func makePersonalInfoRegistrationView(
+        path: Binding<AuthNavigationPath>
+    ) -> PersonalInfoRegistrationView
 }
 
-protocol PersonalInfoRegistrationViewFactory {
-    func makePersonalInfoRegistrationView(path: Binding<AuthNavigationPath>) -> PersonalInfoRegistrationView
+protocol PasswordRegistrationViewFactory {
+    func makePasswordRegistrationView(
+        personalInfo: PersonalInfoViewModel,
+        path: Binding<AuthNavigationPath>
+    ) -> PasswordRegistrationView
 }

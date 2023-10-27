@@ -68,7 +68,7 @@ final class SecureStorage {
         }
     }
 
-    func retrieveToken() throws -> String? {
+    func retrieveToken() throws -> String {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: Key.accessToken.rawValue,

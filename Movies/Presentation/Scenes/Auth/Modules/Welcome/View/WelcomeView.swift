@@ -20,26 +20,26 @@ struct WelcomeView: View {
                 .padding(.top, Constants.AmicoImage.topInset)
 
             VStack(spacing: Constants.DescriptionStack.spacing) {
-                Text(LocalizedKeysConstants.welcomeTitle)
+                Text(LocalizedKeysConstants.Welcome.title)
                     .bold()
                     .font(.title2)
 
-                Text(LocalizedKeysConstants.welcomeBody)
+                Text(LocalizedKeysConstants.Welcome.body)
                     .font(.body)
             }
             .multilineTextAlignment(.center)
             .padding()
 
             VStack(spacing: Constants.ButtonStack.spacing) {
-                Button(LocalizedKeysConstants.registration) {
+                Button(LocalizedKeysConstants.Auth.Label.registration) {
                     viewModel.handle(.onTapRegistration)
                 }
-                .buttonStyle(BaseButtonStyle())
+                .baseButtonStyle()
 
-                Button(LocalizedKeysConstants.logIn) {
+                Button(LocalizedKeysConstants.Auth.Action.logIn) {
                     viewModel.handle(.onTapLogIn)
                 }
-                .buttonStyle(BaseButtonStyle(isProminent: false))
+                .baseButtonStyle(isProminent: false)
             }
             .padding(.horizontal)
 

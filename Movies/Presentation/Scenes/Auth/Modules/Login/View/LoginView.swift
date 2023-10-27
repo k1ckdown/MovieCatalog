@@ -14,18 +14,19 @@ struct LoginView: View {
     var body: some View {
         AuthView(
             style: .login,
-            screenTitle: LocalizedKeysConstants.entrance,
-            formButtonTitle: LocalizedKeysConstants.logIn,
-            calloutText: LocalizedKeysConstants.noAccountYet,
-            calloutButtonTitle: LocalizedKeysConstants.register
+            isFormButtonDisabled: viewModel.state.isLogInDisabled,
+            screenTitle: LocalizedKeysConstants.Auth.Label.entrance,
+            formButtonTitle: LocalizedKeysConstants.Auth.Action.logIn,
+            calloutText: LocalizedKeysConstants.Auth.Callout.noAccountYet,
+            calloutButtonTitle: LocalizedKeysConstants.Auth.Callout.registerAccount
         ) {
             Group {
                 TextField("", text: login)
-                    .textFieldStyle(BaseTextFieldStyle())
-                    .labeled(LocalizedKeysConstants.login)
+                    .formBorderedTextFieldStyle()
+                    .labeled(LocalizedKeysConstants.Profile.username)
 
                 SecureInputView(text: password)
-                    .labeled(LocalizedKeysConstants.password)
+                    .labeled(LocalizedKeysConstants.Profile.password)
             }
             .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
@@ -49,4 +50,8 @@ struct LoginView: View {
             set: { viewModel.handle(.passwordChanged($0)) }
         )
     }
+}
+
+#Preview {
+    LoginView(viewModel: .init(router: .init(path: .constant(.init()))))
 }
