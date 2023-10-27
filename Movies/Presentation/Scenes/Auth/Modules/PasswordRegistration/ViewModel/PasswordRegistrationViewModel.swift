@@ -12,11 +12,17 @@ final class PasswordRegistrationViewModel: ViewModel {
     @Published private(set) var state: PasswordRegistrationViewState
 
     private let router: PasswordRegistrationRouter
+    private let registerUserUseCase: RegisterUserUseCase
     private let validatePasswordUseCase: ValidatePasswordUseCase
 
-    init(router: PasswordRegistrationRouter, validatePasswordUseCase: ValidatePasswordUseCase) {
+    init(
+        router: PasswordRegistrationRouter,
+        registerUserUseCase: RegisterUserUseCase,
+        validatePasswordUseCase: ValidatePasswordUseCase
+    ) {
         self.state = .init()
         self.router = router
+        self.registerUserUseCase = registerUserUseCase
         self.validatePasswordUseCase = validatePasswordUseCase
     }
 

@@ -58,6 +58,6 @@ struct PasswordRegistrationView: View {
     }
 }
 
-#Preview {
-    PasswordRegistrationView(viewModel: .init(router: .init(path: .constant(.init())), validatePasswordUseCase: .init()))
-}
+//#Preview {
+//    PasswordRegistrationView(viewModel: .init(router: .init(path: .constant(.init())), validatePasswordUseCase: .init()))
+//}

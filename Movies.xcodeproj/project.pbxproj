@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		490297BD2AEC3F30000AFDB4 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297BC2AEC3F30000AFDB4 /* AuthService.swift */; };
 		490297BF2AEC3F63000AFDB4 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297BE2AEC3F63000AFDB4 /* UserRegister.swift */; };
+		490297C22AEC417C000AFDB4 /* RegisterUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297C12AEC417C000AFDB4 /* RegisterUserUseCase.swift */; };
+		490297C62AEC41EB000AFDB4 /* AuthNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297C52AEC41EB000AFDB4 /* AuthNetworkService.swift */; };
+		490297C82AEC46D7000AFDB4 /* SecureStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297C72AEC46D7000AFDB4 /* SecureStorageProtocol.swift */; };
 		4903B1F72AE7045F00BDA83D /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4903B1F62AE7045F00BDA83D /* AuthView.swift */; };
 		49145D832ADEBF1B0082E048 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49145D822ADEBF1B0082E048 /* LaunchScreen.storyboard */; };
 		491EBBCE2AEBDA2600075FF0 /* ErrorFooterViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EBBCD2AEBDA2600075FF0 /* ErrorFooterViewModifier.swift */; };
@@ -93,8 +95,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		490297BC2AEC3F30000AFDB4 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		490297BE2AEC3F63000AFDB4 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
+		490297C12AEC417C000AFDB4 /* RegisterUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserUseCase.swift; sourceTree = "<group>"; };
+		490297C52AEC41EB000AFDB4 /* AuthNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkService.swift; sourceTree = "<group>"; };
+		490297C72AEC46D7000AFDB4 /* SecureStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageProtocol.swift; sourceTree = "<group>"; };
 		4903B1F62AE7045F00BDA83D /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		49145D822ADEBF1B0082E048 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		491EBBCD2AEBDA2600075FF0 /* ErrorFooterViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorFooterViewModifier.swift; sourceTree = "<group>"; };
@@ -211,12 +215,29 @@
 			path = ScreenFactory;
 			sourceTree = "<group>";
 		};
-		490297BB2AEC3F08000AFDB4 /* Auth */ = {
+		490297C02AEC416E000AFDB4 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				490297BC2AEC3F30000AFDB4 /* AuthService.swift */,
+				490297C12AEC417C000AFDB4 /* RegisterUserUseCase.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		490297C32AEC41D5000AFDB4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				490297C42AEC41DD000AFDB4 /* Services */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		490297C42AEC41DD000AFDB4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				490297C52AEC41EB000AFDB4 /* AuthNetworkService.swift */,
+				490297C72AEC46D7000AFDB4 /* SecureStorageProtocol.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		4903B1F42AE7031F00BDA83D /* Styles */ = {
@@ -304,6 +325,7 @@
 		491EBBD82AEBDEEC00075FF0 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				49330CE32ADD420100BFA4C6 /* TokenInfo.swift */,
 				49330CE72ADD424000BFA4C6 /* LoginCredentials.swift */,
 				49E3A8C12AE1172B00AA05C5 /* Gender.swift */,
 				490297BE2AEC3F63000AFDB4 /* UserRegister.swift */,
@@ -355,7 +377,6 @@
 		49330CE92ADD425200BFA4C6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				49330CE32ADD420100BFA4C6 /* TokenInfo.swift */,
 				49330CEC2ADD60E400BFA4C6 /* LogoutResponse.swift */,
 			);
 			path = Models;
@@ -542,7 +563,6 @@
 		4977E3C02ADBCF33008CE679 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				490297BB2AEC3F08000AFDB4 /* Auth */,
 				49330CE92ADD425200BFA4C6 /* Models */,
 				491EBBE02AEC201300075FF0 /* Keychain */,
 				4977E3C12ADBCF37008CE679 /* Networking */,
@@ -631,6 +651,7 @@
 		49B6D75B2AE9A41200451DAF /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				490297C02AEC416E000AFDB4 /* Auth */,
 				49CD15CA2AEAF788003E6ADC /* Validation */,
 			);
 			path = UseCases;
@@ -738,6 +759,7 @@
 		49E3A8C02AE1172400AA05C5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				490297C32AEC41D5000AFDB4 /* Protocols */,
 				491EBBD82AEBDEEC00075FF0 /* Entities */,
 				49B6D75B2AE9A41200451DAF /* UseCases */,
 			);
@@ -839,6 +861,7 @@
 			files = (
 				49330CFD2ADD85E500BFA4C6 /* UserNetworkConfig.swift in Sources */,
 				49330CD62ADD29AD00BFA4C6 /* NetworkServiceProtocols.swift in Sources */,
+				490297C82AEC46D7000AFDB4 /* SecureStorageProtocol.swift in Sources */,
 				4961F48F2AE0490B00A717AB /* FormTextFieldStyle.swift in Sources */,
 				4961F4772AE021A200A717AB /* LoginViewModel.swift in Sources */,
 				49330CEF2ADD663B00BFA4C6 /* NetworkManager.swift in Sources */,
@@ -882,10 +905,10 @@
 				49A620652AE6EBD800CEE994 /* TintColor.swift in Sources */,
 				4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */,
 				4961F47C2AE021C800A717AB /* ViewModel.swift in Sources */,
-				490297BD2AEC3F30000AFDB4 /* AuthService.swift in Sources */,
 				49CD15C42AEACE89003E6ADC /* ValidateUsernameUseCase.swift in Sources */,
 				4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */,
 				49A562842AE0EAD400222062 /* AuthScreenTitle.swift in Sources */,
+				490297C22AEC417C000AFDB4 /* RegisterUserUseCase.swift in Sources */,
 				49330CF42ADD7C7B00BFA4C6 /* NetworkConfig.swift in Sources */,
 				4961F48D2AE045A700A717AB /* SecureInputView.swift in Sources */,
 				49330CEB2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift in Sources */,
@@ -906,6 +929,7 @@
 				4903B1F72AE7045F00BDA83D /* AuthView.swift in Sources */,
 				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,
 				49878FE72AE43E080076BF85 /* ScreenFactory.swift in Sources */,
+				490297C62AEC41EB000AFDB4 /* AuthNetworkService.swift in Sources */,
 				49E9280C2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift in Sources */,
 				49A620672AE6EC0000CEE994 /* LabeledViewModifier.swift in Sources */,
 				49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */,

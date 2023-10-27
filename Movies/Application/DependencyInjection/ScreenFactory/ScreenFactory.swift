@@ -47,8 +47,9 @@ extension ScreenFactory: PasswordRegistrationViewFactory {
     func makePasswordRegistrationView(path: Binding<AuthNavigationPath>) -> PasswordRegistrationView {
         let router = PasswordRegistrationRouter(path: path)
         let viewModel = PasswordRegistrationViewModel(
-            router: router, validatePasswordUseCase:
-                appFactory.makeValidatePasswordUseCase()
+            router: router,
+            registerUserUseCase: appFactory.makeRegisterUserUseCase(),
+            validatePasswordUseCase: appFactory.makeValidatePasswordUseCase()
         )
         let view = PasswordRegistrationView(viewModel: viewModel)
 

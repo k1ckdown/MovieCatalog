@@ -102,16 +102,25 @@ extension NetworkService: AuthNetworkService {
         return try await request(with: config)
     }
 
-    func register(user: UserRegisterDTO) async throws -> TokenInfo {
-        let data = try encode(user)
-        let config = AuthNetworkConfig.register(data)
+    func login(credentials: LoginCredentials) async throws -> TokenInfo {
+        let data = try encode(credentials)
+        let config = AuthNetworkConfig.login(data)
 
         return try await request(with: config)
     }
 
-    func login(credentials: LoginCredentials) async throws -> TokenInfo {
-        let data = try encode(credentials)
-        let config = AuthNetworkConfig.login(data)
+    func register(user: UserRegister) async throws -> TokenInfo {
+        let userDto = UserRegisterDTO(
+            userName: user.userName,
+            name: user.name,
+            password: user.password,
+            email: user.email,
+            birthDate: user.birthDate,
+            gender: user.gender == .female ? .female : .male
+        )
+
+        let data = try encode(userDto)
+        let config = AuthNetworkConfig.register(data)
 
         return try await request(with: config)
     }
