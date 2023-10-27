@@ -390,7 +390,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Зарегистрируйтесь"
+            "value" : "Зарегистрироваться"
           }
         }
       }
@@ -407,7 +407,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Зарегистрироваться"
+            "value" : "Зарегистрируйтесь"
           }
         }
       }

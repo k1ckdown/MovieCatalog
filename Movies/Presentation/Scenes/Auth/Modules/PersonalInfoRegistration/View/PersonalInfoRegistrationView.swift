@@ -15,14 +15,14 @@ struct PersonalInfoRegistrationView: View {
         AuthView(
             style: .personalInfo,
             isFormButtonDisabled: viewModel.state.isContinueDisabled,
-            screenTitle: LocalizedKeysConstants.registration,
-            formButtonTitle: LocalizedKeysConstants.continue,
-            calloutText: LocalizedKeysConstants.alreadyHaveAccount,
-            calloutButtonTitle: LocalizedKeysConstants.logInToAccount
+            screenTitle: LocalizedKeysConstants.Auth.Label.registration,
+            formButtonTitle: LocalizedKeysConstants.Auth.Action.continue,
+            calloutText: LocalizedKeysConstants.Auth.Callout.alreadyHaveAccount,
+            calloutButtonTitle: LocalizedKeysConstants.Auth.Callout.logInToAccount
         ) {
             Group {
                 TextField("", text: name)
-                    .labeled(LocalizedKeysConstants.name)
+                    .labeled(LocalizedKeysConstants.Profile.name)
                     .formBorderedTextFieldStyle()
 
                 BaseSegmentedPicker(selection: gender) {
@@ -31,7 +31,7 @@ struct PersonalInfoRegistrationView: View {
                     }
                 }
                 .frame(height: Constants.genderPickerHeight)
-                .labeled(LocalizedKeysConstants.gender)
+                .labeled(LocalizedKeysConstants.Profile.gender)
 
                 TextField("", text: username)
                     .textInputAutocapitalization(.never)
@@ -39,7 +39,7 @@ struct PersonalInfoRegistrationView: View {
                         message: viewModel.state.usernameError,
                         isErrorShowed: viewModel.state.isUsernameErrorShowing
                     )
-                    .labeled(LocalizedKeysConstants.username)
+                    .labeled(LocalizedKeysConstants.Profile.username)
 
                 TextField("", text: email)
                     .keyboardType(.emailAddress)
@@ -47,10 +47,10 @@ struct PersonalInfoRegistrationView: View {
                         message: viewModel.state.emailError,
                         isErrorShowed: viewModel.state.isEmailErrorShowing
                     )
-                    .labeled(LocalizedKeysConstants.email)
+                    .labeled(LocalizedKeysConstants.Profile.email)
 
                 DatePickerField(date: birthdate)
-                    .labeled(LocalizedKeysConstants.birthdate)
+                    .labeled(LocalizedKeysConstants.Profile.birthdate)
             }
         } formAction: {
             viewModel.handle(.onTapContinue)

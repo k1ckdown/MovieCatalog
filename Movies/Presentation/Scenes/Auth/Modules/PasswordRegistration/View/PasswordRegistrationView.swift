@@ -15,24 +15,24 @@ struct PasswordRegistrationView: View {
         AuthView(
             style: .passwords,
             isFormButtonDisabled: viewModel.state.isRegisterDisabled,
-            screenTitle: LocalizedKeysConstants.registration,
-            formButtonTitle: LocalizedKeysConstants.registerAccount,
-            calloutText: LocalizedKeysConstants.alreadyHaveAccount,
-            calloutButtonTitle: LocalizedKeysConstants.logInToAccount) {
+            screenTitle: LocalizedKeysConstants.Auth.Label.registration,
+            formButtonTitle: LocalizedKeysConstants.Auth.Action.register,
+            calloutText: LocalizedKeysConstants.Auth.Callout.alreadyHaveAccount,
+            calloutButtonTitle: LocalizedKeysConstants.Auth.Callout.logInToAccount) {
                 Group {
                     SecureInputView(
                         text: password,
                         errorMessage: viewModel.state.passwordError,
                         isErrorShowed: viewModel.state.isPasswordErrorShowing
                     )
-                    .labeled(LocalizedKeysConstants.password)
+                    .labeled(LocalizedKeysConstants.Profile.password)
 
                     SecureInputView(
                         text: confirmPassword,
                         errorMessage: viewModel.state.confirmPasswordError,
                         isErrorShowed: viewModel.state.isConfirmPasswordErrorShowing
                     )
-                    .labeled(LocalizedKeysConstants.confirmPassword)
+                    .labeled(LocalizedKeysConstants.Profile.confirmPassword)
                 }
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)

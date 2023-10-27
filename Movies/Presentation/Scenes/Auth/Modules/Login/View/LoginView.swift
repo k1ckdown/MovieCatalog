@@ -15,18 +15,18 @@ struct LoginView: View {
         AuthView(
             style: .login,
             isFormButtonDisabled: viewModel.state.isLogInDisabled,
-            screenTitle: LocalizedKeysConstants.entrance,
-            formButtonTitle: LocalizedKeysConstants.logIn,
-            calloutText: LocalizedKeysConstants.noAccountYet,
-            calloutButtonTitle: LocalizedKeysConstants.register
+            screenTitle: LocalizedKeysConstants.Auth.Label.entrance,
+            formButtonTitle: LocalizedKeysConstants.Auth.Action.logIn,
+            calloutText: LocalizedKeysConstants.Auth.Callout.noAccountYet,
+            calloutButtonTitle: LocalizedKeysConstants.Auth.Callout.registerAccount
         ) {
             Group {
                 TextField("", text: login)
                     .formBorderedTextFieldStyle()
-                    .labeled(LocalizedKeysConstants.username)
+                    .labeled(LocalizedKeysConstants.Profile.username)
 
                 SecureInputView(text: password)
-                    .labeled(LocalizedKeysConstants.password)
+                    .labeled(LocalizedKeysConstants.Profile.password)
             }
             .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
