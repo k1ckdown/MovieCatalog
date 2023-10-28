@@ -11,6 +11,9 @@
         }
       }
     },
+    "..." : {
+
+    },
     "%@" : {
       "localizations" : {
         "ru" : {
@@ -20,6 +23,19 @@
           }
         }
       }
+    },
+    "%@ • %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ • %2$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
     },
     "AlreadyHaveAccount" : {
       "extractionState" : "manual",
