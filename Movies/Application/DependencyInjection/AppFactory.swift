@@ -30,14 +30,16 @@ extension AppFactory {
     func makeLoginUseCase() -> LoginUseCase {
         LoginUseCase(
             networkService: networkService,
-            secureStorage: secureStorage
+            secureStorage: secureStorage,
+            profileRepository: profileRepository
         )
     }
 
     func makeRegisterUserUseCase() -> RegisterUserUseCase {
         RegisterUserUseCase(
             networkService: networkService,
-            secureStorage: secureStorage
+            secureStorage: secureStorage,
+            profileRepository: profileRepository
         )
     }
 
