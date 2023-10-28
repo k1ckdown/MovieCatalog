@@ -25,13 +25,8 @@ struct PersonalInfoRegistrationView: View {
                     .labeled(LocalizedKeysConstants.Profile.name)
                     .formBorderedTextFieldStyle()
 
-                BaseSegmentedPicker(selection: gender) {
-                    ForEach(Gender.allCases) { gender in
-                        Text(LocalizedStringKey(gender.rawValue)).tag(gender)
-                    }
-                }
-                .frame(height: Constants.genderPickerHeight)
-                .labeled(LocalizedKeysConstants.Profile.gender)
+                GenderSegmentedPicker(selection: gender)
+                    .labeled(LocalizedKeysConstants.Profile.gender)
 
                 TextField("", text: username)
                     .autocorrectionDisabled()
@@ -58,10 +53,6 @@ struct PersonalInfoRegistrationView: View {
         } calloutAction: {
             viewModel.handle(.onTapLogIn)
         }
-    }
-
-    private enum Constants {
-        static let genderPickerHeight: CGFloat = 43
     }
 
     private var name: Binding<String> {

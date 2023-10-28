@@ -43,6 +43,8 @@ enum LocalizedKeysConstants {
         static let birthdate = LocalizedStringKey("Birthdate")
         static let password = LocalizedStringKey("Password")
         static let confirmPassword = LocalizedStringKey("ConfirmPassword")
+        static let save = LocalizedStringKey("Save")
+        static let cancel = LocalizedStringKey("Cancel")
     }
 
     enum ErrorMessage {

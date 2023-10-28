@@ -463,6 +463,17 @@
         }
       }
     },
+    "Save" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить"
+          }
+        }
+      }
+    },
     "UnknownError" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -527,6 +538,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Погрузись в мир кино"
+          }
+        }
+      }
+    },
+    "Сancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
           }
         }
       }
