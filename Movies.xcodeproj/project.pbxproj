@@ -77,6 +77,7 @@
 		49A3FADD2AED8AE50043512C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FADC2AED8AE50043512C /* Profile.swift */; };
 		49A3FAE22AEDADA90043512C /* ProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAE12AEDADA90043512C /* ProfileRepositoryProtocol.swift */; };
 		49A3FAE52AEDAEE70043512C /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAE42AEDAEE60043512C /* ProfileRepository.swift */; };
+		49A3FAE82AEDBB270043512C /* GetProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAE72AEDBB270043512C /* GetProfileUseCase.swift */; };
 		49A562842AE0EAD400222062 /* AuthScreenTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562832AE0EAD400222062 /* AuthScreenTitle.swift */; };
 		49A620652AE6EBD800CEE994 /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A620642AE6EBD800CEE994 /* TintColor.swift */; };
 		49A620672AE6EC0000CEE994 /* LabeledViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A620662AE6EC0000CEE994 /* LabeledViewModifier.swift */; };
@@ -178,6 +179,7 @@
 		49A3FADC2AED8AE50043512C /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		49A3FAE12AEDADA90043512C /* ProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
 		49A3FAE42AEDAEE60043512C /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
+		49A3FAE72AEDBB270043512C /* GetProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileUseCase.swift; sourceTree = "<group>"; };
 		49A562832AE0EAD400222062 /* AuthScreenTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenTitle.swift; sourceTree = "<group>"; };
 		49A620642AE6EBD800CEE994 /* TintColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
 		49A620662AE6EC0000CEE994 /* LabeledViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledViewModifier.swift; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 		49A3FAE62AEDB3250043512C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				49A3FAE72AEDBB270043512C /* GetProfileUseCase.swift */,
 				49A3FADA2AED8A9A0043512C /* UpdateProfileUseCase.swift */,
 			);
 			path = Profile;
@@ -1015,6 +1018,7 @@
 				4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */,
 				49A562842AE0EAD400222062 /* AuthScreenTitle.swift in Sources */,
 				490297C22AEC417C000AFDB4 /* RegisterUserUseCase.swift in Sources */,
+				49A3FAE82AEDBB270043512C /* GetProfileUseCase.swift in Sources */,
 				49330CF42ADD7C7B00BFA4C6 /* NetworkConfig.swift in Sources */,
 				4961F48D2AE045A700A717AB /* SecureInputView.swift in Sources */,
 				49330CEB2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift in Sources */,

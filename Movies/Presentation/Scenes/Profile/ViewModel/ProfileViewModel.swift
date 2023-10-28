@@ -11,23 +11,21 @@ final class ProfileViewModel: ViewModel {
 
     @Published private(set) var state: ProfileViewState
 
+    private var profile: Profile?
+    private let getProfileUseCase: GetProfileUseCase
     private let validateEmailUseCase: ValidateEmailUseCase
-    private let profile = Profile.mock
 
-    init(validateEmailUseCase: ValidateEmailUseCase = .init()) {
+    init(getProfileUseCase: GetProfileUseCase, validateEmailUseCase: ValidateEmailUseCase) {
+        self.state = .init()
+        self.getProfileUseCase = getProfileUseCase
         self.validateEmailUseCase = validateEmailUseCase
-        state = .init(
-            username: profile.nickName,
-            email: profile.email,
-            avatarLink: profile.avatarLink,
-            name: profile.name,
-            gender: profile.gender,
-            birthdate: profile.birthDate
-        )
     }
 
     func handle(_ event: ProfileViewEvent) {
         switch event {
+        case .onAppear:
+            Task { await retrieveProfile() }
+
         case .onTapEdit:
             break
 
@@ -59,9 +57,17 @@ final class ProfileViewModel: ViewModel {
 
 private extension ProfileViewModel {
 
+    func retrieveProfile() async {
+        do {
+            profile = try await getProfileUseCase.execute()
+            state.loadError = nil
+        } catch {
+            state.loadError = error.localizedDescription
+        }
+    }
+
     func emailUpdated(_ email: String) {
         state.email = email
-        state.isDataChanged = email != profile.email
 
         do {
             try validateEmailUseCase.execute(email)
@@ -72,6 +78,8 @@ private extension ProfileViewModel {
     }
 
     func checkDataIsChange() {
+        guard let profile = profile else { return }
+
         let isNameChanged = state.name != profile.name
         let isEmailChanged = state.email != profile.email
         let isGenderChanged = state.gender != profile.gender

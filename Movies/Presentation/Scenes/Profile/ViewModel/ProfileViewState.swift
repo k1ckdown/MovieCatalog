@@ -8,13 +8,14 @@
 import Foundation
 
 struct ProfileViewState: Equatable {
-    var username: String
-    var email: String
-    var avatarLink: String
-    var name: String
-    var gender: Gender
-    var birthdate: Date
+    var username = ""
+    var email = ""
+    var avatarLink = ""
+    var name = ""
+    var gender = Gender.male
+    var birthdate = Date.now
 
+    var loadError: String?
     var emailError: String?
     var avatarLinkError: String?
     var isDataChanged = false
@@ -34,6 +35,7 @@ struct ProfileViewState: Equatable {
 }
 
 enum ProfileViewEvent {
+    case onAppear
     case onTapEdit
     case onTapSave
     case onTapLogOut
