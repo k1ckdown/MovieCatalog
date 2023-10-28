@@ -38,6 +38,23 @@
         }
       }
     },
+    "AvatarLink" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avatar link"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ссылка на аватар"
+          }
+        }
+      }
+    },
     "Birthdate" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -153,6 +170,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Пол"
+          }
+        }
+      }
+    },
+    "IncorrectLink" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect link"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Некорректная ссылка"
           }
         }
       }

@@ -16,14 +16,18 @@ struct ProfileViewState: Equatable {
     var birthdate = Date.now
 
     var emailError: String? = ""
-    var avatarLinkError: String? = ""
+    var avatarLinkError: String?
 
     var isEmailErrorShowing: Bool {
         email.isEmpty == false && emailError != nil
     }
 
     var isAvatarLinkErrorShowing: Bool {
-        avatarLink.isEmpty == false || avatarLinkError != nil
+        avatarLink.isEmpty == false && avatarLinkError != nil
+    }
+
+    var isSaveDisabled: Bool {
+        email.isEmpty || avatarLink.isEmpty || name.isEmpty || emailError != nil
     }
 }
 

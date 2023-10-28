@@ -49,10 +49,6 @@ final class ProfileViewModel: ViewModel {
 
 private extension ProfileViewModel {
 
-    func isAvatarUrlCorrect(_ urlString: String) -> Bool {
-        URL(string: urlString) != nil
-    }
-
     func emailChanged(_ email: String) {
         state.email = email
 
