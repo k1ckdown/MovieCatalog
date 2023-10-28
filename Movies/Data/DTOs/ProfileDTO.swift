@@ -15,4 +15,16 @@ struct ProfileDTO: Codable {
     let name: String
     let birthDate: String
     let gender: GenderDTO
+
+    func toDomain() -> Profile {
+        .init(
+            id: id,
+            nickName: nickName ?? "",
+            email: email,
+            avatarLink: avatarLink ?? "",
+            name: name,
+            birthDate: (try? Date(birthDate, strategy: .iso8601)) ?? .now,
+            gender: gender == .male ? .male : .female
+        )
+    }
 }
