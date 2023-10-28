@@ -8,6 +8,7 @@
 import Foundation
 
 struct ProfileViewState: Equatable {
+    var username = "User"
     var email = ""
     var avatarLink = ""
     var name = ""

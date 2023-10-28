@@ -12,37 +12,62 @@ struct ProfileView: View {
     @ObservedObject private(set) var viewModel: ProfileViewModel
 
     var body: some View {
-        VStack(spacing: Constants.Form.spacing) {
-            Group {
-                TextField("", text: email)
-                    .formBorderedTextFieldStyle()
-                    .labeled(LocalizedKeysConstants.Profile.email)
+        VStack(spacing: Constants.contentSpacing) {
+            VStack {
+                AvatarAsyncImage(link: viewModel.state.avatarLink)
 
-                TextField("", text: avatarLink)
-                    .formBorderedTextFieldStyle()
-                    .labeled(LocalizedKeysConstants.Profile.email)
+                Text(viewModel.state.username)
+                    .font(.title2)
+                    .bold()
             }
-            .autocorrectionDisabled()
-            .textInputAutocapitalization(.never)
 
-            TextField("", text: name)
-                .formBorderedTextFieldStyle()
-                .labeled(LocalizedKeysConstants.Profile.name)
+            VStack(spacing: Constants.formSpacing) {
+                Group {
+                    TextField("", text: email)
+                        .formBorderedTextFieldStyle()
+                        .labeled(LocalizedKeysConstants.Profile.email)
 
-            GenderSegmentedPicker(selection: gender)
-                .labeled(LocalizedKeysConstants.Profile.gender)
+                    TextField("", text: avatarLink)
+                        .formBorderedTextFieldStyle()
+                        .labeled(LocalizedKeysConstants.Profile.email)
+                }
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
 
-            DatePickerField(date: birthdate)
-                .labeled(LocalizedKeysConstants.Profile.birthdate)
+                TextField("", text: name)
+                    .formBorderedTextFieldStyle()
+                    .labeled(LocalizedKeysConstants.Profile.name)
+
+                GenderSegmentedPicker(selection: gender)
+                    .labeled(LocalizedKeysConstants.Profile.gender)
+
+                DatePickerField(date: birthdate)
+                    .labeled(LocalizedKeysConstants.Profile.birthdate)
+            }
+            .padding(.horizontal)
+
+            VStack(spacing: Constants.buttonSpacing) {
+                Button(LocalizedKeysConstants.Profile.save) {
+
+                }
+                .baseButtonStyle()
+
+                Button(LocalizedKeysConstants.Profile.cancel) {
+
+                }
+                .baseButtonStyle(isProminent: false)
+            }
+            .padding()
+
+            Spacer()
         }
-        .padding(.horizontal)
         .appBackground()
     }
 
     private enum Constants {
-        enum Form {
-            static let spacing: CGFloat = 12
-        }
+        static let formSpacing: CGFloat = 15
+        static let buttonSpacing: CGFloat = 17
+        static let contentSpacing: CGFloat = 18
     }
 
     private var email: Binding<String> {
