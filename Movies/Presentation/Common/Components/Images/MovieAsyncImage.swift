@@ -9,10 +9,10 @@ import SwiftUI
 
 struct MovieAsyncImage: View {
 
-    let imageUrl: URL?
+    let imageUrl: String
 
     var body: some View {
-        AsyncImage(url: imageUrl) { image in
+        AsyncImage(url: URL(string: imageUrl)) { image in
             image
                 .resizable()
         } placeholder: {

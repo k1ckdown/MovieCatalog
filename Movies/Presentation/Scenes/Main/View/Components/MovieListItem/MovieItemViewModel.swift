@@ -12,7 +12,7 @@ struct MovieItemViewModel: Identifiable {
     let name: String
     let year: String
     let country: String
-    let imageUrl: URL?
+    let poster: String
     let rating: Double
     let userRating: Int
     let genres: [String]

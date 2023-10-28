@@ -97,7 +97,7 @@
 		49E9280C2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */; };
 		49EB26552AECEEB400FFD335 /* MovieAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB26542AECEEB400FFD335 /* MovieAsyncImage.swift */; };
 		49EB265D2AECF2EF00FFD335 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB265C2AECF2EF00FFD335 /* MainView.swift */; };
-		49EB26602AECF38E00FFD335 /* MovieItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB265F2AECF38E00FFD335 /* MovieItemView.swift */; };
+		49EB26602AECF38E00FFD335 /* MovieItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB265F2AECF38E00FFD335 /* MovieItem.swift */; };
 		49EB26622AED01E200FFD335 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB26612AED01E200FFD335 /* Movie.swift */; };
 		49EB26642AED020F00FFD335 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB26632AED020F00FFD335 /* MockData.swift */; };
 		49EB26662AED02A600FFD335 /* MovieItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB26652AED02A600FFD335 /* MovieItemViewModel.swift */; };
@@ -200,7 +200,7 @@
 		49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedKeysConstants.swift; sourceTree = "<group>"; };
 		49EB26542AECEEB400FFD335 /* MovieAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAsyncImage.swift; sourceTree = "<group>"; };
 		49EB265C2AECF2EF00FFD335 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		49EB265F2AECF38E00FFD335 /* MovieItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItemView.swift; sourceTree = "<group>"; };
+		49EB265F2AECF38E00FFD335 /* MovieItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItem.swift; sourceTree = "<group>"; };
 		49EB26612AED01E200FFD335 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		49EB26632AED020F00FFD335 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		49EB26652AED02A600FFD335 /* MovieItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItemViewModel.swift; sourceTree = "<group>"; };
@@ -857,19 +857,19 @@
 		49EB265B2AECF2E200FFD335 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				49EB265E2AECF36400FFD335 /* MovieItem */,
+				49EB26772AED633D00FFD335 /* Components */,
 				49EB265C2AECF2EF00FFD335 /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		49EB265E2AECF36400FFD335 /* MovieItem */ = {
+		49EB265E2AECF36400FFD335 /* MovieListItem */ = {
 			isa = PBXGroup;
 			children = (
-				49EB265F2AECF38E00FFD335 /* MovieItemView.swift */,
+				49EB265F2AECF38E00FFD335 /* MovieItem.swift */,
 				49EB26652AED02A600FFD335 /* MovieItemViewModel.swift */,
 			);
-			path = MovieItem;
+			path = MovieListItem;
 			sourceTree = "<group>";
 		};
 		49EB266B2AED272100FFD335 /* CustomViews */ = {
@@ -894,6 +894,14 @@
 				49EB26752AED5E3900FFD335 /* GenreItem.swift */,
 			);
 			path = Items;
+			sourceTree = "<group>";
+		};
+		49EB26772AED633D00FFD335 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				49EB265E2AECF36400FFD335 /* MovieListItem */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -986,7 +994,7 @@
 				49330CED2ADD60E400BFA4C6 /* LogoutResponse.swift in Sources */,
 				49C189C12AE3F7750029BAF9 /* NavigationState.swift in Sources */,
 				49C3CEA82AEA603D009FACF4 /* PasswordRegistrationViewModel.swift in Sources */,
-				49EB26602AECF38E00FFD335 /* MovieItemView.swift in Sources */,
+				49EB26602AECF38E00FFD335 /* MovieItem.swift in Sources */,
 				49330CF92ADD854800BFA4C6 /* ProfileDTO.swift in Sources */,
 				49330CE82ADD424000BFA4C6 /* LoginCredentials.swift in Sources */,
 				49C3CE9C2AEA585D009FACF4 /* PersonalInfoRegistrationRouter.swift in Sources */,

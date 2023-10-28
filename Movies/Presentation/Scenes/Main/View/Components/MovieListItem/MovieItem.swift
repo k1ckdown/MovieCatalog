@@ -1,5 +1,5 @@
 //
-//  MovieItemView.swift
+//  MovieItem.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 28.10.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MovieItemView: View {
+struct MovieItem: View {
 
     let viewModel: MovieItemViewModel
 
@@ -17,7 +17,7 @@ struct MovieItemView: View {
 
     var body: some View {
         HStack(spacing: Constants.Content.spacing) {
-            MovieAsyncImage(imageUrl: viewModel.imageUrl)
+            MovieAsyncImage(imageUrl: viewModel.poster)
                 .frame(width: Constants.MovieImage.width)
                 .clipShape(.rect(cornerRadius: Constants.MovieImage.cornerRadius))
                 .overlay(alignment: .topLeading) {
@@ -33,7 +33,7 @@ struct MovieItemView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
 
                         Text("\(viewModel.year) • \(viewModel.country)")
-                            .font(.callout)
+                            .font(.subheadline)
                     }
 
                     Spacer()
@@ -50,25 +50,24 @@ struct MovieItemView: View {
                         Text(Constants.Details.ellipsis)
                     }
                 }
+
                 Spacer()
             }
             .frame(maxWidth: .infinity)
         }
         .frame(height: Constants.Content.height)
-        .padding(.horizontal)
-        .appBackground()
     }
 
     private enum Constants {
         enum Content {
             static let spacing: CGFloat = 13
-            static let height: CGFloat = 165
+            static let height: CGFloat = 140
         }
 
         enum MovieImage {
-            static let width: CGFloat = 117
-            static let ratingInsets: CGFloat = 4
-            static let cornerRadius: CGFloat = 10
+            static let width: CGFloat = 105
+            static let ratingInsets: CGFloat = 5
+            static let cornerRadius: CGFloat = 5
         }
 
         enum Details {
@@ -89,12 +88,12 @@ struct MovieItemView: View {
         name: mock.name,
         year: "\(mock.year)",
         country: mock.country,
-        imageUrl: URL(string: mock.poster),
+        poster: mock.poster,
         rating: 3.0,
         userRating: 8,
-        genres: mock.genres.map { $0.name ?? "" },
+        genres: mock.genres.map { $0.name },
         shouldShowGenresEllipsis: false
     )
 
-    return MovieItemView(viewModel: viewModel)
+    return MovieItem(viewModel: viewModel)
 }

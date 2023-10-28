@@ -10,8 +10,8 @@ import SwiftUI
 struct TagLayout: Layout {
 
     var lineLimit: Int?
-    let verticalSpacing: Double = 10
-    let horizontaleSpacing: Double = 10
+    let verticalSpacing: Double = 5
+    let horizontaleSpacing: Double = 5
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
         let numberOfRows = Double(computeNumberOfRows(for: subviews, with: proposal.width ?? 0))

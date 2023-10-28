@@ -9,5 +9,5 @@ import Foundation
 
 struct Genre {
     let id: String
-    let name: String?
+    let name: String
 }

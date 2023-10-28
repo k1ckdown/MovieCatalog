@@ -9,9 +9,23 @@ import SwiftUI
 
 enum LocalizedKeysConstants {
 
+    enum Content {
+        static let catalog = LocalizedStringKey("Catalog")
+    }
+
     enum Welcome {
         static let title = LocalizedStringKey("WelcomeTitle")
         static let body = LocalizedStringKey("WelcomeBody")
+    }
+
+    enum Profile {
+        static let username = LocalizedStringKey("Username")
+        static let name = LocalizedStringKey("Name")
+        static let gender = LocalizedStringKey("Gender")
+        static let email = LocalizedStringKey("Email")
+        static let birthdate = LocalizedStringKey("Birthdate")
+        static let password = LocalizedStringKey("Password")
+        static let confirmPassword = LocalizedStringKey("ConfirmPassword")
     }
 
     enum Auth {
@@ -33,16 +47,6 @@ enum LocalizedKeysConstants {
             static let alreadyHaveAccount = LocalizedStringKey("AlreadyHaveAccount")
             static let logInToAccount = LocalizedStringKey("LogInAccount")
         }
-    }
-
-    enum Profile {
-        static let username = LocalizedStringKey("Username")
-        static let name = LocalizedStringKey("Name")
-        static let gender = LocalizedStringKey("Gender")
-        static let email = LocalizedStringKey("Email")
-        static let birthdate = LocalizedStringKey("Birthdate")
-        static let password = LocalizedStringKey("Password")
-        static let confirmPassword = LocalizedStringKey("ConfirmPassword")
     }
 
     enum ErrorMessage {

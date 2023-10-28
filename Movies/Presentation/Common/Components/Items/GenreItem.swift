@@ -13,6 +13,7 @@ struct GenreItem: View {
 
     var body: some View {
         Text(name)
+            .font(.subheadline)
             .padding(.vertical, Constants.verticalInsets)
             .padding(.horizontal, Constants.horizontalInsets)
             .background(.pebble)
