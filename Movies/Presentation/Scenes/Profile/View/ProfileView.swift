@@ -69,6 +69,14 @@ struct ProfileView: View {
             Spacer()
         }
         .appBackground()
+        .alert(LocalizedKeysConstants.ErrorMessage.error, isPresented: isAlertPresented) {
+            Button("OK", role: .cancel, action: {})
+        } message: {
+            Text(viewModel.state.loadError)
+        }
+        .onAppear {
+            viewModel.handle(.onAppear)
+        }
     }
 
     private enum Constants {
@@ -111,8 +119,20 @@ struct ProfileView: View {
             set: { viewModel.handle(.birthdateChanged($0)) }
         )
     }
+
+    private var isAlertPresented: Binding<Bool> {
+        Binding(
+            get: { viewModel.state.isAlertPresenting },
+            set: { viewModel.handle(.onAlertPresented($0)) }
+        )
+    }
 }
 
 #Preview {
-    ProfileView(viewModel: .init())
+    ProfileView(viewModel:
+            .init(
+                getProfileUseCase: .init(profileRepository: ProfileRepository(networkService: NetworkService())),
+                validateEmailUseCase: .init()
+            )
+    )
 }
