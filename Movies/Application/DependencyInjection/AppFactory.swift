@@ -8,9 +8,9 @@
 import Foundation
 
 final class AppFactory {
-
     private lazy var secureStorage = SecureStorage()
     private lazy var networkService = NetworkService()
+    private lazy var profileRepository = ProfileRepository(networkService: networkService)
 }
 
 extension AppFactory {
@@ -41,10 +41,10 @@ extension AppFactory {
         )
     }
 
-    func makeUpdateUserInfoUseCase() -> UpdateUserInfoUseCase {
-        UpdateUserInfoUseCase(
-            networkService: networkService,
-            secureStorage: secureStorage
+    func makeUpdateUserInfoUseCase() -> UpdateProfileUseCase {
+        UpdateProfileUseCase(
+            secureStorage: secureStorage,
+            profileRepository: profileRepository
         )
     }
 }
