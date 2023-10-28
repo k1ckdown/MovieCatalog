@@ -12,11 +12,6 @@ protocol MovieNetworkService {
     func fetchMovies(page: Int) async throws -> MoviesPagedResponse
 }
 
-protocol UserNetworkService {
-    func fetchProfile(token: String) async throws -> ProfileDTO
-    func updateProfile(token: String, profile: ProfileDTO) async throws
-}
-
 protocol FavoriteMoviesNetworkService {
     func addFavoriteMovie(token: String, movieId: String) async throws
     func deleteFavoriteMovie(token: String, movieId: String) async throws
