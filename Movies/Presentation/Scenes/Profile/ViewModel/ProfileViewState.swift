@@ -17,7 +17,7 @@ struct ProfileViewState: Equatable {
 
     var emailError: String?
     var avatarLinkError: String?
-    var loadError: String = ""
+    var errorMessage: String = ""
 
     var isDataChanged = false
     var isAlertPresenting = false
