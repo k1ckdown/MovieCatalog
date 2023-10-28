@@ -13,11 +13,17 @@ final class ProfileViewModel: ViewModel {
 
     private var profile: Profile?
     private let getProfileUseCase: GetProfileUseCase
+    private let updateProfileUseCase: UpdateProfileUseCase
     private let validateEmailUseCase: ValidateEmailUseCase
 
-    init(getProfileUseCase: GetProfileUseCase, validateEmailUseCase: ValidateEmailUseCase) {
+    init(
+        getProfileUseCase: GetProfileUseCase,
+        updateProfileUseCase: UpdateProfileUseCase,
+        validateEmailUseCase: ValidateEmailUseCase
+    ) {
         self.state = .init()
         self.getProfileUseCase = getProfileUseCase
+        self.updateProfileUseCase = updateProfileUseCase
         self.validateEmailUseCase = validateEmailUseCase
     }
 
@@ -59,15 +65,6 @@ final class ProfileViewModel: ViewModel {
 
 private extension ProfileViewModel {
 
-    func retrieveProfile() async {
-        do {
-            profile = try await getProfileUseCase.execute()
-        } catch {
-            state.loadError = error.localizedDescription
-            state.isAlertPresenting = true
-        }
-    }
-
     func emailUpdated(_ email: String) {
         state.email = email
 
@@ -76,6 +73,37 @@ private extension ProfileViewModel {
             state.emailError = nil
         } catch {
             state.emailError = ValidationErrorHandler.message(for: error)
+        }
+    }
+
+    func retrieveProfile() async {
+        do {
+            profile = try await getProfileUseCase.execute()
+        } catch {
+            state.errorMessage = error.localizedDescription
+            state.isAlertPresenting = true
+        }
+    }
+
+    func updateProfile() async {
+        guard let id = profile?.id else { return }
+
+        let updatedProfile = Profile(
+            id: id,
+            nickName: state.username,
+            email: state.email,
+            avatarLink: state.avatarLink,
+            name: state.name,
+            birthDate: state.birthdate,
+            gender: state.gender
+        )
+
+        do {
+            try await updateProfileUseCase.execute(updatedProfile)
+            profile = updatedProfile
+        } catch {
+            state.errorMessage = error.localizedDescription
+            state.isAlertPresenting = true
         }
     }
 
