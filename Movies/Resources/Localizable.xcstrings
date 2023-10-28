@@ -72,6 +72,22 @@
         }
       }
     },
+    "Cancel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cansel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
     "ConfirmPassword" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -572,17 +588,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Погрузись в мир кино"
-          }
-        }
-      }
-    },
-    "Сancel" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отмена"
           }
         }
       }
