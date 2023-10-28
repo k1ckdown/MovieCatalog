@@ -45,6 +45,7 @@ enum LocalizedKeysConstants {
         static let confirmPassword = LocalizedStringKey("ConfirmPassword")
         static let save = LocalizedStringKey("Save")
         static let cancel = LocalizedStringKey("Cancel")
+        static let avatarLink = LocalizedStringKey("AvatarLink")
     }
 
     enum ErrorMessage {
@@ -53,6 +54,7 @@ enum LocalizedKeysConstants {
 
         static let loginFailed = "LoginFailed"
         static let registrationFailed = "RegistrationFailed"
+        static let incorrectLink = "IncorrectLink"
 
         enum Password {
             static let invalidPassword = "InvalidPassword"

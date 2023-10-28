@@ -8,12 +8,29 @@
 import Foundation
 
 struct ProfileViewState: Equatable {
-    var username = "User"
-    var email = ""
-    var avatarLink = ""
-    var name = ""
-    var gender = Gender.male
-    var birthdate = Date.now
+    var username: String
+    var email: String
+    var avatarLink: String
+    var name: String
+    var gender: Gender
+    var birthdate: Date
+
+    var emailError: String?
+    var avatarLinkError: String?
+    var isDataChanged = false
+
+    var isEmailErrorShowing: Bool {
+        email.isEmpty == false && emailError != nil
+    }
+
+    var isAvatarLinkErrorShowing: Bool {
+        avatarLink.isEmpty == false && avatarLinkError != nil
+    }
+
+    var isSaveDisabled: Bool {
+        email.isEmpty || avatarLink.isEmpty ||
+        name.isEmpty || emailError != nil || isDataChanged == false
+    }
 }
 
 enum ProfileViewEvent {

@@ -38,6 +38,23 @@
         }
       }
     },
+    "AvatarLink" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avatar link"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ссылка на аватар"
+          }
+        }
+      }
+    },
     "Birthdate" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -51,6 +68,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Дата рождения"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cansel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
           }
         }
       }
@@ -153,6 +186,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Пол"
+          }
+        }
+      }
+    },
+    "IncorrectLink" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect link"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Некорректная ссылка"
           }
         }
       }
@@ -538,17 +588,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Погрузись в мир кино"
-          }
-        }
-      }
-    },
-    "Сancel" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отмена"
           }
         }
       }

@@ -45,7 +45,7 @@ extension NetworkService: UserNetworkService {
             email: profile.email,
             avatarLink: profile.avatarLink,
             name: profile.name,
-            birthDate: profile.birthDate,
+            birthDate: profile.birthDate.ISO8601Format(),
             gender: profile.gender == .male ? .male : .female
         )
 

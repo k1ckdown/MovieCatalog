@@ -24,12 +24,18 @@ struct ProfileView: View {
             VStack(spacing: Constants.formSpacing) {
                 Group {
                     TextField("", text: email)
-                        .formBorderedTextFieldStyle()
+                        .formErrorableItem(
+                            message: viewModel.state.emailError,
+                            isErrorShowed: viewModel.state.isEmailErrorShowing
+                        )
                         .labeled(LocalizedKeysConstants.Profile.email)
 
                     TextField("", text: avatarLink)
-                        .formBorderedTextFieldStyle()
-                        .labeled(LocalizedKeysConstants.Profile.email)
+                        .formErrorableItem(
+                            message: viewModel.state.avatarLinkError,
+                            isErrorShowed: viewModel.state.isAvatarLinkErrorShowing
+                        )
+                        .labeled(LocalizedKeysConstants.Profile.avatarLink)
                 }
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
@@ -51,6 +57,7 @@ struct ProfileView: View {
 
                 }
                 .baseButtonStyle()
+                .disabled(viewModel.state.isSaveDisabled)
 
                 Button(LocalizedKeysConstants.Profile.cancel) {
 
