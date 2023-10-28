@@ -74,6 +74,23 @@
         }
       }
     },
+    "AvatarLink" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avatar link"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ссылка на аватар"
+          }
+        }
+      }
+    },
     "Birthdate" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -92,18 +109,34 @@
       }
     },
     "Catalog" : {
-      "extractionState" : "manual",
+        "extractionState" : "manual",
+        "localizations" : {
+            "en" : {
+                "stringUnit" : {
+                    "state" : "translated",
+                    "value" : "Catalog"
+                }
+            },
+            "ru" : {
+                "stringUnit" : {
+                    "state" : "translated",
+                    "value" : "Каталог"
+                }
+            }
+        }
+    },
+    "Cancel" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Catalog"
+            "value" : "Cansel"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Каталог"
+            "value" : "Отмена"
           }
         }
       }
@@ -159,6 +192,23 @@
         }
       }
     },
+    "Error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка"
+          }
+        }
+      }
+    },
     "female" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -206,6 +256,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Пол"
+          }
+        }
+      }
+    },
+    "IncorrectLink" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect link"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Некорректная ссылка"
           }
         }
       }
@@ -431,6 +498,16 @@
         }
       }
     },
+    "OK" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ОК"
+          }
+        }
+      }
+    },
     "Password" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -512,6 +589,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ошибка: Что-то пошло не так. Не удалось выполнить регистрацию пользователя."
+          }
+        }
+      }
+    },
+    "Save" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить"
           }
         }
       }
