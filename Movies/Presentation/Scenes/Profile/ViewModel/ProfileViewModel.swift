@@ -11,23 +11,27 @@ final class ProfileViewModel: ViewModel {
 
     @Published private(set) var state: ProfileViewState
 
+    private var profile: Profile?
+    private let getProfileUseCase: GetProfileUseCase
+    private let updateProfileUseCase: UpdateProfileUseCase
     private let validateEmailUseCase: ValidateEmailUseCase
-    private let profile = Profile.mock
 
-    init(validateEmailUseCase: ValidateEmailUseCase = .init()) {
+    init(
+        getProfileUseCase: GetProfileUseCase,
+        updateProfileUseCase: UpdateProfileUseCase,
+        validateEmailUseCase: ValidateEmailUseCase
+    ) {
+        self.state = .init()
+        self.getProfileUseCase = getProfileUseCase
+        self.updateProfileUseCase = updateProfileUseCase
         self.validateEmailUseCase = validateEmailUseCase
-        state = .init(
-            username: profile.nickName,
-            email: profile.email,
-            avatarLink: profile.avatarLink,
-            name: profile.name,
-            gender: profile.gender,
-            birthdate: profile.birthDate
-        )
     }
 
     func handle(_ event: ProfileViewEvent) {
         switch event {
+        case .onAppear:
+            Task { await retrieveProfile() }
+
         case .onTapEdit:
             break
 
@@ -51,6 +55,8 @@ final class ProfileViewModel: ViewModel {
 
         case .birthdateChanged(let date):
             state.birthdate = date
+        case .onAlertPresented(let isPresented):
+            state.isAlertPresenting = isPresented
         }
 
         checkDataIsChange()
@@ -61,7 +67,6 @@ private extension ProfileViewModel {
 
     func emailUpdated(_ email: String) {
         state.email = email
-        state.isDataChanged = email != profile.email
 
         do {
             try validateEmailUseCase.execute(email)
@@ -71,7 +76,40 @@ private extension ProfileViewModel {
         }
     }
 
+    func retrieveProfile() async {
+        do {
+            profile = try await getProfileUseCase.execute()
+        } catch {
+            state.errorMessage = error.localizedDescription
+            state.isAlertPresenting = true
+        }
+    }
+
+    func updateProfile() async {
+        guard let id = profile?.id else { return }
+
+        let updatedProfile = Profile(
+            id: id,
+            nickName: state.username,
+            email: state.email,
+            avatarLink: state.avatarLink,
+            name: state.name,
+            birthDate: state.birthdate,
+            gender: state.gender
+        )
+
+        do {
+            try await updateProfileUseCase.execute(updatedProfile)
+            profile = updatedProfile
+        } catch {
+            state.errorMessage = error.localizedDescription
+            state.isAlertPresenting = true
+        }
+    }
+
     func checkDataIsChange() {
+        guard let profile = profile else { return }
+
         let isNameChanged = state.name != profile.name
         let isEmailChanged = state.email != profile.email
         let isGenderChanged = state.gender != profile.gender
