@@ -73,9 +73,10 @@
 		49A3FACF2AED7ACB0043512C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */; };
 		49A3FAD12AED7DE00043512C /* GenderSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAD02AED7DE00043512C /* GenderSegmentedPicker.swift */; };
 		49A3FAD72AED81CB0043512C /* AvatarAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAD62AED81CB0043512C /* AvatarAsyncImage.swift */; };
-		49A3FAD92AED8A7C0043512C /* UserNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAD82AED8A7C0043512C /* UserNetworkService.swift */; };
-		49A3FADB2AED8A9A0043512C /* UpdateUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FADA2AED8A9A0043512C /* UpdateUserInfoUseCase.swift */; };
+		49A3FADB2AED8A9A0043512C /* UpdateProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FADA2AED8A9A0043512C /* UpdateProfileUseCase.swift */; };
 		49A3FADD2AED8AE50043512C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FADC2AED8AE50043512C /* Profile.swift */; };
+		49A3FAE22AEDADA90043512C /* ProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAE12AEDADA90043512C /* ProfileRepositoryProtocol.swift */; };
+		49A3FAE52AEDAEE70043512C /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAE42AEDAEE60043512C /* ProfileRepository.swift */; };
 		49A562842AE0EAD400222062 /* AuthScreenTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562832AE0EAD400222062 /* AuthScreenTitle.swift */; };
 		49A620652AE6EBD800CEE994 /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A620642AE6EBD800CEE994 /* TintColor.swift */; };
 		49A620672AE6EC0000CEE994 /* LabeledViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A620662AE6EC0000CEE994 /* LabeledViewModifier.swift */; };
@@ -173,9 +174,10 @@
 		49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		49A3FAD02AED7DE00043512C /* GenderSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSegmentedPicker.swift; sourceTree = "<group>"; };
 		49A3FAD62AED81CB0043512C /* AvatarAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarAsyncImage.swift; sourceTree = "<group>"; };
-		49A3FAD82AED8A7C0043512C /* UserNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkService.swift; sourceTree = "<group>"; };
-		49A3FADA2AED8A9A0043512C /* UpdateUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoUseCase.swift; sourceTree = "<group>"; };
+		49A3FADA2AED8A9A0043512C /* UpdateProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileUseCase.swift; sourceTree = "<group>"; };
 		49A3FADC2AED8AE50043512C /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		49A3FAE12AEDADA90043512C /* ProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
+		49A3FAE42AEDAEE60043512C /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
 		49A562832AE0EAD400222062 /* AuthScreenTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenTitle.swift; sourceTree = "<group>"; };
 		49A620642AE6EBD800CEE994 /* TintColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
 		49A620662AE6EC0000CEE994 /* LabeledViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledViewModifier.swift; sourceTree = "<group>"; };
@@ -242,7 +244,6 @@
 			children = (
 				490297CC2AEC5DFC000AFDB4 /* LoginUseCase.swift */,
 				490297C12AEC417C000AFDB4 /* RegisterUserUseCase.swift */,
-				49A3FADA2AED8A9A0043512C /* UpdateUserInfoUseCase.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -250,6 +251,7 @@
 		490297C32AEC41D5000AFDB4 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				49A3FAE02AEDAD940043512C /* Repositories */,
 				490297C42AEC41DD000AFDB4 /* Services */,
 			);
 			path = Protocols;
@@ -260,7 +262,6 @@
 			children = (
 				490297C52AEC41EB000AFDB4 /* AuthNetworkService.swift */,
 				490297C72AEC46D7000AFDB4 /* SecureStorageProtocol.swift */,
-				49A3FAD82AED8A7C0043512C /* UserNetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -395,6 +396,7 @@
 		49330CC72ADD277200BFA4C6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				49A3FAE32AEDAE8E0043512C /* Repositories */,
 				49330CC82ADD277E00BFA4C6 /* DTOs */,
 			);
 			path = Data;
@@ -677,8 +679,8 @@
 		49A3FACB2AED799E0043512C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				49A3FACC2AED79AA0043512C /* ProfileViewState.swift */,
 				49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */,
+				49A3FACC2AED79AA0043512C /* ProfileViewState.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -689,6 +691,30 @@
 				49A3FAD62AED81CB0043512C /* AvatarAsyncImage.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		49A3FAE02AEDAD940043512C /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				49A3FAE12AEDADA90043512C /* ProfileRepositoryProtocol.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		49A3FAE32AEDAE8E0043512C /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				49A3FAE42AEDAEE60043512C /* ProfileRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		49A3FAE62AEDB3250043512C /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				49A3FADA2AED8A9A0043512C /* UpdateProfileUseCase.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		49B422FA2AE0DFE60032F773 /* Components */ = {
@@ -712,6 +738,7 @@
 		49B6D75B2AE9A41200451DAF /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				49A3FAE62AEDB3250043512C /* Profile */,
 				490297C02AEC416E000AFDB4 /* Auth */,
 				49CD15CA2AEAF788003E6ADC /* Validation */,
 			);
@@ -955,7 +982,7 @@
 				49330CE42ADD420100BFA4C6 /* TokenInfo.swift in Sources */,
 				49C3CEA42AEA5B10009FACF4 /* PasswordRegistrationViewState.swift in Sources */,
 				49330CE02ADD2ED200BFA4C6 /* UserShortDTO.swift in Sources */,
-				49A3FADB2AED8A9A0043512C /* UpdateUserInfoUseCase.swift in Sources */,
+				49A3FADB2AED8A9A0043512C /* UpdateProfileUseCase.swift in Sources */,
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
 				49330CD12ADD278900BFA4C6 /* MovieDTO.swift in Sources */,
 				49330CDC2ADD2E7C00BFA4C6 /* MovieDetailsDTO.swift in Sources */,
@@ -976,7 +1003,6 @@
 				49C3CEAF2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift in Sources */,
 				49C3CE972AEA56EE009FACF4 /* PersonalInfoRegistrationViewModel.swift in Sources */,
 				49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */,
-				49A3FAD92AED8A7C0043512C /* UserNetworkService.swift in Sources */,
 				49330CCF2ADD278900BFA4C6 /* ReviewShortDTO.swift in Sources */,
 				4961F4982AE05CAE00A717AB /* BaseButtonStyle.swift in Sources */,
 				4961F4932AE0520F00A717AB /* CalloutButtonStyle.swift in Sources */,
@@ -994,6 +1020,7 @@
 				49330CEB2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift in Sources */,
 				49C189BF2AE3F70D0029BAF9 /* Routable.swift in Sources */,
 				49330CE22ADD41B600BFA4C6 /* UserRegisterDTO.swift in Sources */,
+				49A3FAE22AEDADA90043512C /* ProfileRepositoryProtocol.swift in Sources */,
 				49330CD22ADD278900BFA4C6 /* GenreDTO.swift in Sources */,
 				497BC4582AE790E70002336C /* AuthCoordinator.swift in Sources */,
 				49A3FACF2AED7ACB0043512C /* ProfileViewModel.swift in Sources */,
@@ -1023,6 +1050,7 @@
 				491EBBCE2AEBDA2600075FF0 /* ErrorFooterViewModifier.swift in Sources */,
 				49330CDE2ADD2EB500BFA4C6 /* ReviewDTO.swift in Sources */,
 				49C189CB2AE3FC090029BAF9 /* WelcomeViewModel.swift in Sources */,
+				49A3FAE52AEDAEE70043512C /* ProfileRepository.swift in Sources */,
 				490297CD2AEC5DFC000AFDB4 /* LoginUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
