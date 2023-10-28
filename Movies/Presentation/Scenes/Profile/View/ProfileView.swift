@@ -24,7 +24,10 @@ struct ProfileView: View {
             VStack(spacing: Constants.formSpacing) {
                 Group {
                     TextField("", text: email)
-                        .formBorderedTextFieldStyle()
+                        .formErrorableItem(
+                            message: viewModel.state.emailError,
+                            isErrorShowed: viewModel.state.isEmailErrorShowing
+                        )
                         .labeled(LocalizedKeysConstants.Profile.email)
 
                     TextField("", text: avatarLink)

@@ -14,6 +14,17 @@ struct ProfileViewState: Equatable {
     var name = ""
     var gender = Gender.male
     var birthdate = Date.now
+
+    var emailError: String? = ""
+    var avatarLinkError: String? = ""
+
+    var isEmailErrorShowing: Bool {
+        email.isEmpty == false && emailError != nil
+    }
+
+    var isAvatarLinkErrorShowing: Bool {
+        avatarLink.isEmpty == false || avatarLinkError != nil
+    }
 }
 
 enum ProfileViewEvent {

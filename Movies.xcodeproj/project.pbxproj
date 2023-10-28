@@ -668,8 +668,8 @@
 		49A3FACB2AED799E0043512C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				49A3FACC2AED79AA0043512C /* ProfileViewState.swift */,
 				49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */,
+				49A3FACC2AED79AA0043512C /* ProfileViewState.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

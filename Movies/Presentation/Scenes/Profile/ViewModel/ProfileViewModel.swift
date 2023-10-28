@@ -10,10 +10,12 @@ import Foundation
 final class ProfileViewModel: ViewModel {
 
     @Published private(set) var state: ProfileViewState
-    
 
-    init() {
-        state = .init()
+    private let validateEmailUseCase: ValidateEmailUseCase
+
+    init(validateEmailUseCase: ValidateEmailUseCase = .init()) {
+        self.state = .init()
+        self.validateEmailUseCase = validateEmailUseCase
     }
 
     func handle(_ event: ProfileViewEvent) {
@@ -28,7 +30,7 @@ final class ProfileViewModel: ViewModel {
             break
 
         case .emailChanged(let email):
-            state.email = email
+            emailChanged(email)
 
         case .avatarLinkChanged(let link):
             state.avatarLink = link
@@ -41,6 +43,24 @@ final class ProfileViewModel: ViewModel {
 
         case .birthdateChanged(let date):
             state.birthdate = date
+        }
+    }
+}
+
+private extension ProfileViewModel {
+
+    func isAvatarUrlCorrect(_ urlString: String) -> Bool {
+        URL(string: urlString) != nil
+    }
+
+    func emailChanged(_ email: String) {
+        state.email = email
+
+        do {
+            try validateEmailUseCase.execute(email)
+            state.emailError = nil
+        } catch {
+            state.emailError = ValidationErrorHandler.message(for: error)
         }
     }
 }
