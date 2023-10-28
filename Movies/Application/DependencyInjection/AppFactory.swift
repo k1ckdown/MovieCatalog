@@ -40,4 +40,11 @@ extension AppFactory {
             secureStorage: secureStorage
         )
     }
+
+    func makeUpdateUserInfoUseCase() -> UpdateUserInfoUseCase {
+        UpdateUserInfoUseCase(
+            networkService: networkService,
+            secureStorage: secureStorage
+        )
+    }
 }

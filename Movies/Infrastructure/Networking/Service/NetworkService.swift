@@ -38,8 +38,18 @@ extension NetworkService: UserNetworkService {
         return try await request(with: config, token: token)
     }
 
-    func updateProfile(token: String, profile: ProfileDTO) async throws {
-        let data = try encode(profile)
+    func updateProfile(token: String, profile: Profile) async throws {
+        let profileDto = ProfileDTO(
+            id: profile.id,
+            nickName: profile.nickName,
+            email: profile.email,
+            avatarLink: profile.avatarLink,
+            name: profile.name,
+            birthDate: profile.birthDate.ISO8601Format(),
+            gender: profile.gender == .male ? .male : .female
+        )
+
+        let data = try encode(profileDto)
         let config = UserNetworkConfig.updateProfile(data)
 
         try await request(with: config, token: token)
