@@ -49,6 +49,8 @@ final class ProfileViewModel: ViewModel {
 
         case .birthdateChanged(let date):
             state.birthdate = date
+        case .onAlertPresented(let isPresented):
+            state.isAlertPresenting = isPresented
         }
 
         checkDataIsChange()
@@ -60,9 +62,9 @@ private extension ProfileViewModel {
     func retrieveProfile() async {
         do {
             profile = try await getProfileUseCase.execute()
-            state.loadError = nil
         } catch {
             state.loadError = error.localizedDescription
+            state.isAlertPresenting = true
         }
     }
 

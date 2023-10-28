@@ -15,10 +15,12 @@ struct ProfileViewState: Equatable {
     var gender = Gender.male
     var birthdate = Date.now
 
-    var loadError: String?
     var emailError: String?
     var avatarLinkError: String?
+    var loadError: String = ""
+
     var isDataChanged = false
+    var isAlertPresenting = false
 
     var isEmailErrorShowing: Bool {
         email.isEmpty == false && emailError != nil
@@ -45,4 +47,5 @@ enum ProfileViewEvent {
     case nameChanged(String)
     case genderChanged(Gender)
     case birthdateChanged(Date)
+    case onAlertPresented(Bool)
 }
