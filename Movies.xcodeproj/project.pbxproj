@@ -65,6 +65,11 @@
 		4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */; };
 		497831642AEECD8300860C41 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831632AEECD8300860C41 /* MainViewModel.swift */; };
 		497831662AEECDAA00860C41 /* MainViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831652AEECDAA00860C41 /* MainViewState.swift */; };
+		497831682AEED4E600860C41 /* MovieRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831672AEED4E600860C41 /* MovieRepositoryProtocol.swift */; };
+		4978316A2AEED54500860C41 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831692AEED54500860C41 /* MovieDetails.swift */; };
+		4978316C2AEED55D00860C41 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978316B2AEED55D00860C41 /* Review.swift */; };
+		4978316E2AEED57900860C41 /* UserShort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978316D2AEED57900860C41 /* UserShort.swift */; };
+		497831702AEED5E800860C41 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978316F2AEED5E800860C41 /* MovieRepository.swift */; };
 		497BC4582AE790E70002336C /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497BC4572AE790E70002336C /* AuthCoordinator.swift */; };
 		4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4984BE142ADC6ABB00364027 /* NetworkService.swift */; };
 		49878FDE2AE43BB50076BF85 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49878FDD2AE43BB50076BF85 /* LoginRouter.swift */; };
@@ -180,6 +185,11 @@
 		4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		497831632AEECD8300860C41 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		497831652AEECDAA00860C41 /* MainViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewState.swift; sourceTree = "<group>"; };
+		497831672AEED4E600860C41 /* MovieRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryProtocol.swift; sourceTree = "<group>"; };
+		497831692AEED54500860C41 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
+		4978316B2AEED55D00860C41 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		4978316D2AEED57900860C41 /* UserShort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShort.swift; sourceTree = "<group>"; };
+		4978316F2AEED5E800860C41 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
 		497BC4572AE790E70002336C /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		4984BE142ADC6ABB00364027 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		49878FDD2AE43BB50076BF85 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
@@ -406,6 +416,9 @@
 				49EB26672AED03AA00FFD335 /* Genre.swift */,
 				49EB26692AED057A00FFD335 /* ReviewShort.swift */,
 				49A3FADC2AED8AE50043512C /* Profile.swift */,
+				497831692AEED54500860C41 /* MovieDetails.swift */,
+				4978316B2AEED55D00860C41 /* Review.swift */,
+				4978316D2AEED57900860C41 /* UserShort.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -743,6 +756,7 @@
 			isa = PBXGroup;
 			children = (
 				49A3FAE12AEDADA90043512C /* ProfileRepositoryProtocol.swift */,
+				497831672AEED4E600860C41 /* MovieRepositoryProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -751,6 +765,7 @@
 			isa = PBXGroup;
 			children = (
 				49A3FAE42AEDAEE60043512C /* ProfileRepository.swift */,
+				4978316F2AEED5E800860C41 /* MovieRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1083,6 +1098,8 @@
 			files = (
 				49330CFD2ADD85E500BFA4C6 /* UserNetworkConfig.swift in Sources */,
 				49330CD62ADD29AD00BFA4C6 /* NetworkServiceProtocols.swift in Sources */,
+				497831682AEED4E600860C41 /* MovieRepositoryProtocol.swift in Sources */,
+				4978316E2AEED57900860C41 /* UserShort.swift in Sources */,
 				490297C82AEC46D7000AFDB4 /* SecureStorageProtocol.swift in Sources */,
 				4961F48F2AE0490B00A717AB /* FormTextFieldStyle.swift in Sources */,
 				4961F4772AE021A200A717AB /* LoginViewModel.swift in Sources */,
@@ -1111,6 +1128,7 @@
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
 				49330CD12ADD278900BFA4C6 /* MovieDTO.swift in Sources */,
 				49330CDC2ADD2E7C00BFA4C6 /* MovieDetailsDTO.swift in Sources */,
+				497831702AEED5E800860C41 /* MovieRepository.swift in Sources */,
 				491EBBDF2AEBF0F000075FF0 /* ValidationErrorHandler.swift in Sources */,
 				49C189C42AE3F80A0029BAF9 /* WelcomeRouter.swift in Sources */,
 				49330CDA2ADD2AA500BFA4C6 /* MovieNetworkConfig.swift in Sources */,
@@ -1125,6 +1143,7 @@
 				49C189C82AE3FA940029BAF9 /* AppCoordinator.swift in Sources */,
 				4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */,
 				49CD15C62AEAD21A003E6ADC /* ValidatePasswordUseCase.swift in Sources */,
+				4978316A2AEED54500860C41 /* MovieDetails.swift in Sources */,
 				49EB26702AED286A00FFD335 /* TagLayout.swift in Sources */,
 				49C3CEAF2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift in Sources */,
 				49C3CE972AEA56EE009FACF4 /* PersonalInfoRegistrationViewModel.swift in Sources */,
@@ -1184,6 +1203,7 @@
 				493BB4E72AE1901D004C879F /* DatePickerField.swift in Sources */,
 				491EBBCE2AEBDA2600075FF0 /* ErrorFooterViewModifier.swift in Sources */,
 				49330CDE2ADD2EB500BFA4C6 /* ReviewDTO.swift in Sources */,
+				4978316C2AEED55D00860C41 /* Review.swift in Sources */,
 				49C189CB2AE3FC090029BAF9 /* WelcomeViewModel.swift in Sources */,
 				49EB26622AED01E200FFD335 /* Movie.swift in Sources */,
 				49A3FAE52AEDAEE70043512C /* ProfileRepository.swift in Sources */,

@@ -22,4 +22,23 @@ struct MovieDetailsDTO: Decodable {
     let budget: Int?
     let fees: Int?
     let ageLimit: Int
+
+    func toDomain() -> MovieDetails {
+        .init(
+            id: id,
+            name: name,
+            poster: poster,
+            year: year,
+            country: country,
+            genres: genres?.map { $0.toDomain() },
+            reviews: reviews?.map { $0.toDomain() },
+            time: time,
+            tagline: tagline,
+            description: description,
+            director: director,
+            budget: budget,
+            fees: fees,
+            ageLimit: ageLimit
+        )
+    }
 }

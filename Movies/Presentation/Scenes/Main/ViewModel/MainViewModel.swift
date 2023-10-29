@@ -41,14 +41,14 @@ private extension MainViewModel {
 
     func makeItemViewModel(_ movie: Movie) -> MovieItemViewModel {
         .init(id: movie.id,
-              name: movie.name,
+              name: movie.name ?? "N/A",
               year: movie.year,
-              country: movie.country,
-              poster: movie.poster,
+              country: movie.country ?? "N/A",
+              poster: movie.poster ?? "",
               rating: 7.0,
               userRating: nil,
-              genres: movie.genres.map { $0.name },
-              shouldShowGenresEllipsis: movie.genres.count > 5
+              genres: movie.genres?.compactMap { $0.name } ?? [],
+              shouldShowGenresEllipsis: movie.genres?.count ?? 6 > 5
         )
     }
 }

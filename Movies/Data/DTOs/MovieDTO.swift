@@ -15,6 +15,18 @@ struct MovieDTO: Decodable {
     let country: String?
     let genres: [GenreDTO]?
     let reviews: [ReviewShortDTO]?
+
+    func toDomain() -> Movie {
+        .init(
+            id: id,
+            name: name,
+            poster: poster,
+            year: year,
+            country: country,
+            genres: genres?.map { $0.toDomain() },
+            reviews: reviews?.map { $0.toDomain() }
+        )
+    }
 }
 
 struct MoviesResponse: Decodable {
