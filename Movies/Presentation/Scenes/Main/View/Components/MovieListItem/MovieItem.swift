@@ -87,13 +87,13 @@ struct MovieItem: View {
     let mock = MockData.movie
     let viewModel = MovieItemViewModel(
         id: mock.id,
-        name: mock.name,
+        name: mock.name ?? "",
         year: mock.year,
-        country: mock.country,
-        poster: mock.poster,
+        country: mock.country ?? "",
+        poster: mock.poster ?? "",
         rating: 3.0,
         userRating: 8,
-        genres: mock.genres.map { $0.name },
+        genres: mock.genres?.compactMap { $0.name } ?? [],
         shouldShowGenresEllipsis: false
     )
 

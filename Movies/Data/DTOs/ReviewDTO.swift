@@ -14,4 +14,15 @@ struct ReviewDTO: Decodable {
     let isAnonymous: Bool
     let createDateTime: String?
     let author: UserShortDTO
+
+    func toDomain() -> Review {
+        .init(
+            id: id,
+            rating: rating,
+            reviewText: reviewText,
+            isAnonymous: isAnonymous,
+            createDateTime: try? Date(createDateTime ?? "", strategy: .iso8601),
+            author: author.toDomain()
+        )
+    }
 }
