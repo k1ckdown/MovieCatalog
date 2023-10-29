@@ -35,11 +35,9 @@ struct MoviesResponse: Decodable {
 
 struct MoviesPagedResponse: Decodable {
     let movies: [MovieShortDTO]
-    let pageInfo: PageInfo
+    let pageInfo: PageInfoDTO
 
-    struct PageInfo: Decodable {
-        let pageSize: Int
-        let pageCount: Int
-        let currentPage: Int
+    func toDomain() -> MoviesPaged {
+        .init(movies: movies.map { $0.toDomain() }, pageInfo: pageInfo.toDomain())
     }
 }

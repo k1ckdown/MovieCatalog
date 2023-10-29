@@ -73,6 +73,8 @@
 		497831722AEEE09200860C41 /* FetchMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831712AEEE09200860C41 /* FetchMoviesUseCase.swift */; };
 		4978317C2AEEE9BF00860C41 /* ReviewDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978317B2AEEE9BF00860C41 /* ReviewDetails.swift */; };
 		4978317F2AEEEA2B00860C41 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978317E2AEEEA2B00860C41 /* MovieDetails.swift */; };
+		497831812AEEF82F00860C41 /* PageInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831802AEEF82F00860C41 /* PageInfoDTO.swift */; };
+		497831832AEEF83D00860C41 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831822AEEF83D00860C41 /* PageInfo.swift */; };
 		497BC4582AE790E70002336C /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497BC4572AE790E70002336C /* AuthCoordinator.swift */; };
 		4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4984BE142ADC6ABB00364027 /* NetworkService.swift */; };
 		49878FDE2AE43BB50076BF85 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49878FDD2AE43BB50076BF85 /* LoginRouter.swift */; };
@@ -196,6 +198,8 @@
 		497831712AEEE09200860C41 /* FetchMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMoviesUseCase.swift; sourceTree = "<group>"; };
 		4978317B2AEEE9BF00860C41 /* ReviewDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetails.swift; sourceTree = "<group>"; };
 		4978317E2AEEEA2B00860C41 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
+		497831802AEEF82F00860C41 /* PageInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfoDTO.swift; sourceTree = "<group>"; };
+		497831822AEEF83D00860C41 /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
 		497BC4572AE790E70002336C /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		4984BE142ADC6ABB00364027 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		49878FDD2AE43BB50076BF85 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
@@ -427,6 +431,7 @@
 				4978316D2AEED57900860C41 /* UserShort.swift */,
 				4978317B2AEEE9BF00860C41 /* ReviewDetails.swift */,
 				4978317E2AEEEA2B00860C41 /* MovieDetails.swift */,
+				497831822AEEF83D00860C41 /* PageInfo.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -469,6 +474,7 @@
 				49330CF82ADD854800BFA4C6 /* ProfileDTO.swift */,
 				49330CFA2ADD856D00BFA4C6 /* GenderDTO.swift */,
 				49330D002ADD992F00BFA4C6 /* ReviewModifyDTO.swift */,
+				497831802AEEF82F00860C41 /* PageInfoDTO.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -1118,6 +1124,7 @@
 				497831682AEED4E600860C41 /* MovieRepositoryProtocol.swift in Sources */,
 				4978316E2AEED57900860C41 /* UserShort.swift in Sources */,
 				490297C82AEC46D7000AFDB4 /* SecureStorageProtocol.swift in Sources */,
+				497831832AEEF83D00860C41 /* PageInfo.swift in Sources */,
 				4961F48F2AE0490B00A717AB /* FormTextFieldStyle.swift in Sources */,
 				4961F4772AE021A200A717AB /* LoginViewModel.swift in Sources */,
 				49EB265D2AECF2EF00FFD335 /* MainView.swift in Sources */,
@@ -1201,6 +1208,7 @@
 				49C3CEBA2AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift in Sources */,
 				49330D032ADD996300BFA4C6 /* ReviewNetworkConfig.swift in Sources */,
 				49330CF62ADD7C8B00BFA4C6 /* HTTPTask.swift in Sources */,
+				497831812AEEF82F00860C41 /* PageInfoDTO.swift in Sources */,
 				4961F46F2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift in Sources */,
 				49C3CEA62AEA6026009FACF4 /* PasswordRegistrationView.swift in Sources */,
 				4961F4792AE021AC00A717AB /* LoginViewState.swift in Sources */,

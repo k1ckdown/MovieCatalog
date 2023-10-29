@@ -23,8 +23,8 @@ extension MovieRepository: MovieRepositoryProtocol {
         return movie.toDomain()
     }
 
-    func getMovieShortList(page: Int) async throws -> [MovieShort] {
-        let movies = try await networkService.fetchShortMovies(page: page)
-        return movies.movies.map { $0.toDomain() }
+    func getMoviesPagedList(page: Int) async throws -> MoviesPaged {
+        let moviesPagedList = try await networkService.fetchShortMovies(page: page)
+        return moviesPagedList.toDomain()
     }
 }

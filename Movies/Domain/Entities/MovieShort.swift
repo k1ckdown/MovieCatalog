@@ -20,10 +20,4 @@ struct MovieShort {
 struct MoviesPaged {
     let movies: [MovieShort]
     let pageInfo: PageInfo
-
-    struct PageInfo {
-        let pageSize: Int
-        let pageCount: Int
-        let currentPage: Int
-    }
 }

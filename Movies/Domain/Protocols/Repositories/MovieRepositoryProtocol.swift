@@ -9,5 +9,5 @@ import Foundation
 
 protocol MovieRepositoryProtocol {
     func getMovie(id: String) async throws -> Movie
-    func getMovieShortList(page: Int) async throws -> [MovieShort]
+    func getMoviesPagedList(page: Int) async throws -> MoviesPaged
 }
