@@ -932,8 +932,8 @@
 		49EB264F2AECEE1900FFD335 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				497831622AEECD7900860C41 /* ViewModel */,
 				49EB265B2AECF2E200FFD335 /* View */,
+				497831622AEECD7900860C41 /* ViewModel */,
 				49EB26522AECEE6C00FFD335 /* Components */,
 			);
 			path = Main;

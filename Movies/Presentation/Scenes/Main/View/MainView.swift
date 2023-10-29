@@ -9,50 +9,34 @@ import SwiftUI
 
 struct MainView: View {
 
-    let movieItems = MockData.movies.enumerated().map { index, value in
-        MovieItemViewModel(
-            id: "\(index)",
-            name: value.name,
-            year: "\(value.year)",
-            country: value.country,
-            poster: value.poster,
-            rating: 9.0,
-            userRating: 9,
-            genres: value.genres.map { $0.name},
-            shouldShowGenresEllipsis: false
-        ) }
+    @ObservedObject private(set) var viewModel: MainViewModel
 
     var body: some View {
-        List {
-            Group {
-                TabView {
-                    ForEach(movieItems) { movie in
-                        MovieAsyncImage(imageUrl: movie.poster)
-                    }
-                }
-                .frame(height: Constants.MoviePage.height)
-                .tabViewStyle(.page)
-                .indexViewStyle(.page(backgroundDisplayMode: .always))
-                .listRowInsets(EdgeInsets())
-
-                Text(LocalizedKeysConstants.Content.catalog)
-                    .bold()
-                    .font(.title)
-                    .foregroundStyle(.white)
-                    .padding(.vertical, Constants.ListTitle.verticalInsets)
-
-                ForEach(movieItems) { movie in
-                    MovieItem(viewModel: movie)
-                }
-                .listRowInsets(Constants.ListItem.insets)
+        contentView
+            .appBackground()
+            .onAppear {
+                viewModel.handle(.onAppear)
             }
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color.clear)
+    }
+
+    @ViewBuilder
+    private var contentView: some View {
+        switch viewModel.state {
+        case .idle:
+            emptyView()
+
+        case .loading:
+            ProgressView()
+
+        case .loaded(let viewData):
+            listView(
+                cardItems: viewData.cardMovies,
+                listItems: viewData.listMovies
+            )
+
+        case .error(let message):
+            Text(message)
         }
-        .listStyle(.plain)
-        .scrollIndicators(.hidden)
-        .scrollContentBackground(.hidden)
-        .appBackground()
     }
 
     private enum Constants {
@@ -70,6 +54,47 @@ struct MainView: View {
     }
 }
 
+private extension MainView {
+
+    func emptyView() -> some View {
+        ZStack {
+            EmptyView()
+        }
+    }
+
+    func listView(cardItems: [MovieItemViewModel], listItems: [MovieItemViewModel]) -> some View {
+        List {
+            Group {
+                TabView {
+                    ForEach(cardItems) { item in
+                        MovieAsyncImage(imageUrl: item.poster)
+                    }
+                }
+                .frame(height: Constants.MoviePage.height)
+                .tabViewStyle(.page)
+                .indexViewStyle(.page(backgroundDisplayMode: .always))
+                .listRowInsets(EdgeInsets())
+
+                Text(LocalizedKeysConstants.Content.catalog)
+                    .bold()
+                    .font(.title)
+                    .foregroundStyle(.white)
+                    .padding(.vertical, Constants.ListTitle.verticalInsets)
+
+                ForEach(listItems) { item in
+                    MovieItem(viewModel: item)
+                }
+                .listRowInsets(Constants.ListItem.insets)
+            }
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
+        }
+        .listStyle(.plain)
+        .scrollIndicators(.hidden)
+        .scrollContentBackground(.hidden)
+    }
+}
+
 #Preview {
-    MainView()
+    MainView(viewModel: .init())
 }

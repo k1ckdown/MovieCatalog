@@ -10,7 +10,7 @@ import Foundation
 struct MovieItemViewModel: Identifiable, Equatable {
     let id: String
     let name: String
-    let year: String
+    let year: Int
     let country: String
     let poster: String
     let rating: Double

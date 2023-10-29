@@ -88,7 +88,7 @@ struct MovieItem: View {
     let viewModel = MovieItemViewModel(
         id: mock.id,
         name: mock.name,
-        year: "\(mock.year)",
+        year: mock.year,
         country: mock.country,
         poster: mock.poster,
         rating: 3.0,

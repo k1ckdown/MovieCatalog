@@ -9,7 +9,7 @@ import Foundation
 
 struct MockData {
 
-    static let movies: [Movie] = .init(repeating: movie, count: 5)
+    static let movies: [Movie] = .init(repeating: movie, count: 10)
 
     static let movie = Movie(
         id: "988717c3-bd0f-48f1-a2b3-08d9b9f3d2a2",
