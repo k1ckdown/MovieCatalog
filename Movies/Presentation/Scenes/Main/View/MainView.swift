@@ -13,6 +13,7 @@ struct MainView: View {
 
     var body: some View {
         contentView
+            .redacted(if: viewModel.state == .loading)
             .appBackground()
             .onAppear {
                 viewModel.handle(.onAppear)
@@ -26,7 +27,10 @@ struct MainView: View {
             emptyView()
 
         case .loading:
-            ProgressView()
+            listView(
+                cardItems: .placeholders(count: Constants.countCardPlaceholders),
+                listItems: .placeholders(count: Constants.countItemPlaceholders)
+            )
 
         case .loaded(let viewData):
             listView(
@@ -40,6 +44,9 @@ struct MainView: View {
     }
 
     private enum Constants {
+        static let countCardPlaceholders = 1
+        static let countItemPlaceholders = 6
+
         enum MoviePage {
             static let height: CGFloat = 515
         }

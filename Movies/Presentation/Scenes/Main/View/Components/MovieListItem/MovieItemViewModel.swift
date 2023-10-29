@@ -18,3 +18,19 @@ struct MovieItemViewModel: Identifiable, Equatable {
     let genres: [String]
     let shouldShowGenresEllipsis: Bool
 }
+
+extension MovieItemViewModel: HasPlaceholder {
+    static func placeholder(id: String) -> MovieItemViewModel {
+        .init(
+            id: id,
+            name: .placeholder(length: 20),
+            year: 0,
+            country: .placeholder(length: 5),
+            poster: "",
+            rating: 10,
+            userRating: nil,
+            genres: [],
+            shouldShowGenresEllipsis: false
+        )
+    }
+}

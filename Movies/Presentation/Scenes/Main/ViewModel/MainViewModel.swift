@@ -19,7 +19,8 @@ final class MainViewModel: ViewModel {
     func handle(_ event: MainViewEvent) {
         switch event {
         case .onAppear:
-            Task { await fetchMovies() }
+            state = .loading
+//            Task { await fetchMovies() }
 
         case .onSelectMovie(let id):
             print(id)
