@@ -74,6 +74,7 @@ private extension FetchMoviesUseCase {
         let totalRating = reviews.compactMap { $0.rating }.reduce(0, +)
         let averageRating = Double(totalRating) / Double(reviews.count)
 
+        let userRating = reviews.first(where: { $0.id == userId })?.rating
         let reviewDetailsList = reviews.map {
             getReviewDetails($0, isUserReview: $0.id == userId)
         }
@@ -93,7 +94,8 @@ private extension FetchMoviesUseCase {
             budget: movie.budget,
             fees: movie.fees,
             ageLimit: movie.ageLimit,
-            rating: averageRating
+            rating: averageRating,
+            userRating: userRating
         )
     }
 }

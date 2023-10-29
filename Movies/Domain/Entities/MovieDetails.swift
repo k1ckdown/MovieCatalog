@@ -23,4 +23,5 @@ struct MovieDetails {
     let fees: Int?
     let ageLimit: Int
     let rating: Double
+    let userRating: Int?
 }
