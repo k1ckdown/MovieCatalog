@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct MovieItemViewModel: Identifiable {
+struct MovieItemViewModel: Identifiable, Equatable {
     let id: String
     let name: String
     let year: String
     let country: String
     let poster: String
     let rating: Double
-    let userRating: Int
+    let userRating: Double?
     let genres: [String]
     let shouldShowGenresEllipsis: Bool
 }

@@ -63,6 +63,8 @@
 		4961F4982AE05CAE00A717AB /* BaseButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F4972AE05CAE00A717AB /* BaseButtonStyle.swift */; };
 		4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */; };
 		4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */; };
+		497831642AEECD8300860C41 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831632AEECD8300860C41 /* MainViewModel.swift */; };
+		497831662AEECDAA00860C41 /* MainViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831652AEECDAA00860C41 /* MainViewState.swift */; };
 		497BC4582AE790E70002336C /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497BC4572AE790E70002336C /* AuthCoordinator.swift */; };
 		4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4984BE142ADC6ABB00364027 /* NetworkService.swift */; };
 		49878FDE2AE43BB50076BF85 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49878FDD2AE43BB50076BF85 /* LoginRouter.swift */; };
@@ -176,6 +178,8 @@
 		4961F4972AE05CAE00A717AB /* BaseButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonStyle.swift; sourceTree = "<group>"; };
 		4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		497831632AEECD8300860C41 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		497831652AEECDAA00860C41 /* MainViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewState.swift; sourceTree = "<group>"; };
 		497BC4572AE790E70002336C /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		4984BE142ADC6ABB00364027 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		49878FDD2AE43BB50076BF85 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
@@ -670,6 +674,15 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		497831622AEECD7900860C41 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				497831632AEECD8300860C41 /* MainViewModel.swift */,
+				497831652AEECDAA00860C41 /* MainViewState.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		4984BE162ADC741D00364027 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -919,6 +932,7 @@
 		49EB264F2AECEE1900FFD335 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				497831622AEECD7900860C41 /* ViewModel */,
 				49EB265B2AECF2E200FFD335 /* View */,
 				49EB26522AECEE6C00FFD335 /* Components */,
 			);
@@ -1115,6 +1129,7 @@
 				49C3CEAF2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift in Sources */,
 				49C3CE972AEA56EE009FACF4 /* PersonalInfoRegistrationViewModel.swift in Sources */,
 				49EB26642AED020F00FFD335 /* MockData.swift in Sources */,
+				497831662AEECDAA00860C41 /* MainViewState.swift in Sources */,
 				49EB26552AECEEB400FFD335 /* MovieAsyncImage.swift in Sources */,
 				49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */,
 				49330CCF2ADD278900BFA4C6 /* ReviewShortDTO.swift in Sources */,
@@ -1136,6 +1151,7 @@
 				49330CF42ADD7C7B00BFA4C6 /* NetworkConfig.swift in Sources */,
 				4961F48D2AE045A700A717AB /* SecureInputView.swift in Sources */,
 				49330CEB2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift in Sources */,
+				497831642AEECD8300860C41 /* MainViewModel.swift in Sources */,
 				49C189BF2AE3F70D0029BAF9 /* Routable.swift in Sources */,
 				49330CE22ADD41B600BFA4C6 /* UserRegisterDTO.swift in Sources */,
 				49A3FAE22AEDADA90043512C /* ProfileRepositoryProtocol.swift in Sources */,

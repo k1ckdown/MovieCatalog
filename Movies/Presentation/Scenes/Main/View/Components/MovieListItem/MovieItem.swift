@@ -38,7 +38,9 @@ struct MovieItem: View {
 
                     Spacer()
 
-                    RatingTagView(style: .titleAndIcon, value: Double(viewModel.userRating))
+                    if let userRating = viewModel.userRating {
+                        RatingTagView(style: .titleAndIcon, value: userRating)
+                    }
                 }
 
                 TagLayout {
