@@ -70,6 +70,7 @@
 		4978316C2AEED55D00860C41 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978316B2AEED55D00860C41 /* Review.swift */; };
 		4978316E2AEED57900860C41 /* UserShort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978316D2AEED57900860C41 /* UserShort.swift */; };
 		497831702AEED5E800860C41 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978316F2AEED5E800860C41 /* MovieRepository.swift */; };
+		497831722AEEE09200860C41 /* FetchMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831712AEEE09200860C41 /* FetchMoviesUseCase.swift */; };
 		497BC4582AE790E70002336C /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497BC4572AE790E70002336C /* AuthCoordinator.swift */; };
 		4984BE152ADC6ABC00364027 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4984BE142ADC6ABB00364027 /* NetworkService.swift */; };
 		49878FDE2AE43BB50076BF85 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49878FDD2AE43BB50076BF85 /* LoginRouter.swift */; };
@@ -190,6 +191,7 @@
 		4978316B2AEED55D00860C41 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		4978316D2AEED57900860C41 /* UserShort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShort.swift; sourceTree = "<group>"; };
 		4978316F2AEED5E800860C41 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
+		497831712AEEE09200860C41 /* FetchMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMoviesUseCase.swift; sourceTree = "<group>"; };
 		497BC4572AE790E70002336C /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		4984BE142ADC6ABB00364027 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		49878FDD2AE43BB50076BF85 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
@@ -696,6 +698,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		497831732AEEE1A800860C41 /* Movies */ = {
+			isa = PBXGroup;
+			children = (
+				497831712AEEE09200860C41 /* FetchMoviesUseCase.swift */,
+			);
+			path = Movies;
+			sourceTree = "<group>";
+		};
 		4984BE162ADC741D00364027 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -800,6 +810,7 @@
 		49B6D75B2AE9A41200451DAF /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				497831732AEEE1A800860C41 /* Movies */,
 				49A3FAE62AEDB3250043512C /* Profile */,
 				490297C02AEC416E000AFDB4 /* Auth */,
 				49CD15CA2AEAF788003E6ADC /* Validation */,
@@ -1160,6 +1171,7 @@
 				49A3FADD2AED8AE50043512C /* Profile.swift in Sources */,
 				49A620652AE6EBD800CEE994 /* TintColor.swift in Sources */,
 				49EB266D2AED272D00FFD335 /* RatingTagView.swift in Sources */,
+				497831722AEEE09200860C41 /* FetchMoviesUseCase.swift in Sources */,
 				4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */,
 				4961F47C2AE021C800A717AB /* ViewModel.swift in Sources */,
 				49CD15C42AEACE89003E6ADC /* ValidateUsernameUseCase.swift in Sources */,
