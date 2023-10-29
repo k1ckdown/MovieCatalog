@@ -39,7 +39,7 @@ private extension MainViewModel {
         state = .loaded(.init(cardMovies: cardItems, listMovies: listItems))
     }
 
-    func makeItemViewModel(_ movie: Movie) -> MovieItemViewModel {
+    func makeItemViewModel(_ movie: MovieShort) -> MovieItemViewModel {
         .init(id: movie.id,
               name: movie.name ?? "N/A",
               year: movie.year,

@@ -18,13 +18,13 @@ final class MovieRepository {
 
 extension MovieRepository: MovieRepositoryProtocol {
 
-    func getMovieList(page: Int) async throws -> [Movie] {
-        let movies = try await networkService.fetchMovies(page: page)
-        return movies.movies.map { $0.toDomain() }
-    }
-    
-    func getMovieDetails(id: String) async throws -> MovieDetails {
-        let movie = try await networkService.fetchDetails(id: id)
+    func getMovie(id: String) async throws -> Movie {
+        let movie = try await networkService.fetchMovie(id: id)
         return movie.toDomain()
+    }
+
+    func getMovieShortList(page: Int) async throws -> [MovieShort] {
+        let movies = try await networkService.fetchShortMovies(page: page)
+        return movies.movies.map { $0.toDomain() }
     }
 }

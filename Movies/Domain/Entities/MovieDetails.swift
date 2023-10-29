@@ -1,5 +1,5 @@
 //
-//  MovieDetails.swift
+//  Movie.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 30.10.2023.
@@ -14,7 +14,7 @@ struct MovieDetails {
     let year: Int
     let country: String?
     let genres: [Genre]?
-    let reviews: [Review]?
+    let reviews: [ReviewDetails]?
     let time: Int
     let tagline: String?
     let description: String?
@@ -22,4 +22,5 @@ struct MovieDetails {
     let budget: Int?
     let fees: Int?
     let ageLimit: Int
+    let rating: Double
 }

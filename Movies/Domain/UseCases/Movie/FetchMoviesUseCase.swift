@@ -21,14 +21,14 @@ final class FetchMoviesUseCase {
         self.movieRepository = movieRepository
     }
 
-    func execute( pagination: Pagination) async throws -> [Movie] {
+    func execute(_ pagination: Pagination) async throws -> [MovieShort] {
         switch pagination {
         case .firstPage:
-            return try await movieRepository.getMovieList(page: 1)
-
+            currentPage = 1
         case .nextPage:
             currentPage += 1
-            return try await movieRepository.getMovieList(page: currentPage)
         }
+
+        return try await movieRepository.getMovieList(page: currentPage)
     }
 }
