@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-typealias AuthNavigationPath = [AuthCoordinator.Screen]
-
 final class AuthCoordinator: Coordinator {
 
     enum Screen: Routable {

@@ -11,10 +11,12 @@ struct AuthCoordinatorView: View {
 
     private let factory: AuthCoordinatorFactory
     @ObservedObject private var coordinator: AuthCoordinator
+    private let personalInfoRegistrationView: PersonalInfoRegistrationView
 
     init(_ coordinator: AuthCoordinator, factory: AuthCoordinatorFactory) {
         self.factory = factory
         self.coordinator = coordinator
+        personalInfoRegistrationView = factory.makePersonalInfoRegistrationView(coordinator: coordinator)
     }
 
     var body: some View {
@@ -30,7 +32,7 @@ struct AuthCoordinatorView: View {
         case .login:
             factory.makeLoginView(coordinator: coordinator)
         case .personalInfoRegistration:
-            factory.makePersonalInfoRegistrationView(coordinator: coordinator)
+            personalInfoRegistrationView
         case .passwordRegistration(let personalInfo):
             factory.makePasswordRegistrationView(personalInfo: personalInfo, coordinator: coordinator)
         }
