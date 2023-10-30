@@ -7,12 +7,11 @@
 
 import Foundation
 
-struct ReviewViewModel {
+struct ReviewViewModel: Equatable {
     let rating: Int
     let isUserReview: Bool
     let reviewText: String?
     let createDateTime: Date
     let authorNickname: String?
     let authorAvatarLink: String?
-    let optionsTappedHandler: () -> Void
 }

@@ -1,5 +1,5 @@
 //
-//  MovieDescriptionView.swift
+//  AboutMovieView.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 30.10.2023.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct MovieDescriptionView: View {
+struct AboutMovieView: View {
 
-    let viewModel: MovieDescriptionViewModel
+    let viewModel: AboutMovieViewModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: Constants.contentSpacing) {

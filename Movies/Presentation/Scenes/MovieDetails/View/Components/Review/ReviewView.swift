@@ -10,6 +10,7 @@ import SwiftUI
 struct ReviewView: View {
 
     let viewModel: ReviewViewModel
+    let optionsTappedHandler: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: Constants.contentSpacing) {
@@ -41,7 +42,7 @@ struct ReviewView: View {
 
                     if viewModel.isUserReview {
                         Button {
-                            viewModel.optionsTappedHandler()
+                            optionsTappedHandler()
                         } label: {
                             Image(systemName: Constants.OptionsImage.name)
                                 .fontWeight(.semibold)
@@ -83,11 +84,10 @@ struct ReviewView: View {
         reviewText: mock.reviewText,
         createDateTime: mock.createDateTime,
         authorNickname: mock.author?.nickName,
-        authorAvatarLink: mock.author?.avatar,
-        optionsTappedHandler: { }
+        authorAvatarLink: mock.author?.avatar
     )
 
-    return ReviewView(viewModel: viewModel)
+    return ReviewView(viewModel: viewModel, optionsTappedHandler: {  })
         .appBackground()
         .environment(\.locale, .init(identifier: "ru"))
 }
