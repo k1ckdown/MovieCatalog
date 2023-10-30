@@ -103,5 +103,5 @@ private extension MainView {
 }
 
 #Preview {
-    MainView(viewModel: .init())
+    MainView(viewModel: .init(coordinator: .init()))
 }

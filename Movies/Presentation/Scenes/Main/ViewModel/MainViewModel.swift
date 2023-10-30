@@ -12,10 +12,12 @@ final class MainViewModel: ViewModel {
     @Published private(set) var state: MainViewState
 
     private let movies = MockData.movies
+    private let coordinator: MainCoordinator
     private let fetchMoviesUseCase: FetchMoviesUseCase = AppFactory().makeFetchMoviesUseCase()
 
-    init() {
+    init(coordinator: MainCoordinator) {
         self.state = .idle
+        self.coordinator = coordinator
     }
 
     func handle(_ event: MainViewEvent) {

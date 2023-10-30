@@ -5,29 +5,20 @@
 //  Created by Ivan Semenov on 30.10.2023.
 //
 
-import SwiftUI
+import Foundation
 
-struct MainCoordinator: View {
+final class MainCoordinator: Coordinator {
 
-    private let factory: ScreenFactory
-    @StateObject private var state = MainNavigationState()
-
-    init(factory: ScreenFactory) {
-        self.factory = factory
+    enum Screen: Routable {
+        case movieDetails(MovieDetails)
     }
 
-    var body: some View {
-        NavigationStack(path: $state.navigationPath) {
-            MainView(viewModel: .init())
-                .navigationDestination(for: MainNavigationState.Screen.self, destination: destination)
-        }
-    }
+    @Published var navigationPath = [Screen]()
+}
 
-    @ViewBuilder
-    private func destination(_ screen: MainNavigationState.Screen) -> some View {
-        switch screen {
-        case .movieDetails(let movie):
-            EmptyView()
-        }
+extension MainCoordinator {
+
+    func showMovieDetails(_ movie: MovieDetails) {
+        navigationPath.append(.movieDetails(movie))
     }
 }
