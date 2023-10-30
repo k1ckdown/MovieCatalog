@@ -33,7 +33,14 @@ struct MovieDetailsView: View {
         static let genresSpacing: CGFloat = 9
         static let reviewsSpacing: CGFloat = 18
         static let posterHeight: CGFloat = 540
+        static let contentSpacing: CGFloat = -15
         static let sectionHeaderFontSize: CGFloat = 18
+        
+        enum Blur {
+            static let radius: CGFloat = 13
+            static let height: CGFloat = 105
+            static let insets: CGFloat = -10
+        }
         
         enum Description {
             static let titleSpacing: CGFloat = 8
@@ -47,9 +54,14 @@ private extension MovieDetailsView {
     
     func detailsView(data: MovieDetailsViewState.ViewData) -> some View {
         ScrollView(.vertical) {
-            VStack {
+            VStack(spacing: Constants.contentSpacing) {
                 MovieAsyncImage(urlString: data.poster)
                     .frame(height: Constants.posterHeight)
+                    .overlay(alignment: .bottom) {
+                        Color.background.blur(radius: Constants.Blur.radius)
+                            .frame(height: Constants.Blur.height)
+                            .padding([.bottom, .horizontal], Constants.Blur.insets)
+                    }
                 
                 VStack(spacing: Constants.Description.titleSpacing) {
                     headerView(name: data.name, rating: data.rating, isFavorite: data.isFavorite)
