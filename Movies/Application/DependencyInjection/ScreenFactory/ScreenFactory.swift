@@ -29,9 +29,8 @@ extension ScreenFactory: MainViewFactory {
 // MARK: - WelcomeViewFactory
 
 extension ScreenFactory: WelcomeViewFactory {
-    func makeWelcomeView(path: Binding<AuthNavigationPath>) -> WelcomeView {
-        let router = WelcomeRouter(path: path)
-        let viewModel = WelcomeViewModel(router: router)
+    func makeWelcomeView(coordinator: AuthCoordinatorProtocol) -> WelcomeView {
+        let viewModel = WelcomeViewModel(coordinator: coordinator)
         let view = WelcomeView(viewModel: viewModel)
 
         return view
@@ -41,9 +40,11 @@ extension ScreenFactory: WelcomeViewFactory {
 // MARK: - LoginViewFactory
 
 extension ScreenFactory: LoginViewFactory {
-    func makeLoginView(path: Binding<AuthNavigationPath>) -> LoginView {
-        let router = LoginRouter(path: path)
-        let viewModel = LoginViewModel(router: router, loginUseCase: appFactory.makeLoginUseCase())
+    func makeLoginView(coordinator: AuthCoordinatorProtocol) -> LoginView {
+        let viewModel = LoginViewModel(
+            coordinator: coordinator,
+            loginUseCase: appFactory.makeLoginUseCase()
+        )
         let view = LoginView(viewModel: viewModel)
 
         return view
@@ -54,11 +55,10 @@ extension ScreenFactory: LoginViewFactory {
 
 extension ScreenFactory: PersonalInfoRegistrationViewFactory {
     func makePersonalInfoRegistrationView(
-        path: Binding<AuthNavigationPath>
+        coordinator: AuthCoordinatorProtocol
     ) -> PersonalInfoRegistrationView {
-        let router = PersonalInfoRegistrationRouter(path: path)
         let viewModel = PersonalInfoRegistrationViewModel(
-            router: router,
+            coordinator: coordinator,
             validateEmailUseCase: appFactory.makeValidateEmailUseCase(),
             validateUsernameUseCase: appFactory.makeValidateUsernameUseCase()
         )
@@ -73,12 +73,11 @@ extension ScreenFactory: PersonalInfoRegistrationViewFactory {
 extension ScreenFactory: PasswordRegistrationViewFactory {
     func makePasswordRegistrationView(
         personalInfo: PersonalInfoViewModel,
-        path: Binding<AuthNavigationPath>
+        coordinator: AuthCoordinatorProtocol
     ) -> PasswordRegistrationView {
-        let router = PasswordRegistrationRouter(path: path)
         let viewModel = PasswordRegistrationViewModel(
             personalInfo: personalInfo,
-            router: router,
+            coordinator: coordinator,
             registerUserUseCase: appFactory.makeRegisterUserUseCase(),
             validatePasswordUseCase: appFactory.makeValidatePasswordUseCase()
         )

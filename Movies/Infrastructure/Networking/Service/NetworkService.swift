@@ -10,7 +10,7 @@ import Foundation
 final class NetworkService {
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
-    private let networkRouter = NetworkManager()
+    private let networkManager = NetworkManager()
 }
 
 // MARK: - MovieNetworkService
@@ -149,7 +149,7 @@ private extension NetworkService {
     }
 
     func request(with config: NetworkConfig, token: String? = nil) async throws {
-        let (_, response) = try await networkRouter.request(config: config, token: token)
+        let (_, response) = try await networkManager.request(config: config, token: token)
         try checkResponse(response)
     }
 
@@ -157,7 +157,7 @@ private extension NetworkService {
         with config: NetworkConfig,
         token: String? = nil
     ) async throws -> Model {
-        let (data, response) = try await networkRouter.request(config: config, token: token)
+        let (data, response) = try await networkManager.request(config: config, token: token)
 
         try checkResponse(response)
         guard let model = try? decoder.decode(Model.self, from: data) else {
