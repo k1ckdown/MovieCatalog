@@ -35,8 +35,8 @@ struct PasswordRegistrationViewState: Equatable {
 }
 
 enum PasswordRegistrationViewEvent {
-    case onTapLogIn
-    case onTapRegister
+    case logInTapped
+    case registerTapped
     case passwordChanged(String)
     case confirmPasswordChanged(String)
 }

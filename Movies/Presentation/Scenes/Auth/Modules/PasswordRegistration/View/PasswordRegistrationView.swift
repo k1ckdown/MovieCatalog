@@ -46,9 +46,9 @@ struct PasswordRegistrationView: View {
                     isShowed: viewModel.state.isRegisterErrorShowing
                 )
             } formAction: {
-                viewModel.handle(.onTapRegister)
+                viewModel.handle(.registerTapped)
             } calloutAction: {
-                viewModel.handle(.onTapLogIn)
+                viewModel.handle(.logInTapped)
             }
     }
     

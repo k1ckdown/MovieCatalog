@@ -19,10 +19,10 @@ final class WelcomeViewModel: ViewModel {
 
     func handle(_ event: WelcomeViewEvent) {
         switch event {
-        case .onTapLogIn:
+        case .logInTapped:
             coordinator.showLogin()
 
-        case .onTapRegistration:
+        case .registrationTapped:
             coordinator.showPersonalInfoRegistration()
         }
     }

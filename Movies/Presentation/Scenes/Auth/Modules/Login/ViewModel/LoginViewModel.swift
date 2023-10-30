@@ -22,10 +22,10 @@ final class LoginViewModel: ViewModel {
     
     func handle(_ event: LoginViewEvent) {
         switch event {
-        case .onTapLogIn:
+        case .logInTapped:
             logInTapped()
             
-        case .onTapRegister:
+        case .registerTapped:
             coordinator.showPersonalInfoRegistration()
             
         case .usernameChanged(let login):

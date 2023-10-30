@@ -49,9 +49,9 @@ struct PersonalInfoRegistrationView: View {
                     .labeled(LocalizedKeysConstants.Profile.birthdate)
             }
         } formAction: {
-            viewModel.handle(.onTapContinue)
+            viewModel.handle(.continueTapped)
         } calloutAction: {
-            viewModel.handle(.onTapLogIn)
+            viewModel.handle(.logInTapped)
         }
     }
 

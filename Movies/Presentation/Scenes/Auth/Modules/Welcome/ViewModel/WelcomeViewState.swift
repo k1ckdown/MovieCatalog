@@ -12,6 +12,6 @@ enum WelcomeViewState: Equatable {
 }
 
 enum WelcomeViewEvent {
-    case onTapLogIn
-    case onTapRegistration
+    case logInTapped
+    case registrationTapped
 }

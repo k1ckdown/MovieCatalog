@@ -42,9 +42,9 @@ struct LoginView: View {
                 isShowed: viewModel.state.isLoginErrorShowing
             )
         } formAction: {
-            viewModel.handle(.onTapLogIn)
+            viewModel.handle(.logInTapped)
         } calloutAction: {
-            viewModel.handle(.onTapRegister)
+            viewModel.handle(.registerTapped)
         }
     }
 

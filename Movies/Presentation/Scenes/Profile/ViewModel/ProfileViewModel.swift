@@ -32,13 +32,13 @@ final class ProfileViewModel: ViewModel {
         case .onAppear:
             Task { await retrieveProfile() }
 
-        case .onTapEdit:
+        case .editTapped:
             break
 
-        case .onTapSave:
+        case .saveTapped:
             break
 
-        case .onTapLogOut:
+        case .logOutTapped:
             break
 
         case .emailChanged(let email):
