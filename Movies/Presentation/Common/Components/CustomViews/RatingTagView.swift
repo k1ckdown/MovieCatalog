@@ -20,10 +20,15 @@ struct RatingTagView: View {
 
         var fontWeight: Font.Weight {
             switch self {
-            case .titleOnly:
-                return .semibold
-            case .titleAndIcon:
-                return .medium
+            case .titleOnly: .semibold
+            case .titleAndIcon: .medium
+            }
+        }
+
+        var textColor: Color {
+            switch self {
+            case .titleOnly(.small): .black
+            case .titleAndIcon, .titleOnly(.medium): .white
             }
         }
 
@@ -34,23 +39,14 @@ struct RatingTagView: View {
             }
         }
 
-        var textColor: Color {
-            switch self {
-            case .titleOnly(.small):
-                return .black
-            case .titleAndIcon, .titleOnly(.medium):
-                return .white
-            }
-        }
-
         var width: CGFloat {
             switch self {
             case .titleAndIcon:
                 return Constants.TitleAndIcon.width
-            case .titleOnly(let size):
-                return size == .small
-                ? Constants.TitleOnly.Width.small
-                : Constants.TitleOnly.Width.medium
+            case .titleOnly(.small):
+                return Constants.TitleOnly.Width.small
+            case .titleOnly(.medium):
+                return Constants.TitleOnly.Width.medium
             }
         }
 
@@ -58,10 +54,10 @@ struct RatingTagView: View {
             switch self {
             case .titleAndIcon:
                 return Constants.TitleAndIcon.height
-            case .titleOnly(let size):
-                return size == .small
-                ? Constants.TitleOnly.Height.small
-                : Constants.TitleOnly.Height.medium
+            case .titleOnly(.small):
+                return Constants.TitleOnly.Height.small
+            case .titleOnly(.medium):
+                return Constants.TitleOnly.Height.medium
             }
         }
     }
@@ -80,6 +76,7 @@ struct RatingTagView: View {
         .fontWeight(style.fontWeight)
         .foregroundStyle(style.textColor)
         .frame(width: style.width, height: style.height)
+        .padding(.horizontal, Constants.horizontalInsets)
         .background(backgroundColor)
         .clipShape(.rect(cornerRadius: style.cornerRadius))
     }
@@ -99,10 +96,11 @@ struct RatingTagView: View {
     private enum Constants {
         static let imageName = "star.fill"
         static let contentSpacing: CGFloat = 3
+        static let horizontalInsets: CGFloat = 4
 
         enum TitleAndIcon {
-            static let width: CGFloat = 44
-            static let height: CGFloat = 32
+            static let width: CGFloat = 43
+            static let height: CGFloat = 30
             static let cornerRadius: CGFloat = 17
         }
 

@@ -78,7 +78,7 @@ struct ReviewView: View {
 #Preview {
     let mock = ReviewDetails.mock
     let viewModel = ReviewViewModel(
-        rating: mock.rating,
+        rating: 9,
         isUserReview: true,
         reviewText: mock.reviewText,
         createDateTime: mock.createDateTime,
