@@ -60,7 +60,6 @@
 		495583192AF0078700E3AA69 /* MovieDetailsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495583182AF0078700E3AA69 /* MovieDetailsViewState.swift */; };
 		4955831B2AF0159200E3AA69 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4955831A2AF0159200E3AA69 /* MovieDetailsViewModel.swift */; };
 		4955831D2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4955831C2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift */; };
-		4955831F2AF03FE600E3AA69 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4955831E2AF03FE600E3AA69 /* Test.swift */; };
 		49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49612AC22ADAD8AF0081832B /* MoviesApp.swift */; };
 		49612AC72ADAD8B10081832B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC62ADAD8B10081832B /* Assets.xcassets */; };
 		49612ACA2ADAD8B10081832B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC92ADAD8B10081832B /* Preview Assets.xcassets */; };
@@ -76,6 +75,7 @@
 		4961F48F2AE0490B00A717AB /* FormTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F48E2AE0490B00A717AB /* FormTextFieldStyle.swift */; };
 		4961F4932AE0520F00A717AB /* CalloutButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F4922AE0520F00A717AB /* CalloutButtonStyle.swift */; };
 		4961F4982AE05CAE00A717AB /* BaseButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F4972AE05CAE00A717AB /* BaseButtonStyle.swift */; };
+		4964A5682AF0576A0039F56B /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4964A5672AF0576A0039F56B /* ExpandableText.swift */; };
 		4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */; };
 		4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */; };
 		497831642AEECD8300860C41 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831632AEECD8300860C41 /* MainViewModel.swift */; };
@@ -197,7 +197,6 @@
 		495583182AF0078700E3AA69 /* MovieDetailsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewState.swift; sourceTree = "<group>"; };
 		4955831A2AF0159200E3AA69 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 		4955831C2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailsViewState+Mutating.swift"; sourceTree = "<group>"; };
-		4955831E2AF03FE600E3AA69 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		49612ABF2ADAD8AF0081832B /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49612AC22ADAD8AF0081832B /* MoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesApp.swift; sourceTree = "<group>"; };
 		49612AC62ADAD8B10081832B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -214,6 +213,7 @@
 		4961F48E2AE0490B00A717AB /* FormTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextFieldStyle.swift; sourceTree = "<group>"; };
 		4961F4922AE0520F00A717AB /* CalloutButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalloutButtonStyle.swift; sourceTree = "<group>"; };
 		4961F4972AE05CAE00A717AB /* BaseButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonStyle.swift; sourceTree = "<group>"; };
+		4964A5672AF0576A0039F56B /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
 		4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		497831632AEECD8300860C41 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -405,7 +405,6 @@
 			children = (
 				49295E442AEFC4C500F09ABE /* Review */,
 				49115C2F2AEF841A00B50FB9 /* AboutMovie */,
-				4955831E2AF03FE600E3AA69 /* Test.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1109,6 +1108,7 @@
 			isa = PBXGroup;
 			children = (
 				49EB266C2AED272D00FFD335 /* RatingTagView.swift */,
+				4964A5672AF0576A0039F56B /* ExpandableText.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1215,6 +1215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49330CFD2ADD85E500BFA4C6 /* UserNetworkConfig.swift in Sources */,
+				4964A5682AF0576A0039F56B /* ExpandableText.swift in Sources */,
 				495583192AF0078700E3AA69 /* MovieDetailsViewState.swift in Sources */,
 				49330CD62ADD29AD00BFA4C6 /* NetworkServiceProtocols.swift in Sources */,
 				497831682AEED4E600860C41 /* MovieRepositoryProtocol.swift in Sources */,
@@ -1311,7 +1312,6 @@
 				49330CF62ADD7C8B00BFA4C6 /* HTTPTask.swift in Sources */,
 				49295E462AEFC4DB00F09ABE /* ReviewViewModel.swift in Sources */,
 				497831812AEEF82F00860C41 /* PageInfoDTO.swift in Sources */,
-				4955831F2AF03FE600E3AA69 /* Test.swift in Sources */,
 				49295E3E2AEFB59F00F09ABE /* AuthCoordinatorProtocol.swift in Sources */,
 				4961F46F2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift in Sources */,
 				49C3CEA62AEA6026009FACF4 /* PasswordRegistrationView.swift in Sources */,
