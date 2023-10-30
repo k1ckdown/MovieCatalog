@@ -10,11 +10,13 @@ import SwiftUI
 struct LabeledViewModifier: ViewModifier {
 
     let title: LocalizedStringKey
+    let fontSize: CGFloat
+    let fontWeight: Font.Weight
 
     func body(content: Content) -> some View {
         VStack(alignment: .leading, spacing: Constants.contentSpacing) {
             Text(title)
-                .font(.system(size: Constants.fontSize, weight: .medium))
+                .font(.system(size: fontSize, weight: fontWeight))
                 .foregroundStyle(Color(.label))
 
             content
@@ -28,7 +30,13 @@ struct LabeledViewModifier: ViewModifier {
 }
 
 extension View {
-    func labeled(_ title: LocalizedStringKey) -> some View {
-        modifier(LabeledViewModifier(title: title))
+    func labeled(
+        _ title: LocalizedStringKey,
+        fontSize: CGFloat = 17,
+        fontWeight: Font.Weight = .medium
+    ) -> some View {
+        modifier(
+            LabeledViewModifier(title: title, fontSize: fontSize, fontWeight: fontWeight)
+        )
     }
 }

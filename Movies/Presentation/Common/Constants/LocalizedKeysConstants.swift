@@ -11,7 +11,9 @@ enum LocalizedKeysConstants {
 
     enum Content {
         static let notAvailable = "N/A"
+        static let genres = LocalizedStringKey("Genres")
         static let catalog = LocalizedStringKey("Catalog")
+        static let reviews = LocalizedStringKey("Reviews")
         static let myReview = LocalizedStringKey("MyReview")
 
         enum Description {

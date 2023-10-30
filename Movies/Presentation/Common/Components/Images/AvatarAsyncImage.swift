@@ -17,7 +17,7 @@ struct AvatarAsyncImage: View {
             image
                 .resizable()
         } placeholder: {
-            Image(.profilePlaceholder)
+            Image(.avatarPlaceholder)
                 .resizable()
                 .scaledToFill()
         }

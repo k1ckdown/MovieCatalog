@@ -56,6 +56,7 @@
 		49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330D002ADD992F00BFA4C6 /* ReviewModifyDTO.swift */; };
 		49330D032ADD996300BFA4C6 /* ReviewNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */; };
 		493BB4E72AE1901D004C879F /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493BB4E62AE1901D004C879F /* DatePickerField.swift */; };
+		495583152AF003EC00E3AA69 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495583142AF003EC00E3AA69 /* FavoriteButton.swift */; };
 		49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49612AC22ADAD8AF0081832B /* MoviesApp.swift */; };
 		49612AC72ADAD8B10081832B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC62ADAD8B10081832B /* Assets.xcassets */; };
 		49612ACA2ADAD8B10081832B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC92ADAD8B10081832B /* Preview Assets.xcassets */; };
@@ -135,7 +136,7 @@
 		49EB266A2AED057A00FFD335 /* ReviewShort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB26692AED057A00FFD335 /* ReviewShort.swift */; };
 		49EB266D2AED272D00FFD335 /* RatingTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB266C2AED272D00FFD335 /* RatingTagView.swift */; };
 		49EB26702AED286A00FFD335 /* TagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB266F2AED286A00FFD335 /* TagLayout.swift */; };
-		49EB26762AED5E3900FFD335 /* GenreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB26752AED5E3900FFD335 /* GenreItem.swift */; };
+		49EB26762AED5E3900FFD335 /* GenreTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB26752AED5E3900FFD335 /* GenreTag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +189,7 @@
 		49330D002ADD992F00BFA4C6 /* ReviewModifyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModifyDTO.swift; sourceTree = "<group>"; };
 		49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNetworkConfig.swift; sourceTree = "<group>"; };
 		493BB4E62AE1901D004C879F /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
+		495583142AF003EC00E3AA69 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		49612ABF2ADAD8AF0081832B /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49612AC22ADAD8AF0081832B /* MoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesApp.swift; sourceTree = "<group>"; };
 		49612AC62ADAD8B10081832B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -268,7 +270,7 @@
 		49EB26692AED057A00FFD335 /* ReviewShort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewShort.swift; sourceTree = "<group>"; };
 		49EB266C2AED272D00FFD335 /* RatingTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingTagView.swift; sourceTree = "<group>"; };
 		49EB266F2AED286A00FFD335 /* TagLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLayout.swift; sourceTree = "<group>"; };
-		49EB26752AED5E3900FFD335 /* GenreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreItem.swift; sourceTree = "<group>"; };
+		49EB26752AED5E3900FFD335 /* GenreTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -575,6 +577,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		495583162AF0052B00E3AA69 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				495583142AF003EC00E3AA69 /* FavoriteButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		49612AB62ADAD8AF0081832B = {
 			isa = PBXGroup;
 			children = (
@@ -632,7 +642,8 @@
 		4961F45C2ADFE7DA00A717AB /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				49EB26742AED5E2000FFD335 /* Items */,
+				495583162AF0052B00E3AA69 /* Buttons */,
+				49EB26742AED5E2000FFD335 /* Labels */,
 				49EB266E2AED285B00FFD335 /* Layouts */,
 				4961F4632AE0007900A717AB /* ViewModifiers */,
 				4961F4872AE036F200A717AB /* Styles */,
@@ -1090,12 +1101,12 @@
 			path = Layouts;
 			sourceTree = "<group>";
 		};
-		49EB26742AED5E2000FFD335 /* Items */ = {
+		49EB26742AED5E2000FFD335 /* Labels */ = {
 			isa = PBXGroup;
 			children = (
-				49EB26752AED5E3900FFD335 /* GenreItem.swift */,
+				49EB26752AED5E3900FFD335 /* GenreTag.swift */,
 			);
-			path = Items;
+			path = Labels;
 			sourceTree = "<group>";
 		};
 		49EB26772AED633D00FFD335 /* Components */ = {
@@ -1193,7 +1204,7 @@
 				4961F4772AE021A200A717AB /* LoginViewModel.swift in Sources */,
 				49EB265D2AECF2EF00FFD335 /* MainView.swift in Sources */,
 				49330CEF2ADD663B00BFA4C6 /* NetworkManager.swift in Sources */,
-				49EB26762AED5E3900FFD335 /* GenreItem.swift in Sources */,
+				49EB26762AED5E3900FFD335 /* GenreTag.swift in Sources */,
 				490297CB2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift in Sources */,
 				49C3CE9E2AEA595A009FACF4 /* PersonalInfoRegistrationView.swift in Sources */,
 				49330CED2ADD60E400BFA4C6 /* LogoutResponse.swift in Sources */,
@@ -1233,6 +1244,7 @@
 				4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */,
 				49CD15C62AEAD21A003E6ADC /* ValidatePasswordUseCase.swift in Sources */,
 				4978316A2AEED54500860C41 /* Movie.swift in Sources */,
+				495583152AF003EC00E3AA69 /* FavoriteButton.swift in Sources */,
 				49EB26702AED286A00FFD335 /* TagLayout.swift in Sources */,
 				4978317F2AEEEA2B00860C41 /* MovieDetails.swift in Sources */,
 				49C3CEAF2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift in Sources */,

@@ -69,7 +69,7 @@ private extension MainViewModel {
                      name: movie.name ?? notAvailable,
                      year: movie.year,
                      country: movie.country ?? notAvailable,
-                     poster: movie.poster ?? "",
+                     poster: movie.poster,
                      rating: movie.rating,
                      userRating: movie.userRating,
                      genres: genres.compactMap { $0.name },

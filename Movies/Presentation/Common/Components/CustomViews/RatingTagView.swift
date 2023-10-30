@@ -96,11 +96,11 @@ struct RatingTagView: View {
     private enum Constants {
         static let imageName = "star.fill"
         static let contentSpacing: CGFloat = 3
-        static let horizontalInsets: CGFloat = 4
+        static let horizontalInsets: CGFloat = 3
 
         enum TitleAndIcon {
-            static let width: CGFloat = 43
-            static let height: CGFloat = 30
+            static let width: CGFloat = 42
+            static let height: CGFloat = 32
             static let cornerRadius: CGFloat = 17
         }
 
@@ -109,7 +109,7 @@ struct RatingTagView: View {
 
             enum Width {
                 static let small: CGFloat = 45
-                static let medium: CGFloat = 64
+                static let medium: CGFloat = 55
             }
 
             enum Height {

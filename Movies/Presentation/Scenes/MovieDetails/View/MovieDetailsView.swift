@@ -10,14 +10,15 @@ import SwiftUI
 struct MovieDetailsView: View {
 
     let movie = MovieDetails.mock
+    @State private var isFavorite = false
 
     var body: some View {
         ScrollView(.vertical) {
             VStack {
-                MovieAsyncImage(imageUrl: movie.poster ?? "")
-                    .frame(height: 540)
+                MovieAsyncImage(imageUrl: movie.poster)
+                    .frame(height: Constants.posterHeight)
 
-                VStack(spacing: 18) {
+                VStack(spacing: Constants.Description.titleSpacing) {
                     HStack {
                         RatingTagView(style: .titleOnly(.medium), value: 9.0)
 
@@ -30,39 +31,26 @@ struct MovieDetailsView: View {
 
                         Spacer()
 
-                        Image(systemName: "heart")
-                            .imageScale(.large)
-                            .fontWeight(.medium)
-                            .padding(9)
-                            .background(
-                                Circle().fill(.pebble)
-                            )
+                        FavoriteButton(isSet: $isFavorite)
                     }
                     .padding()
 
-                    VStack(spacing: 30) {
+                    VStack(alignment: .leading, spacing: Constants.Description.contentSpacing) {
                         if let description = movie.description {
                             Text(description)
-                                .font(.body)
+                                .padding(.bottom)
                         }
 
                         if let genres = movie.genres {
-                            TagLayout {
+                            TagLayout(spacing: Constants.genresSpacing) {
                                 ForEach(genres.compactMap { $0.name }, id: \.self) { genre in
-                                    Text(genre)
-                                        .padding(7)
-                                        .background(.appAccent)
-                                        .clipShape(.rect(cornerRadius: 10))
+                                    GenreTag(name: genre, style: .body)
                                 }
                             }
-                            .labeled("Жанры")
-                        }
-
-                        VStack {
-                            
+                            .labeled(LocalizedKeysConstants.Content.genres, fontWeight: .bold)
                         }
                     }
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, Constants.Description.contentInsets)
                 }
 
                 Spacer()
@@ -71,8 +59,20 @@ struct MovieDetailsView: View {
         .scrollIndicators(.hidden)
         .appBackground()
     }
+
+    private enum Constants {
+        static let genresSpacing: CGFloat = 9
+        static let posterHeight: CGFloat = 540
+
+        enum Description {
+            static let titleSpacing: CGFloat = 8
+            static let contentInsets: CGFloat = 18
+            static let contentSpacing: CGFloat = 30
+        }
+    }
 }
 
 #Preview {
     MovieDetailsView()
+        .environment(\.locale, .init(identifier: "ru"))
 }

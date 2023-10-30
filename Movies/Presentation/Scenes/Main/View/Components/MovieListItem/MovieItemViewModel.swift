@@ -12,7 +12,7 @@ struct MovieItemViewModel: Identifiable, Equatable {
     let name: String
     let year: Int
     let country: String
-    let poster: String
+    let poster: String?
     let rating: Double
     let userRating: Int?
     let genres: [String]

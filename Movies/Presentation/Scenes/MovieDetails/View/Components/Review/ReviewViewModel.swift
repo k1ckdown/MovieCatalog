@@ -14,4 +14,5 @@ struct ReviewViewModel {
     let createDateTime: Date
     let authorNickname: String?
     let authorAvatarLink: String?
+    let optionsTappedHandler: () -> Void
 }

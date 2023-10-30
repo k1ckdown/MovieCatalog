@@ -41,7 +41,7 @@ struct ReviewView: View {
 
                     if viewModel.isUserReview {
                         Button {
-
+                            viewModel.optionsTappedHandler()
                         } label: {
                             Image(systemName: Constants.OptionsImage.name)
                                 .fontWeight(.semibold)
@@ -66,7 +66,7 @@ struct ReviewView: View {
         static let optionsSpacing: CGFloat = 5
         static let contentSpacing: CGFloat = 10
         static let nicknameSpacing: CGFloat = 3
-        static let avatarImageSize: CGFloat = 35
+        static let avatarImageSize: CGFloat = 37
 
         enum OptionsImage {
             static let name = "ellipsis"
@@ -83,7 +83,8 @@ struct ReviewView: View {
         reviewText: mock.reviewText,
         createDateTime: mock.createDateTime,
         authorNickname: mock.author?.nickName,
-        authorAvatarLink: mock.author?.avatar
+        authorAvatarLink: mock.author?.avatar,
+        optionsTappedHandler: { }
     )
 
     return ReviewView(viewModel: viewModel)

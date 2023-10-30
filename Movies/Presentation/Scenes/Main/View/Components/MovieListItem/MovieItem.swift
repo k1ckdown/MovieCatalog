@@ -45,7 +45,7 @@ struct MovieItem: View {
 
                 TagLayout {
                     ForEach(viewModel.genres, id: \.self) { genre in
-                        GenreItem(name: genre)
+                        GenreTag(name: genre, style: .note)
                     }
 
                     if viewModel.shouldShowGenresEllipsis {
