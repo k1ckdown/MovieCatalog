@@ -68,6 +68,7 @@ struct MovieDetailsView: View {
                 Spacer()
             }
         }
+        .scrollIndicators(.hidden)
         .appBackground()
     }
 }

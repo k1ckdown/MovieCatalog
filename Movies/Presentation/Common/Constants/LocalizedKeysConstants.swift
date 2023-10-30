@@ -12,6 +12,17 @@ enum LocalizedKeysConstants {
     enum Content {
         static let notAvailable = "N/A"
         static let catalog = LocalizedStringKey("Catalog")
+
+        enum Description {
+            static let time = "Time"
+            static let year = "Year"
+            static let fees = "Fees"
+            static let budget = "Budget"
+            static let country = "Country"
+            static let tagline = "Tagline"
+            static let director = "Director"
+            static let ageLimit = "AgeLimit"
+        }
     }
 
     enum Welcome {

@@ -11,17 +11,6 @@
         }
       }
     },
-    "..." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
     "%@" : {
       "localizations" : {
         "ru" : {
@@ -54,6 +43,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        }
+      }
+    },
+    "AgeLimit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Age limit"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Возраст"
           }
         }
       }
@@ -109,6 +115,23 @@
         }
       }
     },
+    "Budget" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бюджет"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "en" : {
@@ -155,6 +178,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Повторите пароль"
+          }
+        }
+      }
+    },
+    "Country" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Country"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Страна"
+          }
+        }
+      }
+    },
+    "Director" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Director"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режиссер"
           }
         }
       }
@@ -206,6 +263,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ошибка"
+          }
+        }
+      }
+    },
+    "Fees" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fees"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сборы в мире"
           }
         }
       }
@@ -518,6 +592,12 @@
     },
     "OK" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -614,10 +694,50 @@
     "Save" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить"
+          }
+        }
+      }
+    },
+    "Tagline" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagline"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Слоган"
+          }
+        }
+      }
+    },
+    "Time" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время"
           }
         }
       }
@@ -690,8 +810,22 @@
         }
       }
     },
-    "Жанры" : {
-
+    "Year" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Year"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Год"
+          }
+        }
+      }
     },
     "Сontinue" : {
       "extractionState" : "manual",
@@ -709,12 +843,6 @@
           }
         }
       }
-    },
-    "Список Шиндлера" : {
-
-    },
-    "Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера v Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера" : {
-
     }
   },
   "version" : "1.0"
