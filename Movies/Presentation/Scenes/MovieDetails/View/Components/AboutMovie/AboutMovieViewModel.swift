@@ -12,8 +12,8 @@ struct AboutMovieViewModel: Equatable {
     let country: String
     let tagline: String
     let director: String
-    let budget: Int
-    let fees: Int
+    let budget: String
+    let fees: String
     let ageLimit: Int
     let time: Int
 }

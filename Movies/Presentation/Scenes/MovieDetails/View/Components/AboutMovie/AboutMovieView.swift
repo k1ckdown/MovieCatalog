@@ -31,11 +31,11 @@ struct AboutMovieView: View {
             )
             rowView(
                 name: LocalizedKeysConstants.Content.Description.budget,
-                value: "$\(viewModel.budget.formatted())"
+                value: "$\(viewModel.budget)"
             )
             rowView(
                 name: LocalizedKeysConstants.Content.Description.fees,
-                value: "$\(viewModel.fees.formatted())"
+                value: "$\(viewModel.fees)"
             )
             rowView(
                 name: LocalizedKeysConstants.Content.Description.ageLimit,

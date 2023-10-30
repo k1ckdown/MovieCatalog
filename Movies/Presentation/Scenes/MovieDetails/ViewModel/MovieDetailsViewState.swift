@@ -5,21 +5,24 @@
 //  Created by Ivan Semenov on 30.10.2023.
 //
 
-struct MovieDetailsViewState: Equatable {
-    let viewData: ViewData
+enum MovieDetailsViewState: Equatable {
+    case loading
+    case loaded(ViewData)
 
     struct ViewData: Equatable {
-        let genres: [String]
+        let isFavorite: Bool
+        let genres: [String]?
         let description: String
-        let reviewViewModels: [ReviewViewModel]
-        let descViewModel: AboutMovieViewModel
+        let reviewViewModels: [ReviewViewModel]?
+        let aboutMovieViewModel: AboutMovieViewModel
     }
 }
 
 enum MovieDetailsViewEvent {
-    case favoriteToggled
+    case onAppear
     case addReviewTapped
     case editReviewTapped
     case deleteReviewTapped
     case reviewOptionsTapped
+    case favoriteToggled(Bool)
 }

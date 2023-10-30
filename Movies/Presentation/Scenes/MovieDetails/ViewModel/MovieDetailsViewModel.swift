@@ -6,3 +6,76 @@
 //
 
 import Foundation
+
+final class MovieDetailsViewModel: ViewModel {
+
+    @Published private(set) var state: MovieDetailsViewState
+    private let movie: MovieDetails
+
+    init(movieDetails: MovieDetails) {
+        movie = movieDetails
+        state = .loading
+    }
+
+    func handle(_ event: MovieDetailsViewEvent) {
+        switch event {
+        case .onAppear:
+            state = .loaded(getViewData())
+
+        default: break
+        }
+    }
+}
+
+private extension MovieDetailsViewModel {
+
+    func getViewData() -> MovieDetailsViewState.ViewData {
+        let genres = movie.genres?.compactMap { $0.name }
+        let description = movie.description ?? LocalizedKeysConstants.Content.notAvailable
+
+        let aboutMovieViewModel = makeAboutMovieViewModel(movie)
+        let reviewViewModels = movie.reviews?.compactMap { makeReviewViewModel(review: $0) }
+
+        return .init(
+            isFavorite: false,
+            genres: genres,
+            description: description,
+            reviewViewModels: reviewViewModels,
+            aboutMovieViewModel: aboutMovieViewModel
+        )
+    }
+
+    func makeReviewViewModel(review: ReviewDetails) -> ReviewViewModel {
+        .init(
+            rating: review.rating,
+            isUserReview: review.isUserReview,
+            reviewText: review.reviewText,
+            createDateTime: review.createDateTime,
+            authorNickname: review.author?.nickName,
+            authorAvatarLink: review.author?.avatar
+        )
+    }
+
+    func makeAboutMovieViewModel(_ movie: MovieDetails) -> AboutMovieViewModel {
+        let notAvailable = LocalizedKeysConstants.Content.notAvailable
+
+        return .init(
+            year: movie.year,
+            country: movie.country ?? notAvailable,
+            tagline: movie.tagline ?? notAvailable,
+            director: movie.director ?? notAvailable,
+            budget: getMonetaryDescription(value: movie.budget),
+            fees: getMonetaryDescription(value: movie.fees),
+            ageLimit: movie.ageLimit,
+            time: movie.time
+        )
+    }
+
+    func getMonetaryDescription(value: Int?) -> String {
+        if let value {
+            return "$\(value.formatted())"
+        }
+
+        return LocalizedKeysConstants.Content.notAvailable
+    }
+}
