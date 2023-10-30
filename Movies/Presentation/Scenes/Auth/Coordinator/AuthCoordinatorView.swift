@@ -16,7 +16,7 @@ struct AuthCoordinatorView: View {
     init(_ coordinator: AuthCoordinator, factory: AuthCoordinatorFactory) {
         self.factory = factory
         self.coordinator = coordinator
-        self.personalInfoRegistrationView = factory.makePersonalInfoRegistrationView(path: $coordinator.navigationPath)
+//        self.personalInfoRegistrationView = factory.makePersonalInfoRegistrationView(с)
     }
 
     var body: some View {
