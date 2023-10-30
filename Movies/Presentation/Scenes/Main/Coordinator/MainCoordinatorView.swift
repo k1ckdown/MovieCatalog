@@ -13,16 +13,19 @@ struct MainCoordinatorView: View {
         case movieDetails(MovieDetails)
     }
 
+    private let mainView: MainView
     private let factory: ScreenFactory
-    @StateObject private var coordinator = MainCoordinator()
+    @ObservedObject private var coordinator: MainCoordinator
 
-    init(factory: ScreenFactory) {
+    init(_ coordinator: MainCoordinator, factory: ScreenFactory) {
         self.factory = factory
+        self.coordinator = coordinator
+        self.mainView = factory.makeMainView(coordinator: coordinator)
     }
 
     var body: some View {
         NavigationStack(path: $coordinator.navigationPath) {
-            MainView(viewModel: .init(coordinator: coordinator))
+            mainView
                 .navigationDestination(for: MainCoordinator.Screen.self, destination: destination)
         }
     }

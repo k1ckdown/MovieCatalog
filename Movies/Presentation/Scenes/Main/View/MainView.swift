@@ -90,6 +90,9 @@ private extension MainView {
 
                 ForEach(listItems) { item in
                     MovieItem(viewModel: item)
+                        .onTapGesture {
+                            viewModel.handle(.onSelectMovie(item.id))
+                        }
                 }
                 .listRowInsets(Constants.ListItem.insets)
             }

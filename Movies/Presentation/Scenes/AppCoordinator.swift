@@ -10,6 +10,7 @@ import SwiftUI
 struct AppCoordinator: View {
 
     private let screenFactory: ScreenFactory
+    private let mainCoordinator = MainCoordinator()
 
     init(screenFactory: ScreenFactory) {
         self.screenFactory = screenFactory

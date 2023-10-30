@@ -17,6 +17,15 @@ final class ScreenFactory: AuthCoordinatorFactory {
     }
 }
 
+extension ScreenFactory: MainViewFactory {
+    func makeMainView(coordinator: MainCoordinator) -> MainView {
+        let viewModel = MainViewModel(coordinator: coordinator)
+        let view = MainView(viewModel: viewModel)
+
+        return view
+    }
+}
+
 // MARK: - WelcomeViewFactory
 
 extension ScreenFactory: WelcomeViewFactory {
