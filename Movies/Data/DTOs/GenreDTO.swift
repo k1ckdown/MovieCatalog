@@ -10,4 +10,8 @@ import Foundation
 struct GenreDTO: Decodable {
     let id: String
     let name: String?
+
+    func toDomain() -> Genre {
+        .init(id: id, name: name)
+    }
 }

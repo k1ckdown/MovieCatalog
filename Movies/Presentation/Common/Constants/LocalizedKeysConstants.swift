@@ -9,6 +9,11 @@ import SwiftUI
 
 enum LocalizedKeysConstants {
 
+    enum Content {
+        static let notAvailable = "N/A"
+        static let catalog = LocalizedStringKey("Catalog")
+    }
+
     enum Welcome {
         static let title = LocalizedStringKey("WelcomeTitle")
         static let body = LocalizedStringKey("WelcomeBody")
