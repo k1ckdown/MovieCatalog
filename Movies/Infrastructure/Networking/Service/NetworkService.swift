@@ -17,12 +17,12 @@ final class NetworkService {
 
 extension NetworkService: MovieNetworkService {
 
-    func fetchDetails(id: String) async throws -> MovieDetailsDTO {
+    func fetchMovie(id: String) async throws -> MovieDTO {
         let config = MovieNetworkConfig.detailsById(id)
         return try await request(with: config)
     }
     
-    func fetchMovies(page: Int) async throws -> MoviesPagedResponse {
+    func fetchShortMovies(page: Int) async throws -> MoviesPagedResponse {
         let config = MovieNetworkConfig.listByPage(page)
         return try await request(with: config)
     }

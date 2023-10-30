@@ -8,8 +8,8 @@
 import Foundation
 
 protocol MovieNetworkService {
-    func fetchDetails(id: String) async throws -> MovieDetailsDTO
-    func fetchMovies(page: Int) async throws -> MoviesPagedResponse
+    func fetchMovie(id: String) async throws -> MovieDTO
+    func fetchShortMovies(page: Int) async throws -> MoviesPagedResponse
 }
 
 protocol UserNetworkService {
