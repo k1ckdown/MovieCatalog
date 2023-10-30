@@ -31,10 +31,10 @@ final class PasswordRegistrationViewModel: ViewModel {
 
     func handle(_ event: PasswordRegistrationViewEvent) {
         switch event {
-        case .onTapLogIn:
+        case .logInTapped:
             coordinator.showLogin()
 
-        case .onTapRegister:
+        case .registerTapped:
             registerTapped()
 
         case .passwordChanged(let password):

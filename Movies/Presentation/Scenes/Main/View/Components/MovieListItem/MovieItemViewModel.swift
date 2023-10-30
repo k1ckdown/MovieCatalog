@@ -12,7 +12,7 @@ struct MovieItemViewModel: Identifiable, Equatable {
     let name: String
     let year: Int
     let country: String
-    let poster: String
+    let poster: String?
     let rating: Double
     let userRating: Int?
     let genres: [String]
@@ -27,7 +27,7 @@ extension MovieItemViewModel: HasPlaceholder {
             year: 0,
             country: .placeholder(length: 5),
             poster: "",
-            rating: Double.random(in: 1...10),
+            rating: 10,
             userRating: nil,
             genres: [],
             shouldShowGenresEllipsis: false

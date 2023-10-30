@@ -17,7 +17,7 @@ struct MovieItem: View {
 
     var body: some View {
         HStack(spacing: Constants.Content.spacing) {
-            MovieAsyncImage(imageUrl: viewModel.poster)
+            MovieAsyncImage(urlString: viewModel.poster)
                 .frame(width: Constants.MovieImage.width)
                 .clipShape(.rect(cornerRadius: Constants.MovieImage.cornerRadius))
                 .overlay(alignment: .topLeading) {
@@ -45,7 +45,7 @@ struct MovieItem: View {
 
                 TagLayout {
                     ForEach(viewModel.genres, id: \.self) { genre in
-                        GenreItem(name: genre)
+                        GenreTag(name: genre, style: .note)
                     }
 
                     if viewModel.shouldShowGenresEllipsis {
@@ -84,7 +84,7 @@ struct MovieItem: View {
 }
 
 #Preview {
-    let mock = MockData.movie
+    let mock = MovieShort.mockedMovie
     let viewModel = MovieItemViewModel(
         id: mock.id,
         name: mock.name ?? "",
