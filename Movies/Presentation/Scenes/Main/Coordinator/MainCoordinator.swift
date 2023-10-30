@@ -16,7 +16,7 @@ final class MainCoordinator: Coordinator {
     @Published var navigationPath = [Screen]()
 }
 
-extension MainCoordinator {
+extension MainCoordinator: MainCoordinatorProtocol {
 
     func showMovieDetails(_ movie: MovieDetails) {
         navigationPath.append(.movieDetails(movie))

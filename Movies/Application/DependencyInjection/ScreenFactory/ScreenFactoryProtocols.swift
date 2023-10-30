@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol MainViewFactory {
-    func makeMainView(coordinator: MainCoordinator) -> MainView
+    func makeMainView(coordinator: MainCoordinatorProtocol) -> MainView
 }
 
 protocol LoginViewFactory {
