@@ -10,13 +10,16 @@ import SwiftUI
 struct TagLayout: Layout {
 
     var lineLimit: Int?
-    let verticalSpacing: Double = 5
-    let horizontaleSpacing: Double = 5
+    let spacing: Double
+
+    init(spacing: Double = 5) {
+        self.spacing = spacing
+    }
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
         let numberOfRows = Double(computeNumberOfRows(for: subviews, with: proposal.width ?? 0))
         let minHeight = subviews.map { $0.sizeThatFits(proposal).height }.reduce(0) { max($0, $1).rounded(.up) }
-        let height = numberOfRows * minHeight + max(numberOfRows - 1, 0) * verticalSpacing
+        let height = numberOfRows * minHeight + max(numberOfRows - 1, 0) * spacing
 
         return CGSize(width: proposal.width ?? 0, height: height)
     }
@@ -31,13 +34,13 @@ struct TagLayout: Layout {
 
             if (point.x +  width) > bounds.maxX && currentRow != lineLimit {
                 point.x = bounds.minX
-                point.y += minHeight + verticalSpacing
+                point.y += minHeight + spacing
 
                 currentRow += 1
             }
 
             subview.place(at: point, anchor: .topLeading, proposal: proposal)
-            point.x += width + horizontaleSpacing
+            point.x += width + spacing
         }
     }
 
@@ -48,7 +51,7 @@ struct TagLayout: Layout {
         for subview in subviews {
             let subviewWidth = subview.sizeThatFits(.unspecified).width
 
-            if (x + subviewWidth + horizontaleSpacing) > width {
+            if (x + subviewWidth + spacing) > width {
                 x = 0
                 numberOfRows += 1
             }

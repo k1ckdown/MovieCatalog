@@ -28,10 +28,10 @@ final class PersonalInfoRegistrationViewModel: ViewModel {
 
     func handle(_ event: PersonalInfoRegistrationViewEvent) {
         switch event {
-        case .onTapLogIn:
+        case .logInTapped:
             coordinator.showLogin()
 
-        case .onTapContinue:
+        case .continueTapped:
             continueTapped()
 
         case .nameChanged(let name):

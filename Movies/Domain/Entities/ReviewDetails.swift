@@ -16,3 +16,15 @@ struct ReviewDetails: Equatable, Hashable {
     let author: UserShort?
     let isUserReview: Bool
 }
+
+extension ReviewDetails {
+    static let mock = ReviewDetails(
+        id: "34",
+        rating: 9,
+        reviewText: "A very good movie. I advise you to watch it! A very good movie. I advise you to watch it!",
+        isAnonymous: false,
+        createDateTime: .now,
+        author: UserShort.init(userId: "id", nickName: "Username", avatar: nil),
+        isUserReview: false
+    )
+}

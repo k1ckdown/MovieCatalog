@@ -25,14 +25,14 @@ struct PasswordRegistrationView: View {
                         errorMessage: viewModel.state.passwordError,
                         isErrorShowed: viewModel.state.isPasswordErrorShowing
                     )
-                    .labeled(LocalizedKeysConstants.Profile.password)
+                    .smallLabeled(LocalizedKeysConstants.Profile.password)
                     
                     SecureInputView(
                         text: confirmPassword,
                         errorMessage: viewModel.state.confirmPasswordError,
                         isErrorShowed: viewModel.state.isConfirmPasswordErrorShowing
                     )
-                    .labeled(LocalizedKeysConstants.Profile.confirmPassword)
+                    .smallLabeled(LocalizedKeysConstants.Profile.confirmPassword)
                     
                     if viewModel.state.isLoading {
                         BaseProgressView()
@@ -46,9 +46,9 @@ struct PasswordRegistrationView: View {
                     isShowed: viewModel.state.isRegisterErrorShowing
                 )
             } formAction: {
-                viewModel.handle(.onTapRegister)
+                viewModel.handle(.registerTapped)
             } calloutAction: {
-                viewModel.handle(.onTapLogIn)
+                viewModel.handle(.logInTapped)
             }
     }
     

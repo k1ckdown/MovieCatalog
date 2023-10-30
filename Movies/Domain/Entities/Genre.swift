@@ -11,3 +11,7 @@ struct Genre: Equatable, Hashable {
     let id: String
     let name: String?
 }
+
+extension Genre {
+    static let mock = Genre(id: "id", name: "боевик")
+}
