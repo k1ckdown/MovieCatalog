@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ReviewDetails {
+struct ReviewDetails: Equatable, Hashable {
     let id: String
     let rating: Int
     let reviewText: String?

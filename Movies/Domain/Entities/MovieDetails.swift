@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieDetails {
+struct MovieDetails: Equatable, Hashable {
     let id: String
     let name: String?
     let poster: String?

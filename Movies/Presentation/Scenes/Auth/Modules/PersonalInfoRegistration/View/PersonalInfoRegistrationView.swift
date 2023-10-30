@@ -90,13 +90,3 @@ struct PersonalInfoRegistrationView: View {
         )
     }
 }
-
-#Preview {
-    PersonalInfoRegistrationView(
-        viewModel: .init(
-            router: .init(path: .constant(.init())),
-            validateEmailUseCase: .init(),
-            validateUsernameUseCase: .init()
-        )
-    )
-}

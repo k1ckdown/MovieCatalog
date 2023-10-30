@@ -7,23 +7,27 @@
 
 import SwiftUI
 
+protocol MainViewFactory {
+    func makeMainView(coordinator: MainCoordinator) -> MainView
+}
+
 protocol LoginViewFactory {
-    func makeLoginView(path: Binding<AuthNavigationPath>) -> LoginView
+    func makeLoginView(coordinator: AuthCoordinatorProtocol) -> LoginView
 }
 
 protocol WelcomeViewFactory {
-    func makeWelcomeView(path: Binding<AuthNavigationPath>) -> WelcomeView
+    func makeWelcomeView(coordinator: AuthCoordinatorProtocol) -> WelcomeView
 }
 
 protocol PersonalInfoRegistrationViewFactory {
     func makePersonalInfoRegistrationView(
-        path: Binding<AuthNavigationPath>
+        coordinator: AuthCoordinatorProtocol
     ) -> PersonalInfoRegistrationView
 }
 
 protocol PasswordRegistrationViewFactory {
     func makePasswordRegistrationView(
         personalInfo: PersonalInfoViewModel,
-        path: Binding<AuthNavigationPath>
+        coordinator: AuthCoordinatorProtocol
     ) -> PasswordRegistrationView
 }
