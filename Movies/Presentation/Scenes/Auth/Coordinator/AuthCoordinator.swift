@@ -19,3 +19,42 @@ final class AuthCoordinator: Coordinator {
 
     @Published var navigationPath = [Screen]()
 }
+
+extension AuthCoordinator: AuthCoordinatorProtocol {
+
+    func showLogin() {
+        updatePathForLogin()
+        navigationPath.append(.login)
+    }
+
+    func showPersonalInfoRegistration() {
+        updatePathForPersonalInfoRegistration()
+        navigationPath.append(.personalInfoRegistration)
+    }
+
+    func showPasswordRegistration(personalInfo: PersonalInfoViewModel) {
+        navigationPath.append(.passwordRegistration(personalInfo))
+    }
+}
+
+private extension AuthCoordinator {
+
+    func updatePathForPersonalInfoRegistration() {
+        if case .login = navigationPath.last {
+            navigationPath.removeLast()
+        }
+    }
+
+    func updatePathForLogin() {
+        switch navigationPath.last {
+        case .personalInfoRegistration:
+            navigationPath.removeLast()
+
+        case .passwordRegistration:
+            navigationPath.removeLast()
+            navigationPath.removeLast()
+
+        default: break
+        }
+    }
+}

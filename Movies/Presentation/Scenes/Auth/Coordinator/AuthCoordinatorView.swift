@@ -10,15 +10,18 @@ import SwiftUI
 struct AuthCoordinatorView: View {
 
     private let factory: AuthCoordinatorFactory
-    @StateObject private var state = AuthCoordinator()
+    @ObservedObject private var coordinator: AuthCoordinator
+    private let personalInfoRegistrationView: PersonalInfoRegistrationView
 
-    init(factory: AuthCoordinatorFactory) {
+    init(_ coordinator: AuthCoordinator, factory: AuthCoordinatorFactory) {
         self.factory = factory
+        self.coordinator = coordinator
+        self.personalInfoRegistrationView = factory.makePersonalInfoRegistrationView(path: $coordinator.navigationPath)
     }
 
     var body: some View {
-        NavigationStack(path: $state.navigationPath) {
-            factory.makeWelcomeView(path: $state.navigationPath)
+        NavigationStack(path: $coordinator.navigationPath) {
+            factory.makeWelcomeView(path: $coordinator.navigationPath)
                 .navigationDestination(for: AuthCoordinator.Screen.self, destination: destination)
         }
     }
@@ -27,11 +30,11 @@ struct AuthCoordinatorView: View {
     private func destination(_ screen: AuthCoordinator.Screen) -> some View {
         switch screen {
         case .login:
-            factory.makeLoginView(path: $state.navigationPath)
+            factory.makeLoginView(path: $coordinator.navigationPath)
         case .personalInfoRegistration:
-            factory.makePersonalInfoRegistrationView(path: $state.navigationPath)
+            factory.makePersonalInfoRegistrationView(path: $coordinator.navigationPath)
         case .passwordRegistration(let personalInfo):
-            factory.makePasswordRegistrationView(personalInfo: personalInfo, path: $state.navigationPath)
+            factory.makePasswordRegistrationView(personalInfo: personalInfo, path: $coordinator.navigationPath)
         }
     }
 }
