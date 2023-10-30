@@ -11,12 +11,15 @@ struct AppCoordinator: View {
 
     private let screenFactory: ScreenFactory
 
+    private let authCoordinator = AuthCoordinator()
+    private let mainCoordinator = MainCoordinator()
+
     init(screenFactory: ScreenFactory) {
         self.screenFactory = screenFactory
     }
 
     var body: some View {
-        AuthCoordinator(factory: screenFactory)
+        AuthCoordinatorView(authCoordinator, factory: screenFactory)
     }
 }
 

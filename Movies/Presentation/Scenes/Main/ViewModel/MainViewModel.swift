@@ -11,11 +11,13 @@ final class MainViewModel: ViewModel {
 
     @Published private(set) var state: MainViewState
 
-    private let movies = MockData.movies
+    private var movies = [MovieDetails]()
+    private let coordinator: MainCoordinator
     private let fetchMoviesUseCase: FetchMoviesUseCase = AppFactory().makeFetchMoviesUseCase()
 
-    init() {
+    init(coordinator: MainCoordinator) {
         self.state = .idle
+        self.coordinator = coordinator
     }
 
     func handle(_ event: MainViewEvent) {
@@ -24,7 +26,7 @@ final class MainViewModel: ViewModel {
             Task { await fetchMovies() }
 
         case .onSelectMovie(let id):
-            print(id)
+            movieSelected(id: id)
         }
     }
 }
@@ -35,11 +37,18 @@ private extension MainViewModel {
         static let numberOfCards = 4
     }
 
+    func movieSelected(id: String) {
+        guard let movie = movies.first(where: { $0.id == id }) else {
+            return
+        }
+        coordinator.showMovieDetails(movie)
+    }
+
     func fetchMovies() async {
         state = .loading
 
         do {
-            let movies = try await fetchMoviesUseCase.execute(.first)
+            movies = try await fetchMoviesUseCase.execute(.first)
             let itemViewModels = movies.map { makeItemViewModel($0) }
 
             let cardItems = Array(itemViewModels[0..<Constants.numberOfCards])
