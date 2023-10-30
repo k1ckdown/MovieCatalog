@@ -14,7 +14,10 @@ struct ProfileView: View {
     var body: some View {
         VStack(spacing: Constants.contentSpacing) {
             VStack {
-                AvatarAsyncImage(link: viewModel.state.avatarLink)
+                AvatarAsyncImage(
+                    size: Constants.profileImageSize,
+                    urlString: viewModel.state.avatarLink
+                )
 
                 Text(viewModel.state.username)
                     .font(.title2)
@@ -83,6 +86,7 @@ struct ProfileView: View {
         static let formSpacing: CGFloat = 15
         static let buttonSpacing: CGFloat = 17
         static let contentSpacing: CGFloat = 18
+        static let profileImageSize: CGFloat = 80
     }
 
     private var email: Binding<String> {

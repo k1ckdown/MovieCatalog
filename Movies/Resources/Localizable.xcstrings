@@ -539,6 +539,23 @@
         }
       }
     },
+    "MyReview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "my review"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "мой отзыв"
+          }
+        }
+      }
+    },
     "N/A" : {
       "extractionState" : "manual",
       "localizations" : {

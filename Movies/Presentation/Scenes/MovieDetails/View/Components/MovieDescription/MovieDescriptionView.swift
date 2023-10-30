@@ -43,7 +43,7 @@ struct MovieDescriptionView: View {
             )
             rowView(
                 name: LocalizedKeysConstants.Content.Description.time,
-                value: "\(viewModel.time) min."
+                value: "\(viewModel.time) мин."
             )
         }
     }

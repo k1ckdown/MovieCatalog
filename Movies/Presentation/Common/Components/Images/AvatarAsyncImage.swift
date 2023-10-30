@@ -9,10 +9,11 @@ import SwiftUI
 
 struct AvatarAsyncImage: View {
 
-    let link: String
+    let size: CGFloat
+    let urlString: String?
 
     var body: some View {
-        AsyncImage(url: URL(string: link)) { image in
+        AsyncImage(url: URL(string: urlString ?? "")) { image in
             image
                 .resizable()
         } placeholder: {
@@ -20,16 +21,7 @@ struct AvatarAsyncImage: View {
                 .resizable()
                 .scaledToFill()
         }
-        .frame(width: Constants.size, height: Constants.size)
+        .frame(width: size, height: size)
         .clipShape(.circle)
-        .overlay {
-            Circle()
-                .stroke(.appDarkGray, lineWidth: Constants.borderWidth)
-        }
-    }
-
-    private enum Constants {
-        static let size: CGFloat = 80
-        static let borderWidth: CGFloat = 2
     }
 }

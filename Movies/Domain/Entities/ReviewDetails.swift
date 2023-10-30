@@ -20,11 +20,11 @@ struct ReviewDetails: Equatable, Hashable {
 extension ReviewDetails {
     static let mock = ReviewDetails(
         id: "34",
-        rating: 10,
-        reviewText: "A very good movie. I advise you to watch it!",
+        rating: 9,
+        reviewText: "A very good movie. I advise you to watch it! A very good movie. I advise you to watch it!",
         isAnonymous: false,
         createDateTime: .now,
-        author: nil,
+        author: UserShort.init(userId: "id", nickName: "Username", avatar: nil),
         isUserReview: false
     )
 }
