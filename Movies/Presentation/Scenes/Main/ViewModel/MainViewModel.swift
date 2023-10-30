@@ -12,14 +12,15 @@ final class MainViewModel: ViewModel {
     @Published private(set) var state: MainViewState
 
     private var movies = [MovieDetails]()
-    private let coordinator: MainCoordinator
-    private let fetchMoviesUseCase: FetchMoviesUseCase = AppFactory().makeFetchMoviesUseCase()
+    private let coordinator: MainCoordinatorProtocol
+    private let fetchMoviesUseCase: FetchMoviesUseCase
 
-    init(coordinator: MainCoordinator) {
+    init(coordinator: MainCoordinatorProtocol, fetchMoviesUseCase: FetchMoviesUseCase) {
         self.state = .idle
         self.coordinator = coordinator
+        self.fetchMoviesUseCase = fetchMoviesUseCase
     }
-
+    
     func handle(_ event: MainViewEvent) {
         switch event {
         case .onAppear:

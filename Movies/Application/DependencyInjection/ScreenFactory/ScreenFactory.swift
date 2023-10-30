@@ -17,9 +17,14 @@ final class ScreenFactory: AuthCoordinatorFactory {
     }
 }
 
+// MARK: - MainViewFactory
+
 extension ScreenFactory: MainViewFactory {
-    func makeMainView(coordinator: MainCoordinator) -> MainView {
-        let viewModel = MainViewModel(coordinator: coordinator)
+    func makeMainView(coordinator: MainCoordinatorProtocol) -> MainView {
+        let viewModel = MainViewModel(
+            coordinator: coordinator,
+            fetchMoviesUseCase: appFactory.makeFetchMoviesUseCase()
+        )
         let view = MainView(viewModel: viewModel)
 
         return view
