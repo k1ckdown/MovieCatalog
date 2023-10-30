@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct ReviewViewModel: Equatable {
+struct ReviewViewModel: Equatable, Identifiable {
+    let id = UUID()
     let rating: Int
     let isUserReview: Bool
     let reviewText: String?

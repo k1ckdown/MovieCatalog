@@ -31,27 +31,27 @@ struct ProfileView: View {
                             message: viewModel.state.emailError,
                             isErrorShowed: viewModel.state.isEmailErrorShowing
                         )
-                        .labeled(LocalizedKeysConstants.Profile.email)
+                        .smallLabeled(LocalizedKeysConstants.Profile.email)
 
                     TextField("", text: avatarLink)
                         .formErrorableItem(
                             message: viewModel.state.avatarLinkError,
                             isErrorShowed: viewModel.state.isAvatarLinkErrorShowing
                         )
-                        .labeled(LocalizedKeysConstants.Profile.avatarLink)
+                        .smallLabeled(LocalizedKeysConstants.Profile.avatarLink)
                 }
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
 
                 TextField("", text: name)
                     .formBorderedTextFieldStyle()
-                    .labeled(LocalizedKeysConstants.Profile.name)
+                    .smallLabeled(LocalizedKeysConstants.Profile.name)
 
                 GenderSegmentedPicker(selection: gender)
-                    .labeled(LocalizedKeysConstants.Profile.gender)
+                    .smallLabeled(LocalizedKeysConstants.Profile.gender)
 
                 DatePickerField(date: birthdate)
-                    .labeled(LocalizedKeysConstants.Profile.birthdate)
+                    .smallLabeled(LocalizedKeysConstants.Profile.birthdate)
             }
             .padding(.horizontal)
 

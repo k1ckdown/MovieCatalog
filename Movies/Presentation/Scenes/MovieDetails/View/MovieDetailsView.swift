@@ -8,62 +8,33 @@
 import SwiftUI
 
 struct MovieDetailsView: View {
-
-    let movie = MovieDetails.mock
-    @State private var isFavorite = false
-
+    
+    @ObservedObject private(set) var viewModel: MovieDetailsViewModel
+    
     var body: some View {
-        ScrollView(.vertical) {
-            VStack {
-                MovieAsyncImage(imageUrl: movie.poster)
-                    .frame(height: Constants.posterHeight)
-
-                VStack(spacing: Constants.Description.titleSpacing) {
-                    HStack {
-                        RatingTagView(style: .titleOnly(.medium), value: 9.0)
-
-                        Spacer()
-
-                        Text(movie.name ?? LocalizedKeysConstants.Content.notAvailable)
-                            .bold()
-                            .font(.title)
-                            .multilineTextAlignment(.center)
-
-                        Spacer()
-
-                        FavoriteButton(isSet: $isFavorite)
-                    }
-                    .padding()
-
-                    VStack(alignment: .leading, spacing: Constants.Description.contentSpacing) {
-                        if let description = movie.description {
-                            Text(description)
-                                .padding(.bottom)
-                        }
-
-                        if let genres = movie.genres {
-                            TagLayout(spacing: Constants.genresSpacing) {
-                                ForEach(genres.compactMap { $0.name }, id: \.self) { genre in
-                                    GenreTag(name: genre, style: .body)
-                                }
-                            }
-                            .labeled(LocalizedKeysConstants.Content.genres, fontWeight: .bold)
-                        }
-                    }
-                    .padding(.horizontal, Constants.Description.contentInsets)
-                }
-
-                Spacer()
+        contentView
+            .appBackground()
+            .onAppear {
+                viewModel.handle(.onAppear)
             }
-        }
-        .scrollIndicators(.hidden)
-        .appBackground()
     }
-
+    
+    @ViewBuilder
+    private var contentView: some View {
+        switch viewModel.state {
+        case .idle:
+            EmptyView()
+        case .loaded(let viewData):
+            detailsView(data: viewData)
+        }
+    }
+    
     private enum Constants {
         static let genresSpacing: CGFloat = 9
+        static let reviewsSpacing: CGFloat = 18
         static let posterHeight: CGFloat = 540
-
+        static let sectionHeaderFontSize: CGFloat = 18
+        
         enum Description {
             static let titleSpacing: CGFloat = 8
             static let contentInsets: CGFloat = 18
@@ -72,7 +43,91 @@ struct MovieDetailsView: View {
     }
 }
 
+private extension MovieDetailsView {
+    
+    func detailsView(data: MovieDetailsViewState.ViewData) -> some View {
+        ScrollView(.vertical) {
+            VStack {
+                MovieAsyncImage(urlString: data.poster)
+                    .frame(height: Constants.posterHeight)
+                
+                VStack(spacing: Constants.Description.titleSpacing) {
+                    headerView(name: data.name, rating: data.rating, isFavorite: data.isFavorite)
+                    
+                    VStack(alignment: .leading, spacing: Constants.Description.contentSpacing) {
+                        if let description = data.description {
+                            Text(description).padding(.bottom)
+                        }
+                        
+                        if let genres = data.genres {
+                            genreListView(genres: genres)
+                        }
+                        
+                        aboutMovieView(viewModel: data.aboutMovieViewModel)
+                        
+                        if let reviewViewModels = data.reviewViewModels {
+                            reviewListView(viewModels: reviewViewModels)
+                        }
+                    }
+                    .padding(.horizontal, Constants.Description.contentInsets)
+                }
+            }
+        }
+        .scrollIndicators(.hidden)
+    }
+    
+    func headerView(name: String?, rating: Double, isFavorite: Bool) -> some View {
+        HStack {
+            RatingTagView(style: .titleOnly(.medium), value: rating)
+            
+            Spacer()
+            
+            if let name {
+                Text(name)
+                    .font(.title.bold())
+                    .multilineTextAlignment(.center)
+            }
+            
+            Spacer()
+            
+            FavoriteButton(isSet: isFavorite) {
+                viewModel.handle(.favoriteTapped)
+            }
+        }
+        .padding()
+    }
+    
+    func genreListView(genres: [String]) -> some View {
+        TagLayout(spacing: Constants.genresSpacing) {
+            ForEach(genres, id: \.self) { genre in
+                GenreTag(name: genre, style: .body)
+            }
+        }
+        .mediumLabeled(LocalizedKeysConstants.Content.genres)
+    }
+    
+    func aboutMovieView(viewModel: AboutMovieViewModel) -> some View {
+        AboutMovieView(viewModel: viewModel)
+            .mediumLabeled(LocalizedKeysConstants.Content.aboutMovie)
+    }
+    
+    func reviewListView(viewModels: [ReviewViewModel]) -> some View {
+        VStack(alignment: .leading) {
+            Text(LocalizedKeysConstants.Content.reviews)
+                .font(.system(size: Constants.sectionHeaderFontSize, weight: .bold))
+            
+            VStack(spacing: Constants.reviewsSpacing) {
+                ForEach(viewModels) { viewModel in
+                    ReviewView(viewModel: viewModel) {
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+
 #Preview {
-    MovieDetailsView()
+    MovieDetailsView(viewModel: .init(movieDetails: .mock))
         .environment(\.locale, .init(identifier: "ru"))
 }

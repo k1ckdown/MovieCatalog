@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct FavoriteButton: View {
-    
-    @Binding var isSet: Bool
-    
+
+    let isSet: Bool
+    let action: () -> Void
+
     var body: some View {
         Button {
-            isSet.toggle()
+            action()
         } label: {
             Image(systemName: isSet ? Constants.heartFill : Constants.heart)
                 .imageScale(.large)

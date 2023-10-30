@@ -59,6 +59,8 @@
 		495583152AF003EC00E3AA69 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495583142AF003EC00E3AA69 /* FavoriteButton.swift */; };
 		495583192AF0078700E3AA69 /* MovieDetailsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495583182AF0078700E3AA69 /* MovieDetailsViewState.swift */; };
 		4955831B2AF0159200E3AA69 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4955831A2AF0159200E3AA69 /* MovieDetailsViewModel.swift */; };
+		4955831D2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4955831C2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift */; };
+		4955831F2AF03FE600E3AA69 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4955831E2AF03FE600E3AA69 /* Test.swift */; };
 		49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49612AC22ADAD8AF0081832B /* MoviesApp.swift */; };
 		49612AC72ADAD8B10081832B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC62ADAD8B10081832B /* Assets.xcassets */; };
 		49612ACA2ADAD8B10081832B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC92ADAD8B10081832B /* Preview Assets.xcassets */; };
@@ -194,6 +196,8 @@
 		495583142AF003EC00E3AA69 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		495583182AF0078700E3AA69 /* MovieDetailsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewState.swift; sourceTree = "<group>"; };
 		4955831A2AF0159200E3AA69 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
+		4955831C2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailsViewState+Mutating.swift"; sourceTree = "<group>"; };
+		4955831E2AF03FE600E3AA69 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		49612ABF2ADAD8AF0081832B /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49612AC22ADAD8AF0081832B /* MoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesApp.swift; sourceTree = "<group>"; };
 		49612AC62ADAD8B10081832B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 			children = (
 				49295E442AEFC4C500F09ABE /* Review */,
 				49115C2F2AEF841A00B50FB9 /* AboutMovie */,
+				4955831E2AF03FE600E3AA69 /* Test.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -595,6 +600,7 @@
 			children = (
 				495583182AF0078700E3AA69 /* MovieDetailsViewState.swift */,
 				4955831A2AF0159200E3AA69 /* MovieDetailsViewModel.swift */,
+				4955831C2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1242,6 +1248,7 @@
 				49A3FADB2AED8A9A0043512C /* UpdateProfileUseCase.swift in Sources */,
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
 				49330CD12ADD278900BFA4C6 /* MovieShortDTO.swift in Sources */,
+				4955831D2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift in Sources */,
 				49330CDC2ADD2E7C00BFA4C6 /* MovieDTO.swift in Sources */,
 				497831702AEED5E800860C41 /* MovieRepository.swift in Sources */,
 				491EBBDF2AEBF0F000075FF0 /* ValidationErrorHandler.swift in Sources */,
@@ -1304,6 +1311,7 @@
 				49330CF62ADD7C8B00BFA4C6 /* HTTPTask.swift in Sources */,
 				49295E462AEFC4DB00F09ABE /* ReviewViewModel.swift in Sources */,
 				497831812AEEF82F00860C41 /* PageInfoDTO.swift in Sources */,
+				4955831F2AF03FE600E3AA69 /* Test.swift in Sources */,
 				49295E3E2AEFB59F00F09ABE /* AuthCoordinatorProtocol.swift in Sources */,
 				4961F46F2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift in Sources */,
 				49C3CEA62AEA6026009FACF4 /* PasswordRegistrationView.swift in Sources */,

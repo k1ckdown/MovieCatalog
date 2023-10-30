@@ -14,13 +14,15 @@ final class MovieDetailsViewModel: ViewModel {
 
     init(movieDetails: MovieDetails) {
         movie = movieDetails
-        state = .loading
+        state = .idle
     }
 
     func handle(_ event: MovieDetailsViewEvent) {
         switch event {
         case .onAppear:
             state = .loaded(getViewData())
+        case .favoriteTapped:
+            state = state.toggleFavorite()
 
         default: break
         }
@@ -31,15 +33,17 @@ private extension MovieDetailsViewModel {
 
     func getViewData() -> MovieDetailsViewState.ViewData {
         let genres = movie.genres?.compactMap { $0.name }
-        let description = movie.description ?? LocalizedKeysConstants.Content.notAvailable
 
         let aboutMovieViewModel = makeAboutMovieViewModel(movie)
         let reviewViewModels = movie.reviews?.compactMap { makeReviewViewModel(review: $0) }
 
         return .init(
+            name: movie.name,
+            rating: movie.rating,
+            poster: movie.poster,
             isFavorite: false,
             genres: genres,
-            description: description,
+            description: movie.description,
             reviewViewModels: reviewViewModels,
             aboutMovieViewModel: aboutMovieViewModel
         )

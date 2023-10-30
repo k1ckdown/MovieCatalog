@@ -17,7 +17,7 @@ struct MovieItem: View {
 
     var body: some View {
         HStack(spacing: Constants.Content.spacing) {
-            MovieAsyncImage(imageUrl: viewModel.poster)
+            MovieAsyncImage(urlString: viewModel.poster)
                 .frame(width: Constants.MovieImage.width)
                 .clipShape(.rect(cornerRadius: Constants.MovieImage.cornerRadius))
                 .overlay(alignment: .topLeading) {

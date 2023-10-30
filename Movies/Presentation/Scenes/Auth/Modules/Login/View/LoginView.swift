@@ -25,10 +25,10 @@ struct LoginView: View {
                     .formBorderedTextFieldStyle(
                         style: viewModel.state.isLoginErrorShowing ? .error : .default
                     )
-                    .labeled(LocalizedKeysConstants.Profile.username)
+                    .smallLabeled(LocalizedKeysConstants.Profile.username)
 
                 SecureInputView(text: password, isErrorShowed: viewModel.state.isLoginErrorShowing)
-                    .labeled(LocalizedKeysConstants.Profile.password)
+                    .smallLabeled(LocalizedKeysConstants.Profile.password)
 
                 if viewModel.state.isLoading {
                     BaseProgressView()

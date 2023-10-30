@@ -60,7 +60,6 @@ struct ReviewView: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .padding(.horizontal)
     }
 
     private enum Constants {

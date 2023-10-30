@@ -47,6 +47,23 @@
         }
       }
     },
+    "AboutMovie" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About movie"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О фильме"
+          }
+        }
+      }
+    },
     "AgeLimit" : {
       "extractionState" : "manual",
       "localizations" : {

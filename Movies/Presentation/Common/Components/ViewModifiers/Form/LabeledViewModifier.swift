@@ -24,19 +24,20 @@ struct LabeledViewModifier: ViewModifier {
     }
 
     private enum Constants {
-        static let fontSize: CGFloat = 17
         static let contentSpacing: CGFloat = 11
     }
 }
 
 extension View {
-    func labeled(
-        _ title: LocalizedStringKey,
-        fontSize: CGFloat = 17,
-        fontWeight: Font.Weight = .medium
-    ) -> some View {
+    func smallLabeled(_ title: LocalizedStringKey) -> some View {
         modifier(
-            LabeledViewModifier(title: title, fontSize: fontSize, fontWeight: fontWeight)
+            LabeledViewModifier(title: title, fontSize: 17, fontWeight: .medium)
+        )
+    }
+
+    func mediumLabeled(_ title: LocalizedStringKey) -> some View {
+        modifier(
+            LabeledViewModifier(title: title, fontSize: 18, fontWeight: .bold)
         )
     }
 }

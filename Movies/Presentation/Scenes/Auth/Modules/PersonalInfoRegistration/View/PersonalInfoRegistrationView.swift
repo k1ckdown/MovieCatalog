@@ -22,11 +22,11 @@ struct PersonalInfoRegistrationView: View {
         ) {
             Group {
                 TextField("", text: name)
-                    .labeled(LocalizedKeysConstants.Profile.name)
+                    .smallLabeled(LocalizedKeysConstants.Profile.name)
                     .formBorderedTextFieldStyle()
 
                 GenderSegmentedPicker(selection: gender)
-                    .labeled(LocalizedKeysConstants.Profile.gender)
+                    .smallLabeled(LocalizedKeysConstants.Profile.gender)
 
                 TextField("", text: username)
                     .autocorrectionDisabled()
@@ -35,7 +35,7 @@ struct PersonalInfoRegistrationView: View {
                         message: viewModel.state.usernameError,
                         isErrorShowed: viewModel.state.isUsernameErrorShowing
                     )
-                    .labeled(LocalizedKeysConstants.Profile.username)
+                    .smallLabeled(LocalizedKeysConstants.Profile.username)
 
                 TextField("", text: email)
                     .keyboardType(.emailAddress)
@@ -43,10 +43,10 @@ struct PersonalInfoRegistrationView: View {
                         message: viewModel.state.emailError,
                         isErrorShowed: viewModel.state.isEmailErrorShowing
                     )
-                    .labeled(LocalizedKeysConstants.Profile.email)
+                    .smallLabeled(LocalizedKeysConstants.Profile.email)
 
                 DatePickerField(date: birthdate)
-                    .labeled(LocalizedKeysConstants.Profile.birthdate)
+                    .smallLabeled(LocalizedKeysConstants.Profile.birthdate)
             }
         } formAction: {
             viewModel.handle(.continueTapped)
