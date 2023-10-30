@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+protocol MainViewFactory {
+    func makeMainView(coordinator: MainCoordinator) -> MainView
+}
+
 protocol LoginViewFactory {
     func makeLoginView(path: Binding<AuthNavigationPath>) -> LoginView
 }

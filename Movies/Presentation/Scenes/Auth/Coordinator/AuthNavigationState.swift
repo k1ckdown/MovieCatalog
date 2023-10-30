@@ -9,7 +9,7 @@ import SwiftUI
 
 typealias AuthNavigationPath = [AuthNavigationState.Screen]
 
-final class AuthNavigationState: NavigationState {
+final class AuthNavigationState: Coordinator {
 
     enum Screen: Routable {
         case login
