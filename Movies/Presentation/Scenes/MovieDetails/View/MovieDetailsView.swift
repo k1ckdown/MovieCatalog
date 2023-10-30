@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovieDetailsView: View {
 
-    let movie = MockData.movie
+    let movie = MovieDetails.mock
 
     var body: some View {
         ScrollView(.vertical) {
@@ -23,7 +23,7 @@ struct MovieDetailsView: View {
 
                         Spacer()
 
-                        Text("Список Шиндлера")
+                        Text(movie.name ?? LocalizedKeysConstants.Content.notAvailable)
                             .bold()
                             .font(.title)
                             .multilineTextAlignment(.center)
@@ -40,14 +40,35 @@ struct MovieDetailsView: View {
                     }
                     .padding()
 
-                    Text("Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера v Список Шиндлера Список Шиндлера Список Шиндлера Список Шиндлера")
-                        .font(.body)
-                        .padding(.horizontal, 5)
+                    VStack(spacing: 30) {
+                        if let description = movie.description {
+                            Text(description)
+                                .font(.body)
+                        }
+
+                        if let genres = movie.genres {
+                            TagLayout {
+                                ForEach(genres.compactMap { $0.name }, id: \.self) { genre in
+                                    Text(genre)
+                                        .padding(7)
+                                        .background(.appAccent)
+                                        .clipShape(.rect(cornerRadius: 10))
+                                }
+                            }
+                            .labeled("Жанры")
+                        }
+
+                        VStack {
+                            
+                        }
+                    }
+                    .padding(.horizontal, 10)
                 }
 
                 Spacer()
             }
         }
+        .appBackground()
     }
 }
 

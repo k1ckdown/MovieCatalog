@@ -16,3 +16,15 @@ struct ReviewDetails {
     let author: UserShort?
     let isUserReview: Bool
 }
+
+extension ReviewDetails {
+    static let mock = ReviewDetails(
+        id: "34",
+        rating: 10,
+        reviewText: "A very good movie. I advise you to watch it!",
+        isAnonymous: false,
+        createDateTime: .now,
+        author: nil,
+        isUserReview: false
+    )
+}

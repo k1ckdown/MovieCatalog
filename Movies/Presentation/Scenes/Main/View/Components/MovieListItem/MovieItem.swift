@@ -84,7 +84,7 @@ struct MovieItem: View {
 }
 
 #Preview {
-    let mock = MockData.movie
+    let mock = MovieShort.mockedMovie
     let viewModel = MovieItemViewModel(
         id: mock.id,
         name: mock.name ?? "",

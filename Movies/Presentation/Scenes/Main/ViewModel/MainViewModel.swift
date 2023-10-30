@@ -11,7 +11,7 @@ final class MainViewModel: ViewModel {
 
     @Published private(set) var state: MainViewState
 
-    private let movies = MockData.movies
+    private let movies = MovieShort.mockedMovies
     private let fetchMoviesUseCase: FetchMoviesUseCase = AppFactory().makeFetchMoviesUseCase()
 
     init() {
