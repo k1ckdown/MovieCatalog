@@ -7,32 +7,15 @@
 
 import SwiftUI
 
-struct AuthCoordinator: View {
+typealias AuthNavigationPath = [AuthCoordinator.Screen]
 
-    private let factory: AuthCoordinatorFactory
-    @StateObject private var state = AuthNavigationState()
+final class AuthCoordinator: Coordinator {
 
-    init(factory: AuthCoordinatorFactory) {
-        self.factory = factory
+    enum Screen: Routable {
+        case login
+        case personalInfoRegistration
+        case passwordRegistration(PersonalInfoViewModel)
     }
 
-    var body: some View {
-        NavigationStack(path: $state.navigationPath) {
-            factory.makeWelcomeView(path: $state.navigationPath)
-                .navigationDestination(for: AuthNavigationState.Screen.self, destination: destination)
-        }
-    }
-
-    @ViewBuilder
-    private func destination(_ screen: AuthNavigationState.Screen) -> some View {
-        switch screen {
-        case .login:
-            factory.makeLoginView(path: $state.navigationPath)
-        case .personalInfoRegistration:
-            factory.makePersonalInfoRegistrationView(path: $state.navigationPath)
-        case .passwordRegistration(let personalInfo):
-            factory.makePasswordRegistrationView(personalInfo: personalInfo, path: $state.navigationPath)
-        }
-    }
+    @Published var navigationPath = [Screen]()
 }
-
