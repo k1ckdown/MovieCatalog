@@ -32,14 +32,14 @@ struct MovieItem: View {
                             .font(.system(size: Constants.Details.nameFontSize, weight: .bold))
                             .frame(maxWidth: .infinity, alignment: .leading)
 
-                        Text("\(viewModel.year) • \(viewModel.country)")
+                        Text("\(viewModel.year.description) • \(viewModel.country)")
                             .font(.subheadline)
                     }
 
                     Spacer()
 
                     if let userRating = viewModel.userRating {
-                        RatingTagView(style: .titleAndIcon, value: userRating)
+                        RatingTagView(style: .titleAndIcon, value: Double(userRating))
                     }
                 }
 
@@ -91,7 +91,7 @@ struct MovieItem: View {
         year: mock.year,
         country: mock.country ?? "",
         poster: mock.poster ?? "",
-        rating: 3.0,
+        rating: 3.444,
         userRating: 8,
         genres: mock.genres?.compactMap { $0.name } ?? [],
         shouldShowGenresEllipsis: false

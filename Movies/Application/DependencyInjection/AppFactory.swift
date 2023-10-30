@@ -10,6 +10,7 @@ import Foundation
 final class AppFactory {
     private lazy var secureStorage = SecureStorage()
     private lazy var networkService = NetworkService()
+    private lazy var movieRepository = MovieRepository(networkService: networkService)
     private lazy var profileRepository = ProfileRepository(networkService: networkService)
 }
 
@@ -46,6 +47,13 @@ extension AppFactory {
     func makeUpdateUserInfoUseCase() -> UpdateProfileUseCase {
         UpdateProfileUseCase(
             secureStorage: secureStorage,
+            profileRepository: profileRepository
+        )
+    }
+
+    func makeFetchMoviesUseCase() -> FetchMoviesUseCase {
+        FetchMoviesUseCase(
+            movieRepository: movieRepository,
             profileRepository: profileRepository
         )
     }

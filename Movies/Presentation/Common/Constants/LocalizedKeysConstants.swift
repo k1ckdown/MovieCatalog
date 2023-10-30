@@ -10,6 +10,7 @@ import SwiftUI
 enum LocalizedKeysConstants {
 
     enum Content {
+        static let notAvailable = "N/A"
         static let catalog = LocalizedStringKey("Catalog")
     }
 

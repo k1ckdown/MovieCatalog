@@ -75,7 +75,7 @@ struct RatingTagView: View {
                 Image(systemName: Constants.imageName)
                     .imageScale(.small)
             }
-            Text(style == .titleAndIcon ? "\(Int(value))" : "\(value.description)")
+            Text(style == .titleAndIcon ? "\(Int(value))" : "\(String(format:"%.1f", value))")
         }
         .fontWeight(style.fontWeight)
         .foregroundStyle(style.textColor)

@@ -9,10 +9,10 @@ import Foundation
 
 struct ReviewDetails {
     let id: String
-    let rating: Int?
+    let rating: Int
     let reviewText: String?
     let isAnonymous: Bool
-    let createDateTime: Date?
-    let author: UserShort
+    let createDateTime: Date
+    let author: UserShort?
     let isUserReview: Bool
 }

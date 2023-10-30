@@ -10,7 +10,9 @@ import Foundation
 final class MainViewModel: ViewModel {
 
     @Published private(set) var state: MainViewState
+
     private let movies = MockData.movies
+    private let fetchMoviesUseCase: FetchMoviesUseCase = AppFactory().makeFetchMoviesUseCase()
 
     init() {
         self.state = .idle
@@ -19,8 +21,7 @@ final class MainViewModel: ViewModel {
     func handle(_ event: MainViewEvent) {
         switch event {
         case .onAppear:
-            state = .loading
-//            Task { await fetchMovies() }
+            Task { await fetchMovies() }
 
         case .onSelectMovie(let id):
             print(id)
@@ -30,26 +31,39 @@ final class MainViewModel: ViewModel {
 
 private extension MainViewModel {
 
+    enum Constants {
+        static let numberOfCards = 4
+    }
+
     func fetchMovies() async {
         state = .loading
 
-        let itemViewModels = movies.map { makeItemViewModel($0) }
-        let cardItems = Array(itemViewModels[0..<4])
-        let listItems = Array(itemViewModels[4...])
+        do {
+            let movies = try await fetchMoviesUseCase.execute(.first)
+            let itemViewModels = movies.map { makeItemViewModel($0) }
 
-        state = .loaded(.init(cardMovies: cardItems, listMovies: listItems))
+            let cardItems = Array(itemViewModels[0..<Constants.numberOfCards])
+            let listItems = Array(itemViewModels[Constants.numberOfCards...])
+
+            state = .loaded(.init(cardMovies: cardItems, listMovies: listItems))
+        } catch {
+            state = .error("\(error)")
+        }
     }
 
-    func makeItemViewModel(_ movie: MovieShort) -> MovieItemViewModel {
-        .init(id: movie.id,
-              name: movie.name ?? "N/A",
-              year: movie.year,
-              country: movie.country ?? "N/A",
-              poster: movie.poster ?? "",
-              rating: 7.0,
-              userRating: nil,
-              genres: movie.genres?.compactMap { $0.name } ?? [],
-              shouldShowGenresEllipsis: movie.genres?.count ?? 6 > 5
+    func makeItemViewModel(_ movie: MovieDetails) -> MovieItemViewModel {
+        let genres = movie.genres ?? []
+        let notAvailable = LocalizedKeysConstants.Content.notAvailable
+
+        return .init(id: movie.id,
+                     name: movie.name ?? notAvailable,
+                     year: movie.year,
+                     country: movie.country ?? notAvailable,
+                     poster: movie.poster ?? "",
+                     rating: movie.rating,
+                     userRating: movie.userRating,
+                     genres: genres.compactMap { $0.name },
+                     shouldShowGenresEllipsis: genres.count > 5
         )
     }
 }
