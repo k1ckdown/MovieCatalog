@@ -869,13 +869,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		49A3FAD52AED81B30043512C /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		49A3FAE02AEDAD940043512C /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -944,7 +937,6 @@
 		49BEC2B62AED771600990BF5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				49A3FAD52AED81B30043512C /* Components */,
 				49A3FAC92AED798E0043512C /* ProfileView.swift */,
 			);
 			path = View;

@@ -74,7 +74,7 @@ private extension MainView {
             Group {
                 TabView {
                     ForEach(cardItems) { item in
-                        MovieAsyncImage(urlString: item.poster)
+                        MovieAsyncImage(urlString: item.poster, isShowingProgressView: true)
                             .onTapGesture {
                                 viewModel.handle(.onSelectMovie(item.id))
                             }

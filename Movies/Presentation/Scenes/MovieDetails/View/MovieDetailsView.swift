@@ -99,7 +99,8 @@ private extension MovieDetailsView {
     }
 
     func posterView(_ poster: String?) -> some View {
-        MovieAsyncImage(urlString: poster)
+        MovieAsyncImage(urlString: poster, isShowingProgressView: true)
+            .frame(height: Constants.posterHeight)
             .overlay {
                 LinearGradient(
                     colors: [.background, .background.opacity(Constants.gradientEndOpacity)],
