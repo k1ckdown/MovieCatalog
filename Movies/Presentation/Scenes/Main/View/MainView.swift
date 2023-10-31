@@ -72,32 +72,9 @@ private extension MainView {
     func listView(cardItems: [MovieItemViewModel], listItems: [MovieItemViewModel]) -> some View {
         List {
             Group {
-                TabView {
-                    ForEach(cardItems) { item in
-                        MovieAsyncImage(urlString: item.poster, isShowingProgressView: true)
-                            .onTapGesture {
-                                viewModel.handle(.onSelectMovie(item.id))
-                            }
-                    }
-                }
-                .frame(height: Constants.MoviePage.height)
-                .tabViewStyle(.page)
-                .indexViewStyle(.page(backgroundDisplayMode: .always))
-                .listRowInsets(EdgeInsets())
-
-                Text(LocalizedKeysConstants.Content.catalog)
-                    .bold()
-                    .font(.title)
-                    .foregroundStyle(.white)
-                    .padding(.vertical, Constants.ListTitle.verticalInsets)
-
-                ForEach(listItems) { item in
-                    MovieItem(viewModel: item)
-                        .onTapGesture {
-                            viewModel.handle(.onSelectMovie(item.id))
-                        }
-                }
-                .listRowInsets(Constants.ListItem.insets)
+                tabView(cardItems)
+                listHeader()
+                movieListView(itemViewModels: listItems)
             }
             .listRowSeparator(.hidden)
             .listRowBackground(Color.clear)
@@ -105,6 +82,42 @@ private extension MainView {
         .listStyle(.plain)
         .scrollIndicators(.hidden)
         .scrollContentBackground(.hidden)
+    }
+}
+
+private extension MainView {
+
+    func tabView(_ cardViewModel: [MovieItemViewModel]) -> some View {
+        TabView {
+            ForEach(cardViewModel) { cardViewModel in
+                MovieAsyncImage(urlString: cardViewModel.poster, isShowingProgressView: true)
+                    .onTapGesture {
+                        viewModel.handle(.onSelectMovie(cardViewModel.id))
+                    }
+            }
+        }
+        .frame(height: Constants.MoviePage.height)
+        .tabViewStyle(.page)
+        .indexViewStyle(.page(backgroundDisplayMode: .always))
+        .listRowInsets(EdgeInsets())
+    }
+
+    func listHeader() -> some View {
+        Text(LocalizedKeysConstants.Content.catalog)
+            .bold()
+            .font(.title)
+            .foregroundStyle(.white)
+            .padding(.vertical, Constants.ListTitle.verticalInsets)
+    }
+
+    func movieListView(itemViewModels: [MovieItemViewModel]) -> some View {
+        ForEach(itemViewModels) { itemViewModel in
+            MovieItem(viewModel: itemViewModel)
+                .onTapGesture {
+                    viewModel.handle(.onSelectMovie(itemViewModel.id))
+                }
+        }
+        .listRowInsets(Constants.ListItem.insets)
     }
 }
 
