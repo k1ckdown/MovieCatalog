@@ -20,7 +20,7 @@ final class MainViewModel: ViewModel {
         self.coordinator = coordinator
         self.fetchMoviesUseCase = fetchMoviesUseCase
     }
-    
+
     func handle(_ event: MainViewEvent) {
         switch event {
         case .onAppear:
@@ -61,7 +61,7 @@ private extension MainViewModel {
         }
     }
 
-    func makeItemViewModel(_ movie: MovieDetails) -> MovieItemViewModel {
+    func makeItemViewModel(_ movie: MovieDetails) -> MovieDetailsItemViewModel {
         let genres = movie.genres ?? []
         let notAvailable = LocalizedKeysConstants.Content.notAvailable
 

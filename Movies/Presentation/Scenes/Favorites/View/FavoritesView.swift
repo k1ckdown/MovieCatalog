@@ -10,7 +10,7 @@ import SwiftUI
 struct FavoritesView: View {
 
     static let movies = Array(repeating: MovieDetails.mock, count: 9)
-    let viewModels: [FavoritesMovieItemViewModel] = movies.map {
+    let viewModels: [MovieShortItemViewModel] = movies.map {
         .init(rating: $0.userRating, name: $0.name, imageUrl: $0.poster)
     }
 
@@ -18,7 +18,7 @@ struct FavoritesView: View {
         ScrollView(.vertical) {
                 FavoritesLayout {
                     ForEach(viewModels) { itemViewModel in
-                        FavoritesMovieItemView(viewModel: itemViewModel)
+                        MovieShortItem(viewModel: itemViewModel)
                     }
                 }
                 .padding(.horizontal, Constants.horizontalInset)
