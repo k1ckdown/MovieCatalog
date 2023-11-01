@@ -15,7 +15,7 @@ struct MainView: View {
         contentView
             .redacted(if: viewModel.state == .loading)
             .appBackground()
-            .onAppear {
+            .firstAppear {
                 viewModel.handle(.onAppear)
             }
     }

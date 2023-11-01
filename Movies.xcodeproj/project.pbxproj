@@ -60,6 +60,7 @@
 		495583192AF0078700E3AA69 /* MovieDetailsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495583182AF0078700E3AA69 /* MovieDetailsViewState.swift */; };
 		4955831B2AF0159200E3AA69 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4955831A2AF0159200E3AA69 /* MovieDetailsViewModel.swift */; };
 		4955831D2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4955831C2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift */; };
+		495F74282AF3127B0026D44E /* FirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F74272AF3127B0026D44E /* FirstAppearViewModifier.swift */; };
 		49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49612AC22ADAD8AF0081832B /* MoviesApp.swift */; };
 		49612AC72ADAD8B10081832B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC62ADAD8B10081832B /* Assets.xcassets */; };
 		49612ACA2ADAD8B10081832B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49612AC92ADAD8B10081832B /* Preview Assets.xcassets */; };
@@ -201,6 +202,7 @@
 		495583182AF0078700E3AA69 /* MovieDetailsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewState.swift; sourceTree = "<group>"; };
 		4955831A2AF0159200E3AA69 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 		4955831C2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailsViewState+Mutating.swift"; sourceTree = "<group>"; };
+		495F74272AF3127B0026D44E /* FirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAppearViewModifier.swift; sourceTree = "<group>"; };
 		49612ABF2ADAD8AF0081832B /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49612AC22ADAD8AF0081832B /* MoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesApp.swift; sourceTree = "<group>"; };
 		49612AC62ADAD8B10081832B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -672,9 +674,6 @@
 			children = (
 				495583162AF0052B00E3AA69 /* Buttons */,
 				49EB26742AED5E2000FFD335 /* Labels */,
-				49EB266E2AED285B00FFD335 /* Layouts */,
-				4961F4632AE0007900A717AB /* ViewModifiers */,
-				4961F4872AE036F200A717AB /* Styles */,
 				49EB266B2AED272100FFD335 /* CustomViews */,
 				49EB26532AECEEA800FFD335 /* Images */,
 				49E3A8C32AE11C1C00AA05C5 /* Pickers */,
@@ -686,10 +685,13 @@
 		4961F4622AE0006400A717AB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4961F47A2AE021C100A717AB /* Protocols */,
 				491EBBDD2AEBEFDC00075FF0 /* Helpers */,
 				49E9280A2AE3E4D2006CC6EF /* Constants */,
 				4995FF1D2AE2C28C00948457 /* Extensions */,
-				4961F47A2AE021C100A717AB /* Protocols */,
+				4961F4872AE036F200A717AB /* Styles */,
+				4961F4632AE0007900A717AB /* ViewModifiers */,
+				49EB266E2AED285B00FFD335 /* Layouts */,
 				4961F45C2ADFE7DA00A717AB /* Components */,
 			);
 			path = Common;
@@ -701,6 +703,7 @@
 				491EBBD72AEBDC9200075FF0 /* App */,
 				491EBBD12AEBDA9200075FF0 /* Form */,
 				49A620642AE6EBD800CEE994 /* TintColor.swift */,
+				495F74272AF3127B0026D44E /* FirstAppearViewModifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -1344,6 +1347,7 @@
 				49330CF42ADD7C7B00BFA4C6 /* NetworkConfig.swift in Sources */,
 				49115C292AEF702500B50FB9 /* MovieDetailsView.swift in Sources */,
 				4961F48D2AE045A700A717AB /* SecureInputView.swift in Sources */,
+				495F74282AF3127B0026D44E /* FirstAppearViewModifier.swift in Sources */,
 				49330CEB2ADD5B9F00BFA4C6 /* AuthNetworkConfig.swift in Sources */,
 				497831642AEECD8300860C41 /* MainViewModel.swift in Sources */,
 				49C189BF2AE3F70D0029BAF9 /* Routable.swift in Sources */,
