@@ -12,14 +12,21 @@ struct FavoritesMovieItemView: View {
     let viewModel: FavoritesMovieItemViewModel
 
     var body: some View {
-        MovieAsyncImage(urlString: viewModel.imageUrl)
-            .clipShape(.rect(cornerRadius: Constants.cornerRadius))
-            .overlay(alignment: .topTrailing, content: {
-                if let rating = viewModel.rating {
-                    RatingTagView(style: .titleAndIcon, value: Double(rating))
-                        .padding([.top, .trailing], Constants.ratingTagInsets)
-                }
-            })
+        VStack(alignment: .leading) {
+            MovieAsyncImage(urlString: viewModel.imageUrl)
+                .clipShape(.rect(cornerRadius: Constants.cornerRadius))
+                .overlay(alignment: .topTrailing, content: {
+                    if let rating = viewModel.rating {
+                        RatingTagView(style: .titleAndIcon, value: Double(rating))
+                            .padding([.top, .trailing], Constants.ratingTagInsets)
+                    }
+                })
+
+            if let name = viewModel.name {
+                Text(name)
+                    .font(.callout)
+            }
+        }
     }
 
     private enum Constants {

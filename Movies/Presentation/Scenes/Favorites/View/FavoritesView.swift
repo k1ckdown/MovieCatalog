@@ -10,22 +10,25 @@ import SwiftUI
 struct FavoritesView: View {
 
     static let movies = Array(repeating: MovieDetails.mock, count: 9)
-    let viewModels: [FavoritesMovieItemViewModel] = movies.map { .init(rating: $0.userRating, imageUrl: $0.poster) }
+    let viewModels: [FavoritesMovieItemViewModel] = movies.map {
+        .init(rating: $0.userRating, name: $0.name, imageUrl: $0.poster)
+    }
 
     var body: some View {
         ScrollView(.vertical) {
                 FavoritesLayout {
-                    ForEach(Array(viewModels.enumerated()) ,id: \.offset) { index, model in
-                        FavoritesMovieItemView(viewModel: model)
-                            .onTapGesture {
-                                print(index)
-                            }
+                    ForEach(viewModels) { itemViewModel in
+                        FavoritesMovieItemView(viewModel: itemViewModel)
                     }
                 }
-                .padding(.horizontal, 15)
+                .padding(.horizontal, Constants.horizontalInset)
         }
         .scrollIndicators(.hidden)
         .appBackground()
+    }
+
+    private enum Constants {
+        static let horizontalInset: CGFloat = 15
     }
 }
 

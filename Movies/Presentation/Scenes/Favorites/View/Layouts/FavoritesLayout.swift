@@ -17,12 +17,12 @@ struct FavoritesLayout: Layout {
 
         enum Small {
             static let width: CGFloat = 180
-            static let height: CGFloat = 270
+            static let height: CGFloat = 285
         }
 
         enum Medium {
             static let width: CGFloat = 360
-            static let height: CGFloat = 220
+            static let height: CGFloat = 235
         }
     }
 

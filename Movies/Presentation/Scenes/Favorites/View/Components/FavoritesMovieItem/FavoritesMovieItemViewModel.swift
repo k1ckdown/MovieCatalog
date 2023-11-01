@@ -10,6 +10,7 @@ import Foundation
 struct FavoritesMovieItemViewModel: Identifiable, Equatable {
     let id = UUID()
     let rating: Int?
+    let name: String?
     let imageUrl: String?
 
     static func == (
