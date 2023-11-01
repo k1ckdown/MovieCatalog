@@ -20,7 +20,7 @@ final class MainViewModel: ViewModel {
         self.coordinator = coordinator
         self.fetchMoviesUseCase = fetchMoviesUseCase
     }
-    
+
     func handle(_ event: MainViewEvent) {
         switch event {
         case .onAppear:
@@ -28,6 +28,10 @@ final class MainViewModel: ViewModel {
 
         case .onSelectMovie(let id):
             movieSelected(id: id)
+
+        case .willDisplayItem(let id):
+            guard id == movies.last?.id else { return }
+            Task { await loadMore() }
         }
     }
 }
@@ -36,6 +40,21 @@ private extension MainViewModel {
 
     enum Constants {
         static let numberOfCards = 4
+    }
+
+    func loadMore() async {
+        do {
+            let nextMovies = try await fetchMoviesUseCase.execute(.next)
+            movies.append(contentsOf: nextMovies)
+
+            let itemViewModels = movies.map { makeItemViewModel($0) }
+            let cardItems = Array(itemViewModels[0..<Constants.numberOfCards])
+            let listItems = Array(itemViewModels[Constants.numberOfCards...])
+
+            state = .loaded(.init(cardMovies: cardItems, listMovies: listItems))
+        } catch {
+            print(error)
+        }
     }
 
     func movieSelected(id: String) {
