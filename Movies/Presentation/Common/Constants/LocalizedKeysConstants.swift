@@ -11,7 +11,23 @@ enum LocalizedKeysConstants {
 
     enum Content {
         static let notAvailable = "N/A"
+        static let genres = LocalizedStringKey("Genres")
         static let catalog = LocalizedStringKey("Catalog")
+        static let reviews = LocalizedStringKey("Reviews")
+        static let myReview = LocalizedStringKey("MyReview")
+        static let readMore = LocalizedStringKey("ReadMore")
+        static let aboutMovie = LocalizedStringKey("AboutMovie")
+
+        enum Description {
+            static let time = "Time"
+            static let year = "Year"
+            static let fees = "Fees"
+            static let budget = "Budget"
+            static let country = "Country"
+            static let tagline = "Tagline"
+            static let director = "Director"
+            static let ageLimit = "AgeLimit"
+        }
     }
 
     enum Welcome {
@@ -27,6 +43,7 @@ enum LocalizedKeysConstants {
 
         enum Action {
             static let logIn = LocalizedStringKey("LogIn")
+            static let logOut = LocalizedStringKey("LogOut")
             static let register = LocalizedStringKey("Register")
             static let `continue` = LocalizedStringKey("Сontinue")
         }

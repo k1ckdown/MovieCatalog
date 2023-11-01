@@ -74,7 +74,10 @@ private extension MainView {
             Group {
                 TabView {
                     ForEach(cardItems) { item in
-                        MovieAsyncImage(imageUrl: item.poster)
+                        MovieAsyncImage(urlString: item.poster)
+                            .onTapGesture {
+                                viewModel.handle(.onSelectMovie(item.id))
+                            }
                     }
                 }
                 .frame(height: Constants.MoviePage.height)
@@ -106,5 +109,10 @@ private extension MainView {
 }
 
 #Preview {
-    MainView(viewModel: .init(coordinator: .init()))
+    MainView(
+        viewModel: .init(
+            coordinator: MainCoordinator(),
+            fetchMoviesUseCase: AppFactory().makeFetchMoviesUseCase()
+        )
+    )
 }
