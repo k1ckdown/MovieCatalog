@@ -30,17 +30,18 @@ struct MovieDetailsView: View {
     }
 
     private enum Constants {
-        static let genresSpacing: CGFloat = 9
-        static let reviewsSpacing: CGFloat = 18
-        static let posterHeight: CGFloat = 540
-        static let contentSpacing: CGFloat = -15
-        static let gradientEndOpacity: CGFloat = 0.4
+        static let posterHeight: CGFloat = 515
+        static let gradientEndOpacity: CGFloat = 0
         static let sectionHeaderFontSize: CGFloat = 18
 
-        enum Description {
-            static let titleSpacing: CGFloat = 8
-            static let contentInsets: CGFloat = 18
-            static let contentSpacing: CGFloat = 30
+        static let posterSpacing: CGFloat = 30
+        static let genresSpacing: CGFloat = 9
+        static let reviewsSpacing: CGFloat = 18
+        static let detailsSpacing: CGFloat = 25
+
+        enum Content {
+            static let spacing: CGFloat = 28
+            static let horizontalInsets: CGFloat = 18
         }
     }
 }
@@ -49,16 +50,17 @@ private extension MovieDetailsView {
 
     func detailsView(data: MovieDetailsViewState.ViewData) -> some View {
         ScrollView(.vertical) {
-            VStack(spacing: Constants.contentSpacing) {
+            VStack(spacing: Constants.posterSpacing) {
                 posterView(data.poster)
 
-                VStack(spacing: Constants.Description.titleSpacing) {
+                VStack(spacing: Constants.Content.spacing) {
                     headerView(name: data.name, rating: data.rating, isFavorite: data.isFavorite)
 
-                    VStack(alignment: .leading, spacing: Constants.Description.contentSpacing) {
-                        if let description = data.description {
-                            ExpandableText(text: description)
-                        }
+                    if let description = data.description {
+                        ExpandableText(text: description)
+                    }
+
+                    VStack(alignment: .leading, spacing: Constants.detailsSpacing) {
 
                         if let genres = data.genres {
                             genreListView(genres: genres)
@@ -70,11 +72,26 @@ private extension MovieDetailsView {
                             reviewListView(viewModels: reviewViewModels)
                         }
                     }
-                    .padding(.horizontal, Constants.Description.contentInsets)
                 }
+                .padding(.horizontal, Constants.Content.horizontalInsets)
             }
         }
         .scrollIndicators(.hidden)
+    }
+}
+
+private extension MovieDetailsView {
+
+    func posterView(_ poster: String?) -> some View {
+        MovieAsyncImage(urlString: poster, isShowingProgressView: true)
+            .frame(height: Constants.posterHeight)
+            .overlay {
+                LinearGradient(
+                    colors: [.background, .background.opacity(Constants.gradientEndOpacity)],
+                    startPoint: .bottom,
+                    endPoint: .center
+                )
+            }
     }
 
     func headerView(name: String?, rating: Double, isFavorite: Bool) -> some View {
@@ -95,19 +112,10 @@ private extension MovieDetailsView {
                 viewModel.handle(.favoriteTapped)
             }
         }
-        .padding()
     }
+}
 
-    func posterView(_ poster: String?) -> some View {
-        MovieAsyncImage(urlString: poster)
-            .overlay {
-                LinearGradient(
-                    colors: [.background, .background.opacity(Constants.gradientEndOpacity)],
-                    startPoint: .bottom,
-                    endPoint: .center
-                )
-            }
-    }
+private extension MovieDetailsView {
 
     func genreListView(genres: [String]) -> some View {
         TagLayout(spacing: Constants.genresSpacing) {
