@@ -22,6 +22,13 @@ struct ProfileView: View {
                 Text(viewModel.state.username)
                     .font(.title2)
                     .bold()
+
+                Button(LocalizedKeysConstants.Auth.Action.logOut) {
+
+                }
+                .fontWeight(.semibold)
+                .foregroundStyle(.appAccent)
+                .padding(.top, Constants.logOutTopInset)
             }
 
             VStack(spacing: Constants.formSpacing) {
@@ -83,6 +90,8 @@ struct ProfileView: View {
     }
 
     private enum Constants {
+        static let logOutTopInset: CGFloat = 1
+
         static let formSpacing: CGFloat = 15
         static let buttonSpacing: CGFloat = 17
         static let contentSpacing: CGFloat = 18
@@ -116,7 +125,7 @@ struct ProfileView: View {
             set: { viewModel.handle(.genderChanged($0)) }
         )
     }
-    
+
     private var birthdate: Binding<Date> {
         Binding(
             get: { viewModel.state.birthdate },

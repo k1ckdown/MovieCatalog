@@ -369,6 +369,9 @@
         }
       }
     },
+    "Hello, world!" : {
+
+    },
     "IncorrectLink" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -535,6 +538,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Неверный логин или пароль"
+          }
+        }
+      }
+    },
+    "LogOut" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log Out"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выйти из аккаунта"
           }
         }
       }
@@ -809,6 +829,9 @@
           }
         }
       }
+    },
+    "Text" : {
+
     },
     "Time" : {
       "extractionState" : "manual",
