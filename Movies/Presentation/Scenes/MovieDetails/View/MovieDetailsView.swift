@@ -34,13 +34,13 @@ struct MovieDetailsView: View {
         static let gradientEndOpacity: CGFloat = 0
         static let sectionHeaderFontSize: CGFloat = 18
 
+        static let posterSpacing: CGFloat = 30
         static let genresSpacing: CGFloat = 9
         static let reviewsSpacing: CGFloat = 18
         static let detailsSpacing: CGFloat = 25
 
         enum Content {
             static let spacing: CGFloat = 28
-            static let topInset: CGFloat = 30
             static let horizontalInsets: CGFloat = 18
         }
     }
@@ -50,7 +50,7 @@ private extension MovieDetailsView {
 
     func detailsView(data: MovieDetailsViewState.ViewData) -> some View {
         ScrollView(.vertical) {
-            VStack {
+            VStack(spacing: Constants.posterSpacing) {
                 posterView(data.poster)
 
                 VStack(spacing: Constants.Content.spacing) {
@@ -73,11 +73,25 @@ private extension MovieDetailsView {
                         }
                     }
                 }
-                .padding(.top, Constants.Content.topInset)
                 .padding(.horizontal, Constants.Content.horizontalInsets)
             }
         }
         .scrollIndicators(.hidden)
+    }
+}
+
+private extension MovieDetailsView {
+
+    func posterView(_ poster: String?) -> some View {
+        MovieAsyncImage(urlString: poster, isShowingProgressView: true)
+            .frame(height: Constants.posterHeight)
+            .overlay {
+                LinearGradient(
+                    colors: [.background, .background.opacity(Constants.gradientEndOpacity)],
+                    startPoint: .bottom,
+                    endPoint: .center
+                )
+            }
     }
 
     func headerView(name: String?, rating: Double, isFavorite: Bool) -> some View {
@@ -99,18 +113,9 @@ private extension MovieDetailsView {
             }
         }
     }
+}
 
-    func posterView(_ poster: String?) -> some View {
-        MovieAsyncImage(urlString: poster, isShowingProgressView: true)
-            .frame(height: Constants.posterHeight)
-            .overlay {
-                LinearGradient(
-                    colors: [.background, .background.opacity(Constants.gradientEndOpacity)],
-                    startPoint: .bottom,
-                    endPoint: .center
-                )
-            }
-    }
+private extension MovieDetailsView {
 
     func genreListView(genres: [String]) -> some View {
         TagLayout(spacing: Constants.genresSpacing) {
