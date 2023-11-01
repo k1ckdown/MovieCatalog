@@ -539,6 +539,23 @@
         }
       }
     },
+    "LogOut" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log Out"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выйти из аккаунта"
+          }
+        }
+      }
+    },
     "male" : {
       "extractionState" : "manual",
       "localizations" : {
