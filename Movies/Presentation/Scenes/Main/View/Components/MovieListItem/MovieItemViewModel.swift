@@ -12,9 +12,25 @@ struct MovieItemViewModel: Identifiable, Equatable {
     let name: String
     let year: Int
     let country: String
-    let poster: String
+    let poster: String?
     let rating: Double
-    let userRating: Double?
+    let userRating: Int?
     let genres: [String]
     let shouldShowGenresEllipsis: Bool
+}
+
+extension MovieItemViewModel: HasPlaceholder {
+    static func placeholder(id: String) -> MovieItemViewModel {
+        .init(
+            id: id,
+            name: .placeholder(length: 20),
+            year: 0,
+            country: .placeholder(length: 5),
+            poster: "",
+            rating: 10,
+            userRating: nil,
+            genres: [],
+            shouldShowGenresEllipsis: false
+        )
+    }
 }

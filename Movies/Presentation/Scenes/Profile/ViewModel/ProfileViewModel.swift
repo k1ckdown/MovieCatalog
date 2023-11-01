@@ -32,13 +32,13 @@ final class ProfileViewModel: ViewModel {
         case .onAppear:
             Task { await retrieveProfile() }
 
-        case .onTapEdit:
+        case .editTapped:
             break
 
-        case .onTapSave:
+        case .saveTapped:
             break
 
-        case .onTapLogOut:
+        case .logOutTapped:
             break
 
         case .emailChanged(let email):
@@ -78,11 +78,22 @@ private extension ProfileViewModel {
 
     func retrieveProfile() async {
         do {
-            profile = try await getProfileUseCase.execute()
+            let profile = try await getProfileUseCase.execute()
+            self.profile = profile
+            handleProfileData(profile)
         } catch {
             state.errorMessage = error.localizedDescription
             state.isAlertPresenting = true
         }
+    }
+
+    func handleProfileData(_ profile: Profile) {
+        state.username = profile.nickName
+        state.email = profile.email
+        state.avatarLink = profile.avatarLink
+        state.name = profile.name
+        state.gender = profile.gender
+        state.birthdate = profile.birthDate
     }
 
     func updateProfile() async {

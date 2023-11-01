@@ -17,7 +17,7 @@ struct MovieItem: View {
 
     var body: some View {
         HStack(spacing: Constants.Content.spacing) {
-            MovieAsyncImage(imageUrl: viewModel.poster)
+            MovieAsyncImage(urlString: viewModel.poster)
                 .frame(width: Constants.MovieImage.width)
                 .clipShape(.rect(cornerRadius: Constants.MovieImage.cornerRadius))
                 .overlay(alignment: .topLeading) {
@@ -32,20 +32,20 @@ struct MovieItem: View {
                             .font(.system(size: Constants.Details.nameFontSize, weight: .bold))
                             .frame(maxWidth: .infinity, alignment: .leading)
 
-                        Text("\(viewModel.year) • \(viewModel.country)")
+                        Text("\(viewModel.year.description) • \(viewModel.country)")
                             .font(.subheadline)
                     }
 
                     Spacer()
 
                     if let userRating = viewModel.userRating {
-                        RatingTagView(style: .titleAndIcon, value: userRating)
+                        RatingTagView(style: .titleAndIcon, value: Double(userRating))
                     }
                 }
 
                 TagLayout {
                     ForEach(viewModel.genres, id: \.self) { genre in
-                        GenreItem(name: genre)
+                        GenreTag(name: genre, style: .note)
                     }
 
                     if viewModel.shouldShowGenresEllipsis {
@@ -84,14 +84,14 @@ struct MovieItem: View {
 }
 
 #Preview {
-    let mock = MockData.movie
+    let mock = MovieShort.mockedMovie
     let viewModel = MovieItemViewModel(
         id: mock.id,
         name: mock.name ?? "",
         year: mock.year,
         country: mock.country ?? "",
         poster: mock.poster ?? "",
-        rating: 3.0,
+        rating: 3.444,
         userRating: 8,
         genres: mock.genres?.compactMap { $0.name } ?? [],
         shouldShowGenresEllipsis: false

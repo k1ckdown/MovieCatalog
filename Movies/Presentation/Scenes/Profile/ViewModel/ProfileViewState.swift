@@ -29,7 +29,7 @@ struct ProfileViewState: Equatable {
     var isAvatarLinkErrorShowing: Bool {
         avatarLink.isEmpty == false && avatarLinkError != nil
     }
-
+    
     var isSaveDisabled: Bool {
         email.isEmpty || avatarLink.isEmpty ||
         name.isEmpty || emailError != nil || isDataChanged == false
@@ -38,9 +38,9 @@ struct ProfileViewState: Equatable {
 
 enum ProfileViewEvent {
     case onAppear
-    case onTapEdit
-    case onTapSave
-    case onTapLogOut
+    case editTapped
+    case saveTapped
+    case logOutTapped
 
     case emailChanged(String)
     case avatarLinkChanged(String)

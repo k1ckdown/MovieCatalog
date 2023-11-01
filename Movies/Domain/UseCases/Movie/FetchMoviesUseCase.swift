@@ -18,7 +18,7 @@ final class FetchMoviesUseCase {
         case next
     }
 
-    private var pageCount: Int?
+    private var pageCount = 1
     private var currentPage = 1
 
     private let movieRepository: MovieRepositoryProtocol
@@ -32,10 +32,7 @@ final class FetchMoviesUseCase {
     func execute(_ page: Page) async throws -> [MovieDetails] {
         currentPage = page == .first ? 1 : currentPage + 1
 
-        guard
-            let pageCount = pageCount,
-            currentPage <= pageCount
-        else { throw FetchMoviesError.maxPagesReached }
+        guard currentPage <= pageCount else { throw FetchMoviesError.maxPagesReached }
 
         let moviesPagedList = try await movieRepository.getMoviesPagedList(page: currentPage)
         self.pageCount = moviesPagedList.pageInfo.pageCount

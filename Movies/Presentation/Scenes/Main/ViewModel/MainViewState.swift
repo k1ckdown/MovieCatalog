@@ -5,8 +5,6 @@
 //  Created by Ivan Semenov on 30.10.2023.
 //
 
-import Foundation
-
 enum MainViewState: Equatable {
     case idle
     case loading
