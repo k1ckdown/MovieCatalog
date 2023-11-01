@@ -33,8 +33,8 @@ struct MainCoordinatorView: View {
     @ViewBuilder
     private func destination(_ screen: MainCoordinator.Screen) -> some View {
         switch screen {
-        case .movieDetails(let movie):
-            EmptyView()
+        case .movieDetails(let movieDetails):
+            MovieDetailsView(viewModel: .init(movieDetails: movieDetails))
         }
     }
 }
