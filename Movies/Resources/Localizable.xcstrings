@@ -369,9 +369,6 @@
         }
       }
     },
-    "Hello, world!" : {
-
-    },
     "IncorrectLink" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -829,9 +826,6 @@
           }
         }
       }
-    },
-    "Text" : {
-
     },
     "Time" : {
       "extractionState" : "manual",

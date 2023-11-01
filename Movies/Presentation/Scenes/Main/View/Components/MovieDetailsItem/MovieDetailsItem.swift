@@ -1,5 +1,5 @@
 //
-//  MovieItem.swift
+//  MovieDetailsItem.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 28.10.2023.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct MovieItem: View {
+struct MovieDetailsItem: View {
 
-    let viewModel: MovieItemViewModel
+    let viewModel: MovieDetailsItemViewModel
 
-    init(viewModel: MovieItemViewModel) {
+    init(viewModel: MovieDetailsItemViewModel) {
         self.viewModel = viewModel
     }
 
@@ -85,7 +85,7 @@ struct MovieItem: View {
 
 #Preview {
     let mock = MovieShort.mockedMovie
-    let viewModel = MovieItemViewModel(
+    let viewModel = MovieDetailsItemViewModel(
         id: mock.id,
         name: mock.name ?? "",
         year: mock.year,
@@ -97,5 +97,5 @@ struct MovieItem: View {
         shouldShowGenresEllipsis: false
     )
 
-    return MovieItem(viewModel: viewModel)
+    return MovieDetailsItem(viewModel: viewModel)
 }
