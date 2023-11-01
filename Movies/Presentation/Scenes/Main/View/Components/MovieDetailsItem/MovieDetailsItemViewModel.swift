@@ -1,5 +1,5 @@
 //
-//  MovieItemViewModel.swift
+//  MovieDetailsItemViewModel.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 28.10.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieItemViewModel: Identifiable, Equatable {
+struct MovieDetailsItemViewModel: Identifiable, Equatable {
     let id: String
     let name: String
     let year: Int
@@ -19,8 +19,8 @@ struct MovieItemViewModel: Identifiable, Equatable {
     let shouldShowGenresEllipsis: Bool
 }
 
-extension MovieItemViewModel: HasPlaceholder {
-    static func placeholder(id: String) -> MovieItemViewModel {
+extension MovieDetailsItemViewModel: HasPlaceholder {
+    static func placeholder(id: String) -> MovieDetailsItemViewModel {
         .init(
             id: id,
             name: .placeholder(length: 20),

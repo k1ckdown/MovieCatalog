@@ -12,8 +12,8 @@ enum MainViewState: Equatable {
     case loaded(ViewData)
 
     struct ViewData: Equatable {
-        let cardMovies: [MovieItemViewModel]
-        let listMovies: [MovieItemViewModel]
+        let cardMovies: [MovieDetailsItemViewModel]
+        let listMovies: [MovieDetailsItemViewModel]
     }
 }
 

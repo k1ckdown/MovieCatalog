@@ -19,7 +19,7 @@ struct AppCoordinator: View {
     }
 
     var body: some View {
-        AuthCoordinatorView(authCoordinator, factory: screenFactory)
+        MainCoordinatorView(mainCoordinator, factory: screenFactory)
     }
 }
 
