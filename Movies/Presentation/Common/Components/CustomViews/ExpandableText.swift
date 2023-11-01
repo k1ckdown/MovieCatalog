@@ -10,14 +10,17 @@ import SwiftUI
 struct ExpandableText: View {
 
     let text: String
-    @State private var isExpanded: Bool = false
+
+    @State private var isExpanded = false
+    @State private var isTruncated = false
 
     var body: some View{
-        VStack {
+        VStack(alignment: .leading, spacing: Constants.contentSpacing) {
             Text(text)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .lineLimit(isExpanded ? nil : Constants.Text.lineLimit)
                 .overlay {
-                    if isExpanded == false {
+                    if isExpanded == false, isTruncated == true {
                         LinearGradient(
                             colors: [
                                 .background,
@@ -28,21 +31,24 @@ struct ExpandableText: View {
                         )
                     }
                 }
-                .overlay(
+                .background(
                     GeometryReader { proxy in
-                        Button {
-                            withAnimation(.easeOut(duration: Constants.animationDuration)) {
-                                isExpanded.toggle()
-                            }
-                        } label: {
-                            moreLabel
+                        Color.clear.onAppear {
+                            determineTruncation(proxy)
                         }
-                        .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottomLeading)
-                        .padding(.top, Constants.Label.topInset)
                     }
                 )
+
+            if isTruncated {
+                Button {
+                    withAnimation(.easeOut(duration: Constants.animationDuration)) {
+                        isExpanded.toggle()
+                    }
+                } label: {
+                    moreLabel
+                }
+            }
         }
-        .padding(.bottom, Constants.Label.topInset)
     }
 
     private var moreLabel: some View {
@@ -58,10 +64,26 @@ struct ExpandableText: View {
         .foregroundStyle(.appAccent)
     }
 
+    private func determineTruncation(_ geometry: GeometryProxy) {
+        let total = self.text.boundingRect(
+            with: CGSize(
+                width: geometry.size.width,
+                height: .greatestFiniteMagnitude
+            ),
+            options: .usesLineFragmentOrigin,
+            context: nil
+        )
+
+        if total.size.height > geometry.size.height {
+            self.isTruncated = true
+        }
+    }
+    
     private enum Constants {
         static let degrees: Double = -180
         static let animationDuration = 0.4
         static let startDegrees: Double = 0
+        static let contentSpacing: CGFloat = 5
 
         enum Text {
             static let lineLimit = 4
