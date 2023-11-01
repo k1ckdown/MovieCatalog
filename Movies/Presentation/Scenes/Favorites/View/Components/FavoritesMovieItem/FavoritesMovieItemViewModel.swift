@@ -11,7 +11,6 @@ struct FavoritesMovieItemViewModel: Identifiable, Equatable {
     let id = UUID()
     let rating: Int?
     let imageUrl: String?
-    let size: FavoritesMovieItemView.Size
 
     static func == (
         lhs: FavoritesMovieItemViewModel,
