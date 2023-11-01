@@ -1,5 +1,5 @@
 //
-//  FavoritesMovieItemView.swift
+//  MovieShortItem.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 01.11.2023.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct FavoritesMovieItemView: View {
+struct MovieShortItem: View {
 
-    let viewModel: FavoritesMovieItemViewModel
+    let viewModel: MovieShortItemViewModel
 
     var body: some View {
         VStack(alignment: .leading) {
