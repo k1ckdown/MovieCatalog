@@ -21,14 +21,7 @@ struct ExpandableText: View {
                 .lineLimit(isExpanded ? nil : Constants.Text.lineLimit)
                 .overlay {
                     if isExpanded == false, isTruncated == true {
-                        LinearGradient(
-                            colors: [
-                                .background,
-                                .background.opacity(Constants.Text.gradientEndOpacity)
-                            ],
-                            startPoint: .bottom,
-                            endPoint: .center
-                        )
+                        gradient
                     }
                 }
                 .background(
@@ -40,28 +33,39 @@ struct ExpandableText: View {
                 )
 
             if isTruncated {
-                Button {
-                    withAnimation(.easeOut(duration: Constants.animationDuration)) {
-                        isExpanded.toggle()
-                    }
-                } label: {
-                    moreLabel
-                }
+                moreButton
             }
         }
     }
 
-    private var moreLabel: some View {
-        HStack(spacing: Constants.Label.spacing) {
-            Text(LocalizedKeysConstants.Content.readMore)
-                .font(.callout)
+    private var gradient: LinearGradient {
+        .linearGradient(
+            colors: [
+                .background,
+                .background.opacity(Constants.Text.gradientEndOpacity)
+            ],
+            startPoint: .bottom,
+            endPoint: .center
+        )
+    }
 
-            Image(systemName: Constants.Label.imageName)
-                .imageScale(.medium)
-                .rotationEffect(.degrees(isExpanded ? Constants.degrees : Constants.startDegrees))
+    private var moreButton: some View {
+        Button {
+            withAnimation(.easeOut(duration: Constants.animationDuration)) {
+                isExpanded.toggle()
+            }
+        } label: {
+            HStack(spacing: Constants.Label.spacing) {
+                Text(LocalizedKeysConstants.Content.readMore)
+                    .font(.callout)
+
+                Image(systemName: Constants.Label.imageName)
+                    .imageScale(.medium)
+                    .rotationEffect(.degrees(isExpanded ? Constants.degrees : Constants.startDegrees))
+            }
+            .fontWeight(.semibold)
+            .foregroundStyle(.appAccent)
         }
-        .fontWeight(.semibold)
-        .foregroundStyle(.appAccent)
     }
 
     private func determineTruncation(_ geometry: GeometryProxy) {
@@ -78,7 +82,7 @@ struct ExpandableText: View {
             self.isTruncated = true
         }
     }
-    
+
     private enum Constants {
         static let degrees: Double = -180
         static let animationDuration = 0.4
