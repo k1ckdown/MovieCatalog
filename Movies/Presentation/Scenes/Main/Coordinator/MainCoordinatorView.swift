@@ -8,28 +8,28 @@
 import SwiftUI
 
 struct MainCoordinatorView: View {
-
+    
     enum Screen: Routable {
         case movieDetails(MovieDetails)
     }
-
+    
     private let mainView: MainView
-    private let factory: ScreenFactory
+    private let factory: MainCoordinatorFactory
     @ObservedObject private var coordinator: MainCoordinator
-
-    init(_ coordinator: MainCoordinator, factory: ScreenFactory) {
+    
+    init(_ coordinator: MainCoordinator, factory: MainCoordinatorFactory) {
         self.factory = factory
         self.coordinator = coordinator
         mainView = factory.makeMainView(coordinator: coordinator)
     }
-
+    
     var body: some View {
         NavigationStack(path: $coordinator.navigationPath) {
             mainView
                 .navigationDestination(for: MainCoordinator.Screen.self, destination: destination)
         }
     }
-
+    
     @ViewBuilder
     private func destination(_ screen: MainCoordinator.Screen) -> some View {
         switch screen {
