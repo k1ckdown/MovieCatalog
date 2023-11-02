@@ -14,6 +14,7 @@ struct MovieDetailsView: View {
     var body: some View {
         contentView
             .appBackground()
+            .toolbarRole(.editor)
     }
 
     @ViewBuilder
