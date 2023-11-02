@@ -8,7 +8,7 @@
 import SwiftUI
 
 @MainActor
-final class ScreenFactory: AuthCoordinatorFactory, ProfileCoordinatorFactory {
+final class ScreenFactory: AuthCoordinatorFactory, MainCoordinatorFactory, ProfileCoordinatorFactory {
 
     private let appFactory: AppFactory
 
@@ -94,7 +94,7 @@ extension ScreenFactory: PersonalInfoRegistrationViewFactory {
             validateUsernameUseCase: appFactory.makeValidateUsernameUseCase()
         )
         let view = PersonalInfoRegistrationView(viewModel: viewModel)
-        
+
         return view
     }
 }
