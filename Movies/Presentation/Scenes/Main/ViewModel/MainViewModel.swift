@@ -26,12 +26,11 @@ final class MainViewModel: ViewModel {
         case .onAppear:
             Task { await fetchMovies() }
 
+        case .willDisplayLastItem:
+            Task { await loadMore() }
+
         case .onSelectMovie(let id):
             movieSelected(id: id)
-
-        case .willDisplayItem(let id):
-            guard id == movies.last?.id else { return }
-            Task { await loadMore() }
         }
     }
 }
@@ -47,13 +46,12 @@ private extension MainViewModel {
             let nextMovies = try await fetchMoviesUseCase.execute(.next)
             movies.append(contentsOf: nextMovies)
 
-            let itemViewModels = movies.map { makeItemViewModel($0) }
-            let cardItems = Array(itemViewModels[0..<Constants.numberOfCards])
-            let listItems = Array(itemViewModels[Constants.numberOfCards...])
-
-            state = .loaded(.init(cardMovies: cardItems, listMovies: listItems))
+            let itemViewModels = nextMovies.map { makeItemViewModel($0) }
+            state = state.loadedMore(itemViewModels)
+        } catch let error as FetchMoviesUseCase.FetchMoviesError {
+            state = error == .maxPagesReached ? state.unavailableLoadMore() : state.failedLoadMore()
         } catch {
-            print(error)
+            state = state.failedLoadMore()
         }
     }
 
@@ -74,7 +72,7 @@ private extension MainViewModel {
             let cardItems = Array(itemViewModels[0..<Constants.numberOfCards])
             let listItems = Array(itemViewModels[Constants.numberOfCards...])
 
-            state = .loaded(.init(cardMovies: cardItems, listMovies: listItems))
+            state = .loaded(.init(loadMore: .available, listMovies: listItems, cardMovies: cardItems))
         } catch {
             state = .error("\(error)")
         }
