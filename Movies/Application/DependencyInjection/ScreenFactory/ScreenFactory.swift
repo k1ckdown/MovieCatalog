@@ -8,12 +8,23 @@
 import SwiftUI
 
 @MainActor
-final class ScreenFactory: AuthCoordinatorFactory {
+final class ScreenFactory: AuthCoordinatorFactory, ProfileCoordinatorFactory {
 
     private let appFactory: AppFactory
 
     init(appFactory: AppFactory) {
         self.appFactory = appFactory
+    }
+}
+
+// MARK: - MovieDetailsFactory
+
+extension ScreenFactory: MovieDetailsViewFactory {
+    func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView {
+        let viewModel = MovieDetailsViewModel(movieDetails: movieDetails)
+        let view = MovieDetailsView(viewModel: viewModel)
+
+        return view
     }
 }
 
@@ -31,12 +42,16 @@ extension ScreenFactory: MainViewFactory {
     }
 }
 
-// MARK: - MovieDetailsFactory
+// MARK: - ProfileViewFactory
 
-extension ScreenFactory: MovieDetailsFactory {
-    func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView {
-        let viewModel = MovieDetailsViewModel(movieDetails: movieDetails)
-        let view = MovieDetailsView(viewModel: viewModel)
+extension ScreenFactory: ProfileViewFactory {
+    func makeProfileView() -> ProfileView {
+        let viewModel = ProfileViewModel(
+            getProfileUseCase: appFactory.makeGetProfileUseCase(),
+            updateProfileUseCase: appFactory.makeUpdateProfileUseCase(),
+            validateEmailUseCase: appFactory.makeValidateEmailUseCase()
+        )
+        let view = ProfileView(viewModel: viewModel)
 
         return view
     }
@@ -79,7 +94,7 @@ extension ScreenFactory: PersonalInfoRegistrationViewFactory {
             validateUsernameUseCase: appFactory.makeValidateUsernameUseCase()
         )
         let view = PersonalInfoRegistrationView(viewModel: viewModel)
-
+        
         return view
     }
 }

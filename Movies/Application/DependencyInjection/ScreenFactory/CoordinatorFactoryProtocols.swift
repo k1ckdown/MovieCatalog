@@ -8,6 +8,9 @@
 import Foundation
 
 @MainActor
+protocol ProfileCoordinatorFactory: ProfileViewFactory {}
+
+@MainActor
 protocol AuthCoordinatorFactory: LoginViewFactory,
                                  WelcomeViewFactory,
                                  PasswordRegistrationViewFactory,
