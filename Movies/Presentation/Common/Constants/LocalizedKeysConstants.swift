@@ -43,6 +43,7 @@ enum LocalizedKeysConstants {
 
         enum Action {
             static let logIn = LocalizedStringKey("LogIn")
+            static let logOut = LocalizedStringKey("LogOut")
             static let register = LocalizedStringKey("Register")
             static let `continue` = LocalizedStringKey("Сontinue")
         }

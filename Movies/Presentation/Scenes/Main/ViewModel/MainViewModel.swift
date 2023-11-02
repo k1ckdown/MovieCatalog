@@ -80,7 +80,7 @@ private extension MainViewModel {
         }
     }
 
-    func makeItemViewModel(_ movie: MovieDetails) -> MovieItemViewModel {
+    func makeItemViewModel(_ movie: MovieDetails) -> MovieDetailsItemViewModel {
         let genres = movie.genres ?? []
         let notAvailable = LocalizedKeysConstants.Content.notAvailable
 

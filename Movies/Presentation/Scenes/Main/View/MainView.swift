@@ -15,7 +15,7 @@ struct MainView: View {
         contentView
             .redacted(if: viewModel.state == .loading)
             .appBackground()
-            .onAppear {
+            .firstAppear {
                 viewModel.handle(.onAppear)
             }
     }
@@ -69,7 +69,7 @@ private extension MainView {
         }
     }
 
-    func listView(cardItems: [MovieItemViewModel], listItems: [MovieItemViewModel]) -> some View {
+    func listView(cardItems: [MovieDetailsItemViewModel], listItems: [MovieDetailsItemViewModel]) -> some View {
         List {
             Group {
                 tabView(cardItems)
@@ -87,7 +87,7 @@ private extension MainView {
 
 private extension MainView {
 
-    func tabView(_ cardViewModel: [MovieItemViewModel]) -> some View {
+    func tabView(_ cardViewModel: [MovieDetailsItemViewModel]) -> some View {
         TabView {
             ForEach(cardViewModel) { cardViewModel in
                 MovieAsyncImage(urlString: cardViewModel.poster, isShowingProgressView: true)
@@ -110,9 +110,9 @@ private extension MainView {
             .padding(.vertical, Constants.ListTitle.verticalInsets)
     }
 
-    func movieListView(itemViewModels: [MovieItemViewModel]) -> some View {
+    func movieListView(itemViewModels: [MovieDetailsItemViewModel]) -> some View {
         ForEach(itemViewModels) { itemViewModel in
-            MovieItem(viewModel: itemViewModel)
+            MovieDetailsItem(viewModel: itemViewModel)
                 .onTapGesture {
                     viewModel.handle(.onSelectMovie(itemViewModel.id))
                 }

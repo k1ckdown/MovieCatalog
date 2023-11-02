@@ -15,19 +15,30 @@ final class AppFactory {
 }
 
 extension AppFactory {
-
+    
     func makeValidateEmailUseCase() -> ValidateEmailUseCase {
         ValidateEmailUseCase()
     }
-
+    
     func makeValidateUsernameUseCase() -> ValidateUsernameUseCase {
         ValidateUsernameUseCase()
     }
-
+    
     func makeValidatePasswordUseCase() -> ValidatePasswordUseCase {
         ValidatePasswordUseCase()
     }
-
+    
+    func makeGetProfileUseCase() -> GetProfileUseCase {
+        GetProfileUseCase(profileRepository: profileRepository)
+    }
+    
+    func makeUpdateProfileUseCase() -> UpdateProfileUseCase {
+        UpdateProfileUseCase(
+            secureStorage: secureStorage,
+            profileRepository: profileRepository
+        )
+    }
+    
     func makeLoginUseCase() -> LoginUseCase {
         LoginUseCase(
             networkService: networkService,
@@ -35,7 +46,7 @@ extension AppFactory {
             profileRepository: profileRepository
         )
     }
-
+    
     func makeRegisterUserUseCase() -> RegisterUserUseCase {
         RegisterUserUseCase(
             networkService: networkService,
@@ -43,18 +54,33 @@ extension AppFactory {
             profileRepository: profileRepository
         )
     }
-
-    func makeUpdateUserInfoUseCase() -> UpdateProfileUseCase {
-        UpdateProfileUseCase(
-            secureStorage: secureStorage,
+    
+    func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
+        GetDetailsFromMoviesUseCase(
+            movieRepository: movieRepository,
             profileRepository: profileRepository
         )
     }
-
+    
+    func makeAddFavouriteMovieUseCase() -> AddFavouriteMovieUseCase {
+        AddFavouriteMovieUseCase(
+            movieRepository: movieRepository,
+            secureStorage: secureStorage
+        )
+    }
+    
     func makeFetchMoviesUseCase() -> FetchMoviesUseCase {
         FetchMoviesUseCase(
             movieRepository: movieRepository,
-            profileRepository: profileRepository
+            getDetailsFromMovies: makeGetDetailsFromMoviesUseCase()
+        )
+    }
+    
+    func makeFetchFavoriteMoviesUseCase() -> FetchFavoriteMoviesUseCase {
+        FetchFavoriteMoviesUseCase(
+            secureStorage: secureStorage,
+            movieRepository: movieRepository,
+            getDetailsFromMoviesUseCase: makeGetDetailsFromMoviesUseCase()
         )
     }
 }

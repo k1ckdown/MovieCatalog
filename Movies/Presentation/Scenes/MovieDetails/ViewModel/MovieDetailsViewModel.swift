@@ -9,20 +9,22 @@ import Foundation
 
 final class MovieDetailsViewModel: ViewModel {
 
-    @Published private(set) var state: MovieDetailsViewState
-    private let movie: MovieDetails
+    @Published private(set) var state = MovieDetailsViewState.idle
 
-    init(movieDetails: MovieDetails) {
-        movie = movieDetails
-        state = .idle
+    private let movie: MovieDetails
+    private let addFavouriteMovieUseCase: AddFavouriteMovieUseCase
+
+    init(movie: MovieDetails, addFavouriteMovieUseCase: AddFavouriteMovieUseCase) {
+        self.movie = movie
+        self.addFavouriteMovieUseCase = addFavouriteMovieUseCase
+        state = .loaded(getViewData())
     }
 
     func handle(_ event: MovieDetailsViewEvent) {
         switch event {
-        case .onAppear:
-            state = .loaded(getViewData())
         case .favoriteTapped:
             state = state.toggleFavorite()
+            Task { await favoriteToggled() }
 
         default: break
         }
@@ -30,6 +32,18 @@ final class MovieDetailsViewModel: ViewModel {
 }
 
 private extension MovieDetailsViewModel {
+
+    func favoriteToggled() async {
+        guard case .loaded(let viewData) = state else { return }
+
+        if viewData.isFavorite {
+            do {
+                try await addFavouriteMovieUseCase.execute(id: movie.id)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
 
     func getViewData() -> MovieDetailsViewState.ViewData {
         let genres = movie.genres?.compactMap { $0.name }
