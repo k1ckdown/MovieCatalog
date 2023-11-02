@@ -104,6 +104,8 @@
 		498772D02AF2FDD100B706F6 /* FavoritesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498772CF2AF2FDD100B706F6 /* FavoritesLayout.swift */; };
 		49878FE72AE43E080076BF85 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49878FE62AE43E080076BF85 /* ScreenFactory.swift */; };
 		4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995FF1E2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift */; };
+		499B07D42AF3549400261472 /* GetDetailsFromMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B07D32AF3549400261472 /* GetDetailsFromMoviesUseCase.swift */; };
+		499B07D62AF3549800261472 /* FetchFavoriteMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B07D52AF3549800261472 /* FetchFavoriteMoviesUseCase.swift */; };
 		499E0E122AF3352600D4EEA2 /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E0E112AF3352600D4EEA2 /* FavoritesCoordinator.swift */; };
 		499E0E142AF3354100D4EEA2 /* FavoritesCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E0E132AF3354100D4EEA2 /* FavoritesCoordinatorView.swift */; };
 		49A3FACA2AED798E0043512C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAC92AED798E0043512C /* ProfileView.swift */; };
@@ -251,6 +253,8 @@
 		498772CF2AF2FDD100B706F6 /* FavoritesLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesLayout.swift; sourceTree = "<group>"; };
 		49878FE62AE43E080076BF85 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		4995FF1E2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+ContentHugging.swift"; sourceTree = "<group>"; };
+		499B07D32AF3549400261472 /* GetDetailsFromMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDetailsFromMoviesUseCase.swift; sourceTree = "<group>"; };
+		499B07D52AF3549800261472 /* FetchFavoriteMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFavoriteMoviesUseCase.swift; sourceTree = "<group>"; };
 		499E0E112AF3352600D4EEA2 /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		499E0E132AF3354100D4EEA2 /* FavoritesCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinatorView.swift; sourceTree = "<group>"; };
 		49A3FAC92AED798E0043512C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -842,6 +846,8 @@
 			isa = PBXGroup;
 			children = (
 				497831712AEEE09200860C41 /* FetchMoviesUseCase.swift */,
+				499B07D32AF3549400261472 /* GetDetailsFromMoviesUseCase.swift */,
+				499B07D52AF3549800261472 /* FetchFavoriteMoviesUseCase.swift */,
 			);
 			path = Movie;
 			sourceTree = "<group>";
@@ -1306,6 +1312,7 @@
 				490297CB2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift in Sources */,
 				49C3CE9E2AEA595A009FACF4 /* PersonalInfoRegistrationView.swift in Sources */,
 				49330CED2ADD60E400BFA4C6 /* LogoutResponse.swift in Sources */,
+				499B07D62AF3549800261472 /* FetchFavoriteMoviesUseCase.swift in Sources */,
 				49115C2C2AEF831C00B50FB9 /* AboutMovieView.swift in Sources */,
 				49C189C12AE3F7750029BAF9 /* Coordinator.swift in Sources */,
 				497831752AEEE21F00860C41 /* String+Placeholder.swift in Sources */,
@@ -1335,6 +1342,7 @@
 				49A3FACD2AED79AA0043512C /* ProfileViewState.swift in Sources */,
 				491EBBD62AEBDAFC00075FF0 /* FormBorderedTextFieldStyle.swift in Sources */,
 				49330CF22ADD741F00BFA4C6 /* URLParameterEncoder.swift in Sources */,
+				499B07D42AF3549400261472 /* GetDetailsFromMoviesUseCase.swift in Sources */,
 				49DA5D7C2AEA7B4100F96E97 /* AuthCoordinator.swift in Sources */,
 				491EBBD32AEBDA9800075FF0 /* FormItemBackground.swift in Sources */,
 				490297CF2AEC61ED000AFDB4 /* BaseProgressView.swift in Sources */,
