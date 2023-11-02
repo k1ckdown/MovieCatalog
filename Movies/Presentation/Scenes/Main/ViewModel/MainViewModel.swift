@@ -37,10 +37,6 @@ final class MainViewModel: ViewModel {
 
 private extension MainViewModel {
 
-    enum Constants {
-        static let numberOfCards = 4
-    }
-
     func loadMore() async {
         do {
             let nextMovies = try await fetchMoviesUseCase.execute(.next)
@@ -68,11 +64,7 @@ private extension MainViewModel {
         do {
             movies = try await fetchMoviesUseCase.execute(.first)
             let itemViewModels = movies.map { makeItemViewModel($0) }
-
-            let cardItems = Array(itemViewModels[0..<Constants.numberOfCards])
-            let listItems = Array(itemViewModels[Constants.numberOfCards...])
-
-            state = .loaded(.init(loadMore: .available, listMovies: listItems, cardMovies: cardItems))
+            state = .loaded(.init(loadMore: .available, movieItems: itemViewModels))
         } catch {
             state = .error("\(error)")
         }

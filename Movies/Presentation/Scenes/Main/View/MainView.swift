@@ -12,31 +12,31 @@ struct MainView: View {
     @ObservedObject private(set) var viewModel: MainViewModel
 
     var body: some View {
-        contentView
-            .redacted(if: viewModel.state == .loading)
-            .appBackground()
-            .firstAppear {
-                viewModel.handle(.onAppear)
-            }
+        ZStack {
+            contentView
+        }
+        .redacted(if: viewModel.state == .loading)
+        .appBackground()
+        .firstAppear {
+            viewModel.handle(.onAppear)
+        }
     }
 
     @ViewBuilder
     private var contentView: some View {
         switch viewModel.state {
         case .idle:
-            emptyView()
+            EmptyView()
 
         case .loading:
             listView(
-                cardItems: .placeholders(count: Constants.Placeholder.countCard),
-                listItems: .placeholders(count: Constants.Placeholder.countItem),
+                movieItems: .placeholders(count: Constants.countPlaceholders),
                 loadMore: .unavailable
             )
 
         case .loaded(let viewData):
             listView(
-                cardItems: viewData.cardMovies,
-                listItems: viewData.listMovies,
+                movieItems: viewData.movieItems,
                 loadMore: viewData.loadMore
             )
 
@@ -46,8 +46,12 @@ struct MainView: View {
     }
 
     private enum Constants {
+        static let contentSpacing: CGFloat = 12
+
+        static let numberOfCards = 4
+        static let countPlaceholders = 11
+
         static let moviePageHeight: CGFloat = 515
-        static let progressViewHeight: CGFloat = 40
         static let titleVerticalInsets: CGFloat = 5
         static let listItemInsets = EdgeInsets(
             top: 0,
@@ -55,40 +59,30 @@ struct MainView: View {
             bottom: 15,
             trailing: 15
         )
-
-        enum Placeholder {
-            static let countCard = 1
-            static let countItem = 6
-        }
     }
 }
 
 private extension MainView {
 
-    func emptyView() -> some View {
-        ZStack {
-            EmptyView()
-        }
-    }
-
     func listView(
-        cardItems: [MovieDetailsItemViewModel],
-        listItems: [MovieDetailsItemViewModel],
+        movieItems: [MovieDetailsItemViewModel],
         loadMore: MainViewState.ViewData.LoadMore
     ) -> some View {
-        List {
-            Group {
-                tabView(cardItems)
-                listHeader()
-                movieListView(itemViewModels: listItems)
-                loadMoreView(loadMore)
+        ScrollView {
+            VStack(alignment: .leading, spacing: Constants.contentSpacing) {
+                tabView(Array(movieItems[0..<Constants.numberOfCards]))
+                Group {
+                    listHeader()
+                    LazyVStack {
+                        movieListView(itemViewModels: Array(movieItems[Constants.numberOfCards...]))
+                        loadMoreView(loadMore)
+                    }
+                }
+                .padding(.horizontal)
             }
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color.clear)
         }
-        .listStyle(.plain)
         .scrollIndicators(.hidden)
-        .scrollContentBackground(.hidden)
+
     }
 }
 
@@ -132,8 +126,6 @@ private extension MainView {
         switch loadMore {
         case .available:
             ProgressView()
-                .frame(height: Constants.progressViewHeight)
-                .frame(maxWidth: .infinity)
                 .tint(.appAccent)
                 .onAppear {
                     viewModel.handle(.willDisplayLastItem)
