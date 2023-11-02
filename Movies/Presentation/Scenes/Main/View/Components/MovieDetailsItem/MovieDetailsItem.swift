@@ -1,5 +1,5 @@
 //
-//  MovieItem.swift
+//  MovieDetailsItem.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 28.10.2023.
@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct MovieItem: View {
+struct MovieDetailsItem: View {
 
-    let viewModel: MovieItemViewModel
+    let viewModel: MovieDetailsItemViewModel
 
-    init(viewModel: MovieItemViewModel) {
+    init(viewModel: MovieDetailsItemViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
         HStack(spacing: Constants.Content.spacing) {
-            MovieAsyncImage(imageUrl: viewModel.poster)
+            MovieAsyncImage(urlString: viewModel.poster)
                 .frame(width: Constants.MovieImage.width)
                 .clipShape(.rect(cornerRadius: Constants.MovieImage.cornerRadius))
                 .overlay(alignment: .topLeading) {
@@ -45,7 +45,7 @@ struct MovieItem: View {
 
                 TagLayout {
                     ForEach(viewModel.genres, id: \.self) { genre in
-                        GenreItem(name: genre)
+                        GenreTag(name: genre, style: .note)
                     }
 
                     if viewModel.shouldShowGenresEllipsis {
@@ -84,8 +84,8 @@ struct MovieItem: View {
 }
 
 #Preview {
-    let mock = MockData.movie
-    let viewModel = MovieItemViewModel(
+    let mock = MovieShort.mockedMovie
+    let viewModel = MovieDetailsItemViewModel(
         id: mock.id,
         name: mock.name ?? "",
         year: mock.year,
@@ -97,5 +97,5 @@ struct MovieItem: View {
         shouldShowGenresEllipsis: false
     )
 
-    return MovieItem(viewModel: viewModel)
+    return MovieDetailsItem(viewModel: viewModel)
 }

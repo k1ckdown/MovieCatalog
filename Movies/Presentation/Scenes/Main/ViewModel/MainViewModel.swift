@@ -12,12 +12,13 @@ final class MainViewModel: ViewModel {
     @Published private(set) var state: MainViewState
 
     private var movies = [MovieDetails]()
-    private let coordinator: MainCoordinator
-    private let fetchMoviesUseCase: FetchMoviesUseCase = AppFactory().makeFetchMoviesUseCase()
+    private let coordinator: MainCoordinatorProtocol
+    private let fetchMoviesUseCase: FetchMoviesUseCase
 
-    init(coordinator: MainCoordinator) {
+    init(coordinator: MainCoordinatorProtocol, fetchMoviesUseCase: FetchMoviesUseCase) {
         self.state = .idle
         self.coordinator = coordinator
+        self.fetchMoviesUseCase = fetchMoviesUseCase
     }
 
     func handle(_ event: MainViewEvent) {
@@ -60,7 +61,7 @@ private extension MainViewModel {
         }
     }
 
-    func makeItemViewModel(_ movie: MovieDetails) -> MovieItemViewModel {
+    func makeItemViewModel(_ movie: MovieDetails) -> MovieDetailsItemViewModel {
         let genres = movie.genres ?? []
         let notAvailable = LocalizedKeysConstants.Content.notAvailable
 
@@ -68,7 +69,7 @@ private extension MainViewModel {
                      name: movie.name ?? notAvailable,
                      year: movie.year,
                      country: movie.country ?? notAvailable,
-                     poster: movie.poster ?? "",
+                     poster: movie.poster,
                      rating: movie.rating,
                      userRating: movie.userRating,
                      genres: genres.compactMap { $0.name },

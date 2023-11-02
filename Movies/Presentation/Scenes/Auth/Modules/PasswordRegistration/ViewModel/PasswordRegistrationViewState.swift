@@ -5,8 +5,6 @@
 //  Created by Ivan Semenov on 26.10.2023.
 //
 
-import Foundation
-
 struct PasswordRegistrationViewState: Equatable {
     var password = ""
     var confirmPassword = ""
@@ -35,8 +33,8 @@ struct PasswordRegistrationViewState: Equatable {
 }
 
 enum PasswordRegistrationViewEvent {
-    case onTapLogIn
-    case onTapRegister
+    case logInTapped
+    case registerTapped
     case passwordChanged(String)
     case confirmPasswordChanged(String)
 }
