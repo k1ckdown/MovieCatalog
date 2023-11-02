@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  HomeViewModel.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 30.10.2023.
@@ -7,21 +7,21 @@
 
 import Foundation
 
-final class MainViewModel: ViewModel {
+final class HomeViewModel: ViewModel {
 
-    @Published private(set) var state: MainViewState
+    @Published private(set) var state: HomeViewState
 
     private var movies = [MovieDetails]()
-    private let coordinator: MainCoordinatorProtocol
+    private let coordinator: HomeCoordinatorProtocol
     private let fetchMoviesUseCase: FetchMoviesUseCase
 
-    init(coordinator: MainCoordinatorProtocol, fetchMoviesUseCase: FetchMoviesUseCase) {
+    init(coordinator: HomeCoordinatorProtocol, fetchMoviesUseCase: FetchMoviesUseCase) {
         self.state = .idle
         self.coordinator = coordinator
         self.fetchMoviesUseCase = fetchMoviesUseCase
     }
 
-    func handle(_ event: MainViewEvent) {
+    func handle(_ event: HomeViewEvent) {
         switch event {
         case .onAppear:
             Task { await fetchMovies() }
@@ -36,7 +36,7 @@ final class MainViewModel: ViewModel {
     }
 }
 
-private extension MainViewModel {
+private extension HomeViewModel {
 
     enum Constants {
         static let numberOfCards = 4

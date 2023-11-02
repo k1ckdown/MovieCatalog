@@ -1,11 +1,11 @@
 //
-//  MainViewState.swift
+//  HomeViewState.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 30.10.2023.
 //
 
-enum MainViewState: Equatable {
+enum HomeViewState: Equatable {
     case idle
     case loading
     case error(String)
@@ -17,7 +17,7 @@ enum MainViewState: Equatable {
     }
 }
 
-enum MainViewEvent {
+enum HomeViewEvent {
     case onAppear
     case onSelectMovie(String)
     case willDisplayItem(String)

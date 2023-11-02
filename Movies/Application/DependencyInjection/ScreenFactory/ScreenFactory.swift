@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor
 final class ScreenFactory: AuthCoordinatorFactory,
-                           MainCoordinatorFactory,
+                           HomeCoordinatorFactory,
                            ProfileCoordinatorFactory,
                            FavoritesCoordinatorFactory {
 
@@ -47,15 +47,15 @@ extension ScreenFactory: MovieDetailsViewFactory {
     }
 }
 
-// MARK: - MainViewFactory
+// MARK: - HomeViewFactory
 
-extension ScreenFactory: MainViewFactory {
-    func makeMainView(coordinator: MainCoordinatorProtocol) -> MainView {
-        let viewModel = MainViewModel(
+extension ScreenFactory: HomeViewFactory {
+    func makeHomeView(coordinator: HomeCoordinatorProtocol) -> HomeView {
+        let viewModel = HomeViewModel(
             coordinator: coordinator,
             fetchMoviesUseCase: appFactory.makeFetchMoviesUseCase()
         )
-        let view = MainView(viewModel: viewModel)
+        let view = HomeView(viewModel: viewModel)
 
         return view
     }

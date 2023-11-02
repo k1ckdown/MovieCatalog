@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  HomeView.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 28.10.2023.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct HomeView: View {
 
-    @ObservedObject private(set) var viewModel: MainViewModel
+    @ObservedObject private(set) var viewModel: HomeViewModel
 
     var body: some View {
         contentView
@@ -61,7 +61,7 @@ struct MainView: View {
     }
 }
 
-private extension MainView {
+private extension HomeView {
 
     func emptyView() -> some View {
         ZStack {
@@ -85,7 +85,7 @@ private extension MainView {
     }
 }
 
-private extension MainView {
+private extension HomeView {
 
     func tabView(_ cardViewModel: [MovieDetailsItemViewModel]) -> some View {
         TabView {
@@ -125,9 +125,9 @@ private extension MainView {
 }
 
 #Preview {
-    MainView(
+    HomeView(
         viewModel: .init(
-            coordinator: MainCoordinator(),
+            coordinator: HomeCoordinator(),
             fetchMoviesUseCase: AppFactory().makeFetchMoviesUseCase()
         )
     )

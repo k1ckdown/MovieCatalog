@@ -12,7 +12,7 @@ struct AppCoordinator: View {
     private let screenFactory: ScreenFactory
 
     private let authCoordinator = AuthCoordinator()
-    private let mainCoordinator = MainCoordinator()
+    private let homeCoordinator = HomeCoordinator()
     private let profileCoordinator = ProfileCoordinator()
     private let favoritesCoordinator = FavoritesCoordinator()
 
@@ -21,7 +21,7 @@ struct AppCoordinator: View {
     }
 
     var body: some View {
-        MainCoordinatorView(mainCoordinator, factory: screenFactory)
+        HomeCoordinatorView(homeCoordinator, factory: screenFactory)
     }
 }
 

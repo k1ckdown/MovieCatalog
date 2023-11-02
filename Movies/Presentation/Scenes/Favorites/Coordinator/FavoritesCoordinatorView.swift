@@ -9,19 +9,19 @@ import SwiftUI
 
 struct FavoritesCoordinatorView: View {
 
-    private let favoritesView: FavoritesView
+    private let rootView: FavoritesView
     private let factory: FavoritesCoordinatorFactory
     @ObservedObject private var coordinator: FavoritesCoordinator
 
     init(_ coordinator: FavoritesCoordinator, factory: FavoritesCoordinatorFactory) {
         self.factory = factory
         self.coordinator = coordinator
-        favoritesView = factory.makeFavoritesView()
+        rootView = factory.makeFavoritesView()
     }
 
     var body: some View {
         NavigationStack(path: $coordinator.navigationPath) {
-            favoritesView
+            rootView
                 .navigationDestination(for: FavoritesCoordinator.Screen.self, destination: destination)
         }
     }
