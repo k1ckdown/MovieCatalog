@@ -9,10 +9,6 @@ import SwiftUI
 
 struct MainCoordinatorView: View {
     
-    enum Screen: Routable {
-        case movieDetails(MovieDetails)
-    }
-    
     private let mainView: MainView
     private let factory: MainCoordinatorFactory
     @ObservedObject private var coordinator: MainCoordinator

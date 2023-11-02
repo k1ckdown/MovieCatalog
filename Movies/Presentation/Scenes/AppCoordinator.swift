@@ -14,6 +14,7 @@ struct AppCoordinator: View {
     private let authCoordinator = AuthCoordinator()
     private let mainCoordinator = MainCoordinator()
     private let profileCoordinator = ProfileCoordinator()
+    private let favoritesCoordinator = FavoritesCoordinator()
 
     init(screenFactory: ScreenFactory) {
         self.screenFactory = screenFactory
