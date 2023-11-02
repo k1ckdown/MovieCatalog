@@ -144,8 +144,3 @@ private extension MovieDetailsView {
         }
     }
 }
-
-#Preview {
-    MovieDetailsView(viewModel: .init(movieDetails: .mock))
-        .environment(\.locale, .init(identifier: "ru"))
-}

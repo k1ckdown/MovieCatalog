@@ -37,7 +37,10 @@ extension ScreenFactory: FavoritesViewFactory {
 
 extension ScreenFactory: MovieDetailsViewFactory {
     func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView {
-        let viewModel = MovieDetailsViewModel(movieDetails: movieDetails)
+        let viewModel = MovieDetailsViewModel(
+            movie: movieDetails,
+            addFavouriteMovieUseCase: appFactory.makeAddFavouriteMovieUseCase()
+        )
         let view = MovieDetailsView(viewModel: viewModel)
 
         return view
