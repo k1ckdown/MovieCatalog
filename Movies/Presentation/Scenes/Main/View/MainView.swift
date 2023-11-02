@@ -12,30 +12,32 @@ struct MainView: View {
     @ObservedObject private(set) var viewModel: MainViewModel
 
     var body: some View {
-        contentView
-            .redacted(if: viewModel.state == .loading)
-            .appBackground()
-            .firstAppear {
-                viewModel.handle(.onAppear)
-            }
+        ZStack {
+            contentView
+        }
+        .redacted(if: viewModel.state == .loading)
+        .appBackground()
+        .firstAppear {
+            viewModel.handle(.onAppear)
+        }
     }
 
     @ViewBuilder
     private var contentView: some View {
         switch viewModel.state {
         case .idle:
-            emptyView()
+            EmptyView()
 
         case .loading:
             listView(
-                cardItems: .placeholders(count: Constants.countCardPlaceholders),
-                listItems: .placeholders(count: Constants.countItemPlaceholders)
+                movieItems: .placeholders(count: Constants.countPlaceholders),
+                loadMore: .unavailable
             )
 
         case .loaded(let viewData):
             listView(
-                cardItems: viewData.cardMovies,
-                listItems: viewData.listMovies
+                movieItems: viewData.movieItems,
+                loadMore: viewData.loadMore
             )
 
         case .error(let message):
@@ -44,44 +46,43 @@ struct MainView: View {
     }
 
     private enum Constants {
-        static let countCardPlaceholders = 1
-        static let countItemPlaceholders = 6
+        static let contentSpacing: CGFloat = 12
 
-        enum MoviePage {
-            static let height: CGFloat = 515
-        }
+        static let numberOfCards = 4
+        static let countPlaceholders = 11
 
-        enum ListTitle {
-            static let verticalInsets: CGFloat = 5
-        }
-
-        enum ListItem {
-            static let insets = EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15)
-        }
+        static let moviePageHeight: CGFloat = 515
+        static let titleVerticalInsets: CGFloat = 5
+        static let listItemInsets = EdgeInsets(
+            top: 0,
+            leading: 15,
+            bottom: 15,
+            trailing: 15
+        )
     }
 }
 
 private extension MainView {
 
-    func emptyView() -> some View {
-        ZStack {
-            EmptyView()
-        }
-    }
-
-    func listView(cardItems: [MovieDetailsItemViewModel], listItems: [MovieDetailsItemViewModel]) -> some View {
-        List {
-            Group {
-                tabView(cardItems)
-                listHeader()
-                movieListView(itemViewModels: listItems)
+    func listView(
+        movieItems: [MovieDetailsItemViewModel],
+        loadMore: MainViewState.ViewData.LoadMore
+    ) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Constants.contentSpacing) {
+                tabView(Array(movieItems[0..<Constants.numberOfCards]))
+                Group {
+                    listHeader()
+                    LazyVStack {
+                        movieListView(itemViewModels: Array(movieItems[Constants.numberOfCards...]))
+                        loadMoreView(loadMore)
+                    }
+                }
+                .padding(.horizontal)
             }
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color.clear)
         }
-        .listStyle(.plain)
         .scrollIndicators(.hidden)
-        .scrollContentBackground(.hidden)
+
     }
 }
 
@@ -96,7 +97,7 @@ private extension MainView {
                     }
             }
         }
-        .frame(height: Constants.MoviePage.height)
+        .frame(height: Constants.moviePageHeight)
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
         .listRowInsets(EdgeInsets())
@@ -107,7 +108,7 @@ private extension MainView {
             .bold()
             .font(.title)
             .foregroundStyle(.white)
-            .padding(.vertical, Constants.ListTitle.verticalInsets)
+            .padding(.vertical, Constants.titleVerticalInsets)
     }
 
     func movieListView(itemViewModels: [MovieDetailsItemViewModel]) -> some View {
@@ -116,11 +117,23 @@ private extension MainView {
                 .onTapGesture {
                     viewModel.handle(.onSelectMovie(itemViewModel.id))
                 }
-                .onAppear {
-                    viewModel.handle(.willDisplayItem(itemViewModel.id))
-                }
         }
-        .listRowInsets(Constants.ListItem.insets)
+        .listRowInsets(Constants.listItemInsets)
+    }
+
+    @ViewBuilder
+    private func loadMoreView(_ loadMore: MainViewState.ViewData.LoadMore) -> some View {
+        switch loadMore {
+        case .available:
+            ProgressView()
+                .tint(.appAccent)
+                .onAppear {
+                    viewModel.handle(.willDisplayLastItem)
+                }
+
+        case .failed, .unavailable:
+            EmptyView()
+        }
     }
 }
 

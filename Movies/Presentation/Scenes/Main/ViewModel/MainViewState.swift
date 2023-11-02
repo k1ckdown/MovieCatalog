@@ -5,6 +5,12 @@
 //  Created by Ivan Semenov on 30.10.2023.
 //
 
+enum MainViewEvent {
+    case onAppear
+    case willDisplayLastItem
+    case onSelectMovie(String)
+}
+
 enum MainViewState: Equatable {
     case idle
     case loading
@@ -12,13 +18,13 @@ enum MainViewState: Equatable {
     case loaded(ViewData)
 
     struct ViewData: Equatable {
-        let cardMovies: [MovieDetailsItemViewModel]
-        let listMovies: [MovieDetailsItemViewModel]
-    }
-}
+        enum LoadMore: Equatable {
+            case failed
+            case available
+            case unavailable
+        }
 
-enum MainViewEvent {
-    case onAppear
-    case onSelectMovie(String)
-    case willDisplayItem(String)
+        var loadMore: LoadMore
+        var movieItems: [MovieDetailsItemViewModel]
+    }
 }
