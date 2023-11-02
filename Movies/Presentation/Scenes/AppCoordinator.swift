@@ -11,14 +11,13 @@ struct AppCoordinator: View {
 
     private let screenFactory: ScreenFactory
     private let authCoordinator = AuthCoordinator()
-    private let mainCoordinator = MainCoordinator()
 
     init(screenFactory: ScreenFactory) {
         self.screenFactory = screenFactory
     }
 
     var body: some View {
-        MainCoordinatorView(mainCoordinator, factory: screenFactory)
+        MainCoordinatorView(factory: screenFactory)
             .preferredColorScheme(.dark)
     }
 }

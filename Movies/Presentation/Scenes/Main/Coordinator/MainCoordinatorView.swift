@@ -9,43 +9,55 @@ import SwiftUI
 
 struct MainCoordinatorView: View {
 
+    enum Tab {
+        case home
+        case favorites
+        case profile
+    }
+
+    @State private var selectedTab = Tab.home
+
     private let factory: ScreenFactory
     private let homeCoordinator = HomeCoordinator()
     private let profileCoordinator = ProfileCoordinator()
     private let favoritesCoordinator = FavoritesCoordinator()
 
-    @ObservedObject private var mainCoordinator: MainCoordinator
-
-    init(_ mainCoordinator: MainCoordinator, factory: ScreenFactory) {
+    init(factory: ScreenFactory) {
         self.factory = factory
-        self.mainCoordinator = mainCoordinator
     }
 
     var body: some View {
-        TabView(selection: $mainCoordinator.selectedTab) {
+        TabView(selection: $selectedTab) {
             Group {
-                HomeCoordinatorView(homeCoordinator, factory: factory)
-                    .tabItem {
-                        Label(LocalizedKeysConstants.ScreenTitle.home, systemImage: Constants.houseImage)
-                    }
-                    .tag(MainCoordinator.Tab.home)
-
-                FavoritesCoordinatorView(favoritesCoordinator, factory: factory)
-                    .tabItem {
-                        Label(LocalizedKeysConstants.ScreenTitle.favorites, systemImage: Constants.heartImage)
-                    }
-                    .tag(MainCoordinator.Tab.favorites)
-
-                ProfileCoordinatorView(profileCoordinator, factory: factory)
-                    .tabItem {
-                        Label(LocalizedKeysConstants.ScreenTitle.profile, systemImage: Constants.person)
-                    }
-                    .tag(MainCoordinator.Tab.profile)
+                home.tag(Tab.home)
+                favorites.tag(Tab.favorites)
+                profile.tag(Tab.profile)
             }
             .toolbar(.visible, for: .tabBar)
-            .toolbarBackground(Color.background, for: .tabBar)
+            .toolbarBackground(Color.appBlack, for: .tabBar)
         }
         .tintColor(.appAccent)
+    }
+
+    private var home: some View {
+        HomeCoordinatorView(homeCoordinator, factory: factory)
+            .tabItem {
+                Label(LocalizedKeysConstants.ScreenTitle.home, systemImage: Constants.houseImage)
+            }
+    }
+
+    private var favorites: some View {
+        FavoritesCoordinatorView(favoritesCoordinator, factory: factory)
+            .tabItem {
+                Label(LocalizedKeysConstants.ScreenTitle.favorites, systemImage: Constants.heartImage)
+            }
+    }
+
+    private var profile: some View {
+        ProfileCoordinatorView(profileCoordinator, factory: factory)
+            .tabItem {
+                Label(LocalizedKeysConstants.ScreenTitle.profile, systemImage: Constants.person)
+            }
     }
 
     private enum Constants {
