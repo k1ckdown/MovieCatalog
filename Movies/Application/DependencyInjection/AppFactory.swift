@@ -28,6 +28,17 @@ extension AppFactory {
         ValidatePasswordUseCase()
     }
 
+    func makeGetProfileUseCase() -> GetProfileUseCase {
+        GetProfileUseCase(profileRepository: profileRepository)
+    }
+
+    func makeUpdateProfileUseCase() -> UpdateProfileUseCase {
+        UpdateProfileUseCase(
+            secureStorage: secureStorage,
+            profileRepository: profileRepository
+        )
+    }
+
     func makeLoginUseCase() -> LoginUseCase {
         LoginUseCase(
             networkService: networkService,
@@ -39,13 +50,6 @@ extension AppFactory {
     func makeRegisterUserUseCase() -> RegisterUserUseCase {
         RegisterUserUseCase(
             networkService: networkService,
-            secureStorage: secureStorage,
-            profileRepository: profileRepository
-        )
-    }
-
-    func makeUpdateUserInfoUseCase() -> UpdateProfileUseCase {
-        UpdateProfileUseCase(
             secureStorage: secureStorage,
             profileRepository: profileRepository
         )
