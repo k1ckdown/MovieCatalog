@@ -5,8 +5,6 @@
 //  Created by Ivan Semenov on 18.10.2023.
 //
 
-import Foundation
-
 struct LoginViewState: Equatable {
     var username = ""
     var password = ""
@@ -24,8 +22,8 @@ struct LoginViewState: Equatable {
 }
 
 enum LoginViewEvent {
-    case onTapLogIn
-    case onTapRegister
+    case logInTapped
+    case registerTapped
     case usernameChanged(String)
     case passwordChanged(String)
 }

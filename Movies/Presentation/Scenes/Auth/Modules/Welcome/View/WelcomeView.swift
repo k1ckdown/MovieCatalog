@@ -32,12 +32,12 @@ struct WelcomeView: View {
 
             VStack(spacing: Constants.ButtonStack.spacing) {
                 Button(LocalizedKeysConstants.Auth.Label.registration) {
-                    viewModel.handle(.onTapRegistration)
+                    viewModel.handle(.registrationTapped)
                 }
                 .baseButtonStyle()
 
                 Button(LocalizedKeysConstants.Auth.Action.logIn) {
-                    viewModel.handle(.onTapLogIn)
+                    viewModel.handle(.logInTapped)
                 }
                 .baseButtonStyle(isProminent: false)
             }

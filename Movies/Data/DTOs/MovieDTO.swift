@@ -14,20 +14,31 @@ struct MovieDTO: Decodable {
     let year: Int
     let country: String?
     let genres: [GenreDTO]?
-    let reviews: [ReviewShortDTO]?
-}
+    let reviews: [ReviewDTO]?
+    let time: Int
+    let tagline: String?
+    let description: String?
+    let director: String?
+    let budget: Int?
+    let fees: Int?
+    let ageLimit: Int
 
-struct MoviesResponse: Decodable {
-    let movies: [MovieDTO]
-}
-
-struct MoviesPagedResponse: Decodable {
-    let movies: [MovieDTO]
-    let pageInfo: PageInfo
-
-    struct PageInfo: Decodable {
-        let pageSize: Int
-        let pageCount: Int
-        let currentPage: Int
+    func toDomain() -> Movie {
+        .init(
+            id: id,
+            name: name,
+            poster: poster,
+            year: year,
+            country: country,
+            genres: genres?.map { $0.toDomain() },
+            reviews: reviews?.map { $0.toDomain() },
+            time: time,
+            tagline: tagline,
+            description: description,
+            director: director,
+            budget: budget,
+            fees: fees,
+            ageLimit: ageLimit
+        )
     }
 }

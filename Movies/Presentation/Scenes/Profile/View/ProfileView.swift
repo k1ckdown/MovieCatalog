@@ -14,7 +14,10 @@ struct ProfileView: View {
     var body: some View {
         VStack(spacing: Constants.contentSpacing) {
             VStack {
-                AvatarAsyncImage(link: viewModel.state.avatarLink)
+                AvatarAsyncImage(
+                    size: Constants.profileImageSize,
+                    urlString: viewModel.state.avatarLink
+                )
 
                 Text(viewModel.state.username)
                     .font(.title2)
@@ -35,27 +38,27 @@ struct ProfileView: View {
                             message: viewModel.state.emailError,
                             isErrorShowed: viewModel.state.isEmailErrorShowing
                         )
-                        .labeled(LocalizedKeysConstants.Profile.email)
+                        .smallLabeled(LocalizedKeysConstants.Profile.email)
 
                     TextField("", text: avatarLink)
                         .formErrorableItem(
                             message: viewModel.state.avatarLinkError,
                             isErrorShowed: viewModel.state.isAvatarLinkErrorShowing
                         )
-                        .labeled(LocalizedKeysConstants.Profile.avatarLink)
+                        .smallLabeled(LocalizedKeysConstants.Profile.avatarLink)
                 }
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
 
                 TextField("", text: name)
                     .formBorderedTextFieldStyle()
-                    .labeled(LocalizedKeysConstants.Profile.name)
+                    .smallLabeled(LocalizedKeysConstants.Profile.name)
 
                 GenderSegmentedPicker(selection: gender)
-                    .labeled(LocalizedKeysConstants.Profile.gender)
+                    .smallLabeled(LocalizedKeysConstants.Profile.gender)
 
                 DatePickerField(date: birthdate)
-                    .labeled(LocalizedKeysConstants.Profile.birthdate)
+                    .smallLabeled(LocalizedKeysConstants.Profile.birthdate)
             }
             .padding(.horizontal)
 
@@ -92,6 +95,7 @@ struct ProfileView: View {
         static let formSpacing: CGFloat = 15
         static let buttonSpacing: CGFloat = 17
         static let contentSpacing: CGFloat = 18
+        static let profileImageSize: CGFloat = 80
     }
 
     private var email: Binding<String> {

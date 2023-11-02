@@ -7,32 +7,52 @@
 
 import SwiftUI
 
-struct AuthCoordinator: View {
+final class AuthCoordinator: Coordinator {
 
-    private let factory: AuthCoordinatorFactory
-    @StateObject private var state = AuthNavigationState()
-
-    init(factory: AuthCoordinatorFactory) {
-        self.factory = factory
+    enum Screen: Routable {
+        case login
+        case personalInfoRegistration
+        case passwordRegistration(PersonalInfoViewModel)
     }
 
-    var body: some View {
-        NavigationStack(path: $state.navigationPath) {
-            factory.makeWelcomeView(path: $state.navigationPath)
-                .navigationDestination(for: AuthNavigationState.Screen.self, destination: destination)
-        }
+    @Published var navigationPath = [Screen]()
+}
+
+extension AuthCoordinator: AuthCoordinatorProtocol {
+
+    func showLogin() {
+        updatePathForLogin()
+        navigationPath.append(.login)
     }
 
-    @ViewBuilder
-    private func destination(_ screen: AuthNavigationState.Screen) -> some View {
-        switch screen {
-        case .login:
-            factory.makeLoginView(path: $state.navigationPath)
-        case .personalInfoRegistration:
-            factory.makePersonalInfoRegistrationView(path: $state.navigationPath)
-        case .passwordRegistration(let personalInfo):
-            factory.makePasswordRegistrationView(personalInfo: personalInfo, path: $state.navigationPath)
-        }
+    func showPersonalInfoRegistration() {
+        updatePathForPersonalInfoRegistration()
+        navigationPath.append(.personalInfoRegistration)
+    }
+
+    func showPasswordRegistration(personalInfo: PersonalInfoViewModel) {
+        navigationPath.append(.passwordRegistration(personalInfo))
     }
 }
 
+private extension AuthCoordinator {
+
+    func updatePathForPersonalInfoRegistration() {
+        if case .login = navigationPath.last {
+            navigationPath.removeLast()
+        }
+    }
+
+    func updatePathForLogin() {
+        switch navigationPath.last {
+        case .personalInfoRegistration:
+            navigationPath.removeLast()
+
+        case .passwordRegistration:
+            navigationPath.removeLast()
+            navigationPath.removeLast()
+
+        default: break
+        }
+    }
+}
