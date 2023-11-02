@@ -20,9 +20,16 @@ final class ScreenFactory: AuthCoordinatorFactory,
     }
 }
 
+// MARK: - FavoritesViewFactory
+
 extension ScreenFactory: FavoritesViewFactory {
     func makeFavoritesView() -> FavoritesView {
-        .init()
+        let viewModel = FavoritesViewModel(
+            fetchFavoriteMoviesUseCase: appFactory.makeFetchFavoriteMoviesUseCase()
+        )
+        let view = FavoritesView(viewModel: viewModel)
+
+        return view
     }
 }
 
