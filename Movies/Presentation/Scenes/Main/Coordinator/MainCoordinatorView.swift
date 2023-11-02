@@ -34,7 +34,7 @@ struct MainCoordinatorView: View {
     private func destination(_ screen: MainCoordinator.Screen) -> some View {
         switch screen {
         case .movieDetails(let movieDetails):
-            MovieDetailsView(viewModel: .init(movieDetails: movieDetails))
+            factory.makeMovieDetailsView(movieDetails: movieDetails)
         }
     }
 }
