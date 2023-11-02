@@ -31,6 +31,17 @@ extension ScreenFactory: MainViewFactory {
     }
 }
 
+// MARK: - MovieDetailsFactory
+
+extension ScreenFactory: MovieDetailsFactory {
+    func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView {
+        let viewModel = MovieDetailsViewModel(movieDetails: movieDetails)
+        let view = MovieDetailsView(viewModel: viewModel)
+
+        return view
+    }
+}
+
 // MARK: - WelcomeViewFactory
 
 extension ScreenFactory: WelcomeViewFactory {

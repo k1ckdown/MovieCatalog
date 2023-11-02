@@ -11,6 +11,10 @@ protocol MainViewFactory {
     func makeMainView(coordinator: MainCoordinatorProtocol) -> MainView
 }
 
+protocol MovieDetailsFactory {
+    func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView
+}
+
 protocol LoginViewFactory {
     func makeLoginView(coordinator: AuthCoordinatorProtocol) -> LoginView
 }
