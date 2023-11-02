@@ -11,27 +11,27 @@ final class PersonalInfoRegistrationViewModel: ViewModel {
 
     @Published private(set) var state: PersonalInfoRegistrationViewState
 
-    private let router: PersonalInfoRegistrationRouter
+    private let coordinator: AuthCoordinatorProtocol
     private let validateEmailUseCase: ValidateEmailUseCase
     private let validateUsernameUseCase: ValidateUsernameUseCase
 
     init(
-        router: PersonalInfoRegistrationRouter,
+        coordinator: AuthCoordinatorProtocol,
         validateEmailUseCase: ValidateEmailUseCase,
         validateUsernameUseCase: ValidateUsernameUseCase
     ) {
         self.state = .init()
-        self.router = router
+        self.coordinator = coordinator
         self.validateEmailUseCase = validateEmailUseCase
         self.validateUsernameUseCase = validateUsernameUseCase
     }
 
     func handle(_ event: PersonalInfoRegistrationViewEvent) {
         switch event {
-        case .onTapLogIn:
-            router.showLogin()
+        case .logInTapped:
+            coordinator.showLogin()
 
-        case .onTapContinue:
+        case .continueTapped:
             continueTapped()
 
         case .nameChanged(let name):
@@ -54,18 +54,6 @@ final class PersonalInfoRegistrationViewModel: ViewModel {
 
 private extension PersonalInfoRegistrationViewModel {
 
-    func continueTapped() {
-        let personalInfo = PersonalInfoViewModel(
-            userName: state.username,
-            name: state.name,
-            email: state.email,
-            birthDate: state.birthdate,
-            gender: state.gender
-        )
-
-        router.showPasswordRegistration(personalInfo: personalInfo)
-    }
-
     func emailUpdated(_ email: String) {
         state.email = email
         do {
@@ -85,5 +73,17 @@ private extension PersonalInfoRegistrationViewModel {
         } catch {
             state.usernameError = ValidationErrorHandler.message(for: error)
         }
+    }
+
+    func continueTapped() {
+        let personalInfo = PersonalInfoViewModel(
+            userName: state.username,
+            name: state.name,
+            email: state.email,
+            birthDate: state.birthdate,
+            gender: state.gender
+        )
+
+        coordinator.showPasswordRegistration(personalInfo: personalInfo)
     }
 }

@@ -10,4 +10,8 @@ import Foundation
 struct ReviewShortDTO: Decodable {
     let id: String
     let rating: Int
+
+    func toDomain() -> ReviewShort {
+        .init(id: id, rating: rating)
+    }
 }
