@@ -8,7 +8,7 @@
 import SwiftUI
 
 @MainActor
-final class ScreenFactory: AuthCoordinatorFactory {
+final class ScreenFactory: AuthCoordinatorFactory, ProfileCoordinatorFactory {
 
     private let appFactory: AppFactory
 

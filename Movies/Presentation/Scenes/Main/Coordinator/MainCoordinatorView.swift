@@ -20,7 +20,7 @@ struct MainCoordinatorView: View {
     init(_ coordinator: MainCoordinator, factory: ScreenFactory) {
         self.factory = factory
         self.coordinator = coordinator
-        self.mainView = factory.makeMainView(coordinator: coordinator)
+        mainView = factory.makeMainView(coordinator: coordinator)
     }
 
     var body: some View {

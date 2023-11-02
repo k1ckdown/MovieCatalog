@@ -13,6 +13,7 @@ struct AppCoordinator: View {
 
     private let authCoordinator = AuthCoordinator()
     private let mainCoordinator = MainCoordinator()
+    private let profileCoordinator = ProfileCoordinator()
 
     init(screenFactory: ScreenFactory) {
         self.screenFactory = screenFactory
