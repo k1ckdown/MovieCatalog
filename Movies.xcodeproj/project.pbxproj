@@ -56,6 +56,8 @@
 		49330D012ADD992F00BFA4C6 /* ReviewModifyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330D002ADD992F00BFA4C6 /* ReviewModifyDTO.swift */; };
 		49330D032ADD996300BFA4C6 /* ReviewNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */; };
 		493BB4E72AE1901D004C879F /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493BB4E62AE1901D004C879F /* DatePickerField.swift */; };
+		4951B0F42AF32E1300B040EE /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951B0F32AF32E1300B040EE /* ProfileCoordinator.swift */; };
+		4951B0F62AF32E5E00B040EE /* ProfileCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951B0F52AF32E5E00B040EE /* ProfileCoordinatorView.swift */; };
 		495583152AF003EC00E3AA69 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495583142AF003EC00E3AA69 /* FavoriteButton.swift */; };
 		495583192AF0078700E3AA69 /* MovieDetailsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495583182AF0078700E3AA69 /* MovieDetailsViewState.swift */; };
 		4955831B2AF0159200E3AA69 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4955831A2AF0159200E3AA69 /* MovieDetailsViewModel.swift */; };
@@ -198,6 +200,8 @@
 		49330D002ADD992F00BFA4C6 /* ReviewModifyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModifyDTO.swift; sourceTree = "<group>"; };
 		49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNetworkConfig.swift; sourceTree = "<group>"; };
 		493BB4E62AE1901D004C879F /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
+		4951B0F32AF32E1300B040EE /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		4951B0F52AF32E5E00B040EE /* ProfileCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorView.swift; sourceTree = "<group>"; };
 		495583142AF003EC00E3AA69 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		495583182AF0078700E3AA69 /* MovieDetailsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewState.swift; sourceTree = "<group>"; };
 		4955831A2AF0159200E3AA69 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -597,6 +601,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		4951B0F22AF32E0100B040EE /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				4951B0F32AF32E1300B040EE /* ProfileCoordinator.swift */,
+				4951B0F52AF32E5E00B040EE /* ProfileCoordinatorView.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		495583162AF0052B00E3AA69 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -983,6 +996,7 @@
 		49BEC2B52AED770D00990BF5 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				4951B0F22AF32E0100B040EE /* Coordinator */,
 				49BEC2B62AED771600990BF5 /* View */,
 				49A3FACB2AED799E0043512C /* ViewModel */,
 			);
@@ -1333,6 +1347,7 @@
 				4978317C2AEEE9BF00860C41 /* ReviewDetails.swift in Sources */,
 				49EB266A2AED057A00FFD335 /* ReviewShort.swift in Sources */,
 				49A3FADD2AED8AE50043512C /* Profile.swift in Sources */,
+				4951B0F42AF32E1300B040EE /* ProfileCoordinator.swift in Sources */,
 				49A620652AE6EBD800CEE994 /* TintColor.swift in Sources */,
 				49EB266D2AED272D00FFD335 /* RatingTagView.swift in Sources */,
 				497831722AEEE09200860C41 /* FetchMoviesUseCase.swift in Sources */,
@@ -1354,6 +1369,7 @@
 				49330CE22ADD41B600BFA4C6 /* UserRegisterDTO.swift in Sources */,
 				49A3FAE22AEDADA90043512C /* ProfileRepositoryProtocol.swift in Sources */,
 				49330CD22ADD278900BFA4C6 /* GenreDTO.swift in Sources */,
+				4951B0F62AF32E5E00B040EE /* ProfileCoordinatorView.swift in Sources */,
 				497BC4582AE790E70002336C /* AuthCoordinatorView.swift in Sources */,
 				49A3FACF2AED7ACB0043512C /* ProfileViewModel.swift in Sources */,
 				491EBBD02AEBDA5000075FF0 /* FormErrorableItemViewModifier.swift in Sources */,
