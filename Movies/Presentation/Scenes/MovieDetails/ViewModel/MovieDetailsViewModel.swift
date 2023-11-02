@@ -10,10 +10,13 @@ import Foundation
 final class MovieDetailsViewModel: ViewModel {
 
     @Published private(set) var state = MovieDetailsViewState.idle
-    private let movie: MovieDetails
 
-    init(movieDetails: MovieDetails) {
-        movie = movieDetails
+    private let movie: MovieDetails
+    private let addFavouriteMovieUseCase: AddFavouriteMovieUseCase
+
+    init(movie: MovieDetails, addFavouriteMovieUseCase: AddFavouriteMovieUseCase) {
+        self.movie = movie
+        self.addFavouriteMovieUseCase = addFavouriteMovieUseCase
         state = .loaded(getViewData())
     }
 
@@ -21,12 +24,26 @@ final class MovieDetailsViewModel: ViewModel {
         switch event {
         case .favoriteTapped:
             state = state.toggleFavorite()
+            Task { await favoriteToggled() }
+
         default: break
         }
     }
 }
 
 private extension MovieDetailsViewModel {
+
+    func favoriteToggled() async {
+        guard case .loaded(let viewData) = state else { return }
+
+        if viewData.isFavorite {
+            do {
+                try await addFavouriteMovieUseCase.execute(id: movie.id)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
 
     func getViewData() -> MovieDetailsViewState.ViewData {
         let genres = movie.genres?.compactMap { $0.name }
