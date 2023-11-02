@@ -7,11 +7,15 @@
 
 import SwiftUI
 
+protocol ProfileViewFactory {
+    func makeProfileView() -> ProfileView
+}
+
 protocol MainViewFactory {
     func makeMainView(coordinator: MainCoordinatorProtocol) -> MainView
 }
 
-protocol MovieDetailsFactory {
+protocol MovieDetailsViewFactory {
     func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView
 }
 
