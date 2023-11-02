@@ -11,6 +11,10 @@ protocol ProfileViewFactory {
     func makeProfileView() -> ProfileView
 }
 
+protocol FavoritesViewFactory {
+    func makeFavoritesView() -> FavoritesView
+}
+
 protocol MainViewFactory {
     func makeMainView(coordinator: MainCoordinatorProtocol) -> MainView
 }

@@ -17,6 +17,12 @@ final class ScreenFactory: AuthCoordinatorFactory, MainCoordinatorFactory, Profi
     }
 }
 
+extension ScreenFactory: FavoritesViewFactory {
+    func makeFavoritesView() -> FavoritesView {
+        .init()
+    }
+}
+
 // MARK: - MovieDetailsFactory
 
 extension ScreenFactory: MovieDetailsViewFactory {
