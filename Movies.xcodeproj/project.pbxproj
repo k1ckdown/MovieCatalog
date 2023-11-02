@@ -608,8 +608,8 @@
 		495583172AF0077A00E3AA69 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				495583182AF0078700E3AA69 /* MovieDetailsViewState.swift */,
 				4955831A2AF0159200E3AA69 /* MovieDetailsViewModel.swift */,
+				495583182AF0078700E3AA69 /* MovieDetailsViewState.swift */,
 				4955831C2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift */,
 			);
 			path = ViewModel;

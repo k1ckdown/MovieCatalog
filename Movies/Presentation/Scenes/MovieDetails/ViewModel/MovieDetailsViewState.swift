@@ -22,7 +22,6 @@ enum MovieDetailsViewState: Equatable {
 }
 
 enum MovieDetailsViewEvent {
-    case onAppear
     case favoriteTapped
     case addReviewTapped
     case editReviewTapped

@@ -9,21 +9,18 @@ import Foundation
 
 final class MovieDetailsViewModel: ViewModel {
 
-    @Published private(set) var state: MovieDetailsViewState
+    @Published private(set) var state = MovieDetailsViewState.idle
     private let movie: MovieDetails
 
     init(movieDetails: MovieDetails) {
         movie = movieDetails
-        state = .idle
+        state = .loaded(getViewData())
     }
 
     func handle(_ event: MovieDetailsViewEvent) {
         switch event {
-        case .onAppear:
-            state = .loaded(getViewData())
         case .favoriteTapped:
             state = state.toggleFavorite()
-
         default: break
         }
     }

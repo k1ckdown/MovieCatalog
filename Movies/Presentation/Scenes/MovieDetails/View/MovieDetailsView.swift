@@ -14,9 +14,6 @@ struct MovieDetailsView: View {
     var body: some View {
         contentView
             .appBackground()
-            .onAppear {
-                viewModel.handle(.onAppear)
-            }
     }
 
     @ViewBuilder
