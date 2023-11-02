@@ -8,12 +8,42 @@
 import SwiftUI
 
 @MainActor
-final class ScreenFactory: AuthCoordinatorFactory {
+final class ScreenFactory: AuthCoordinatorFactory,
+                           MainCoordinatorFactory,
+                           ProfileCoordinatorFactory,
+                           FavoritesCoordinatorFactory {
 
     private let appFactory: AppFactory
 
     init(appFactory: AppFactory) {
         self.appFactory = appFactory
+    }
+}
+
+// MARK: - FavoritesViewFactory
+
+extension ScreenFactory: FavoritesViewFactory {
+    func makeFavoritesView() -> FavoritesView {
+        let viewModel = FavoritesViewModel(
+            fetchFavoriteMoviesUseCase: appFactory.makeFetchFavoriteMoviesUseCase()
+        )
+        let view = FavoritesView(viewModel: viewModel)
+
+        return view
+    }
+}
+
+// MARK: - MovieDetailsFactory
+
+extension ScreenFactory: MovieDetailsViewFactory {
+    func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView {
+        let viewModel = MovieDetailsViewModel(
+            movie: movieDetails,
+            addFavouriteMovieUseCase: appFactory.makeAddFavouriteMovieUseCase()
+        )
+        let view = MovieDetailsView(viewModel: viewModel)
+
+        return view
     }
 }
 
@@ -26,6 +56,21 @@ extension ScreenFactory: MainViewFactory {
             fetchMoviesUseCase: appFactory.makeFetchMoviesUseCase()
         )
         let view = MainView(viewModel: viewModel)
+
+        return view
+    }
+}
+
+// MARK: - ProfileViewFactory
+
+extension ScreenFactory: ProfileViewFactory {
+    func makeProfileView() -> ProfileView {
+        let viewModel = ProfileViewModel(
+            getProfileUseCase: appFactory.makeGetProfileUseCase(),
+            updateProfileUseCase: appFactory.makeUpdateProfileUseCase(),
+            validateEmailUseCase: appFactory.makeValidateEmailUseCase()
+        )
+        let view = ProfileView(viewModel: viewModel)
 
         return view
     }

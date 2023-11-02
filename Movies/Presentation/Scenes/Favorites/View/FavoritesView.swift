@@ -9,22 +9,25 @@ import SwiftUI
 
 struct FavoritesView: View {
 
-    static let movies = Array(repeating: MovieDetails.mock, count: 9)
-    let viewModels: [FavoritesMovieItemViewModel] = movies.map {
-        .init(rating: $0.userRating, name: $0.name, imageUrl: $0.poster)
-    }
+    @ObservedObject private(set) var viewModel: FavoritesViewModel
 
     var body: some View {
-        ScrollView(.vertical) {
-                FavoritesLayout {
-                    ForEach(viewModels) { itemViewModel in
-                        FavoritesMovieItemView(viewModel: itemViewModel)
-                    }
-                }
-                .padding(.horizontal, Constants.horizontalInset)
+        contentView
+            .appBackground()
+    }
+
+    @ViewBuilder
+    private var contentView: some View {
+        switch viewModel.state {
+        case .idle:
+            EmptyView()
+        case .loading:
+            ProgressView()
+        case .error(let message):
+            Text(message)
+        case .loaded(let viewData):
+            loadedView(itemViewModels: viewData.movieItems)
         }
-        .scrollIndicators(.hidden)
-        .appBackground()
     }
 
     private enum Constants {
@@ -32,6 +35,21 @@ struct FavoritesView: View {
     }
 }
 
-#Preview {
-    FavoritesView()
+private extension FavoritesView {
+
+    func loadedView(itemViewModels: [MovieShortItemViewModel]) -> some View {
+        ScrollView(.vertical) {
+            FavoritesLayout {
+                ForEach(itemViewModels) { itemViewModel in
+                    MovieShortItem(viewModel: itemViewModel)
+                }
+            }
+            .padding(.horizontal, Constants.horizontalInset)
+        }
+        .scrollIndicators(.hidden)
+    }
 }
+
+//#Preview {
+//    FavoritesView(v)
+//}

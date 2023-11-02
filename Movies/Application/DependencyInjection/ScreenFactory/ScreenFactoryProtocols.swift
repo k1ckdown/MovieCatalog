@@ -7,8 +7,20 @@
 
 import SwiftUI
 
+protocol ProfileViewFactory {
+    func makeProfileView() -> ProfileView
+}
+
+protocol FavoritesViewFactory {
+    func makeFavoritesView() -> FavoritesView
+}
+
 protocol MainViewFactory {
     func makeMainView(coordinator: MainCoordinatorProtocol) -> MainView
+}
+
+protocol MovieDetailsViewFactory {
+    func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView
 }
 
 protocol LoginViewFactory {

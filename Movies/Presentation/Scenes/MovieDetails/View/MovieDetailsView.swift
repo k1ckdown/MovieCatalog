@@ -14,9 +14,7 @@ struct MovieDetailsView: View {
     var body: some View {
         contentView
             .appBackground()
-            .onAppear {
-                viewModel.handle(.onAppear)
-            }
+            .toolbarRole(.editor)
     }
 
     @ViewBuilder
@@ -145,9 +143,4 @@ private extension MovieDetailsView {
             }
         }
     }
-}
-
-#Preview {
-    MovieDetailsView(viewModel: .init(movieDetails: .mock))
-        .environment(\.locale, .init(identifier: "ru"))
 }
