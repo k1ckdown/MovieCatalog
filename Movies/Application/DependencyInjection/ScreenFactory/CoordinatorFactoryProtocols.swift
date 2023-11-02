@@ -11,6 +11,9 @@ import Foundation
 protocol ProfileCoordinatorFactory: ProfileViewFactory {}
 
 @MainActor
+protocol FavoritesCoordinatorFactory: FavoritesViewFactory, MovieDetailsViewFactory {}
+
+@MainActor
 protocol MainCoordinatorFactory: MainViewFactory, MovieDetailsViewFactory {}
 
 @MainActor

@@ -8,12 +8,21 @@
 import SwiftUI
 
 @MainActor
-final class ScreenFactory: AuthCoordinatorFactory, MainCoordinatorFactory, ProfileCoordinatorFactory {
+final class ScreenFactory: AuthCoordinatorFactory,
+                           MainCoordinatorFactory,
+                           ProfileCoordinatorFactory,
+                           FavoritesCoordinatorFactory {
 
     private let appFactory: AppFactory
 
     init(appFactory: AppFactory) {
         self.appFactory = appFactory
+    }
+}
+
+extension ScreenFactory: FavoritesViewFactory {
+    func makeFavoritesView() -> FavoritesView {
+        .init()
     }
 }
 
