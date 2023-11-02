@@ -55,10 +55,25 @@ extension AppFactory {
         )
     }
 
+    func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
+        GetDetailsFromMoviesUseCase(
+            movieRepository: movieRepository,
+            profileRepository: profileRepository
+        )
+    }
+
     func makeFetchMoviesUseCase() -> FetchMoviesUseCase {
         FetchMoviesUseCase(
             movieRepository: movieRepository,
-            profileRepository: profileRepository
+            getDetailsFromMovies: makeGetDetailsFromMoviesUseCase()
+        )
+    }
+    
+    func makeFetchFavoriteMoviesUseCase() -> FetchFavoriteMoviesUseCase {
+        FetchFavoriteMoviesUseCase(
+            secureStorage: secureStorage,
+            movieRepository: movieRepository,
+            getDetailsFromMoviesUseCase: makeGetDetailsFromMoviesUseCase()
         )
     }
 }
