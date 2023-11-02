@@ -8,10 +8,11 @@
 import Foundation
 
 final class MovieRepository {
+    typealias NetworkService = MovieNetworkService & FavoriteMoviesNetworkService
 
-    private let networkService: MovieNetworkService
+    private let networkService: NetworkService
 
-    init(networkService: MovieNetworkService) {
+    init(networkService: NetworkService) {
         self.networkService = networkService
     }
 }
@@ -26,5 +27,12 @@ extension MovieRepository: MovieRepositoryProtocol {
     func getMoviesPagedList(page: Int) async throws -> MoviesPaged {
         let moviesPagedList = try await networkService.fetchShortMovies(page: page)
         return moviesPagedList.toDomain()
+    }
+
+    func getFavoriteMovies(token: String) async throws -> [MovieShort] {
+        let moviesResponse = try await networkService.fetchFavoriteMovies(token: token)
+        let movies = moviesResponse.movies.map { $0.toDomain() }
+
+        return movies
     }
 }
