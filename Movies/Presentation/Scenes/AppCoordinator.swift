@@ -10,18 +10,16 @@ import SwiftUI
 struct AppCoordinator: View {
 
     private let screenFactory: ScreenFactory
-
     private let authCoordinator = AuthCoordinator()
-    private let homeCoordinator = HomeCoordinator()
-    private let profileCoordinator = ProfileCoordinator()
-    private let favoritesCoordinator = FavoritesCoordinator()
+    private let mainCoordinator = MainCoordinator()
 
     init(screenFactory: ScreenFactory) {
         self.screenFactory = screenFactory
     }
 
     var body: some View {
-        HomeCoordinatorView(homeCoordinator, factory: screenFactory)
+        MainCoordinatorView(mainCoordinator, factory: screenFactory)
+            .preferredColorScheme(.dark)
     }
 }
 

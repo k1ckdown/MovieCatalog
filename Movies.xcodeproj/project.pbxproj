@@ -80,6 +80,7 @@
 		4961F4982AE05CAE00A717AB /* BaseButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F4972AE05CAE00A717AB /* BaseButtonStyle.swift */; };
 		4964A5682AF0576A0039F56B /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4964A5672AF0576A0039F56B /* ExpandableText.swift */; };
 		49684EF92AF40CA90003CF7F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49684EF82AF40CA90003CF7F /* MainCoordinator.swift */; };
+		49684EFC2AF40F600003CF7F /* MainCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49684EFB2AF40F600003CF7F /* MainCoordinatorView.swift */; };
 		4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */; };
 		4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */; };
 		497831642AEECD8300860C41 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831632AEECD8300860C41 /* HomeViewModel.swift */; };
@@ -233,6 +234,7 @@
 		4961F4972AE05CAE00A717AB /* BaseButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonStyle.swift; sourceTree = "<group>"; };
 		4964A5672AF0576A0039F56B /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
 		49684EF82AF40CA90003CF7F /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		49684EFB2AF40F600003CF7F /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
 		4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		497831632AEECD8300860C41 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -767,13 +769,22 @@
 		49684EF72AF40C9A0003CF7F /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				49684EF82AF40CA90003CF7F /* MainCoordinator.swift */,
+				49684EFA2AF40F020003CF7F /* Coordinator */,
 				49EB264F2AECEE1900FFD335 /* Home */,
 				49115C262AEF6FD400B50FB9 /* MovieDetails */,
 				498772C42AF2717C00B706F6 /* Favorites */,
 				49BEC2B52AED770D00990BF5 /* Profile */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		49684EFA2AF40F020003CF7F /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				49684EF82AF40CA90003CF7F /* MainCoordinator.swift */,
+				49684EFB2AF40F600003CF7F /* MainCoordinatorView.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		4977E3C02ADBCF33008CE679 /* Infrastructure */ = {
@@ -1307,6 +1318,7 @@
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
 				49330CD12ADD278900BFA4C6 /* MovieShortDTO.swift in Sources */,
 				4955831D2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift in Sources */,
+				49684EFC2AF40F600003CF7F /* MainCoordinatorView.swift in Sources */,
 				498772C72AF2719600B706F6 /* FavoritesView.swift in Sources */,
 				49330CDC2ADD2E7C00BFA4C6 /* MovieDTO.swift in Sources */,
 				497831702AEED5E800860C41 /* MovieRepository.swift in Sources */,
