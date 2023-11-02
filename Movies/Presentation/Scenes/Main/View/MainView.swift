@@ -116,6 +116,9 @@ private extension MainView {
                 .onTapGesture {
                     viewModel.handle(.onSelectMovie(itemViewModel.id))
                 }
+                .onAppear {
+                    viewModel.handle(.willDisplayItem(itemViewModel.id))
+                }
         }
         .listRowInsets(Constants.ListItem.insets)
     }
