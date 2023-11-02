@@ -20,4 +20,5 @@ enum MainViewState: Equatable {
 enum MainViewEvent {
     case onAppear
     case onSelectMovie(String)
+    case willDisplayItem(String)
 }
