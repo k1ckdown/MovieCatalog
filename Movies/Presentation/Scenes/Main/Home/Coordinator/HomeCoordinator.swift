@@ -1,5 +1,5 @@
 //
-//  MainCoordinator.swift
+//  HomeCoordinator.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 30.10.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MainCoordinator: Coordinator {
+final class HomeCoordinator: Coordinator {
 
     enum Screen: Routable {
         case movieDetails(MovieDetails)
@@ -16,7 +16,7 @@ final class MainCoordinator: Coordinator {
     @Published var navigationPath = [Screen]()
 }
 
-extension MainCoordinator: MainCoordinatorProtocol {
+extension HomeCoordinator: HomeCoordinatorProtocol {
 
     func showMovieDetails(_ movie: MovieDetails) {
         navigationPath.append(.movieDetails(movie))

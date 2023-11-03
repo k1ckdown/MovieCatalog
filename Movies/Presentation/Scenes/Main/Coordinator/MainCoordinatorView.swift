@@ -2,35 +2,67 @@
 //  MainCoordinatorView.swift
 //  Movies
 //
-//  Created by Ivan Semenov on 30.10.2023.
+//  Created by Ivan Semenov on 03.11.2023.
 //
 
 import SwiftUI
 
 struct MainCoordinatorView: View {
-    
-    private let mainView: MainView
-    private let factory: MainCoordinatorFactory
-    @ObservedObject private var coordinator: MainCoordinator
-    
-    init(_ coordinator: MainCoordinator, factory: MainCoordinatorFactory) {
+
+    enum Tab {
+        case home
+        case favorites
+        case profile
+    }
+
+    @State private var selectedTab = Tab.home
+
+    private let factory: ScreenFactory
+    private let homeCoordinator = HomeCoordinator()
+    private let profileCoordinator = ProfileCoordinator()
+    private let favoritesCoordinator = FavoritesCoordinator()
+
+    init(factory: ScreenFactory) {
         self.factory = factory
-        self.coordinator = coordinator
-        mainView = factory.makeMainView(coordinator: coordinator)
     }
-    
+
     var body: some View {
-        NavigationStack(path: $coordinator.navigationPath) {
-            mainView
-                .navigationDestination(for: MainCoordinator.Screen.self, destination: destination)
+        TabView(selection: $selectedTab) {
+            Group {
+                home.tag(Tab.home)
+                favorites.tag(Tab.favorites)
+                profile.tag(Tab.profile)
+            }
+            .toolbar(.visible, for: .tabBar)
+            .toolbarBackground(Color.appBlack, for: .tabBar)
         }
+        .tintColor(.appAccent)
     }
-    
-    @ViewBuilder
-    private func destination(_ screen: MainCoordinator.Screen) -> some View {
-        switch screen {
-        case .movieDetails(let movieDetails):
-            factory.makeMovieDetailsView(movieDetails: movieDetails)
-        }
+
+    private var home: some View {
+        HomeCoordinatorView(homeCoordinator, factory: factory)
+            .tabItem {
+                Label(LocalizedKeysConstants.ScreenTitle.home, systemImage: Constants.houseImage)
+            }
+    }
+
+    private var favorites: some View {
+        FavoritesCoordinatorView(favoritesCoordinator, factory: factory)
+            .tabItem {
+                Label(LocalizedKeysConstants.ScreenTitle.favorites, systemImage: Constants.heartImage)
+            }
+    }
+
+    private var profile: some View {
+        ProfileCoordinatorView(profileCoordinator, factory: factory)
+            .tabItem {
+                Label(LocalizedKeysConstants.ScreenTitle.profile, systemImage: Constants.person)
+            }
+    }
+
+    private enum Constants {
+        static let houseImage = "house"
+        static let heartImage = "heart"
+        static let person = "person"
     }
 }

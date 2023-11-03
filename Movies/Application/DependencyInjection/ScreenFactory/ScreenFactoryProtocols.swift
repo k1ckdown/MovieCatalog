@@ -15,8 +15,8 @@ protocol FavoritesViewFactory {
     func makeFavoritesView() -> FavoritesView
 }
 
-protocol MainViewFactory {
-    func makeMainView(coordinator: MainCoordinatorProtocol) -> MainView
+protocol HomeViewFactory {
+    func makeHomeView(coordinator: HomeCoordinatorProtocol) -> HomeView
 }
 
 protocol MovieDetailsViewFactory {

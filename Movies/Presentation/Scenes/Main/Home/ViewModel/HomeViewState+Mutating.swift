@@ -5,7 +5,7 @@
 //  Created by Ivan Semenov on 03.11.2023.
 //
 
-extension MainViewState {
+extension HomeViewState {
 
     func loadedMore(_ items: [MovieDetailsItemViewModel]) -> Self {
         guard case .loaded(var viewData) = self else {

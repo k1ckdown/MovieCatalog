@@ -9,19 +9,19 @@ import SwiftUI
 
 struct ProfileCoordinatorView: View {
     
-    private let profileView: ProfileView
+    private let rootView: ProfileView
     private let factory: ProfileCoordinatorFactory
     @ObservedObject private var coordinator: ProfileCoordinator
     
     init(_ coordinator: ProfileCoordinator, factory: ProfileCoordinatorFactory) {
         self.factory = factory
         self.coordinator = coordinator
-        profileView = factory.makeProfileView()
+        rootView = factory.makeProfileView()
     }
     
     var body: some View {
         NavigationStack(path: $coordinator.navigationPath) {
-            profileView
+            rootView
         }
     }
 }
