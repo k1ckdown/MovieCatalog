@@ -14,32 +14,48 @@ struct LoginView: View {
     var body: some View {
         AuthView(
             style: .login,
-            screenTitle: LocalizedKeysConstants.entrance,
-            formButtonTitle: LocalizedKeysConstants.logIn,
-            calloutText: LocalizedKeysConstants.noAccountYet,
-            calloutButtonTitle: LocalizedKeysConstants.register
+            isFormButtonDisabled: viewModel.state.isLogInDisabled,
+            screenTitle: LocalizedKeysConstants.Auth.Label.entrance,
+            formButtonTitle: LocalizedKeysConstants.Auth.Action.logIn,
+            calloutText: LocalizedKeysConstants.Auth.Callout.noAccountYet,
+            calloutButtonTitle: LocalizedKeysConstants.Auth.Callout.registerAccount
         ) {
             Group {
-                TextField("", text: login)
-                    .textFieldStyle(BaseTextFieldStyle())
-                    .labeled(LocalizedKeysConstants.login)
+                TextField("", text: username)
+                    .formBorderedTextFieldStyle(
+                        style: viewModel.state.isLoginErrorShowing ? .error : .default
+                    )
+                    .smallLabeled(LocalizedKeysConstants.Profile.username)
 
-                SecureInputView(text: password)
-                    .labeled(LocalizedKeysConstants.password)
+                SecureInputView(text: password, isErrorShowed: viewModel.state.isLoginErrorShowing)
+                    .smallLabeled(LocalizedKeysConstants.Profile.password)
+
+                if viewModel.state.isLoading {
+                    BaseProgressView()
+                }
             }
             .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
+            .padding(.bottom, Constants.formBottomInset)
+            .errorFooter(
+                message: viewModel.state.loginError,
+                isShowed: viewModel.state.isLoginErrorShowing
+            )
         } formAction: {
-            viewModel.handle(.onTapLogIn)
+            viewModel.handle(.logInTapped)
         } calloutAction: {
-            viewModel.handle(.onTapRegister)
+            viewModel.handle(.registerTapped)
         }
     }
 
-    private var login: Binding<String> {
+    private enum Constants {
+        static let formBottomInset: CGFloat = 5
+    }
+
+    private var username: Binding<String> {
         Binding(
-            get: { viewModel.state.login },
-            set: { viewModel.handle(.loginChanged($0)) }
+            get: { viewModel.state.username },
+            set: { viewModel.handle(.usernameChanged($0)) }
         )
     }
 

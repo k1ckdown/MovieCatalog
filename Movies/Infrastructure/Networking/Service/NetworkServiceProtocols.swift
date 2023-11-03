@@ -8,19 +8,13 @@
 import Foundation
 
 protocol MovieNetworkService {
-    func fetchDetails(id: String) async throws -> MovieDetailsDTO
-    func fetchMovies(page: Int) async throws -> MoviesPagedResponse
+    func fetchMovie(id: String) async throws -> MovieDTO
+    func fetchShortMovies(page: Int) async throws -> MoviesPagedResponse
 }
 
 protocol UserNetworkService {
     func fetchProfile(token: String) async throws -> ProfileDTO
     func updateProfile(token: String, profile: ProfileDTO) async throws
-}
-
-protocol AuthNetworkService {
-    func logout(token: String) async throws -> LogoutResponse
-    func register(user: UserRegisterDTO) async throws -> TokenInfo
-    func login(credentials: LoginCredentials) async throws -> TokenInfo
 }
 
 protocol FavoriteMoviesNetworkService {

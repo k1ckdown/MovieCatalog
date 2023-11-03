@@ -11,31 +11,37 @@ final class PersonalInfoRegistrationViewModel: ViewModel {
 
     @Published private(set) var state: PersonalInfoRegistrationViewState
 
-    private let router: PersonalInfoRegistrationRouter
+    private let coordinator: AuthCoordinatorProtocol
     private let validateEmailUseCase: ValidateEmailUseCase
+    private let validateUsernameUseCase: ValidateUsernameUseCase
 
-    init(router: PersonalInfoRegistrationRouter, validateEmailUseCase: ValidateEmailUseCase) {
+    init(
+        coordinator: AuthCoordinatorProtocol,
+        validateEmailUseCase: ValidateEmailUseCase,
+        validateUsernameUseCase: ValidateUsernameUseCase
+    ) {
         self.state = .init()
-        self.router = router
+        self.coordinator = coordinator
         self.validateEmailUseCase = validateEmailUseCase
+        self.validateUsernameUseCase = validateUsernameUseCase
     }
 
     func handle(_ event: PersonalInfoRegistrationViewEvent) {
         switch event {
-        case .onTapLogIn:
-            router.showLogin()
+        case .logInTapped:
+            coordinator.showLogin()
 
-        case .onTapContinue:
-            router.showPasswordRegistration()
+        case .continueTapped:
+            continueTapped()
 
         case .nameChanged(let name):
             state.name = name
 
         case .genderChanged(let gender):
             state.gender = gender
-            
-        case .loginChanged(let login):
-            state.login = login
+
+        case .usernameChanged(let username):
+            usernameUpdated(username)
 
         case .emailChanged(let email):
             emailUpdated(email)
@@ -50,7 +56,34 @@ private extension PersonalInfoRegistrationViewModel {
 
     func emailUpdated(_ email: String) {
         state.email = email
-        state.isValidEmail = validateEmailUseCase.execute(email)
+        do {
+            try validateEmailUseCase.execute(email)
+            state.emailError = nil
+        } catch {
+            state.emailError = ValidationErrorHandler.message(for: error)
+        }
     }
 
+    func usernameUpdated(_ username: String) {
+        state.username = username
+
+        do {
+            try validateUsernameUseCase.execute(username)
+            state.usernameError = nil
+        } catch {
+            state.usernameError = ValidationErrorHandler.message(for: error)
+        }
+    }
+
+    func continueTapped() {
+        let personalInfo = PersonalInfoViewModel(
+            userName: state.username,
+            name: state.name,
+            email: state.email,
+            birthDate: state.birthdate,
+            gender: state.gender
+        )
+
+        coordinator.showPasswordRegistration(personalInfo: personalInfo)
+    }
 }

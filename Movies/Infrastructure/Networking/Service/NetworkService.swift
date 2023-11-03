@@ -10,19 +10,19 @@ import Foundation
 final class NetworkService {
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
-    private let networkRouter = NetworkManager()
+    private let networkManager = NetworkManager()
 }
 
 // MARK: - MovieNetworkService
 
 extension NetworkService: MovieNetworkService {
 
-    func fetchDetails(id: String) async throws -> MovieDetailsDTO {
+    func fetchMovie(id: String) async throws -> MovieDTO {
         let config = MovieNetworkConfig.detailsById(id)
         return try await request(with: config)
     }
     
-    func fetchMovies(page: Int) async throws -> MoviesPagedResponse {
+    func fetchShortMovies(page: Int) async throws -> MoviesPagedResponse {
         let config = MovieNetworkConfig.listByPage(page)
         return try await request(with: config)
     }
@@ -102,16 +102,25 @@ extension NetworkService: AuthNetworkService {
         return try await request(with: config)
     }
 
-    func register(user: UserRegisterDTO) async throws -> TokenInfo {
-        let data = try encode(user)
-        let config = AuthNetworkConfig.register(data)
+    func login(credentials: LoginCredentials) async throws -> TokenInfo {
+        let data = try encode(credentials)
+        let config = AuthNetworkConfig.login(data)
 
         return try await request(with: config)
     }
 
-    func login(credentials: LoginCredentials) async throws -> TokenInfo {
-        let data = try encode(credentials)
-        let config = AuthNetworkConfig.login(data)
+    func register(user: UserRegister) async throws -> TokenInfo {
+        let userDto = UserRegisterDTO(
+            userName: user.userName,
+            name: user.name,
+            password: user.password,
+            email: user.email,
+            birthDate: user.birthDate,
+            gender: user.gender == .female ? .female : .male
+        )
+
+        let data = try encode(userDto)
+        let config = AuthNetworkConfig.register(data)
 
         return try await request(with: config)
     }
@@ -140,7 +149,7 @@ private extension NetworkService {
     }
 
     func request(with config: NetworkConfig, token: String? = nil) async throws {
-        let (_, response) = try await networkRouter.request(config: config, token: token)
+        let (_, response) = try await networkManager.request(config: config, token: token)
         try checkResponse(response)
     }
 
@@ -148,7 +157,7 @@ private extension NetworkService {
         with config: NetworkConfig,
         token: String? = nil
     ) async throws -> Model {
-        let (data, response) = try await networkRouter.request(config: config, token: token)
+        let (data, response) = try await networkManager.request(config: config, token: token)
 
         try checkResponse(response)
         guard let model = try? decoder.decode(Model.self, from: data) else {

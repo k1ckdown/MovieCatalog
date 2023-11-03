@@ -5,20 +5,25 @@
 //  Created by Ivan Semenov on 18.10.2023.
 //
 
-import Foundation
-
 struct LoginViewState: Equatable {
-    var login = ""
+    var username = ""
     var password = ""
 
-    var isDataEmpty: Bool {
-        login.isEmpty || password.isEmpty
+    var isLoading = false
+    var loginError: String?
+
+    var isLogInDisabled: Bool {
+        username.isEmpty || password.isEmpty
+    }
+
+    var isLoginErrorShowing: Bool {
+        loginError != nil && isLoading == false
     }
 }
 
 enum LoginViewEvent {
-    case onTapLogIn
-    case onTapRegister
-    case loginChanged(String)
+    case logInTapped
+    case registerTapped
+    case usernameChanged(String)
     case passwordChanged(String)
 }

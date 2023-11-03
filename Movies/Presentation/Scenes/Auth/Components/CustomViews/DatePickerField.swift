@@ -11,14 +11,8 @@ struct DatePickerField: View {
 
     @Binding var date: Date
 
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yy"
-        return formatter
-    }()
-
     var body: some View {
-        Text("\(date, formatter: dateFormatter)")
+        Text(date.formatToDateMonthYear())
             .frame(height: Constants.Label.height)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading, Constants.Label.leadingInset)
@@ -40,7 +34,7 @@ struct DatePickerField: View {
                     }
                     .clipped()
             }
-            .bordered()
+            .formItemBackground()
     }
 
     private enum Constants {

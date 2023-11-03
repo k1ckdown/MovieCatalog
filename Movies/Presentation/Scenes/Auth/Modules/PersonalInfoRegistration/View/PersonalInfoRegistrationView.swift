@@ -8,97 +8,85 @@
 import SwiftUI
 
 struct PersonalInfoRegistrationView: View {
-    
+
     @ObservedObject private(set) var viewModel: PersonalInfoRegistrationViewModel
-    
+
     var body: some View {
         AuthView(
-            style: .registrationFirstStage,
-            screenTitle: LocalizedKeysConstants.registration,
-            formButtonTitle: LocalizedKeysConstants.continue,
-            calloutText: LocalizedKeysConstants.alreadyHaveAccount,
-            calloutButtonTitle: LocalizedKeysConstants.logInToAccount
+            style: .personalInfo,
+            isFormButtonDisabled: viewModel.state.isContinueDisabled,
+            screenTitle: LocalizedKeysConstants.Auth.Label.registration,
+            formButtonTitle: LocalizedKeysConstants.Auth.Action.continue,
+            calloutText: LocalizedKeysConstants.Auth.Callout.alreadyHaveAccount,
+            calloutButtonTitle: LocalizedKeysConstants.Auth.Callout.logInToAccount
         ) {
             Group {
                 TextField("", text: name)
-                    .labeled(LocalizedKeysConstants.name)
-                    .textFieldStyle(BaseTextFieldStyle())
-                
-                BaseSegmentedPicker(selection: gender) {
-                    ForEach(Gender.allCases) { gender in
-                        Text(LocalizedStringKey(gender.rawValue)).tag(gender)
-                    }
-                }
-                .frame(height: Constants.genderPickerHeight)
-                .labeled(LocalizedKeysConstants.gender)
-                
-                TextField("", text: login)
+                    .smallLabeled(LocalizedKeysConstants.Profile.name)
+                    .formBorderedTextFieldStyle()
+
+                GenderSegmentedPicker(selection: gender)
+                    .smallLabeled(LocalizedKeysConstants.Profile.gender)
+
+                TextField("", text: username)
+                    .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
-                    .labeled(LocalizedKeysConstants.login)
-                    .textFieldStyle(BaseTextFieldStyle())
-                
+                    .formErrorableItem(
+                        message: viewModel.state.usernameError,
+                        isErrorShowed: viewModel.state.isUsernameErrorShowing
+                    )
+                    .smallLabeled(LocalizedKeysConstants.Profile.username)
+
                 TextField("", text: email)
                     .keyboardType(.emailAddress)
-                    .labeled(LocalizedKeysConstants.email)
-                    .textFieldStyle(BaseTextFieldStyle(
-                        (viewModel.state.email.isEmpty || viewModel.state.isValidEmail) ? .default : .error
-                    ))
-                
+                    .formErrorableItem(
+                        message: viewModel.state.emailError,
+                        isErrorShowed: viewModel.state.isEmailErrorShowing
+                    )
+                    .smallLabeled(LocalizedKeysConstants.Profile.email)
+
                 DatePickerField(date: birthdate)
-                    .labeled(LocalizedKeysConstants.birthdate)
+                    .smallLabeled(LocalizedKeysConstants.Profile.birthdate)
             }
         } formAction: {
-            viewModel.handle(.onTapContinue)
+            viewModel.handle(.continueTapped)
         } calloutAction: {
-            viewModel.handle(.onTapLogIn)
+            viewModel.handle(.logInTapped)
         }
     }
-    
-    private enum Constants {
-        static let genderPickerHeight: CGFloat = 43
-    }
-    
+
     private var name: Binding<String> {
         Binding(
             get: { viewModel.state.name },
             set: { viewModel.handle(.nameChanged($0)) }
         )
     }
-    
+
     private var gender: Binding<Gender> {
         Binding(
             get: { viewModel.state.gender },
             set: { viewModel.handle(.genderChanged($0)) }
         )
     }
-    
-    private var login: Binding<String> {
+
+    private var username: Binding<String> {
         Binding(
-            get: { viewModel.state.login },
-            set: { viewModel.handle(.loginChanged($0)) }
+            get: { viewModel.state.username },
+            set: { viewModel.handle(.usernameChanged($0)) }
         )
     }
-    
+
     private var email: Binding<String> {
         Binding(
             get: { viewModel.state.email },
             set: { viewModel.handle(.emailChanged($0)) }
         )
     }
-    
+
     private var birthdate: Binding<Date> {
         Binding(
             get: { viewModel.state.birthdate },
             set: { viewModel.handle(.birthdateChanged($0)) }
         )
     }
-}
-
-#Preview {
-    PersonalInfoRegistrationView(
-        viewModel: .init(
-            router: .init(path: .constant(.init())),
-            validateEmailUseCase: .init()
-        )
-    )
 }
