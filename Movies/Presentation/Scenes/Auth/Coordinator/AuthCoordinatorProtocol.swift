@@ -10,6 +10,7 @@ import Foundation
 @MainActor
 protocol AuthCoordinatorProtocol {
     func showLogin()
+    func showMainScene()
     func showPersonalInfoRegistration()
     func showPasswordRegistration(personalInfo: PersonalInfoViewModel)
 }

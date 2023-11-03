@@ -19,7 +19,7 @@ struct FavoriteButton: View {
             Image(systemName: isSet ? Constants.heartFill : Constants.heart)
                 .imageScale(.large)
                 .fontWeight(.medium)
-                .foregroundStyle(isSet ? .red : .white)
+                .foregroundStyle(isSet ? .appAccent : .white)
         }
         .padding(Constants.insets)
         .background(

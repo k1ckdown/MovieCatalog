@@ -15,8 +15,8 @@ struct RatingTagView: View {
     }
 
     enum Style: Equatable {
-        case titleOnly(Size)
         case titleAndIcon
+        case titleOnly(Size)
 
         var fontWeight: Font.Weight {
             switch self {
@@ -83,11 +83,11 @@ struct RatingTagView: View {
 
     private var backgroundColor: Color {
         switch value {
-        case 0...2: .appRed
-        case 3: .appOrangeFire
-        case 4...5: .appOrange
-        case 6...7: .appYellow
-        case 8: .appGreenLight
+        case 0..<3: .appRed
+        case 3..<4: .appOrangeFire
+        case 4..<6: .appOrange
+        case 6..<8: .appYellow
+        case 8..<9: .appGreenLight
         case 9...10: .appGreen
         default: .secondary
         }
