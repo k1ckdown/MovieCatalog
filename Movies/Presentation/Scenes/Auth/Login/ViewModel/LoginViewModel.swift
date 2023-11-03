@@ -23,8 +23,8 @@ final class LoginViewModel: ViewModel {
     func handle(_ event: LoginViewEvent) {
         switch event {
         case .logInTapped:
-            logInTapped()
-            
+            Task { await logInTapped() }
+
         case .registerTapped:
             coordinator.showPersonalInfoRegistration()
             
@@ -39,16 +39,15 @@ final class LoginViewModel: ViewModel {
 
 private extension LoginViewModel {
     
-    func logInTapped() {
+    func logInTapped() async {
         state.isLoading = true
-        Task {
-            do {
-                try await loginUseCase.execute(username: state.username, password: state.password)
-                state.loginError = nil
-            } catch {
-                state.loginError = LocalizedKeysConstants.ErrorMessage.loginFailed
-            }
-            state.isLoading = false
+        do {
+            try await loginUseCase.execute(username: state.username, password: state.password)
+            state.loginError = nil
+            coordinator.showMainScene()
+        } catch {
+            state.loginError = LocalizedKeysConstants.ErrorMessage.loginFailed
         }
+        state.isLoading = false
     }
 }

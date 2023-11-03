@@ -35,7 +35,7 @@ final class PasswordRegistrationViewModel: ViewModel {
             coordinator.showLogin()
 
         case .registerTapped:
-            registerTapped()
+            Task { await registerTapped() }
 
         case .passwordChanged(let password):
             passwordUpdated(password)
@@ -74,7 +74,7 @@ private extension PasswordRegistrationViewModel {
         }
     }
 
-    func registerTapped() {
+    func registerTapped() async {
         let userRegister = UserRegister(
             userName: personalInfo.userName,
             name: personalInfo.name,
@@ -85,14 +85,13 @@ private extension PasswordRegistrationViewModel {
         )
 
         state.isLoading = true
-        Task {
-            do {
-                try await registerUserUseCase.execute(userRegister)
-                state.registerError = nil
-            } catch {
-                state.registerError = LocalizedKeysConstants.ErrorMessage.registrationFailed
-            }
-            state.isLoading = false
+        do {
+            try await registerUserUseCase.execute(userRegister)
+            state.registerError = nil
+            coordinator.showMainScene()
+        } catch {
+            state.registerError = LocalizedKeysConstants.ErrorMessage.registrationFailed
         }
+        state.isLoading = false
     }
 }
