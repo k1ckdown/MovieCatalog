@@ -24,7 +24,7 @@ struct ProfileView: View {
                     .bold()
 
                 Button(LocalizedKeysConstants.Auth.Action.logOut) {
-
+                    viewModel.handle(.logOutTapped)
                 }
                 .fontWeight(.semibold)
                 .foregroundStyle(.appAccent)
