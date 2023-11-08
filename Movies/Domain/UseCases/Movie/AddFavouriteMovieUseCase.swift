@@ -10,15 +10,15 @@ import Foundation
 final class AddFavouriteMovieUseCase {
 
     private let movieRepository: MovieRepositoryProtocol
-    private let secureStorage: SecureStorageProtocol
+    private let keychainRepository: KeychainRepositoryProtocol
 
-    init(movieRepository: MovieRepositoryProtocol, secureStorage: SecureStorageProtocol) {
+    init(movieRepository: MovieRepositoryProtocol, keychainRepository: KeychainRepositoryProtocol) {
         self.movieRepository = movieRepository
-        self.secureStorage = secureStorage
+        self.keychainRepository = keychainRepository
     }
 
     func execute(id: String) async throws {
-        let token = try secureStorage.retrieveToken()
+        let token = try keychainRepository.retrieveToken()
         try await movieRepository.addFavouriteMovie(id, token: token)
     }
 }

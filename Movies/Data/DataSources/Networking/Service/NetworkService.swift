@@ -13,25 +13,9 @@ final class NetworkService {
     private let networkManager = NetworkManager()
 }
 
-// MARK: - MovieNetworkService
+// MARK: - UserRemoteDataSource
 
-extension NetworkService: MovieNetworkService {
-
-    func fetchMovie(id: String) async throws -> MovieDTO {
-        let config = MovieNetworkConfig.detailsById(id)
-        return try await request(with: config)
-    }
-    
-    func fetchShortMovies(page: Int) async throws -> MoviesPagedResponse {
-        let config = MovieNetworkConfig.listByPage(page)
-        return try await request(with: config)
-    }
-
-}
-
-// MARK: - UserNetworkService
-
-extension NetworkService: UserNetworkService {
+extension NetworkService: ProfileRemoteDataSource {
 
     func fetchProfile(token: String) async throws -> ProfileDTO {
         let config = UserNetworkConfig.retrieveProfile
@@ -47,30 +31,9 @@ extension NetworkService: UserNetworkService {
 
 }
 
-// MARK: - FavoriteMoviesNetworkService
+// MARK: - ReviewRemoteDataSource
 
-extension NetworkService: FavoriteMoviesNetworkService {
-
-    func addFavoriteMovie(token: String, movieId: String) async throws {
-        let config = FavoriteMoviesNetworkConfig.add(movieId: movieId)
-        try await request(with: config, token: token)
-    }
-    
-    func deleteFavoriteMovie(token: String, movieId: String) async throws {
-        let config = FavoriteMoviesNetworkConfig.delete(movieId: movieId)
-        try await request(with: config, token: token)
-    }
-
-    func fetchFavoriteMovies(token: String) async throws -> MoviesResponse {
-        let config = FavoriteMoviesNetworkConfig.list
-        return try await request(with: config, token: token)
-    }
-
-}
-
-// MARK: - ReviewNetworkService
-
-extension NetworkService: ReviewNetworkService {
+extension NetworkService: ReviewRemoteDataSource {
 
     func deleteReview(token: String, movieId: String, reviewId: String) async throws {
         let config = ReviewNetworkConfig.delete(movieId: movieId, reviewId: reviewId)
@@ -93,16 +56,47 @@ extension NetworkService: ReviewNetworkService {
 
 }
 
-// MARK: - AuthNetworkService
+// MARK: - MovieRemoteDataSource
 
-extension NetworkService: AuthNetworkService {
+extension NetworkService: MovieRemoteDataSource {
 
-    func logout(token: String) async throws -> LogoutResponse {
+    func fetchMovie(id: String) async throws -> MovieDTO {
+        let config = MovieNetworkConfig.detailsById(id)
+        return try await request(with: config)
+    }
+
+    func fetchShortMovies(page: Int) async throws -> MoviesPagedResponse {
+        let config = MovieNetworkConfig.listByPage(page)
+        return try await request(with: config)
+    }
+
+    func addFavoriteMovie(token: String, movieId: String) async throws {
+        let config = FavoriteMoviesNetworkConfig.add(movieId: movieId)
+        try await request(with: config, token: token)
+    }
+
+    func deleteFavoriteMovie(token: String, movieId: String) async throws {
+        let config = FavoriteMoviesNetworkConfig.delete(movieId: movieId)
+        try await request(with: config, token: token)
+    }
+
+    func fetchFavoriteMovies(token: String) async throws -> MoviesResponse {
+        let config = FavoriteMoviesNetworkConfig.list
+        return try await request(with: config, token: token)
+    }
+
+}
+
+// MARK: - AuthDataSource
+
+extension NetworkService: AuthDataSource {
+
+    func logOut(token: String) async throws -> LogoutResponseDTO {
         let config = AuthNetworkConfig.logout
         return try await request(with: config)
     }
 
-    func login(credentials: LoginCredentials) async throws -> TokenInfo {
+    func logIn(credentials: LoginCredentials) async throws -> TokenInfo {
         let data = try encode(credentials)
         let config = AuthNetworkConfig.login(data)
 
