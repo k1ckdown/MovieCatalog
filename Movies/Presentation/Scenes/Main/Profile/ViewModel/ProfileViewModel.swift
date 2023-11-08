@@ -12,16 +12,19 @@ final class ProfileViewModel: ViewModel {
     @Published private(set) var state: ProfileViewState
 
     private var profile: Profile?
+    private let logoutUseCase: LogoutUseCase
     private let getProfileUseCase: GetProfileUseCase
     private let updateProfileUseCase: UpdateProfileUseCase
     private let validateEmailUseCase: ValidateEmailUseCase
 
     init(
+        logoutUseCase: LogoutUseCase,
         getProfileUseCase: GetProfileUseCase,
         updateProfileUseCase: UpdateProfileUseCase,
         validateEmailUseCase: ValidateEmailUseCase
     ) {
         self.state = .init()
+        self.logoutUseCase = logoutUseCase
         self.getProfileUseCase = getProfileUseCase
         self.updateProfileUseCase = updateProfileUseCase
         self.validateEmailUseCase = validateEmailUseCase
@@ -39,7 +42,7 @@ final class ProfileViewModel: ViewModel {
             break
 
         case .logOutTapped:
-            break
+            Task { await logOut() }
 
         case .emailChanged(let email):
             emailUpdated(email)
@@ -64,6 +67,15 @@ final class ProfileViewModel: ViewModel {
 }
 
 private extension ProfileViewModel {
+
+    func logOut() async {
+        do {
+            try await logoutUseCase.execute()
+        } catch {
+            state.errorMessage = error.localizedDescription
+            state.isAlertPresenting = true
+        }
+    }
 
     func emailUpdated(_ email: String) {
         state.email = email
