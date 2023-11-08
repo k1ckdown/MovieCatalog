@@ -14,7 +14,7 @@ struct AppCoordinator: View {
         case main
     }
 
-    @State private var currentScene = Scene.auth
+    @State private var currentScene = Scene.main
     private let screenFactory: ScreenFactory
 
     init(screenFactory: ScreenFactory) {
