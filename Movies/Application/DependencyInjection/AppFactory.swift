@@ -10,9 +10,9 @@ import Foundation
 final class AppFactory {
     private lazy var networkService = NetworkService()
     private lazy var keychainRepository = KeychainRepository()
-    private lazy var authRepository = AuthRepository(networkService: networkService)
-    private lazy var movieRepository = MovieRepository(networkService: networkService)
-    private lazy var profileRepository = ProfileRepository(networkService: networkService)
+    private lazy var authRepository = AuthRepository(authDataSource: networkService)
+    private lazy var movieRepository = MovieRepository(movieRemoteDataSource: networkService)
+    private lazy var profileRepository = ProfileRepository(profileRemoteDataSource: networkService)
 }
 
 extension AppFactory {
