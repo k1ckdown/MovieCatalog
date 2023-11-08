@@ -8,7 +8,10 @@
 import SwiftUI
 
 @MainActor
-final class ScreenFactory: AuthCoordinatorFactory {
+final class ScreenFactory: AuthCoordinatorFactory,
+                           HomeCoordinatorFactory,
+                           ProfileCoordinatorFactory,
+                           FavoritesCoordinatorFactory {
 
     private let appFactory: AppFactory
 
@@ -17,12 +20,67 @@ final class ScreenFactory: AuthCoordinatorFactory {
     }
 }
 
+// MARK: - FavoritesViewFactory
+
+extension ScreenFactory: FavoritesViewFactory {
+    func makeFavoritesView() -> FavoritesView {
+        let viewModel = FavoritesViewModel(
+            fetchFavoriteMoviesUseCase: appFactory.makeFetchFavoriteMoviesUseCase()
+        )
+        let view = FavoritesView(viewModel: viewModel)
+
+        return view
+    }
+}
+
+// MARK: - MovieDetailsFactory
+
+extension ScreenFactory: MovieDetailsViewFactory {
+    func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView {
+        let viewModel = MovieDetailsViewModel(
+            movie: movieDetails,
+            addFavouriteMovieUseCase: appFactory.makeAddFavouriteMovieUseCase()
+        )
+        let view = MovieDetailsView(viewModel: viewModel)
+
+        return view
+    }
+}
+
+// MARK: - HomeViewFactory
+
+extension ScreenFactory: HomeViewFactory {
+    func makeHomeView(coordinator: HomeCoordinatorProtocol) -> HomeView {
+        let viewModel = HomeViewModel(
+            coordinator: coordinator,
+            fetchMoviesUseCase: appFactory.makeFetchMoviesUseCase()
+        )
+        let view = HomeView(viewModel: viewModel)
+
+        return view
+    }
+}
+
+// MARK: - ProfileViewFactory
+
+extension ScreenFactory: ProfileViewFactory {
+    func makeProfileView() -> ProfileView {
+        let viewModel = ProfileViewModel(
+            getProfileUseCase: appFactory.makeGetProfileUseCase(),
+            updateProfileUseCase: appFactory.makeUpdateProfileUseCase(),
+            validateEmailUseCase: appFactory.makeValidateEmailUseCase()
+        )
+        let view = ProfileView(viewModel: viewModel)
+
+        return view
+    }
+}
+
 // MARK: - WelcomeViewFactory
 
 extension ScreenFactory: WelcomeViewFactory {
-    func makeWelcomeView(path: Binding<AuthNavigationPath>) -> WelcomeView {
-        let router = WelcomeRouter(path: path)
-        let viewModel = WelcomeViewModel(router: router)
+    func makeWelcomeView(coordinator: AuthCoordinatorProtocol) -> WelcomeView {
+        let viewModel = WelcomeViewModel(coordinator: coordinator)
         let view = WelcomeView(viewModel: viewModel)
 
         return view
@@ -32,9 +90,11 @@ extension ScreenFactory: WelcomeViewFactory {
 // MARK: - LoginViewFactory
 
 extension ScreenFactory: LoginViewFactory {
-    func makeLoginView(path: Binding<AuthNavigationPath>) -> LoginView {
-        let router = LoginRouter(path: path)
-        let viewModel = LoginViewModel(router: router, loginUseCase: appFactory.makeLoginUseCase())
+    func makeLoginView(coordinator: AuthCoordinatorProtocol) -> LoginView {
+        let viewModel = LoginViewModel(
+            coordinator: coordinator,
+            loginUseCase: appFactory.makeLoginUseCase()
+        )
         let view = LoginView(viewModel: viewModel)
 
         return view
@@ -45,11 +105,10 @@ extension ScreenFactory: LoginViewFactory {
 
 extension ScreenFactory: PersonalInfoRegistrationViewFactory {
     func makePersonalInfoRegistrationView(
-        path: Binding<AuthNavigationPath>
+        coordinator: AuthCoordinatorProtocol
     ) -> PersonalInfoRegistrationView {
-        let router = PersonalInfoRegistrationRouter(path: path)
         let viewModel = PersonalInfoRegistrationViewModel(
-            router: router,
+            coordinator: coordinator,
             validateEmailUseCase: appFactory.makeValidateEmailUseCase(),
             validateUsernameUseCase: appFactory.makeValidateUsernameUseCase()
         )
@@ -64,12 +123,11 @@ extension ScreenFactory: PersonalInfoRegistrationViewFactory {
 extension ScreenFactory: PasswordRegistrationViewFactory {
     func makePasswordRegistrationView(
         personalInfo: PersonalInfoViewModel,
-        path: Binding<AuthNavigationPath>
+        coordinator: AuthCoordinatorProtocol
     ) -> PasswordRegistrationView {
-        let router = PasswordRegistrationRouter(path: path)
         let viewModel = PasswordRegistrationViewModel(
             personalInfo: personalInfo,
-            router: router,
+            coordinator: coordinator,
             registerUserUseCase: appFactory.makeRegisterUserUseCase(),
             validatePasswordUseCase: appFactory.makeValidatePasswordUseCase()
         )

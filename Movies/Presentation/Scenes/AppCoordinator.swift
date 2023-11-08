@@ -9,6 +9,12 @@ import SwiftUI
 
 struct AppCoordinator: View {
 
+    enum Scene {
+        case auth
+        case main
+    }
+
+    @State private var currentScene = Scene.main
     private let screenFactory: ScreenFactory
 
     init(screenFactory: ScreenFactory) {
@@ -16,7 +22,19 @@ struct AppCoordinator: View {
     }
 
     var body: some View {
-        AuthCoordinator(factory: screenFactory)
+        switch currentScene {
+        case .auth:
+            AuthCoordinatorView(makeAuthCoordinator(), factory: screenFactory)
+        case .main:
+            MainCoordinatorView(factory: screenFactory)
+        }
+    }
+
+    func makeAuthCoordinator() -> AuthCoordinator {
+        let showMainSceneHandler: () -> Void = {
+            currentScene = .main
+        }
+        return AuthCoordinator(showMainSceneHandler: showMainSceneHandler)
     }
 }
 
