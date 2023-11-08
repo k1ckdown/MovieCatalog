@@ -14,6 +14,8 @@ struct FavoritesView: View {
     var body: some View {
         contentView
             .appBackground()
+            .navigationBarTitleDisplayMode(.large)
+            .navigationTitle(LocalizedKeysConstants.ScreenTitle.favorites)
             .onAppear {
                 viewModel.handle(.onAppear)
             }
@@ -34,25 +36,60 @@ struct FavoritesView: View {
     }
 
     private enum Constants {
-        static let horizontalInset: CGFloat = 15
+        enum Collection {
+            static let horizontalInset: CGFloat = 15
+        }
+
+        enum Placeholder {
+            static let offsetY: CGFloat = 60
+            static let headerLineLimit = 1
+            static let contentSpacing: CGFloat = 7
+            static let headerMinimumScale: CGFloat = 0.7
+        }
     }
 }
 
 private extension FavoritesView {
 
+    @ViewBuilder
     func loadedView(itemViewModels: [MovieShortItemViewModel]) -> some View {
-        ScrollView(.vertical) {
-            FavoritesLayout {
-                ForEach(itemViewModels) { itemViewModel in
-                    MovieShortItem(viewModel: itemViewModel)
+        if itemViewModels.count > 0 {
+            ScrollView(.vertical) {
+                FavoritesLayout {
+                    ForEach(itemViewModels) { itemViewModel in
+                        MovieShortItem(viewModel: itemViewModel)
+                    }
                 }
+                .padding(.top)
+                .padding(.horizontal, Constants.Collection.horizontalInset)
             }
-            .padding(.horizontal, Constants.horizontalInset)
+            .scrollIndicators(.hidden)
+        } else {
+            placeholder()
         }
-        .scrollIndicators(.hidden)
+    }
+
+    func placeholder() -> some View {
+        VStack(spacing: Constants.Placeholder.contentSpacing) {
+            Text(LocalizedKeysConstants.Content.noFavorites)
+                .font(.title3.weight(.bold))
+                .lineLimit(Constants.Placeholder.headerLineLimit)
+                .minimumScaleFactor(Constants.Placeholder.headerMinimumScale)
+
+            Text(LocalizedKeysConstants.Content.addFavorites)
+                .font(.subheadline)
+
+            Spacer()
+        }
+        .multilineTextAlignment(.center)
+        .padding(.horizontal)
+        .offset(y: Constants.Placeholder.offsetY)
     }
 }
 
-//#Preview {
-//    FavoritesView(v)
-//}
+#Preview {
+    NavigationStack {
+        FavoritesView(viewModel: .init(fetchFavoriteMoviesUseCase: AppFactory().makeFetchFavoriteMoviesUseCase()))
+            .environment(\.locale, .init(identifier: "ru"))
+    }
+}

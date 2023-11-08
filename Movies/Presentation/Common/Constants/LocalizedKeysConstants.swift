@@ -11,8 +11,8 @@ enum LocalizedKeysConstants {
 
     enum ScreenTitle {
         static let home = "Home"
-        static let favorites = "Favorites"
         static let profile = "Profile"
+        static let favorites = "Favorites"
     }
 
     enum Content {
@@ -23,6 +23,8 @@ enum LocalizedKeysConstants {
         static let myReview = LocalizedStringKey("MyReview")
         static let readMore = LocalizedStringKey("ReadMore")
         static let aboutMovie = LocalizedStringKey("AboutMovie")
+        static let noFavorites = LocalizedStringKey("NoFavorites")
+        static let addFavorites = LocalizedStringKey("AddFavorites")
 
         enum Description {
             static let time = "Time"
