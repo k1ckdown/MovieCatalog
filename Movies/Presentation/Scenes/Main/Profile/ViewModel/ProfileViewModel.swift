@@ -14,14 +14,14 @@ final class ProfileViewModel: ViewModel {
     private var profile: Profile?
     private let coordinator: ProfileCoordinatorProtocol
     private let logoutUseCase: LogoutUseCase
-    private let getProfileUseCase: GetProfileUseCase
+    private let getProfileUseCase: FetchProfileUseCase
     private let updateProfileUseCase: UpdateProfileUseCase
     private let validateEmailUseCase: ValidateEmailUseCase
 
     init(
         coordinator: ProfileCoordinatorProtocol,
         logoutUseCase: LogoutUseCase,
-        getProfileUseCase: GetProfileUseCase,
+        getProfileUseCase: FetchProfileUseCase,
         updateProfileUseCase: UpdateProfileUseCase,
         validateEmailUseCase: ValidateEmailUseCase
     ) {
