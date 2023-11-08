@@ -18,14 +18,14 @@ final class AppFactory {
 // MARK: - Profile
 
 extension AppFactory {
-    
-    func makeGetProfileUseCase() -> FetchProfileUseCase {
+
+    func makeFetchProfileUseCase() -> FetchProfileUseCase {
         FetchProfileUseCase(
             profileRepository: profileRepository,
             keychainRepository: keychainRepository
         )
     }
-    
+
     func makeUpdateProfileUseCase() -> UpdateProfileUseCase {
         UpdateProfileUseCase(
             profileRepository: profileRepository,
@@ -37,15 +37,15 @@ extension AppFactory {
 // MARK: - Validation
 
 extension AppFactory {
-    
+
     func makeValidateEmailUseCase() -> ValidateEmailUseCase {
         ValidateEmailUseCase()
     }
-    
+
     func makeValidateUsernameUseCase() -> ValidateUsernameUseCase {
         ValidateUsernameUseCase()
     }
-    
+
     func makeValidatePasswordUseCase() -> ValidatePasswordUseCase {
         ValidatePasswordUseCase()
     }
@@ -54,21 +54,21 @@ extension AppFactory {
 // MARK: - Auth
 
 extension AppFactory {
-    
+
     func makeLogoutUseCase() -> LogoutUseCase {
         LogoutUseCase(
             authRepository: authRepository,
             keychainRepository: keychainRepository
         )
     }
-    
+
     func makeLoginUseCase() -> LoginUseCase {
         LoginUseCase(
             authRepository: authRepository,
             keychainRepository: keychainRepository
         )
     }
-    
+
     func makeRegisterUserUseCase() -> RegisterUserUseCase {
         RegisterUserUseCase(
             authRepository: authRepository,
@@ -80,28 +80,28 @@ extension AppFactory {
 // MARK: - Movie
 
 extension AppFactory {
-    
+
     func makeFetchMoviesUseCase() -> FetchMoviesUseCase {
         FetchMoviesUseCase(
             movieRepository: movieRepository,
             getDetailsFromMovies: makeGetDetailsFromMoviesUseCase()
         )
     }
-    
+
     func makeAddFavouriteMovieUseCase() -> AddFavouriteMovieUseCase {
         AddFavouriteMovieUseCase(
             movieRepository: movieRepository,
             keychainRepository: keychainRepository
         )
     }
-    
+
     func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
         GetDetailsFromMoviesUseCase(
             movieRepository: movieRepository,
             profileRepository: profileRepository
         )
     }
-    
+
     func makeFetchFavoriteMoviesUseCase() -> FetchFavoriteMoviesUseCase {
         FetchFavoriteMoviesUseCase(
             movieRepository: movieRepository,

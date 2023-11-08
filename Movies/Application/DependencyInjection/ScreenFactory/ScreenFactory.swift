@@ -71,7 +71,7 @@ extension ScreenFactory: ProfileViewFactory {
         let viewModel = ProfileViewModel(
             coordinator: coordinator,
             logoutUseCase: appFactory.makeLogoutUseCase(),
-            getProfileUseCase: appFactory.makeGetProfileUseCase(),
+            getProfileUseCase: appFactory.makeFetchProfileUseCase(),
             updateProfileUseCase: appFactory.makeUpdateProfileUseCase(),
             validateEmailUseCase: appFactory.makeValidateEmailUseCase()
         )
