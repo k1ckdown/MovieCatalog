@@ -9,6 +9,12 @@ import SwiftUI
 
 enum LocalizedKeysConstants {
 
+    enum ScreenTitle {
+        static let home = "Home"
+        static let profile = "Profile"
+        static let favorites = "Favorites"
+    }
+
     enum Content {
         static let notAvailable = "N/A"
         static let genres = LocalizedStringKey("Genres")
@@ -17,6 +23,8 @@ enum LocalizedKeysConstants {
         static let myReview = LocalizedStringKey("MyReview")
         static let readMore = LocalizedStringKey("ReadMore")
         static let aboutMovie = LocalizedStringKey("AboutMovie")
+        static let noFavorites = LocalizedStringKey("NoFavorites")
+        static let addFavorites = LocalizedStringKey("AddFavorites")
 
         enum Description {
             static let time = "Time"

@@ -64,6 +64,23 @@
         }
       }
     },
+    "AddFavorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select your favorite movie in the catalog and add it to your favorites"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите понравившийся фильм в каталоге и добавьте его в любимые"
+          }
+        }
+      }
+    },
     "AgeLimit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -280,6 +297,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ошибка"
+          }
+        }
+      }
+    },
+    "Favorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Любимое"
           }
         }
       }
@@ -556,6 +590,23 @@
         }
       }
     },
+    "Main" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Main"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Главная"
+          }
+        }
+      }
+    },
     "male" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -641,6 +692,23 @@
         }
       }
     },
+    "NoFavorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any favorite movies yet"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У вас пока нет любимых фильмов."
+          }
+        }
+      }
+    },
     "NotAccountYet" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -687,6 +755,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Пароль"
+          }
+        }
+      }
+    },
+    "Profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Профиль"
           }
         }
       }
