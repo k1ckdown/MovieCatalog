@@ -8,25 +8,24 @@
 import Foundation
 
 final class RegisterUserUseCase {
-    
-    private let networkService: AuthNetworkService
+
     private let secureStorage: SecureStorageProtocol
+    private let authRepository: AuthRepositoryProtocol
     private let profileRepository: ProfileRepositoryProtocol
-    
+
     init(
-        networkService: AuthNetworkService,
         secureStorage: SecureStorageProtocol,
+        authRepository: AuthRepositoryProtocol,
         profileRepository: ProfileRepositoryProtocol
     ) {
-        self.networkService = networkService
         self.secureStorage = secureStorage
+        self.authRepository = authRepository
         self.profileRepository = profileRepository
     }
-    
+
     func execute(_ user: UserRegister) async throws {
-        let tokenInfo = try await networkService.register(user: user)
-        
-        try secureStorage.saveToken(tokenInfo.token)
-        try await profileRepository.loadProfile(token: tokenInfo.token)
+        let token = try await authRepository.register(user)
+        try secureStorage.saveToken(token)
+        try await profileRepository.loadProfile(token: token)
     }
 }

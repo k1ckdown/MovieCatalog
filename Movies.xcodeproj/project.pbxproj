@@ -146,6 +146,8 @@
 		49DA5D7C2AEA7B4100F96E97 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DA5D7B2AEA7B4100F96E97 /* AuthCoordinator.swift */; };
 		49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C12AE1172B00AA05C5 /* Gender.swift */; };
 		49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */; };
+		49E64D922AFB98ED0048C668 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E64D912AFB98ED0048C668 /* AuthRepository.swift */; };
+		49E64D942AFB99090048C668 /* AuthRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E64D932AFB99090048C668 /* AuthRepositoryProtocol.swift */; };
 		49E9280C2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */; };
 		49EB26552AECEEB400FFD335 /* MovieAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB26542AECEEB400FFD335 /* MovieAsyncImage.swift */; };
 		49EB265D2AECF2EF00FFD335 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB265C2AECF2EF00FFD335 /* HomeView.swift */; };
@@ -300,6 +302,8 @@
 		49DA5D7B2AEA7B4100F96E97 /* AuthCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		49E3A8C12AE1172B00AA05C5 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSegmentedPicker.swift; sourceTree = "<group>"; };
+		49E64D912AFB98ED0048C668 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		49E64D932AFB99090048C668 /* AuthRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryProtocol.swift; sourceTree = "<group>"; };
 		49E9280B2AE3E4F3006CC6EF /* LocalizedKeysConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedKeysConstants.swift; sourceTree = "<group>"; };
 		49EB26542AECEEB400FFD335 /* MovieAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAsyncImage.swift; sourceTree = "<group>"; };
 		49EB265C2AECF2EF00FFD335 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -560,15 +564,6 @@
 				4977E3C32ADBCF51008CE679 /* HTTPMethod.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		49486DE02AF3D61800520C5E /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				49A3FAE02AEDAD940043512C /* Repositories */,
-				490297C42AEC41DD000AFDB4 /* Services */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		4951B0F22AF32E0100B040EE /* Coordinator */ = {
@@ -958,6 +953,7 @@
 			children = (
 				49A3FAE12AEDADA90043512C /* ProfileRepositoryProtocol.swift */,
 				497831672AEED4E600860C41 /* MovieRepositoryProtocol.swift */,
+				49E64D932AFB99090048C668 /* AuthRepositoryProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -965,6 +961,7 @@
 		49A3FAE32AEDAE8E0043512C /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				49E64D912AFB98ED0048C668 /* AuthRepository.swift */,
 				49A3FAE42AEDAEE60043512C /* ProfileRepository.swift */,
 				4978316F2AEED5E800860C41 /* MovieRepository.swift */,
 			);
@@ -1103,7 +1100,8 @@
 		49E3A8C02AE1172400AA05C5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				49486DE02AF3D61800520C5E /* Protocols */,
+				490297C42AEC41DD000AFDB4 /* Services */,
+				49A3FAE02AEDAD940043512C /* Repositories */,
 				491EBBD82AEBDEEC00075FF0 /* Entities */,
 				49B6D75B2AE9A41200451DAF /* UseCases */,
 			);
@@ -1389,6 +1387,7 @@
 				49330CF62ADD7C8B00BFA4C6 /* HTTPTask.swift in Sources */,
 				49295E462AEFC4DB00F09ABE /* ReviewViewModel.swift in Sources */,
 				497831812AEEF82F00860C41 /* PageInfoDTO.swift in Sources */,
+				49E64D942AFB99090048C668 /* AuthRepositoryProtocol.swift in Sources */,
 				49295E3E2AEFB59F00F09ABE /* AuthCoordinatorProtocol.swift in Sources */,
 				4961F46F2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift in Sources */,
 				49C3CEA62AEA6026009FACF4 /* PasswordRegistrationView.swift in Sources */,
@@ -1422,6 +1421,7 @@
 				49295E4A2AEFD96300F09ABE /* Date+Formatters.swift in Sources */,
 				49C189CB2AE3FC090029BAF9 /* WelcomeViewModel.swift in Sources */,
 				49EB26622AED01E200FFD335 /* MovieShort.swift in Sources */,
+				49E64D922AFB98ED0048C668 /* AuthRepository.swift in Sources */,
 				49A3FAE52AEDAEE70043512C /* ProfileRepository.swift in Sources */,
 				490297CD2AEC5DFC000AFDB4 /* LoginUseCase.swift in Sources */,
 			);
