@@ -8,78 +8,79 @@
 import Foundation
 
 final class AppFactory {
-    private lazy var secureStorage = SecureStorage()
     private lazy var networkService = NetworkService()
-    private lazy var movieRepository = MovieRepository(networkService: networkService)
-    private lazy var profileRepository = ProfileRepository(networkService: networkService)
+    private lazy var keychainRepository = KeychainRepository()
+    private lazy var authRepository = AuthRepository(authDataSource: networkService)
+    private lazy var movieRepository = MovieRepository(movieRemoteDataSource: networkService)
+    private lazy var profileRepository = ProfileRepository(profileRemoteDataSource: networkService)
 }
 
 extension AppFactory {
-    
+
     func makeValidateEmailUseCase() -> ValidateEmailUseCase {
         ValidateEmailUseCase()
     }
-    
+
     func makeValidateUsernameUseCase() -> ValidateUsernameUseCase {
         ValidateUsernameUseCase()
     }
-    
+
     func makeValidatePasswordUseCase() -> ValidatePasswordUseCase {
         ValidatePasswordUseCase()
     }
-    
+
     func makeGetProfileUseCase() -> GetProfileUseCase {
         GetProfileUseCase(profileRepository: profileRepository)
     }
-    
+
     func makeUpdateProfileUseCase() -> UpdateProfileUseCase {
         UpdateProfileUseCase(
-            secureStorage: secureStorage,
-            profileRepository: profileRepository
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
         )
     }
-    
+
     func makeLoginUseCase() -> LoginUseCase {
         LoginUseCase(
-            networkService: networkService,
-            secureStorage: secureStorage,
-            profileRepository: profileRepository
+            authRepository: authRepository,
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
         )
     }
-    
+
     func makeRegisterUserUseCase() -> RegisterUserUseCase {
         RegisterUserUseCase(
-            networkService: networkService,
-            secureStorage: secureStorage,
-            profileRepository: profileRepository
+            authRepository: authRepository,
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
         )
     }
-    
+
     func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
         GetDetailsFromMoviesUseCase(
             movieRepository: movieRepository,
             profileRepository: profileRepository
         )
     }
-    
+
     func makeAddFavouriteMovieUseCase() -> AddFavouriteMovieUseCase {
         AddFavouriteMovieUseCase(
             movieRepository: movieRepository,
-            secureStorage: secureStorage
+            keychainRepository: keychainRepository
         )
     }
-    
+
     func makeFetchMoviesUseCase() -> FetchMoviesUseCase {
         FetchMoviesUseCase(
             movieRepository: movieRepository,
             getDetailsFromMovies: makeGetDetailsFromMoviesUseCase()
         )
     }
-    
+
     func makeFetchFavoriteMoviesUseCase() -> FetchFavoriteMoviesUseCase {
         FetchFavoriteMoviesUseCase(
-            secureStorage: secureStorage,
             movieRepository: movieRepository,
+            keychainRepository: keychainRepository,
             getDetailsFromMoviesUseCase: makeGetDetailsFromMoviesUseCase()
         )
     }

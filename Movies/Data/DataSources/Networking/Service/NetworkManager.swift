@@ -17,7 +17,6 @@ struct NetworkManager {
         let urlRequest = try buildRequest(with: config, token: token)
         return try await URLSession.shared.data(for: urlRequest)
     }
-
 }
 
 private extension NetworkManager {
@@ -47,5 +46,4 @@ private extension NetworkManager {
 
         return request
     }
-
 }
