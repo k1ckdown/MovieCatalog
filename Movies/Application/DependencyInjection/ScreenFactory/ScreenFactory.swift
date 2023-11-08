@@ -66,6 +66,7 @@ extension ScreenFactory: HomeViewFactory {
 extension ScreenFactory: ProfileViewFactory {
     func makeProfileView() -> ProfileView {
         let viewModel = ProfileViewModel(
+            logoutUseCase: appFactory.makeLogoutUseCase(),
             getProfileUseCase: appFactory.makeGetProfileUseCase(),
             updateProfileUseCase: appFactory.makeUpdateProfileUseCase(),
             validateEmailUseCase: appFactory.makeValidateEmailUseCase()
