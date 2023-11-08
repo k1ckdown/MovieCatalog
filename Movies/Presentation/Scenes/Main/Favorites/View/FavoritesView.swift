@@ -87,9 +87,9 @@ private extension FavoritesView {
     }
 }
 
-#Preview {
-    NavigationStack {
-        FavoritesView(viewModel: .init(fetchFavoriteMoviesUseCase: AppFactory().makeFetchFavoriteMoviesUseCase()))
-            .environment(\.locale, .init(identifier: "ru"))
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        FavoritesView(viewModel: .init(fetchFavoriteMoviesUseCase: AppFactory().makeFetchFavoriteMoviesUseCase()))
+//            .environment(\.locale, .init(identifier: "ru"))
+//    }
+//}

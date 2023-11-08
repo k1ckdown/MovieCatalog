@@ -26,7 +26,7 @@ struct AppCoordinator: View {
         case .auth:
             AuthCoordinatorView(makeAuthCoordinator(), factory: screenFactory)
         case .main:
-            MainCoordinatorView(factory: screenFactory)
+            MainCoordinatorView(factory: screenFactory, showAuthSceneHandler: { currentScene = .auth })
         }
     }
 

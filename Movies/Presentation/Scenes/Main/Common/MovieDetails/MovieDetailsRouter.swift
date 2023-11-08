@@ -1,28 +1,23 @@
 //
-//  ProfileCoordinator.swift
+//  MovieDetailsRouter.swift
 //  Movies
 //
-//  Created by Ivan Semenov on 02.11.2023.
+//  Created by Ivan Semenov on 09.11.2023.
 //
 
 import Foundation
 
-final class ProfileCoordinator: Coordinator {
-
-    enum Screen: Routable {
-
-    }
-
-    @Published var navigationPath = [Screen]()
+final class MovieDetailsRouter {
+    
     private let showAuthSceneHandler: () -> Void
-
+    
     init(showAuthSceneHandler: @escaping () -> Void) {
         self.showAuthSceneHandler = showAuthSceneHandler
     }
 }
 
-extension ProfileCoordinator: ProfileCoordinatorProtocol {
-
+extension MovieDetailsRouter {
+    
     func showAuthScene() {
         showAuthSceneHandler()
     }
