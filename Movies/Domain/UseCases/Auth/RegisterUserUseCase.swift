@@ -9,23 +9,23 @@ import Foundation
 
 final class RegisterUserUseCase {
 
-    private let secureStorage: SecureStorageProtocol
     private let authRepository: AuthRepositoryProtocol
     private let profileRepository: ProfileRepositoryProtocol
+    private let keychainRepository: KeychainRepositoryProtocol
 
     init(
-        secureStorage: SecureStorageProtocol,
         authRepository: AuthRepositoryProtocol,
-        profileRepository: ProfileRepositoryProtocol
+        profileRepository: ProfileRepositoryProtocol,
+        keychainRepository: KeychainRepositoryProtocol
     ) {
-        self.secureStorage = secureStorage
+        self.keychainRepository = keychainRepository
         self.authRepository = authRepository
         self.profileRepository = profileRepository
     }
 
     func execute(_ user: UserRegister) async throws {
         let token = try await authRepository.register(user)
-        try secureStorage.saveToken(token)
+        try keychainRepository.saveToken(token)
         try await profileRepository.loadProfile(token: token)
     }
 }

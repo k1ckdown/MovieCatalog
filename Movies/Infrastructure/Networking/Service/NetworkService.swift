@@ -97,7 +97,7 @@ extension NetworkService: ReviewNetworkService {
 
 extension NetworkService: AuthNetworkService {
 
-    func logout(token: String) async throws -> LogoutResponse {
+    func logout(token: String) async throws -> LogoutResponseDTO {
         let config = AuthNetworkConfig.logout
         return try await request(with: config)
     }

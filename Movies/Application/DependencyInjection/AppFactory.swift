@@ -8,8 +8,8 @@
 import Foundation
 
 final class AppFactory {
-    private lazy var secureStorage = SecureStorage()
     private lazy var networkService = NetworkService()
+    private lazy var keychainRepository = KeychainRepository()
     private lazy var authRepository = AuthRepository(networkService: networkService)
     private lazy var movieRepository = MovieRepository(networkService: networkService)
     private lazy var profileRepository = ProfileRepository(networkService: networkService)
@@ -35,24 +35,24 @@ extension AppFactory {
 
     func makeUpdateProfileUseCase() -> UpdateProfileUseCase {
         UpdateProfileUseCase(
-            secureStorage: secureStorage,
-            profileRepository: profileRepository
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
         )
     }
 
     func makeLoginUseCase() -> LoginUseCase {
         LoginUseCase(
-            secureStorage: secureStorage,
             authRepository: authRepository,
-            profileRepository: profileRepository
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
         )
     }
 
     func makeRegisterUserUseCase() -> RegisterUserUseCase {
         RegisterUserUseCase(
-            secureStorage: secureStorage,
             authRepository: authRepository,
-            profileRepository: profileRepository
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
         )
     }
 
@@ -66,7 +66,7 @@ extension AppFactory {
     func makeAddFavouriteMovieUseCase() -> AddFavouriteMovieUseCase {
         AddFavouriteMovieUseCase(
             movieRepository: movieRepository,
-            secureStorage: secureStorage
+            keychainRepository: keychainRepository
         )
     }
 
@@ -79,8 +79,8 @@ extension AppFactory {
 
     func makeFetchFavoriteMoviesUseCase() -> FetchFavoriteMoviesUseCase {
         FetchFavoriteMoviesUseCase(
-            secureStorage: secureStorage,
             movieRepository: movieRepository,
+            keychainRepository: keychainRepository,
             getDetailsFromMoviesUseCase: makeGetDetailsFromMoviesUseCase()
         )
     }

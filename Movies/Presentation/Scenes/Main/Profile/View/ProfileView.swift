@@ -140,13 +140,3 @@ struct ProfileView: View {
         )
     }
 }
-
-#Preview {
-    ProfileView(viewModel:
-            .init(
-                getProfileUseCase: .init(profileRepository: ProfileRepository(networkService: NetworkService())),
-                updateProfileUseCase: .init(secureStorage: SecureStorage(), profileRepository: ProfileRepository(networkService: NetworkService())),
-                validateEmailUseCase: .init()
-            )
-    )
-}

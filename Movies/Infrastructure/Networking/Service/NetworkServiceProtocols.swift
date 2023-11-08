@@ -28,3 +28,9 @@ protocol ReviewNetworkService {
     func addReview(token: String, movieId: String, review: ReviewModifyDTO) async throws
     func updateReview(token: String, movieId: String, reviewId: String, review: ReviewModifyDTO) async throws
 }
+
+protocol AuthNetworkService {
+    func logout(token: String) async throws -> LogoutResponseDTO
+    func register(user: UserRegister) async throws -> TokenInfo
+    func login(credentials: LoginCredentials) async throws -> TokenInfo
+}
