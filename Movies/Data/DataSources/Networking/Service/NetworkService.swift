@@ -141,7 +141,7 @@ private extension NetworkService {
         else {
             switch HTTPStatusCode(rawValue: httpResponse.statusCode) {
             case .unauthorized:
-                throw NetworkError.unauthorized
+                throw AuthError.unauthorized
             default:
                 throw NetworkError.invalidResponse
             }

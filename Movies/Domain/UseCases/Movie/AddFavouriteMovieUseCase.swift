@@ -19,6 +19,15 @@ final class AddFavouriteMovieUseCase {
 
     func execute(id: String) async throws {
         let token = try keychainRepository.retrieveToken()
-        try await movieRepository.addFavouriteMovie(id, token: token)
+
+        do {
+            try await movieRepository.addFavouriteMovie(id, token: token)
+        } catch {
+            if error as? AuthError == .unauthorized {
+                try keychainRepository.deleteToken()
+            }
+
+            throw error
+        }
     }
 }

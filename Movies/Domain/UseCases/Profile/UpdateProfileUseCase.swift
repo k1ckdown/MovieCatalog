@@ -22,6 +22,15 @@ final class UpdateProfileUseCase {
 
     func execute(_ profile: Profile) async throws {
         let token = try keychainRepository.retrieveToken()
-        try await profileRepository.updateProfile(profile, token: token)
+
+        do {
+            try await profileRepository.updateProfile(profile, token: token)
+        } catch {
+            if error as? AuthError == .unauthorized {
+                try keychainRepository.deleteToken()
+            }
+
+            throw error
+        }
     }
 }

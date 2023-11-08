@@ -14,7 +14,6 @@ enum NetworkError: LocalizedError {
     case encodingError
     case decodingError
     case invalidResponse
-    case unauthorized
     
     var errorDescription: String? {
         switch self {
@@ -30,8 +29,6 @@ enum NetworkError: LocalizedError {
             return "Encoding error."
         case .requestFailed:
             return "Request failed. Please, try again later."
-        case .unauthorized:
-            return "Need to log in"
         }
     }
 }
