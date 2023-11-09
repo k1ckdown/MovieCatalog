@@ -64,13 +64,13 @@ struct ProfileView: View {
 
             VStack(spacing: Constants.buttonSpacing) {
                 Button(LocalizedKeysConstants.Profile.save) {
-
+                    viewModel.handle(.saveTapped)
                 }
                 .baseButtonStyle()
                 .disabled(viewModel.state.isSaveDisabled)
 
                 Button(LocalizedKeysConstants.Profile.cancel) {
-
+                    viewModel.handle(.cancelTapped)
                 }
                 .baseButtonStyle(isProminent: false)
             }
@@ -107,7 +107,7 @@ struct ProfileView: View {
 
     private var avatarLink: Binding<String> {
         Binding(
-            get: { viewModel.state.avatarLink },
+            get: { viewModel.state.newAvatarLink },
             set: { viewModel.handle(.avatarLinkChanged($0)) }
         )
     }
@@ -139,4 +139,8 @@ struct ProfileView: View {
             set: { viewModel.handle(.onAlertPresented($0)) }
         )
     }
+}
+
+#Preview {
+    ScreenFactory(appFactory: .init()).makeProfileView(coordinator: ProfileCoordinator(showAuthSceneHandler: {}))
 }
