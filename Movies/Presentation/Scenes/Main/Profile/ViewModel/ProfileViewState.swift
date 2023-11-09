@@ -20,6 +20,7 @@ struct ProfileViewState: Equatable {
     var avatarLinkError: String?
     var errorMessage: String = ""
 
+    var isUpdating = false
     var isDataChanged = false
     var isAlertPresenting = false
 
@@ -32,7 +33,7 @@ struct ProfileViewState: Equatable {
     }
 
     var isSaveDisabled: Bool {
-        email.isEmpty || emailError != nil || avatarLink.isEmpty ||
+        email.isEmpty || emailError != nil || newAvatarLink.isEmpty ||
         avatarLinkError != nil || name.isEmpty || isDataChanged == false
     }
 }
