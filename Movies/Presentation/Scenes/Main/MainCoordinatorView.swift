@@ -32,15 +32,20 @@ struct MainCoordinatorView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            Group {
-                home.tag(Tab.home)
-                favorites.tag(Tab.favorites)
-                profile.tag(Tab.profile)
-            }
-            .toolbar(.visible, for: .tabBar)
-            .toolbarBackground(Color.appBlack, for: .tabBar)
+            home.tag(Tab.home)
+            favorites.tag(Tab.favorites)
+            profile.tag(Tab.profile)
         }
         .tintColor(.appAccent)
+        .onAppear {
+            setupTabBar()
+        }
+    }
+
+    private enum Constants {
+        static let houseImage = "house"
+        static let heartImage = "heart"
+        static let person = "person"
     }
 
     private var home: some View {
@@ -64,9 +69,15 @@ struct MainCoordinatorView: View {
             }
     }
 
-    private enum Constants {
-        static let houseImage = "house"
-        static let heartImage = "heart"
-        static let person = "person"
+    private func setupTabBar() {
+        UITabBar.appearance().tintColor = UIColor(resource: .appAccent)
+        UITabBar.appearance().isTranslucent = true
+
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .appBlack
+
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = UITabBar.appearance().standardAppearance
     }
 }

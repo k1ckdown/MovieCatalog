@@ -15,6 +15,7 @@ struct MovieDetailsView: View {
         contentView
             .appBackground()
             .toolbarRole(.editor)
+            .navigationBarTitleDisplayMode(.inline)
     }
 
     @ViewBuilder

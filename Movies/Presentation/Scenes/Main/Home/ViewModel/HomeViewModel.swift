@@ -30,7 +30,7 @@ final class HomeViewModel: ViewModel {
             Task { await loadMore() }
 
         case .onSelectMovie(let id):
-            movieSelected(id: id)
+            movieSelected(id)
         }
     }
 }
@@ -51,11 +51,10 @@ private extension HomeViewModel {
         }
     }
 
-    func movieSelected(id: String) {
-        guard let movie = movies.first(where: { $0.id == id }) else {
-            return
+    func movieSelected(_ id: String) {
+        if let movie = movies.first(where: { $0.id == id }) {
+            coordinator.showMovieDetails(movie)
         }
-        coordinator.showMovieDetails(movie)
     }
 
     func fetchMovies() async {
