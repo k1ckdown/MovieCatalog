@@ -18,7 +18,7 @@ final class MovieRepository {
 
 extension MovieRepository: MovieRepositoryProtocol {
     
-    func addFavouriteMovie(_ id: String, token: String) async throws {
+    func addFavoriteMovie(_ id: String, token: String) async throws {
         try await movieRemoteDataSource.addFavoriteMovie(token: token, movieId: id)
     }
     
