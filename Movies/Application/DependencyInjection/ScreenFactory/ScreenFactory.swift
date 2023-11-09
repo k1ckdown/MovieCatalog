@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor
 final class ScreenFactory: AuthCoordinatorFactory,
-                           MainCoordinatorFactory,
+                           HomeCoordinatorFactory,
                            ProfileCoordinatorFactory,
                            FavoritesCoordinatorFactory {
 
@@ -23,8 +23,9 @@ final class ScreenFactory: AuthCoordinatorFactory,
 // MARK: - FavoritesViewFactory
 
 extension ScreenFactory: FavoritesViewFactory {
-    func makeFavoritesView() -> FavoritesView {
+    func makeFavoritesView(coordinator: FavoritesCoordinatorProtocol) -> FavoritesView {
         let viewModel = FavoritesViewModel(
+            coordinator: coordinator,
             fetchFavoriteMoviesUseCase: appFactory.makeFetchFavoriteMoviesUseCase()
         )
         let view = FavoritesView(viewModel: viewModel)
@@ -36,23 +37,28 @@ extension ScreenFactory: FavoritesViewFactory {
 // MARK: - MovieDetailsFactory
 
 extension ScreenFactory: MovieDetailsViewFactory {
-    func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView {
-        let viewModel = MovieDetailsViewModel(movieDetails: movieDetails)
+    func makeMovieDetailsView(movieDetails: MovieDetails, showAuthSceneHandler: @escaping () -> Void) -> MovieDetailsView {
+        let router = MovieDetailsRouter(showAuthSceneHandler: showAuthSceneHandler)
+        let viewModel = MovieDetailsViewModel(
+            movie: movieDetails,
+            router: router,
+            addFavouriteMovieUseCase: appFactory.makeAddFavouriteMovieUseCase()
+        )
         let view = MovieDetailsView(viewModel: viewModel)
 
         return view
     }
 }
 
-// MARK: - MainViewFactory
+// MARK: - HomeViewFactory
 
-extension ScreenFactory: MainViewFactory {
-    func makeMainView(coordinator: MainCoordinatorProtocol) -> MainView {
-        let viewModel = MainViewModel(
+extension ScreenFactory: HomeViewFactory {
+    func makeHomeView(coordinator: HomeCoordinatorProtocol) -> HomeView {
+        let viewModel = HomeViewModel(
             coordinator: coordinator,
             fetchMoviesUseCase: appFactory.makeFetchMoviesUseCase()
         )
-        let view = MainView(viewModel: viewModel)
+        let view = HomeView(viewModel: viewModel)
 
         return view
     }
@@ -61,9 +67,11 @@ extension ScreenFactory: MainViewFactory {
 // MARK: - ProfileViewFactory
 
 extension ScreenFactory: ProfileViewFactory {
-    func makeProfileView() -> ProfileView {
+    func makeProfileView(coordinator: ProfileCoordinatorProtocol) -> ProfileView {
         let viewModel = ProfileViewModel(
-            getProfileUseCase: appFactory.makeGetProfileUseCase(),
+            coordinator: coordinator,
+            logoutUseCase: appFactory.makeLogoutUseCase(),
+            getProfileUseCase: appFactory.makeFetchProfileUseCase(),
             updateProfileUseCase: appFactory.makeUpdateProfileUseCase(),
             validateEmailUseCase: appFactory.makeValidateEmailUseCase()
         )

@@ -24,28 +24,35 @@ final class ProfileRepository {
     }
 
     private var profile: Profile?
-    private let networkService: UserNetworkService
+    private let profileRemoteDataSource: ProfileRemoteDataSource
 
-    init(networkService: UserNetworkService) {
-        self.networkService = networkService
+    init(profileRemoteDataSource: ProfileRemoteDataSource) {
+        self.profileRemoteDataSource = profileRemoteDataSource
     }
 }
 
 extension ProfileRepository: ProfileRepositoryProtocol {
 
-    func loadProfile(token: String) async throws {
-        let profile = try await networkService.fetchProfile(token: token)
-        self.profile = profile.toDomain()
-    }
-
-    func getProfile() async throws -> Profile {
-        guard let profile = profile else {
+    func getProfileId() throws -> String {
+        guard let profile else {
             throw ProfileRepositoryError.notFound
         }
 
+        return profile.id
+    }
+
+    func getProfile(token: String) async throws -> Profile {
+        if let loadedProfile = profile {
+            return loadedProfile
+        }
+
+        let profileDto = try await profileRemoteDataSource.fetchProfile(token: token)
+        let profile = profileDto.toDomain()
+        self.profile = profile
+
         return profile
     }
-    
+
     func updateProfile(_ profile: Profile, token: String) async throws {
         let profileDto = ProfileDTO(
             id: profile.id,
@@ -57,7 +64,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
             gender: profile.gender == .male ? .male : .female)
 
         do {
-            try await networkService.updateProfile(token: token, profile: profileDto)
+            try await profileRemoteDataSource.updateProfile(token: token, profile: profileDto)
             self.profile = profile
         } catch {
             throw ProfileRepositoryError.updateFailed
