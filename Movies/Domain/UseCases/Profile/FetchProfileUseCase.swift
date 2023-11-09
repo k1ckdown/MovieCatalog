@@ -22,8 +22,15 @@ final class FetchProfileUseCase {
 
     func execute() async throws -> Profile {
         let token = try keychainRepository.retrieveToken()
-        let profile = try await profileRepository.getProfile(token: token)
+        do {
+            let profile = try await profileRepository.getProfile(token: token)
+            return profile
+        } catch {
+            if error as? AuthError == .unauthorized {
+                try keychainRepository.deleteToken()
+            }
 
-        return profile
+            throw error
+        }
     }
 }

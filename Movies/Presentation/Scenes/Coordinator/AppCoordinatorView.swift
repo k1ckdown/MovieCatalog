@@ -29,6 +29,7 @@ struct AppCoordinatorView: View {
         switch coordinator.state {
         case .loading:
             ProgressView()
+                .tint(.appAccent)
         case .auth:
             AuthCoordinatorView(
                 AuthCoordinator(showMainSceneHandler: { coordinator.handle(.showMain) }),
