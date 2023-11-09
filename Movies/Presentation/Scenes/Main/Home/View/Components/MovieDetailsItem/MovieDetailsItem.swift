@@ -68,7 +68,7 @@ struct MovieDetailsItem: View {
 
         enum MovieImage {
             static let width: CGFloat = 105
-            static let ratingInsets: CGFloat = 5
+            static let ratingInsets: CGFloat = 3
             static let cornerRadius: CGFloat = 5
         }
 
