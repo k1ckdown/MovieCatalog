@@ -10,22 +10,18 @@ import Foundation
 final class LoginUseCase {
 
     private let authRepository: AuthRepositoryProtocol
-    private let profileRepository: ProfileRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
 
     init(
         authRepository: AuthRepositoryProtocol,
-        profileRepository: ProfileRepositoryProtocol,
         keychainRepository: KeychainRepositoryProtocol
     ) {
-        self.keychainRepository = keychainRepository
         self.authRepository = authRepository
-        self.profileRepository = profileRepository
+        self.keychainRepository = keychainRepository
     }
 
     func execute(username: String, password: String) async throws {
         let token = try await authRepository.logIn(username: username, password: password)
         try keychainRepository.saveToken(token)
-        try await profileRepository.loadProfile(token: token)
     }
 }

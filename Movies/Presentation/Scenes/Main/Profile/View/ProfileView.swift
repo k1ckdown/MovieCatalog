@@ -84,7 +84,7 @@ struct ProfileView: View {
         } message: {
             Text(viewModel.state.errorMessage)
         }
-        .onAppear {
+        .firstAppear {
             viewModel.handle(.onAppear)
         }
     }
