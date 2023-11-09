@@ -48,7 +48,6 @@ struct MovieAsyncImage: View {
     private var placeholder: some View {
         Image(.moviePlaceholder)
             .resizable()
-            .scaledToFill()
     }
 
     private enum Constants {
