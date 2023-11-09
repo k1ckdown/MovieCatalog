@@ -18,6 +18,7 @@ struct MoviesApp: App {
                 screenFactory: ScreenFactory(appFactory: appFactory),
                 coordinator: AppCoordinator(fetchProfileUseCase: appFactory.makeFetchProfileUseCase())
             )
+            .preferredColorScheme(.dark)
         }
     }
 }

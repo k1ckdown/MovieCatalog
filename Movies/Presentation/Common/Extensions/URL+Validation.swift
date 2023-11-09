@@ -5,7 +5,7 @@
 //  Created by Ivan Semenov on 09.11.2023.
 //
 
-import Foundation
+import UIKit
 
 extension URL {
     enum Constants {
@@ -13,8 +13,7 @@ extension URL {
     }
 
     func isImageType() -> Bool {
-        self.scheme != nil &&
-        self.host() != nil &&
+        UIApplication.shared.canOpenURL(self) &&
         Constants.imageFormats.contains(self.pathExtension.lowercased())
     }
 }

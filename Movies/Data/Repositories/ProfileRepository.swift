@@ -42,6 +42,10 @@ extension ProfileRepository: ProfileRepositoryProtocol {
     }
 
     func getProfile(token: String) async throws -> Profile {
+        if let loadedProfile = profile {
+            return loadedProfile
+        }
+
         let profileDto = try await profileRemoteDataSource.fetchProfile(token: token)
         let profile = profileDto.toDomain()
         self.profile = profile
