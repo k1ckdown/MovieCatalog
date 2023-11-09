@@ -20,3 +20,9 @@ struct MovieShortItemViewModel: Identifiable, Equatable {
         lhs.id == rhs.id
     }
 }
+
+extension MovieShortItemViewModel: HasPlaceholder {
+    static func placeholder(id: String) -> MovieShortItemViewModel {
+        .init(rating: 9, name: .placeholder(length: 10), imageUrl: "")
+    }
+}

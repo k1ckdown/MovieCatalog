@@ -13,6 +13,7 @@ struct FavoritesView: View {
 
     var body: some View {
         contentView
+            .redacted(if: viewModel.state == .loading)
             .appBackground()
             .navigationBarTitleDisplayMode(.large)
             .navigationTitle(LocalizedKeysConstants.ScreenTitle.favorites)
@@ -26,12 +27,12 @@ struct FavoritesView: View {
         switch viewModel.state {
         case .idle:
             EmptyView()
-        case .loading:
-            ProgressView()
         case .error(let message):
             Text(message)
+        case .loading:
+            collectionView(itemViewModels: .placeholders(count: 5))
         case .loaded(let viewData):
-            loadedView(itemViewModels: viewData.movieItems)
+            collectionView(itemViewModels: viewData.movieItems)
         }
     }
 
@@ -52,7 +53,7 @@ struct FavoritesView: View {
 private extension FavoritesView {
 
     @ViewBuilder
-    func loadedView(itemViewModels: [MovieShortItemViewModel]) -> some View {
+    func collectionView(itemViewModels: [MovieShortItemViewModel]) -> some View {
         if itemViewModels.count > 0 {
             ScrollView(.vertical) {
                 FavoritesLayout {
