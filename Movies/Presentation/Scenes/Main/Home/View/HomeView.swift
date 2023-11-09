@@ -51,14 +51,9 @@ struct HomeView: View {
         static let numberOfCards = 4
         static let countPlaceholders = numberOfCards + 3
 
-        static let moviePageHeight: CGFloat = 515
+        static let moviePageHeight: CGFloat = 497
+        static let spacingMovieItems: CGFloat = 17
         static let titleVerticalInsets: CGFloat = 5
-        static let listRowInsets = EdgeInsets(
-            top: 0,
-            leading: 15,
-            bottom: 15,
-            trailing: 15
-        )
     }
 }
 
@@ -136,14 +131,13 @@ private extension HomeView {
     ) -> some View {
         Group {
             listHeader()
-            LazyVStack {
+            LazyVStack(spacing: Constants.spacingMovieItems) {
                 ForEach(itemViewModels) { itemViewModel in
                     MovieDetailsItem(viewModel: itemViewModel)
                         .onTapGesture {
                             viewModel.handle(.onSelectMovie(itemViewModel.id))
                         }
                 }
-                .listRowInsets(Constants.listRowInsets)
                 loadMoreView(loadMore)
             }
             .padding(.bottom)
