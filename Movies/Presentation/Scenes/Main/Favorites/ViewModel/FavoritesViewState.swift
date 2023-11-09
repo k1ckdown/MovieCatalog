@@ -18,4 +18,5 @@ enum FavoritesViewState: Equatable {
 
 enum FavoritesViewEvent {
     case onAppear
+    case onSelectMovie(String)
 }
