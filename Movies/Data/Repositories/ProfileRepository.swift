@@ -33,6 +33,10 @@ final class ProfileRepository {
 
 extension ProfileRepository: ProfileRepositoryProtocol {
 
+    func removeLocalProfile() {
+        profile = nil
+    }
+
     func getProfileId() throws -> String {
         guard let profile else {
             throw ProfileRepositoryError.notFound
