@@ -14,7 +14,11 @@ struct MoviesApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppCoordinator(screenFactory: ScreenFactory(appFactory: appFactory))
+            AppCoordinatorView(
+                screenFactory: ScreenFactory(appFactory: appFactory),
+                coordinator: AppCoordinator(fetchProfileUseCase: appFactory.makeFetchProfileUseCase())
+            )
+            .preferredColorScheme(.dark)
         }
     }
 }

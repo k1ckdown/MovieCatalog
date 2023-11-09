@@ -14,4 +14,16 @@ final class FavoritesCoordinator: Coordinator {
     }
 
     @Published var navigationPath = [Screen]()
+    private let showAuthSceneHandler: () -> Void
+
+    init(showAuthSceneHandler: @escaping () -> Void) {
+        self.showAuthSceneHandler = showAuthSceneHandler
+    }
+}
+
+extension FavoritesCoordinator: FavoritesCoordinatorProtocol {
+
+    func showAuthScene() {
+        showAuthSceneHandler()
+    }
 }
