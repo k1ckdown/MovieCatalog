@@ -171,6 +171,7 @@
 		49EB266D2AED272D00FFD335 /* RatingTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB266C2AED272D00FFD335 /* RatingTagView.swift */; };
 		49EB26702AED286A00FFD335 /* TagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB266F2AED286A00FFD335 /* TagLayout.swift */; };
 		49EB26762AED5E3900FFD335 /* GenreTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB26752AED5E3900FFD335 /* GenreTag.swift */; };
+		49F8D0DC2AFD46040039BCE8 /* HandleTokenExpiryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D0DB2AFD46040039BCE8 /* HandleTokenExpiryUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -339,6 +340,7 @@
 		49EB266C2AED272D00FFD335 /* RatingTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingTagView.swift; sourceTree = "<group>"; };
 		49EB266F2AED286A00FFD335 /* TagLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLayout.swift; sourceTree = "<group>"; };
 		49EB26752AED5E3900FFD335 /* GenreTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTag.swift; sourceTree = "<group>"; };
+		49F8D0DB2AFD46040039BCE8 /* HandleTokenExpiryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleTokenExpiryUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +370,7 @@
 				490297CC2AEC5DFC000AFDB4 /* LoginUseCase.swift */,
 				49D4629A2AFC08AA00696452 /* LogoutUseCase.swift */,
 				490297C12AEC417C000AFDB4 /* RegisterUserUseCase.swift */,
+				49F8D0DB2AFD46040039BCE8 /* HandleTokenExpiryUseCase.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1303,6 +1306,7 @@
 				499E0E142AF3354100D4EEA2 /* FavoritesCoordinatorView.swift in Sources */,
 				4978316E2AEED57900860C41 /* UserShort.swift in Sources */,
 				490297C82AEC46D7000AFDB4 /* KeychainRepositoryProtocol.swift in Sources */,
+				49F8D0DC2AFD46040039BCE8 /* HandleTokenExpiryUseCase.swift in Sources */,
 				499B07DB2AF3599500261472 /* FavoritesViewState.swift in Sources */,
 				497831832AEEF83D00860C41 /* PageInfo.swift in Sources */,
 				4961F48F2AE0490B00A717AB /* FormTextFieldStyle.swift in Sources */,
