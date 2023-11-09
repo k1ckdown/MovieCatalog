@@ -137,11 +137,11 @@ private extension HomeView {
     }
 }
 
-#Preview {
-    HomeView(
-        viewModel: .init(
-            coordinator: HomeCoordinator(),
-            fetchMoviesUseCase: AppFactory().makeFetchMoviesUseCase()
-        )
-    )
-}
+//#Preview {
+//    HomeView(
+//        viewModel: .init(
+//            coordinator: HomeCoordinator(),
+//            fetchMoviesUseCase: AppFactory().makeFetchMoviesUseCase()
+//        )
+//    )
+//}

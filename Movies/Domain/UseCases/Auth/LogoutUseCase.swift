@@ -1,30 +1,31 @@
 //
-//  UpdateProfileUseCase.swift
+//  LogoutUseCase.swift
 //  Movies
 //
-//  Created by Ivan Semenov on 29.10.2023.
+//  Created by Ivan Semenov on 09.11.2023.
 //
 
 import Foundation
 
-final class UpdateProfileUseCase {
+final class LogoutUseCase {
 
-    private let profileRepository: ProfileRepositoryProtocol
+    private let authRepository: AuthRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
 
     init(
-        profileRepository: ProfileRepositoryProtocol,
+        authRepository: AuthRepositoryProtocol,
         keychainRepository: KeychainRepositoryProtocol
     ) {
-        self.profileRepository = profileRepository
+        self.authRepository = authRepository
         self.keychainRepository = keychainRepository
     }
 
-    func execute(_ profile: Profile) async throws {
+    func execute() async throws {
         let token = try keychainRepository.retrieveToken()
 
         do {
-            try await profileRepository.updateProfile(profile, token: token)
+            try await authRepository.logOut(token: token)
+            try keychainRepository.deleteToken()
         } catch {
             if error as? AuthError == .unauthorized {
                 try keychainRepository.deleteToken()

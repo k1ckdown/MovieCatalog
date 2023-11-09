@@ -10,10 +10,16 @@ import Foundation
 final class FavoritesViewModel: ViewModel {
 
     @Published private(set) var state: FavoritesViewState
+
+    private let coordinator: FavoritesCoordinatorProtocol
     private let fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase
 
-    init(fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase) {
+    init(
+        coordinator: FavoritesCoordinatorProtocol,
+        fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase
+    ) {
         state = .idle
+        self.coordinator = coordinator
         self.fetchFavoriteMoviesUseCase = fetchFavoriteMoviesUseCase
     }
 
@@ -35,7 +41,11 @@ private extension FavoritesViewModel {
             let itemViewModels = movies.map { makeMovieItemViewModel($0) }
             state = .loaded(.init(movieItems: itemViewModels))
         } catch {
-            state = .error(error.localizedDescription)
+            if error as? AuthError == .unauthorized {
+                coordinator.showAuthScene()
+            } else {
+                state = .error(error.localizedDescription)
+            }
         }
     }
 

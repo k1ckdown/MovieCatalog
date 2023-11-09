@@ -25,9 +25,17 @@ final class FetchFavoriteMoviesUseCase {
 
     func execute() async throws -> [MovieDetails] {
         let token = try keychainRepository.retrieveToken()
-        let movieShortList = try await movieRepository.getFavoriteMovies(token: token)
-        let movieDetailsList = try await getDetailsFromMoviesUseCase.execute(movieShortList)
 
-        return movieDetailsList
+        do {
+            let movieShortList = try await movieRepository.getFavoriteMovies(token: token)
+            let movieDetailsList = try await getDetailsFromMoviesUseCase.execute(movieShortList)
+            return movieDetailsList
+        } catch {
+            if error as? AuthError == .unauthorized {
+                try keychainRepository.deleteToken()
+            }
+
+            throw error
+        }
     }
 }
