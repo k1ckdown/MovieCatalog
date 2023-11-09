@@ -1,5 +1,5 @@
 //
-//  HandleTokenExpiryUseCase.swift
+//  CloseSessionUseCase.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 09.11.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class HandleTokenExpiryUseCase {
+final class CloseSessionUseCase {
 
     private let profileRepository: ProfileRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
