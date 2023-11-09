@@ -10,8 +10,9 @@ import Foundation
 struct ProfileViewState: Equatable {
     var username = ""
     var email = ""
-    var avatarLink = ""
     var name = ""
+    var avatarLink = ""
+    var newAvatarLink = ""
     var gender = Gender.male
     var birthdate = Date.now
 
@@ -27,12 +28,12 @@ struct ProfileViewState: Equatable {
     }
 
     var isAvatarLinkErrorShowing: Bool {
-        avatarLink.isEmpty == false && avatarLinkError != nil
+        newAvatarLink.isEmpty == false && avatarLinkError != nil
     }
-    
+
     var isSaveDisabled: Bool {
-        email.isEmpty || avatarLink.isEmpty ||
-        name.isEmpty || emailError != nil || isDataChanged == false
+        email.isEmpty || emailError != nil || avatarLink.isEmpty ||
+        avatarLinkError != nil || name.isEmpty || isDataChanged == false
     }
 }
 

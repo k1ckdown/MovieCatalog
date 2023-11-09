@@ -471,6 +471,23 @@
         }
       }
     },
+    "InvalidLink" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid link"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Некорректная ссылка"
+          }
+        }
+      }
+    },
     "InvalidPassword" : {
       "extractionState" : "manual",
       "localizations" : {

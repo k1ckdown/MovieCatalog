@@ -107,7 +107,7 @@ struct ProfileView: View {
 
     private var avatarLink: Binding<String> {
         Binding(
-            get: { viewModel.state.avatarLink },
+            get: { viewModel.state.newAvatarLink },
             set: { viewModel.handle(.avatarLinkChanged($0)) }
         )
     }
