@@ -30,7 +30,11 @@ struct FavoritesView: View {
         case .error(let message):
             Text(message)
         case .loading:
-            collectionView(itemViewModels: .placeholders(count: 3))
+            collectionView(
+                itemViewModels: .placeholders(
+                    count: Constants.Collection.countPlaceholders
+                )
+            )
         case .loaded(let viewData):
             collectionView(itemViewModels: viewData.movieItems)
         }
@@ -38,6 +42,7 @@ struct FavoritesView: View {
 
     private enum Constants {
         enum Collection {
+            static let countPlaceholders = 3
             static let horizontalInset: CGFloat = 15
         }
 
@@ -90,10 +95,3 @@ private extension FavoritesView {
         .offset(y: Constants.Placeholder.offsetY)
     }
 }
-
-//#Preview {
-//    NavigationStack {
-//        FavoritesView(viewModel: .init(fetchFavoriteMoviesUseCase: AppFactory().makeFetchFavoriteMoviesUseCase()))
-//            .environment(\.locale, .init(identifier: "ru"))
-//    }
-//}
