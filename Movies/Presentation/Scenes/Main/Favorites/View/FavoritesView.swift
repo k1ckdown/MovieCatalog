@@ -13,6 +13,7 @@ struct FavoritesView: View {
 
     var body: some View {
         contentView
+            .redacted(if: viewModel.state == .loading)
             .appBackground()
             .navigationBarTitleDisplayMode(.large)
             .navigationTitle(LocalizedKeysConstants.ScreenTitle.favorites)
@@ -26,17 +27,22 @@ struct FavoritesView: View {
         switch viewModel.state {
         case .idle:
             EmptyView()
-        case .loading:
-            ProgressView()
         case .error(let message):
             Text(message)
+        case .loading:
+            collectionView(
+                itemViewModels: .placeholders(
+                    count: Constants.Collection.countPlaceholders
+                )
+            )
         case .loaded(let viewData):
-            loadedView(itemViewModels: viewData.movieItems)
+            collectionView(itemViewModels: viewData.movieItems)
         }
     }
 
     private enum Constants {
         enum Collection {
+            static let countPlaceholders = 3
             static let horizontalInset: CGFloat = 15
         }
 
@@ -52,15 +58,18 @@ struct FavoritesView: View {
 private extension FavoritesView {
 
     @ViewBuilder
-    func loadedView(itemViewModels: [MovieShortItemViewModel]) -> some View {
+    func collectionView(itemViewModels: [MovieShortItemViewModel]) -> some View {
         if itemViewModels.count > 0 {
             ScrollView(.vertical) {
                 FavoritesLayout {
                     ForEach(itemViewModels) { itemViewModel in
                         MovieShortItem(viewModel: itemViewModel)
+                            .onTapGesture {
+                                viewModel.handle(.onSelectMovie(itemViewModel.id))
+                            }
                     }
                 }
-                .padding(.top)
+                .padding(.vertical)
                 .padding(.horizontal, Constants.Collection.horizontalInset)
             }
             .scrollIndicators(.hidden)
@@ -86,10 +95,3 @@ private extension FavoritesView {
         .offset(y: Constants.Placeholder.offsetY)
     }
 }
-
-//#Preview {
-//    NavigationStack {
-//        FavoritesView(viewModel: .init(fetchFavoriteMoviesUseCase: AppFactory().makeFetchFavoriteMoviesUseCase()))
-//            .environment(\.locale, .init(identifier: "ru"))
-//    }
-//}

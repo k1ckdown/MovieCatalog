@@ -13,16 +13,16 @@ final class MovieDetailsViewModel: ViewModel {
 
     private let movie: MovieDetails
     private let router: MovieDetailsRouter
-    private let addFavouriteMovieUseCase: AddFavouriteMovieUseCase
+    private let addFavoriteMovieUseCase: AddFavoriteMovieUseCase
 
     init(
         movie: MovieDetails,
         router: MovieDetailsRouter,
-        addFavouriteMovieUseCase: AddFavouriteMovieUseCase
+        addFavoriteMovieUseCase: AddFavoriteMovieUseCase
     ) {
         self.movie = movie
         self.router = router
-        self.addFavouriteMovieUseCase = addFavouriteMovieUseCase
+        self.addFavoriteMovieUseCase = addFavoriteMovieUseCase
         state = .loaded(getViewData())
     }
 
@@ -44,7 +44,7 @@ private extension MovieDetailsViewModel {
 
         if viewData.isFavorite {
             do {
-                try await addFavouriteMovieUseCase.execute(id: movie.id)
+                try await addFavoriteMovieUseCase.execute(id: movie.id)
             } catch {
                 print(error.localizedDescription)
             }

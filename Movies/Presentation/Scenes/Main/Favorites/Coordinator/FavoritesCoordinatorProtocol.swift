@@ -10,4 +10,5 @@ import Foundation
 @MainActor
 protocol FavoritesCoordinatorProtocol {
     func showAuthScene()
+    func showMovieDetails(_ movie: MovieDetails)
 }

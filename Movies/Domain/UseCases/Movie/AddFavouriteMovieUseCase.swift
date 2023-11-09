@@ -1,5 +1,5 @@
 //
-//  AddFavouriteMovieUseCase.swift
+//  AddFavoriteMovieUseCase.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 02.11.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AddFavouriteMovieUseCase {
+final class AddFavoriteMovieUseCase {
 
     private let movieRepository: MovieRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
@@ -21,7 +21,7 @@ final class AddFavouriteMovieUseCase {
         let token = try keychainRepository.retrieveToken()
 
         do {
-            try await movieRepository.addFavouriteMovie(id, token: token)
+            try await movieRepository.addFavoriteMovie(id, token: token)
         } catch {
             if error as? AuthError == .unauthorized {
                 try keychainRepository.deleteToken()
