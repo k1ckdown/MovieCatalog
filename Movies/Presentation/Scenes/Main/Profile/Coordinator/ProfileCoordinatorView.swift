@@ -16,7 +16,7 @@ struct ProfileCoordinatorView: View {
     init(_ coordinator: ProfileCoordinator, factory: ProfileCoordinatorFactory) {
         self.factory = factory
         self.coordinator = coordinator
-        rootView = factory.makeProfileView()
+        rootView = factory.makeProfileView(coordinator: coordinator)
     }
     
     var body: some View {

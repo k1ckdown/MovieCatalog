@@ -134,11 +134,17 @@ private extension NetworkService {
     }
 
     func checkResponse(_ response: URLResponse) throws {
+        guard let httpResponse = response as? HTTPURLResponse else { return }
+
         guard
-            let httpResponse = response as? HTTPURLResponse,
             (200...299).contains(httpResponse.statusCode)
         else {
-            throw NetworkError.invalidResponse
+            switch HTTPStatusCode(rawValue: httpResponse.statusCode) {
+            case .unauthorized:
+                throw AuthError.unauthorized
+            default:
+                throw NetworkError.invalidResponse
+            }
         }
     }
 
@@ -160,5 +166,4 @@ private extension NetworkService {
 
         return model
     }
-
 }

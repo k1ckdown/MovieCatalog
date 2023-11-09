@@ -15,6 +15,27 @@ final class AppFactory {
     private lazy var profileRepository = ProfileRepository(profileRemoteDataSource: networkService)
 }
 
+// MARK: - Profile
+
+extension AppFactory {
+
+    func makeFetchProfileUseCase() -> FetchProfileUseCase {
+        FetchProfileUseCase(
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
+        )
+    }
+
+    func makeUpdateProfileUseCase() -> UpdateProfileUseCase {
+        UpdateProfileUseCase(
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
+        )
+    }
+}
+
+// MARK: - Validation
+
 extension AppFactory {
 
     func makeValidateEmailUseCase() -> ValidateEmailUseCase {
@@ -28,14 +49,15 @@ extension AppFactory {
     func makeValidatePasswordUseCase() -> ValidatePasswordUseCase {
         ValidatePasswordUseCase()
     }
+}
 
-    func makeGetProfileUseCase() -> GetProfileUseCase {
-        GetProfileUseCase(profileRepository: profileRepository)
-    }
+// MARK: - Auth
 
-    func makeUpdateProfileUseCase() -> UpdateProfileUseCase {
-        UpdateProfileUseCase(
-            profileRepository: profileRepository,
+extension AppFactory {
+
+    func makeLogoutUseCase() -> LogoutUseCase {
+        LogoutUseCase(
+            authRepository: authRepository,
             keychainRepository: keychainRepository
         )
     }
@@ -43,7 +65,6 @@ extension AppFactory {
     func makeLoginUseCase() -> LoginUseCase {
         LoginUseCase(
             authRepository: authRepository,
-            profileRepository: profileRepository,
             keychainRepository: keychainRepository
         )
     }
@@ -51,15 +72,19 @@ extension AppFactory {
     func makeRegisterUserUseCase() -> RegisterUserUseCase {
         RegisterUserUseCase(
             authRepository: authRepository,
-            profileRepository: profileRepository,
             keychainRepository: keychainRepository
         )
     }
+}
 
-    func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
-        GetDetailsFromMoviesUseCase(
+// MARK: - Movie
+
+extension AppFactory {
+
+    func makeFetchMoviesUseCase() -> FetchMoviesUseCase {
+        FetchMoviesUseCase(
             movieRepository: movieRepository,
-            profileRepository: profileRepository
+            getDetailsFromMovies: makeGetDetailsFromMoviesUseCase()
         )
     }
 
@@ -70,10 +95,10 @@ extension AppFactory {
         )
     }
 
-    func makeFetchMoviesUseCase() -> FetchMoviesUseCase {
-        FetchMoviesUseCase(
+    func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
+        GetDetailsFromMoviesUseCase(
             movieRepository: movieRepository,
-            getDetailsFromMovies: makeGetDetailsFromMoviesUseCase()
+            profileRepository: profileRepository
         )
     }
 
