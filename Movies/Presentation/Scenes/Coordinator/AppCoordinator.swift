@@ -11,6 +11,7 @@ import Foundation
 final class AppCoordinator: ObservableObject {
 
     enum State {
+        case idle
         case loading
         case auth
         case main
@@ -26,7 +27,7 @@ final class AppCoordinator: ObservableObject {
     private let fetchProfileUseCase: FetchProfileUseCase
 
     init(fetchProfileUseCase: FetchProfileUseCase) {
-        state = .auth
+        state = .idle
         self.fetchProfileUseCase = fetchProfileUseCase
     }
 

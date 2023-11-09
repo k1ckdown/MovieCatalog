@@ -27,6 +27,9 @@ struct AppCoordinatorView: View {
     @ViewBuilder
     private var sceneView: some View {
         switch coordinator.state {
+        case .idle:
+            EmptyView()
+
         case .loading:
             ProgressView()
                 .tint(.appAccent)
