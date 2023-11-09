@@ -30,11 +30,14 @@ struct AppCoordinatorView: View {
         case .loading:
             ProgressView()
                 .tint(.appAccent)
+                .appBackground()
+
         case .auth:
             AuthCoordinatorView(
                 AuthCoordinator(showMainSceneHandler: { coordinator.handle(.showMain) }),
                 factory: screenFactory
             )
+
         case .main:
             MainCoordinatorView(
                 factory: screenFactory,

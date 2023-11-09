@@ -38,11 +38,11 @@ final class ProfileViewModel: ViewModel {
         case .onAppear:
             Task { await retrieveProfile() }
 
-        case .editTapped:
-            break
-
         case .saveTapped:
-            break
+            Task { await updateProfile() }
+
+        case .cancelTapped:
+            resetChanges()
 
         case .logOutTapped:
             Task { await logOut() }
@@ -51,7 +51,7 @@ final class ProfileViewModel: ViewModel {
             emailUpdated(email)
 
         case .avatarLinkChanged(let link):
-            state.avatarLink = link
+            avatarLinkUpdated(link)
 
         case .nameChanged(let name):
             state.name = name
@@ -61,6 +61,7 @@ final class ProfileViewModel: ViewModel {
 
         case .birthdateChanged(let date):
             state.birthdate = date
+
         case .onAlertPresented(let isPresented):
             state.isAlertPresenting = isPresented
         }
@@ -70,6 +71,15 @@ final class ProfileViewModel: ViewModel {
 }
 
 private extension ProfileViewModel {
+
+    func handleError(_ error: Error) {
+        if error as? AuthError == .unauthorized {
+            coordinator.showAuthScene()
+        } else {
+            state.errorMessage = error.localizedDescription
+            state.isAlertPresenting = true
+        }
+    }
 
     func logOut() async {
         do {
@@ -101,22 +111,26 @@ private extension ProfileViewModel {
         }
     }
 
-    func handleError(_ error: Error) {
-        if error as? AuthError == .unauthorized {
-            coordinator.showAuthScene()
-        } else {
-            state.errorMessage = error.localizedDescription
-            state.isAlertPresenting = true
-        }
-    }
-
     func handleProfileData(_ profile: Profile) {
         state.username = profile.nickName
         state.email = profile.email
         state.avatarLink = profile.avatarLink
+        state.newAvatarLink = state.avatarLink
         state.name = profile.name
         state.gender = profile.gender
         state.birthdate = profile.birthDate
+    }
+
+    func resetChanges() {
+        guard let profile else { return }
+
+        state.name = profile.name
+        state.email = profile.email
+        state.gender = profile.gender
+        state.newAvatarLink = profile.avatarLink
+        state.birthdate = profile.birthDate
+        state.emailError = nil
+        state.avatarLinkError = nil
     }
 
     func updateProfile() async {
@@ -126,7 +140,7 @@ private extension ProfileViewModel {
             id: id,
             nickName: state.username,
             email: state.email,
-            avatarLink: state.avatarLink,
+            avatarLink: state.newAvatarLink,
             name: state.name,
             birthDate: state.birthdate,
             gender: state.gender
@@ -135,19 +149,35 @@ private extension ProfileViewModel {
         do {
             try await updateProfileUseCase.execute(updatedProfile)
             profile = updatedProfile
+            state.avatarLink = updatedProfile.avatarLink
+            checkDataIsChange()
         } catch {
-            state.errorMessage = error.localizedDescription
-            state.isAlertPresenting = true
+            resetChanges()
+            handleError(error)
         }
     }
 
+    func avatarLinkUpdated(_ urlString: String) {
+        state.newAvatarLink = urlString
+
+        guard
+            let url = URL(string: urlString),
+            url.isImageType()
+        else {
+            state.avatarLinkError = LocalizedKeysConstants.ErrorMessage.invalidLink
+            return
+        }
+
+        state.avatarLinkError = nil
+    }
+
     func checkDataIsChange() {
-        guard let profile = profile else { return }
+        guard let profile else { return }
 
         let isNameChanged = state.name != profile.name
         let isEmailChanged = state.email != profile.email
         let isGenderChanged = state.gender != profile.gender
-        let isAvatarLinkChanged = state.avatarLink != profile.avatarLink
+        let isAvatarLinkChanged = state.newAvatarLink != profile.avatarLink
         let isBirthdateChanged = !Calendar.current.isDate(
             state.birthdate,
             equalTo: profile.birthDate,
