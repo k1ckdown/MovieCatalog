@@ -8,7 +8,7 @@
 import Foundation
 
 struct MovieShortItemViewModel: Identifiable, Equatable {
-    let id = UUID()
+    let id: String
     let rating: Double
     let name: String?
     let imageUrl: String?
@@ -23,6 +23,6 @@ struct MovieShortItemViewModel: Identifiable, Equatable {
 
 extension MovieShortItemViewModel: HasPlaceholder {
     static func placeholder(id: String) -> MovieShortItemViewModel {
-        .init(rating: 9, name: .placeholder(length: 10), imageUrl: "")
+        .init(id: id, rating: 9, name: .placeholder(length: 10), imageUrl: "")
     }
 }

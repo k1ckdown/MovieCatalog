@@ -30,7 +30,7 @@ struct FavoritesView: View {
         case .error(let message):
             Text(message)
         case .loading:
-            collectionView(itemViewModels: .placeholders(count: 5))
+            collectionView(itemViewModels: .placeholders(count: 3))
         case .loaded(let viewData):
             collectionView(itemViewModels: viewData.movieItems)
         }
@@ -59,6 +59,9 @@ private extension FavoritesView {
                 FavoritesLayout {
                     ForEach(itemViewModels) { itemViewModel in
                         MovieShortItem(viewModel: itemViewModel)
+                            .onTapGesture {
+                                viewModel.handle(.onSelectMovie(itemViewModel.id))
+                            }
                     }
                 }
                 .padding(.vertical)

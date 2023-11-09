@@ -11,6 +11,7 @@ final class FavoritesViewModel: ViewModel {
 
     @Published private(set) var state: FavoritesViewState
 
+    private var movies = [MovieDetails]()
     private let coordinator: FavoritesCoordinatorProtocol
     private let fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase
 
@@ -27,17 +28,26 @@ final class FavoritesViewModel: ViewModel {
         switch event {
         case .onAppear:
             Task { await fetchMovies() }
+
+        case .onSelectMovie(let id):
+            movieSelected(id)
         }
     }
 }
 
 private extension FavoritesViewModel {
 
+    func movieSelected(_ id: String) {
+        if let movie = movies.first(where: { $0.id == id }) {
+            coordinator.showMovieDetails(movie)
+        }
+    }
+
     func fetchMovies() async {
         state = .loading
 
         do {
-            let movies = try await fetchFavoriteMoviesUseCase.execute()
+            movies = try await fetchFavoriteMoviesUseCase.execute()
             let itemViewModels = movies.map { makeMovieItemViewModel($0) }
             state = .loaded(.init(movieItems: itemViewModels))
         } catch {
@@ -50,6 +60,6 @@ private extension FavoritesViewModel {
     }
 
     func makeMovieItemViewModel(_ movie: MovieDetails) -> MovieShortItemViewModel {
-        .init(rating: movie.rating, name: movie.name, imageUrl: movie.poster)
+        .init(id: movie.id, rating: movie.rating, name: movie.name, imageUrl: movie.poster)
     }
 }
