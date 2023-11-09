@@ -9,19 +9,16 @@ import SwiftUI
 
 struct MovieAsyncImage: View {
 
-    let urlString: String?
+    let url: URL?
     let shouldShowProgressView: Bool
 
     init(urlString: String?, isShowingProgressView: Bool = false) {
-        self.urlString = urlString
+        self.url = URL(string: urlString ?? "")
         self.shouldShowProgressView = isShowingProgressView
     }
 
     var body: some View {
-        AsyncImage(
-            url: URL(string: urlString ?? ""),
-            transaction: .init(animation: .easeInOut)
-        ) { phase in
+        CacheAsyncImage(url: url) { phase in
             switch phase {
             case .empty:
                 if shouldShowProgressView {
@@ -48,7 +45,6 @@ struct MovieAsyncImage: View {
     private var placeholder: some View {
         Image(.moviePlaceholder)
             .resizable()
-            .scaledToFill()
     }
 
     private enum Constants {

@@ -135,6 +135,7 @@ private extension ProfileViewModel {
 
     func updateProfile() async {
         guard let id = profile?.id else { return }
+        state.isUpdating = true
 
         let updatedProfile = Profile(
             id: id,
@@ -155,6 +156,7 @@ private extension ProfileViewModel {
             resetChanges()
             handleError(error)
         }
+        state.isUpdating = false
     }
 
     func avatarLinkUpdated(_ urlString: String) {

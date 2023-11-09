@@ -10,16 +10,20 @@ import SwiftUI
 struct AvatarAsyncImage: View {
 
     let size: CGFloat
-    let urlString: String?
+    let url: URL?
+
+    init(size: CGFloat, urlString: String?) {
+        self.size = size
+        self.url = URL(string: urlString ?? "")
+    }
 
     var body: some View {
-        AsyncImage(url: URL(string: urlString ?? "")) { image in
+        CacheAsyncImage(url: url) { image in
             image
                 .resizable()
         } placeholder: {
             Image(.avatarPlaceholder)
                 .resizable()
-                .scaledToFill()
         }
         .frame(width: size, height: size)
         .clipShape(.circle)

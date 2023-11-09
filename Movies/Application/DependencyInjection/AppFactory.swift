@@ -88,8 +88,8 @@ extension AppFactory {
         )
     }
 
-    func makeAddFavouriteMovieUseCase() -> AddFavouriteMovieUseCase {
-        AddFavouriteMovieUseCase(
+    func makeAddFavoriteMovieUseCase() -> AddFavoriteMovieUseCase {
+        AddFavoriteMovieUseCase(
             movieRepository: movieRepository,
             keychainRepository: keychainRepository
         )
