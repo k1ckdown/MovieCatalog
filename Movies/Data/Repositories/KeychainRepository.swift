@@ -1,5 +1,5 @@
 //
-//  SecureStorage.swift
+//  KeychainRepository.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 27.10.2023.
@@ -8,7 +8,7 @@
 import Foundation
 import Security
 
-final class SecureStorage {
+final class KeychainRepository {
 
     enum KeychainError: LocalizedError {
         case invalidData
@@ -38,7 +38,7 @@ final class SecureStorage {
     }
 }
 
-extension SecureStorage: SecureStorageProtocol {
+extension KeychainRepository: KeychainRepositoryProtocol {
 
     func deleteToken() throws {
         let query = [
@@ -111,7 +111,7 @@ extension SecureStorage: SecureStorageProtocol {
     }
 }
 
-private extension SecureStorage {
+private extension KeychainRepository {
 
     func convertError(_ status: OSStatus) -> KeychainError {
         switch status {

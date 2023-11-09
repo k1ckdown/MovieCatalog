@@ -12,16 +12,22 @@ final class ProfileViewModel: ViewModel {
     @Published private(set) var state: ProfileViewState
 
     private var profile: Profile?
-    private let getProfileUseCase: GetProfileUseCase
+    private let coordinator: ProfileCoordinatorProtocol
+    private let logoutUseCase: LogoutUseCase
+    private let getProfileUseCase: FetchProfileUseCase
     private let updateProfileUseCase: UpdateProfileUseCase
     private let validateEmailUseCase: ValidateEmailUseCase
 
     init(
-        getProfileUseCase: GetProfileUseCase,
+        coordinator: ProfileCoordinatorProtocol,
+        logoutUseCase: LogoutUseCase,
+        getProfileUseCase: FetchProfileUseCase,
         updateProfileUseCase: UpdateProfileUseCase,
         validateEmailUseCase: ValidateEmailUseCase
     ) {
         self.state = .init()
+        self.coordinator = coordinator
+        self.logoutUseCase = logoutUseCase
         self.getProfileUseCase = getProfileUseCase
         self.updateProfileUseCase = updateProfileUseCase
         self.validateEmailUseCase = validateEmailUseCase
@@ -39,7 +45,7 @@ final class ProfileViewModel: ViewModel {
             break
 
         case .logOutTapped:
-            break
+            Task { await logOut() }
 
         case .emailChanged(let email):
             emailUpdated(email)
@@ -65,6 +71,25 @@ final class ProfileViewModel: ViewModel {
 
 private extension ProfileViewModel {
 
+    func logOut() async {
+        do {
+            try await logoutUseCase.execute()
+            coordinator.showAuthScene()
+        } catch {
+            handleError(error)
+        }
+    }
+
+    func retrieveProfile() async {
+        do {
+            let profile = try await getProfileUseCase.execute()
+            self.profile = profile
+            handleProfileData(profile)
+        } catch {
+            handleError(error)
+        }
+    }
+
     func emailUpdated(_ email: String) {
         state.email = email
 
@@ -76,12 +101,10 @@ private extension ProfileViewModel {
         }
     }
 
-    func retrieveProfile() async {
-        do {
-            let profile = try await getProfileUseCase.execute()
-            self.profile = profile
-            handleProfileData(profile)
-        } catch {
+    func handleError(_ error: Error) {
+        if error as? AuthError == .unauthorized {
+            coordinator.showAuthScene()
+        } else {
             state.errorMessage = error.localizedDescription
             state.isAlertPresenting = true
         }

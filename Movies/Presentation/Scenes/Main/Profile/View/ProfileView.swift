@@ -24,7 +24,7 @@ struct ProfileView: View {
                     .bold()
 
                 Button(LocalizedKeysConstants.Auth.Action.logOut) {
-
+                    viewModel.handle(.logOutTapped)
                 }
                 .fontWeight(.semibold)
                 .foregroundStyle(.appAccent)
@@ -84,7 +84,7 @@ struct ProfileView: View {
         } message: {
             Text(viewModel.state.errorMessage)
         }
-        .onAppear {
+        .firstAppear {
             viewModel.handle(.onAppear)
         }
     }
@@ -139,14 +139,4 @@ struct ProfileView: View {
             set: { viewModel.handle(.onAlertPresented($0)) }
         )
     }
-}
-
-#Preview {
-    ProfileView(viewModel:
-            .init(
-                getProfileUseCase: .init(profileRepository: ProfileRepository(networkService: NetworkService())),
-                updateProfileUseCase: .init(secureStorage: SecureStorage(), profileRepository: ProfileRepository(networkService: NetworkService())),
-                validateEmailUseCase: .init()
-            )
-    )
 }

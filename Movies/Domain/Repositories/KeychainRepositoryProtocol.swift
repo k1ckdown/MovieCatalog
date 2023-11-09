@@ -1,5 +1,5 @@
 //
-//  SecureStorageProtocol.swift
+//  KeychainRepositoryProtocol.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 28.10.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SecureStorageProtocol {
+protocol KeychainRepositoryProtocol {
     func deleteToken() throws
     func retrieveToken() throws -> String
     func saveToken(_ token: String) throws

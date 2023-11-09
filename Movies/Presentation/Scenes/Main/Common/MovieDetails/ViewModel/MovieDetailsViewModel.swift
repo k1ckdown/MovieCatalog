@@ -12,10 +12,16 @@ final class MovieDetailsViewModel: ViewModel {
     @Published private(set) var state = MovieDetailsViewState.idle
 
     private let movie: MovieDetails
+    private let router: MovieDetailsRouter
     private let addFavouriteMovieUseCase: AddFavouriteMovieUseCase
 
-    init(movie: MovieDetails, addFavouriteMovieUseCase: AddFavouriteMovieUseCase) {
+    init(
+        movie: MovieDetails,
+        router: MovieDetailsRouter,
+        addFavouriteMovieUseCase: AddFavouriteMovieUseCase
+    ) {
         self.movie = movie
+        self.router = router
         self.addFavouriteMovieUseCase = addFavouriteMovieUseCase
         state = .loaded(getViewData())
     }

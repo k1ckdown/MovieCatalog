@@ -61,17 +61,23 @@ struct FavoritesLayout: Layout {
     }
 }
 
-extension FavoritesLayout {
+private extension FavoritesLayout {
 
-    private func maxSize(subviews: Subviews, proposal: ProposedViewSize) -> CGSize {
-        let numberViews = CGFloat(subviews.count)
-        let numberMediumViews: CGFloat = numberViews / 3
-        let numberSmallViews = ((numberViews - numberMediumViews) / 2).rounded(.up)
+    func maxSize(subviews: Subviews, proposal: ProposedViewSize) -> CGSize {
+        let numberViews = subviews.count
 
-        let heightOfSmallViews = numberSmallViews * (Constants.Small.height + Constants.Spacing.vertical)
-        let heightOfMediumViews = numberMediumViews * (Constants.Medium.height + Constants.Spacing.vertical)
-        let maxHeight = heightOfSmallViews + heightOfMediumViews - Constants.Spacing.vertical
+        let numberMediumViews = numberViews / 3
+        let numberSmallViews = Double(numberViews - numberMediumViews)
 
-        return .init(width: proposal.width ?? 0, height: maxHeight)
+        let numberRowsSmallViews = Int((numberSmallViews / 2.0).rounded(.up))
+        let numberOfRows = numberMediumViews + numberRowsSmallViews
+
+        let heightOfRowsSmallViews = CGFloat(numberRowsSmallViews) * Constants.Small.height
+        let heightOfMediumViews = CGFloat(numberMediumViews) * Constants.Medium.height
+
+        let heightOfRows = heightOfMediumViews + heightOfRowsSmallViews
+        let totalHeight = heightOfRows + CGFloat((numberOfRows - 1)) * Constants.Spacing.vertical
+
+        return .init(width: proposal.width ?? 0, height: totalHeight)
     }
 }
