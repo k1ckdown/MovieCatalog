@@ -64,13 +64,13 @@ struct ProfileView: View {
 
             VStack(spacing: Constants.buttonSpacing) {
                 Button(LocalizedKeysConstants.Profile.save) {
-
+                    viewModel.handle(.saveTapped)
                 }
                 .baseButtonStyle()
                 .disabled(viewModel.state.isSaveDisabled)
 
                 Button(LocalizedKeysConstants.Profile.cancel) {
-
+                    viewModel.handle(.cancelTapped)
                 }
                 .baseButtonStyle(isProminent: false)
             }
@@ -139,4 +139,8 @@ struct ProfileView: View {
             set: { viewModel.handle(.onAlertPresented($0)) }
         )
     }
+}
+
+#Preview {
+    ScreenFactory(appFactory: .init()).makeProfileView(coordinator: ProfileCoordinator(showAuthSceneHandler: {}))
 }

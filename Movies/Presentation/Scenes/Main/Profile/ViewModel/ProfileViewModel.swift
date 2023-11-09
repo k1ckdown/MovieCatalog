@@ -38,11 +38,11 @@ final class ProfileViewModel: ViewModel {
         case .onAppear:
             Task { await retrieveProfile() }
 
-        case .editTapped:
-            break
-
         case .saveTapped:
-            break
+            Task { await updateProfile() }
+
+        case .cancelTapped:
+            resetChanges()
 
         case .logOutTapped:
             Task { await logOut() }
@@ -70,6 +70,15 @@ final class ProfileViewModel: ViewModel {
 }
 
 private extension ProfileViewModel {
+
+    func handleError(_ error: Error) {
+        if error as? AuthError == .unauthorized {
+            coordinator.showAuthScene()
+        } else {
+            state.errorMessage = error.localizedDescription
+            state.isAlertPresenting = true
+        }
+    }
 
     func logOut() async {
         do {
@@ -101,21 +110,22 @@ private extension ProfileViewModel {
         }
     }
 
-    func handleError(_ error: Error) {
-        if error as? AuthError == .unauthorized {
-            coordinator.showAuthScene()
-        } else {
-            state.errorMessage = error.localizedDescription
-            state.isAlertPresenting = true
-        }
-    }
-
     func handleProfileData(_ profile: Profile) {
         state.username = profile.nickName
         state.email = profile.email
         state.avatarLink = profile.avatarLink
         state.name = profile.name
         state.gender = profile.gender
+        state.birthdate = profile.birthDate
+    }
+
+    func resetChanges() {
+        guard let profile else { return }
+
+        state.name = profile.name
+        state.email = profile.email
+        state.gender = profile.gender
+        state.avatarLink = profile.avatarLink
         state.birthdate = profile.birthDate
     }
 
@@ -136,13 +146,12 @@ private extension ProfileViewModel {
             try await updateProfileUseCase.execute(updatedProfile)
             profile = updatedProfile
         } catch {
-            state.errorMessage = error.localizedDescription
-            state.isAlertPresenting = true
+            handleError(error)
         }
     }
 
     func checkDataIsChange() {
-        guard let profile = profile else { return }
+        guard let profile else { return }
 
         let isNameChanged = state.name != profile.name
         let isEmailChanged = state.email != profile.email

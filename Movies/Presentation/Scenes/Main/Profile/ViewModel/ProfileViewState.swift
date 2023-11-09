@@ -38,8 +38,8 @@ struct ProfileViewState: Equatable {
 
 enum ProfileViewEvent {
     case onAppear
-    case editTapped
     case saveTapped
+    case cancelTapped
     case logOutTapped
 
     case emailChanged(String)
