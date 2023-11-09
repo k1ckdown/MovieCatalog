@@ -27,14 +27,20 @@ struct AppCoordinatorView: View {
     @ViewBuilder
     private var sceneView: some View {
         switch coordinator.state {
+        case .idle:
+            EmptyView()
+
         case .loading:
             ProgressView()
                 .tint(.appAccent)
+                .appBackground()
+
         case .auth:
             AuthCoordinatorView(
                 AuthCoordinator(showMainSceneHandler: { coordinator.handle(.showMain) }),
                 factory: screenFactory
             )
+
         case .main:
             MainCoordinatorView(
                 factory: screenFactory,
