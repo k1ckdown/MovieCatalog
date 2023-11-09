@@ -14,7 +14,7 @@ protocol ProfileCoordinatorFactory: ProfileViewFactory {}
 protocol FavoritesCoordinatorFactory: FavoritesViewFactory, MovieDetailsViewFactory {}
 
 @MainActor
-protocol MainCoordinatorFactory: MainViewFactory, MovieDetailsViewFactory {}
+protocol HomeCoordinatorFactory: HomeViewFactory, MovieDetailsViewFactory {}
 
 @MainActor
 protocol AuthCoordinatorFactory: LoginViewFactory,

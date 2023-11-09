@@ -9,25 +9,36 @@ import Foundation
 
 final class FetchFavoriteMoviesUseCase {
 
-    private let secureStorage: SecureStorageProtocol
     private let movieRepository: MovieRepositoryProtocol
+    private let keychainRepository: KeychainRepositoryProtocol
+    private let closeSessionUseCase: CloseSessionUseCase
     private let getDetailsFromMoviesUseCase: GetDetailsFromMoviesUseCase
 
     init(
-        secureStorage: SecureStorageProtocol,
         movieRepository: MovieRepositoryProtocol,
+        keychainRepository: KeychainRepositoryProtocol,
+        closeSessionUseCase: CloseSessionUseCase,
         getDetailsFromMoviesUseCase: GetDetailsFromMoviesUseCase
     ) {
-        self.secureStorage = secureStorage
         self.movieRepository = movieRepository
+        self.keychainRepository = keychainRepository
+        self.closeSessionUseCase = closeSessionUseCase
         self.getDetailsFromMoviesUseCase = getDetailsFromMoviesUseCase
     }
-
+    
     func execute() async throws -> [MovieDetails] {
-        let token = try secureStorage.retrieveToken()
-        let movieShortList = try await movieRepository.getFavoriteMovies(token: token)
-        let movieDetailsList = try await getDetailsFromMoviesUseCase.execute(movieShortList)
+        let token = try keychainRepository.retrieveToken()
 
-        return movieDetailsList
+        do {
+            let movieShortList = try await movieRepository.getFavoriteMovies(token: token)
+            let movieDetailsList = try await getDetailsFromMoviesUseCase.execute(movieShortList)
+            return movieDetailsList
+        } catch {
+            if error as? AuthError == .unauthorized {
+                try closeSessionUseCase.execute()
+            }
+
+            throw error
+        }
     }
 }

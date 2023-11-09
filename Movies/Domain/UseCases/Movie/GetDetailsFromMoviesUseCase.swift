@@ -18,7 +18,7 @@ final class GetDetailsFromMoviesUseCase {
     }
 
     func execute(_ movies: [MovieShort]) async throws -> [MovieDetails] {
-        let userId = try? await profileRepository.getProfile().id
+        let userId = try? profileRepository.getProfileId()
         var movieDetailsList = [MovieDetails]()
 
         for movie in movies {
