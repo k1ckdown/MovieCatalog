@@ -60,7 +60,7 @@ private extension FavoritesView {
                         MovieShortItem(viewModel: itemViewModel)
                     }
                 }
-                .padding(.top)
+                .padding(.vertical)
                 .padding(.horizontal, Constants.Collection.horizontalInset)
             }
             .scrollIndicators(.hidden)
