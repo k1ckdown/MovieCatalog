@@ -20,6 +20,7 @@ struct ProfileViewState: Equatable {
     var avatarLinkError: String?
     var errorMessage: String = ""
 
+    var isUpdating = false
     var isDataChanged = false
     var isAlertPresenting = false
 

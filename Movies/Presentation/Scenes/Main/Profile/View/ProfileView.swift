@@ -62,19 +62,25 @@ struct ProfileView: View {
             }
             .padding(.horizontal)
 
-            VStack(spacing: Constants.buttonSpacing) {
-                Button(LocalizedKeysConstants.Profile.save) {
-                    viewModel.handle(.saveTapped)
-                }
-                .baseButtonStyle()
-                .disabled(viewModel.state.isSaveDisabled)
+            if viewModel.state.isUpdating {
+                ProgressView()
+                    .tint(.appAccent)
+            } else {
+                VStack(spacing: Constants.buttonSpacing) {
+                    Button(LocalizedKeysConstants.Profile.save) {
+                        viewModel.handle(.saveTapped)
+                    }
+                    .baseButtonStyle()
+                    .disabled(viewModel.state.isSaveDisabled)
 
-                Button(LocalizedKeysConstants.Profile.cancel) {
-                    viewModel.handle(.cancelTapped)
+                    Button(LocalizedKeysConstants.Profile.cancel) {
+                        viewModel.handle(.cancelTapped)
+                    }
+                    .baseButtonStyle(isProminent: false)
+                    .disabled(!viewModel.state.isDataChanged)
                 }
-                .baseButtonStyle(isProminent: false)
+                .padding()
             }
-            .padding()
 
             Spacer()
         }
