@@ -8,26 +8,20 @@
 import Foundation
 
 final class LoginUseCase {
-    
-    private let networkService: AuthNetworkService
-    private let secureStorage: SecureStorageProtocol
-    private let profileRepository: ProfileRepositoryProtocol
-    
+
+    private let authRepository: AuthRepositoryProtocol
+    private let keychainRepository: KeychainRepositoryProtocol
+
     init(
-        networkService: AuthNetworkService,
-        secureStorage: SecureStorageProtocol,
-        profileRepository: ProfileRepositoryProtocol
+        authRepository: AuthRepositoryProtocol,
+        keychainRepository: KeychainRepositoryProtocol
     ) {
-        self.networkService = networkService
-        self.secureStorage = secureStorage
-        self.profileRepository = profileRepository
+        self.authRepository = authRepository
+        self.keychainRepository = keychainRepository
     }
-    
+
     func execute(username: String, password: String) async throws {
-        let credentials = LoginCredentials(username: username, password: password)
-        let tokenInfo = try await networkService.login(credentials: credentials)
-        
-        try secureStorage.saveToken(tokenInfo.token)
-        try await profileRepository.loadProfile(token: tokenInfo.token)
+        let token = try await authRepository.logIn(username: username, password: password)
+        try keychainRepository.saveToken(token)
     }
 }

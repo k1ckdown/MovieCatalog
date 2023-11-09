@@ -9,16 +9,31 @@ import Foundation
 
 final class UpdateProfileUseCase {
 
-    private let secureStorage: SecureStorageProtocol
     private let profileRepository: ProfileRepositoryProtocol
+    private let keychainRepository: KeychainRepositoryProtocol
+    private let closeSessionUseCase: CloseSessionUseCase
 
-    init(secureStorage: SecureStorageProtocol, profileRepository: ProfileRepositoryProtocol) {
-        self.secureStorage = secureStorage
+    init(
+        profileRepository: ProfileRepositoryProtocol,
+        keychainRepository: KeychainRepositoryProtocol,
+        closeSessionUseCase: CloseSessionUseCase
+    ) {
         self.profileRepository = profileRepository
+        self.keychainRepository = keychainRepository
+        self.closeSessionUseCase = closeSessionUseCase
     }
-
+    
     func execute(_ profile: Profile) async throws {
-        let token = try secureStorage.retrieveToken()
-        try await profileRepository.updateProfile(profile, token: token)
+        let token = try keychainRepository.retrieveToken()
+
+        do {
+            try await profileRepository.updateProfile(profile, token: token)
+        } catch {
+            if error as? AuthError == .unauthorized {
+                try closeSessionUseCase.execute()
+            }
+
+            throw error
+        }
     }
 }
