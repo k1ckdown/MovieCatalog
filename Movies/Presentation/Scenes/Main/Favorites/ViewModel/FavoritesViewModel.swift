@@ -50,6 +50,6 @@ private extension FavoritesViewModel {
     }
 
     func makeMovieItemViewModel(_ movie: MovieDetails) -> MovieShortItemViewModel {
-        .init(rating: movie.userRating, name: movie.name, imageUrl: movie.poster)
+        .init(rating: movie.rating, name: movie.name, imageUrl: movie.poster)
     }
 }
