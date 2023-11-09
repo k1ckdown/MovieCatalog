@@ -12,18 +12,21 @@ final class ProfileViewModel: ViewModel {
     @Published private(set) var state: ProfileViewState
 
     private var profile: Profile?
+    private let coordinator: ProfileCoordinatorProtocol
     private let logoutUseCase: LogoutUseCase
-    private let getProfileUseCase: GetProfileUseCase
+    private let getProfileUseCase: FetchProfileUseCase
     private let updateProfileUseCase: UpdateProfileUseCase
     private let validateEmailUseCase: ValidateEmailUseCase
 
     init(
+        coordinator: ProfileCoordinatorProtocol,
         logoutUseCase: LogoutUseCase,
-        getProfileUseCase: GetProfileUseCase,
+        getProfileUseCase: FetchProfileUseCase,
         updateProfileUseCase: UpdateProfileUseCase,
         validateEmailUseCase: ValidateEmailUseCase
     ) {
         self.state = .init()
+        self.coordinator = coordinator
         self.logoutUseCase = logoutUseCase
         self.getProfileUseCase = getProfileUseCase
         self.updateProfileUseCase = updateProfileUseCase
@@ -71,9 +74,19 @@ private extension ProfileViewModel {
     func logOut() async {
         do {
             try await logoutUseCase.execute()
+            coordinator.showAuthScene()
         } catch {
-            state.errorMessage = error.localizedDescription
-            state.isAlertPresenting = true
+            handleError(error)
+        }
+    }
+
+    func retrieveProfile() async {
+        do {
+            let profile = try await getProfileUseCase.execute()
+            self.profile = profile
+            handleProfileData(profile)
+        } catch {
+            handleError(error)
         }
     }
 
@@ -88,12 +101,10 @@ private extension ProfileViewModel {
         }
     }
 
-    func retrieveProfile() async {
-        do {
-            let profile = try await getProfileUseCase.execute()
-            self.profile = profile
-            handleProfileData(profile)
-        } catch {
+    func handleError(_ error: Error) {
+        if error as? AuthError == .unauthorized {
+            coordinator.showAuthScene()
+        } else {
             state.errorMessage = error.localizedDescription
             state.isAlertPresenting = true
         }

@@ -8,10 +8,10 @@
 import Foundation
 
 final class LogoutUseCase {
-    
+
     private let authRepository: AuthRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
-    
+
     init(
         authRepository: AuthRepositoryProtocol,
         keychainRepository: KeychainRepositoryProtocol
@@ -19,9 +19,19 @@ final class LogoutUseCase {
         self.authRepository = authRepository
         self.keychainRepository = keychainRepository
     }
-    
+
     func execute() async throws {
         let token = try keychainRepository.retrieveToken()
-        try await authRepository.logOut(token: token)
+
+        do {
+            try await authRepository.logOut(token: token)
+            try keychainRepository.deleteToken()
+        } catch {
+            if error as? AuthError == .unauthorized {
+                try keychainRepository.deleteToken()
+            }
+
+            throw error
+        }
     }
 }

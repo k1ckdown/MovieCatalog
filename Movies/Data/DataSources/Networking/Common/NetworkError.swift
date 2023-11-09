@@ -14,7 +14,7 @@ enum NetworkError: LocalizedError {
     case encodingError
     case decodingError
     case invalidResponse
-
+    
     var errorDescription: String? {
         switch self {
         case .missingURL:

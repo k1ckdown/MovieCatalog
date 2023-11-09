@@ -19,8 +19,11 @@ final class AppFactory {
 
 extension AppFactory {
 
-    func makeGetProfileUseCase() -> GetProfileUseCase {
-        GetProfileUseCase(profileRepository: profileRepository)
+    func makeFetchProfileUseCase() -> FetchProfileUseCase {
+        FetchProfileUseCase(
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
+        )
     }
 
     func makeUpdateProfileUseCase() -> UpdateProfileUseCase {
@@ -62,7 +65,6 @@ extension AppFactory {
     func makeLoginUseCase() -> LoginUseCase {
         LoginUseCase(
             authRepository: authRepository,
-            profileRepository: profileRepository,
             keychainRepository: keychainRepository
         )
     }
@@ -70,7 +72,6 @@ extension AppFactory {
     func makeRegisterUserUseCase() -> RegisterUserUseCase {
         RegisterUserUseCase(
             authRepository: authRepository,
-            profileRepository: profileRepository,
             keychainRepository: keychainRepository
         )
     }
