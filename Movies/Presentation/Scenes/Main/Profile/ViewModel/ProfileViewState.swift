@@ -33,7 +33,7 @@ struct ProfileViewState: Equatable {
     }
 
     var isSaveDisabled: Bool {
-        email.isEmpty || emailError != nil || avatarLink.isEmpty ||
+        email.isEmpty || emailError != nil || newAvatarLink.isEmpty ||
         avatarLinkError != nil || name.isEmpty || isDataChanged == false
     }
 }
