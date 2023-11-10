@@ -10,14 +10,20 @@ import SwiftUI
 struct ExpandableText: View {
 
     let text: String
+    let lineLimit: Int
     let fontSize: CGFloat
 
     @State private var isExpanded = false
     @State private var isTruncated = false
 
-    init(text: String, fontSize: CGFloat = Constants.fontSize) {
+    init(
+        text: String,
+        fontSize: CGFloat = Constants.fontSize,
+        lineLimit: Int = Constants.Text.lineLimit
+    ) {
         self.text = text
         self.fontSize = fontSize
+        self.lineLimit = lineLimit
     }
 
     var body: some View{
@@ -25,7 +31,7 @@ struct ExpandableText: View {
             Text(text)
                 .font(.system(size: fontSize))
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .lineLimit(isExpanded ? nil : Constants.Text.lineLimit)
+                .lineLimit(isExpanded ? nil : lineLimit)
                 .overlay {
                     if isExpanded == false, isTruncated == true {
                         gradient
@@ -99,7 +105,7 @@ struct ExpandableText: View {
         static let contentSpacing: CGFloat = 5
 
         enum Text {
-            static let lineLimit = 3
+            static let lineLimit = 2
             static let gradientEndOpacity: CGFloat = 0
         }
 
