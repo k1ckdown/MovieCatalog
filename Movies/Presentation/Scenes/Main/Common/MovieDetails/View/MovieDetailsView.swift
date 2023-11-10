@@ -10,11 +10,19 @@ import SwiftUI
 struct MovieDetailsView: View {
 
     @ObservedObject private(set) var viewModel: MovieDetailsViewModel
+    @State private var tabBarVisibility = Visibility.visible
 
     var body: some View {
         contentView
             .appBackground()
             .toolbarRole(.editor)
+            .toolbar(tabBarVisibility, for: .tabBar)
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear() {
+                withAnimation(.spring) {
+                    tabBarVisibility = .hidden
+                }
+            }
     }
 
     @ViewBuilder

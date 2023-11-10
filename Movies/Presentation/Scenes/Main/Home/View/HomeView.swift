@@ -49,18 +49,15 @@ struct HomeView: View {
         static let contentSpacing: CGFloat = 12
 
         static let numberOfCards = 4
-        static let countPlaceholders = 11
+        static let countPlaceholders = numberOfCards + 3
 
-        static let moviePageHeight: CGFloat = 515
+        static let moviePageHeight: CGFloat = 497
+        static let spacingMovieItems: CGFloat = 17
         static let titleVerticalInsets: CGFloat = 5
-        static let listItemInsets = EdgeInsets(
-            top: 0,
-            leading: 15,
-            bottom: 15,
-            trailing: 15
-        )
     }
 }
+
+// MARK: - List view
 
 private extension HomeView {
 
@@ -71,20 +68,17 @@ private extension HomeView {
         ScrollView {
             VStack(alignment: .leading, spacing: Constants.contentSpacing) {
                 tabView(Array(movieItems[0..<Constants.numberOfCards]))
-                Group {
-                    listHeader()
-                    LazyVStack {
-                        movieListView(itemViewModels: Array(movieItems[Constants.numberOfCards...]))
-                        loadMoreView(loadMore)
-                    }
-                }
-                .padding(.horizontal)
+                movieListView(
+                    loadMore: loadMore,
+                    itemViewModels: Array(movieItems[Constants.numberOfCards...])
+                )
             }
         }
         .scrollIndicators(.hidden)
-
     }
 }
+
+// MARK: - Tab view
 
 private extension HomeView {
 
@@ -102,6 +96,11 @@ private extension HomeView {
         .indexViewStyle(.page(backgroundDisplayMode: .always))
         .listRowInsets(EdgeInsets())
     }
+}
+
+// MARK: - Movie list view
+
+private extension HomeView {
 
     func listHeader() -> some View {
         Text(LocalizedKeysConstants.Content.catalog)
@@ -109,16 +108,6 @@ private extension HomeView {
             .font(.title)
             .foregroundStyle(.white)
             .padding(.vertical, Constants.titleVerticalInsets)
-    }
-
-    func movieListView(itemViewModels: [MovieDetailsItemViewModel]) -> some View {
-        ForEach(itemViewModels) { itemViewModel in
-            MovieDetailsItem(viewModel: itemViewModel)
-                .onTapGesture {
-                    viewModel.handle(.onSelectMovie(itemViewModel.id))
-                }
-        }
-        .listRowInsets(Constants.listItemInsets)
     }
 
     @ViewBuilder
@@ -134,6 +123,26 @@ private extension HomeView {
         case .failed, .unavailable:
             EmptyView()
         }
+    }
+
+    func movieListView(
+        loadMore: HomeViewState.ViewData.LoadMore,
+        itemViewModels: [MovieDetailsItemViewModel]
+    ) -> some View {
+        Group {
+            listHeader()
+            LazyVStack(spacing: Constants.spacingMovieItems) {
+                ForEach(itemViewModels) { itemViewModel in
+                    MovieDetailsItem(viewModel: itemViewModel)
+                        .onTapGesture {
+                            viewModel.handle(.onSelectMovie(itemViewModel.id))
+                        }
+                }
+                loadMoreView(loadMore)
+            }
+            .padding(.bottom)
+        }
+        .padding(.horizontal)
     }
 }
 

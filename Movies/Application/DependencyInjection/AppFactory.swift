@@ -22,14 +22,16 @@ extension AppFactory {
     func makeFetchProfileUseCase() -> FetchProfileUseCase {
         FetchProfileUseCase(
             profileRepository: profileRepository,
-            keychainRepository: keychainRepository
+            keychainRepository: keychainRepository,
+            closeSessionUseCase: makeCloseSessionUseCase()
         )
     }
 
     func makeUpdateProfileUseCase() -> UpdateProfileUseCase {
         UpdateProfileUseCase(
             profileRepository: profileRepository,
-            keychainRepository: keychainRepository
+            keychainRepository: keychainRepository,
+            closeSessionUseCase: makeCloseSessionUseCase()
         )
     }
 }
@@ -58,7 +60,8 @@ extension AppFactory {
     func makeLogoutUseCase() -> LogoutUseCase {
         LogoutUseCase(
             authRepository: authRepository,
-            keychainRepository: keychainRepository
+            keychainRepository: keychainRepository,
+            closeSessionUseCase: makeCloseSessionUseCase()
         )
     }
 
@@ -91,14 +94,8 @@ extension AppFactory {
     func makeAddFavoriteMovieUseCase() -> AddFavoriteMovieUseCase {
         AddFavoriteMovieUseCase(
             movieRepository: movieRepository,
-            keychainRepository: keychainRepository
-        )
-    }
-
-    func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
-        GetDetailsFromMoviesUseCase(
-            movieRepository: movieRepository,
-            profileRepository: profileRepository
+            keychainRepository: keychainRepository,
+            closeSessionUseCase: makeCloseSessionUseCase()
         )
     }
 
@@ -106,7 +103,25 @@ extension AppFactory {
         FetchFavoriteMoviesUseCase(
             movieRepository: movieRepository,
             keychainRepository: keychainRepository,
+            closeSessionUseCase: makeCloseSessionUseCase(),
             getDetailsFromMoviesUseCase: makeGetDetailsFromMoviesUseCase()
+        )
+    }
+}
+
+private extension AppFactory {
+
+    func makeCloseSessionUseCase() -> CloseSessionUseCase {
+        CloseSessionUseCase(
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
+        )
+    }
+    
+    func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
+        GetDetailsFromMoviesUseCase(
+            movieRepository: movieRepository,
+            profileRepository: profileRepository
         )
     }
 }

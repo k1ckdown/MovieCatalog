@@ -11,10 +11,16 @@ final class AddFavoriteMovieUseCase {
 
     private let movieRepository: MovieRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
+    private let closeSessionUseCase: CloseSessionUseCase
 
-    init(movieRepository: MovieRepositoryProtocol, keychainRepository: KeychainRepositoryProtocol) {
+    init(
+        movieRepository: MovieRepositoryProtocol,
+        keychainRepository: KeychainRepositoryProtocol,
+        closeSessionUseCase: CloseSessionUseCase
+    ) {
         self.movieRepository = movieRepository
         self.keychainRepository = keychainRepository
+        self.closeSessionUseCase = closeSessionUseCase
     }
 
     func execute(id: String) async throws {
@@ -24,7 +30,7 @@ final class AddFavoriteMovieUseCase {
             try await movieRepository.addFavoriteMovie(id, token: token)
         } catch {
             if error as? AuthError == .unauthorized {
-                try keychainRepository.deleteToken()
+                try closeSessionUseCase.execute()
             }
 
             throw error

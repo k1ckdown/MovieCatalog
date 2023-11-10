@@ -26,4 +26,8 @@ extension FavoritesCoordinator: FavoritesCoordinatorProtocol {
     func showAuthScene() {
         showAuthSceneHandler()
     }
+
+    func showMovieDetails(_ movie: MovieDetails) {
+        navigationPath.append(.movieDetails(movie))
+    }
 }

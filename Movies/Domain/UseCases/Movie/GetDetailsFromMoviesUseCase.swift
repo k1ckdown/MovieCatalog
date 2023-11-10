@@ -66,7 +66,7 @@ private extension GetDetailsFromMoviesUseCase {
             reviews: reviewDetailsList,
             time: movie.time,
             tagline: movie.tagline,
-            description: movie.director,
+            description: movie.description,
             director: movie.director,
             budget: movie.budget,
             fees: movie.fees,
