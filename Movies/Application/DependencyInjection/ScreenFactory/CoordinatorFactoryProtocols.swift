@@ -8,6 +8,15 @@
 import Foundation
 
 @MainActor
+protocol ProfileCoordinatorFactory: ProfileViewFactory {}
+
+@MainActor
+protocol FavoritesCoordinatorFactory: FavoritesViewFactory, MovieDetailsViewFactory {}
+
+@MainActor
+protocol HomeCoordinatorFactory: HomeViewFactory, MovieDetailsViewFactory {}
+
+@MainActor
 protocol AuthCoordinatorFactory: LoginViewFactory,
                                  WelcomeViewFactory,
                                  PasswordRegistrationViewFactory,

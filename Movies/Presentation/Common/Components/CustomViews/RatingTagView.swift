@@ -108,12 +108,12 @@ struct RatingTagView: View {
             static let cornerRadius: CGFloat = 7
 
             enum Width {
-                static let small: CGFloat = 45
+                static let small: CGFloat = 36
                 static let medium: CGFloat = 55
             }
 
             enum Height {
-                static let small: CGFloat = 25
+                static let small: CGFloat = 23
                 static let medium: CGFloat = 32
             }
         }

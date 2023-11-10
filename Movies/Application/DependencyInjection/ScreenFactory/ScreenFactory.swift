@@ -8,7 +8,10 @@
 import SwiftUI
 
 @MainActor
-final class ScreenFactory: AuthCoordinatorFactory {
+final class ScreenFactory: AuthCoordinatorFactory,
+                           HomeCoordinatorFactory,
+                           ProfileCoordinatorFactory,
+                           FavoritesCoordinatorFactory {
 
     private let appFactory: AppFactory
 
@@ -17,15 +20,63 @@ final class ScreenFactory: AuthCoordinatorFactory {
     }
 }
 
-// MARK: - MainViewFactory
+// MARK: - FavoritesViewFactory
 
-extension ScreenFactory: MainViewFactory {
-    func makeMainView(coordinator: MainCoordinatorProtocol) -> MainView {
-        let viewModel = MainViewModel(
+extension ScreenFactory: FavoritesViewFactory {
+    func makeFavoritesView(coordinator: FavoritesCoordinatorProtocol) -> FavoritesView {
+        let viewModel = FavoritesViewModel(
+            coordinator: coordinator,
+            fetchFavoriteMoviesUseCase: appFactory.makeFetchFavoriteMoviesUseCase()
+        )
+        let view = FavoritesView(viewModel: viewModel)
+
+        return view
+    }
+}
+
+// MARK: - MovieDetailsFactory
+
+extension ScreenFactory: MovieDetailsViewFactory {
+    func makeMovieDetailsView(movieDetails: MovieDetails, showAuthSceneHandler: @escaping () -> Void) -> MovieDetailsView {
+        let router = MovieDetailsRouter(showAuthSceneHandler: showAuthSceneHandler)
+        let viewModel = MovieDetailsViewModel(
+            movie: movieDetails,
+            router: router,
+            addFavoriteMovieUseCase: appFactory.makeAddFavoriteMovieUseCase(),
+            deleteFavoriteMovieUseCase: appFactory.makeDeleteFavoriteMovieUseCase()
+        )
+        let view = MovieDetailsView(viewModel: viewModel)
+
+        return view
+    }
+}
+
+// MARK: - HomeViewFactory
+
+extension ScreenFactory: HomeViewFactory {
+    func makeHomeView(coordinator: HomeCoordinatorProtocol) -> HomeView {
+        let viewModel = HomeViewModel(
             coordinator: coordinator,
             fetchMoviesUseCase: appFactory.makeFetchMoviesUseCase()
         )
-        let view = MainView(viewModel: viewModel)
+        let view = HomeView(viewModel: viewModel)
+
+        return view
+    }
+}
+
+// MARK: - ProfileViewFactory
+
+extension ScreenFactory: ProfileViewFactory {
+    func makeProfileView(coordinator: ProfileCoordinatorProtocol) -> ProfileView {
+        let viewModel = ProfileViewModel(
+            coordinator: coordinator,
+            logoutUseCase: appFactory.makeLogoutUseCase(),
+            getProfileUseCase: appFactory.makeFetchProfileUseCase(),
+            updateProfileUseCase: appFactory.makeUpdateProfileUseCase(),
+            validateEmailUseCase: appFactory.makeValidateEmailUseCase()
+        )
+        let view = ProfileView(viewModel: viewModel)
 
         return view
     }

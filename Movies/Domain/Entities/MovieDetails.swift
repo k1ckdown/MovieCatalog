@@ -24,6 +24,7 @@ struct MovieDetails: Equatable, Hashable {
     let ageLimit: Int
     let rating: Double
     let userRating: Int?
+    let isFavorite: Bool
 }
 
 extension MovieDetails {
@@ -44,6 +45,7 @@ extension MovieDetails {
         fees: 463517383,
         ageLimit: 16,
         rating: 9.5,
-        userRating: nil
+        userRating: nil,
+        isFavorite: true
     )
 }

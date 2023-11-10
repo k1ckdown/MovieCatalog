@@ -7,8 +7,16 @@
 
 import SwiftUI
 
-protocol MainViewFactory {
-    func makeMainView(coordinator: MainCoordinatorProtocol) -> MainView
+protocol ProfileViewFactory {
+    func makeProfileView(coordinator: ProfileCoordinatorProtocol) -> ProfileView
+}
+
+protocol FavoritesViewFactory {
+    func makeFavoritesView(coordinator: FavoritesCoordinatorProtocol) -> FavoritesView
+}
+
+protocol HomeViewFactory {
+    func makeHomeView(coordinator: HomeCoordinatorProtocol) -> HomeView
 }
 
 protocol LoginViewFactory {
@@ -23,6 +31,13 @@ protocol PersonalInfoRegistrationViewFactory {
     func makePersonalInfoRegistrationView(
         coordinator: AuthCoordinatorProtocol
     ) -> PersonalInfoRegistrationView
+}
+
+protocol MovieDetailsViewFactory {
+    func makeMovieDetailsView(
+        movieDetails: MovieDetails,
+        showAuthSceneHandler: @escaping () -> Void
+    ) -> MovieDetailsView
 }
 
 protocol PasswordRegistrationViewFactory {
