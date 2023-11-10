@@ -91,6 +91,14 @@ extension AppFactory {
         )
     }
 
+    func makeDeleteFavoriteMovieUseCase() -> DeleteFavoriteMovieUseCase {
+        DeleteFavoriteMovieUseCase(
+            closeSessionUseCase: makeCloseSessionUseCase(),
+            movieRepository: movieRepository,
+            keychainRepository: keychainRepository
+        )
+    }
+
     func makeAddFavoriteMovieUseCase() -> AddFavoriteMovieUseCase {
         AddFavoriteMovieUseCase(
             movieRepository: movieRepository,
@@ -117,7 +125,7 @@ private extension AppFactory {
             keychainRepository: keychainRepository
         )
     }
-    
+
     func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
         GetDetailsFromMoviesUseCase(
             movieRepository: movieRepository,

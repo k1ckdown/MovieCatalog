@@ -123,6 +123,7 @@
 		49A562842AE0EAD400222062 /* AuthScreenTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562832AE0EAD400222062 /* AuthScreenTitle.swift */; };
 		49A620652AE6EBD800CEE994 /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A620642AE6EBD800CEE994 /* TintColor.swift */; };
 		49A620672AE6EC0000CEE994 /* LabeledViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A620662AE6EC0000CEE994 /* LabeledViewModifier.swift */; };
+		49A63F582AFE19F6000165EB /* DeleteFavoriteMovieUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A63F572AFE19F6000165EB /* DeleteFavoriteMovieUseCase.swift */; };
 		49B6D75D2AE9A41B00451DAF /* ValidateEmailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6D75C2AE9A41B00451DAF /* ValidateEmailUseCase.swift */; };
 		49B6D75F2AE9A7AD00451DAF /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6D75E2AE9A7AD00451DAF /* AppFactory.swift */; };
 		49C189BF2AE3F70D0029BAF9 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C189BE2AE3F70D0029BAF9 /* Routable.swift */; };
@@ -292,6 +293,7 @@
 		49A562832AE0EAD400222062 /* AuthScreenTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenTitle.swift; sourceTree = "<group>"; };
 		49A620642AE6EBD800CEE994 /* TintColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
 		49A620662AE6EC0000CEE994 /* LabeledViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledViewModifier.swift; sourceTree = "<group>"; };
+		49A63F572AFE19F6000165EB /* DeleteFavoriteMovieUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFavoriteMovieUseCase.swift; sourceTree = "<group>"; };
 		49B6D75C2AE9A41B00451DAF /* ValidateEmailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateEmailUseCase.swift; sourceTree = "<group>"; };
 		49B6D75E2AE9A7AD00451DAF /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		49C189BE2AE3F70D0029BAF9 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
@@ -818,6 +820,7 @@
 				499B07D32AF3549400261472 /* GetDetailsFromMoviesUseCase.swift */,
 				499B07D52AF3549800261472 /* FetchFavoriteMoviesUseCase.swift */,
 				499B07D72AF3582B00261472 /* AddFavouriteMovieUseCase.swift */,
+				49A63F572AFE19F6000165EB /* DeleteFavoriteMovieUseCase.swift */,
 			);
 			path = Movie;
 			sourceTree = "<group>";
@@ -1327,6 +1330,7 @@
 				49330CF92ADD854800BFA4C6 /* ProfileDTO.swift in Sources */,
 				499B07D82AF3582B00261472 /* AddFavouriteMovieUseCase.swift in Sources */,
 				49A3FAD72AED81CB0043512C /* AvatarAsyncImage.swift in Sources */,
+				49A63F582AFE19F6000165EB /* DeleteFavoriteMovieUseCase.swift in Sources */,
 				49330CE82ADD424000BFA4C6 /* LoginCredentials.swift in Sources */,
 				49330CFB2ADD856D00BFA4C6 /* GenderDTO.swift in Sources */,
 				4961F4652AE0009E00A717AB /* AppBackgroundViewModifier.swift in Sources */,
