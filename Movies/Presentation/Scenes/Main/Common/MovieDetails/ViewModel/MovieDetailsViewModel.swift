@@ -65,7 +65,7 @@ private extension MovieDetailsViewModel {
             name: movie.name,
             rating: movie.rating,
             poster: movie.poster,
-            isFavorite: false,
+            isFavorite: movie.isFavorite,
             genres: genres,
             description: movie.description,
             reviewViewModels: reviewViewModels,

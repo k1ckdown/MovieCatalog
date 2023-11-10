@@ -23,7 +23,7 @@ struct MovieDTO: Decodable {
     let fees: Int?
     let ageLimit: Int
 
-    func toDomain() -> Movie {
+    func toDomain(isFavorite: Bool) -> Movie {
         .init(
             id: id,
             name: name,
@@ -38,7 +38,8 @@ struct MovieDTO: Decodable {
             director: director,
             budget: budget,
             fees: fees,
-            ageLimit: ageLimit
+            ageLimit: ageLimit,
+            isFavorite: isFavorite
         )
     }
 }

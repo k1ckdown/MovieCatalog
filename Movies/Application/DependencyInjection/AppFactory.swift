@@ -129,7 +129,8 @@ private extension AppFactory {
     func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
         GetDetailsFromMoviesUseCase(
             movieRepository: movieRepository,
-            profileRepository: profileRepository
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
         )
     }
 }

@@ -24,17 +24,23 @@ final class AppCoordinator: ObservableObject {
     }
 
     @Published private(set) var state: State
-    private let fetchProfileUseCase: FetchProfileUseCase
 
-    init(fetchProfileUseCase: FetchProfileUseCase) {
+    private let fetchProfileUseCase: FetchProfileUseCase
+    private let fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase
+
+    init(
+        fetchProfileUseCase: FetchProfileUseCase,
+        fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase
+    ) {
         state = .idle
         self.fetchProfileUseCase = fetchProfileUseCase
+        self.fetchFavoriteMoviesUseCase = fetchFavoriteMoviesUseCase
     }
 
     func handle(_ action: Action) {
         switch action {
         case .checkProfile:
-            Task { await getProfile() }
+            Task { await loadData() }
         case .showAuth:
             state = .auth
         case .showMain:
@@ -45,12 +51,16 @@ final class AppCoordinator: ObservableObject {
 
 private extension AppCoordinator {
 
-    func getProfile() async {
+    func loadData() async {
         state = .loading
         do {
-            let _ = try await fetchProfileUseCase.execute()
+            async let profile = try fetchProfileUseCase.execute()
+            async let favorites = try fetchFavoriteMoviesUseCase.execute()
+            _ = try await (profile, favorites)
+
             state = .main
         } catch {
+            print(error)
             state = .auth
         }
     }

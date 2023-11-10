@@ -50,11 +50,11 @@ struct AppCoordinatorView: View {
     }
 }
 
-#Preview {
-    let appFactory = AppFactory()
-    return AppCoordinatorView(
-        screenFactory: ScreenFactory(appFactory: appFactory),
-        coordinator: AppCoordinator(fetchProfileUseCase: appFactory.makeFetchProfileUseCase())
-    )
-    .environment(\.locale, .init(identifier: "ru"))
-}
+//#Preview {
+//    let appFactory = AppFactory()
+//    return AppCoordinatorView(
+//        screenFactory: ScreenFactory(appFactory: appFactory),
+//        coordinator: AppCoordinator(fetchProfileUseCase: appFactory.makeFetchProfileUseCase())
+//    )
+//    .environment(\.locale, .init(identifier: "ru"))
+//}

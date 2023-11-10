@@ -9,6 +9,7 @@ import Foundation
 
 final class MovieRepository {
 
+    private var favoriteMovies = [MovieShort]()
     private let movieRemoteDataSource: MovieRemoteDataSource
 
     init(movieRemoteDataSource: MovieRemoteDataSource) {
@@ -27,8 +28,10 @@ extension MovieRepository: MovieRepositoryProtocol {
     }
 
     func getMovie(id: String) async throws -> Movie {
-        let movie = try await movieRemoteDataSource.fetchMovie(id: id)
-        return movie.toDomain()
+        let movieDto = try await movieRemoteDataSource.fetchMovie(id: id)
+        let isFavorite = favoriteMovies.contains(where: { $0.id == movieDto.id })
+
+        return movieDto.toDomain(isFavorite: isFavorite)
     }
 
     func getMoviesPagedList(page: Int) async throws -> MoviesPaged {
@@ -39,6 +42,7 @@ extension MovieRepository: MovieRepositoryProtocol {
     func getFavoriteMovies(token: String) async throws -> [MovieShort] {
         let moviesResponse = try await movieRemoteDataSource.fetchFavoriteMovies(token: token)
         let movies = moviesResponse.movies.map { $0.toDomain() }
+        self.favoriteMovies = movies
 
         return movies
     }

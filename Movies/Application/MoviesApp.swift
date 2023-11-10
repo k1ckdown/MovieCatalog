@@ -16,7 +16,10 @@ struct MoviesApp: App {
         WindowGroup {
             AppCoordinatorView(
                 screenFactory: ScreenFactory(appFactory: appFactory),
-                coordinator: AppCoordinator(fetchProfileUseCase: appFactory.makeFetchProfileUseCase())
+                coordinator: AppCoordinator(
+                    fetchProfileUseCase: appFactory.makeFetchProfileUseCase(),
+                    fetchFavoriteMoviesUseCase: appFactory.makeFetchFavoriteMoviesUseCase()
+                )
             )
             .preferredColorScheme(.dark)
         }
