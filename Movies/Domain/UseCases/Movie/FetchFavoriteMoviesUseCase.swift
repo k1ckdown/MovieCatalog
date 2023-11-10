@@ -30,8 +30,8 @@ final class FetchFavoriteMoviesUseCase {
         let token = try keychainRepository.retrieveToken()
 
         do {
-            let movieShortList = try await movieRepository.getFavoriteMovies(token: token)
-            let movieDetailsList = try await getDetailsFromMoviesUseCase.execute(movieShortList)
+            let movieList = try await movieRepository.getFavoriteMovies(token: token)
+            let movieDetailsList = getDetailsFromMoviesUseCase.execute(movieList)
             return movieDetailsList
         } catch {
             if error as? AuthError == .unauthorized {

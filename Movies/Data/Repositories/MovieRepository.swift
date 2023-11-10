@@ -9,7 +9,7 @@ import Foundation
 
 final class MovieRepository {
 
-    private var favoriteMovies = [MovieShort]()
+    private var favoriteMovies = [Movie]()
     private let movieRemoteDataSource: MovieRemoteDataSource
 
     init(movieRemoteDataSource: MovieRemoteDataSource) {
@@ -27,6 +27,31 @@ extension MovieRepository: MovieRepositoryProtocol {
         try await movieRemoteDataSource.deleteFavoriteMovie(token: token, movieId: id)
     }
 
+    func getFavoriteMovies(token: String) async throws -> [Movie] {
+        let moviesResponse = try await movieRemoteDataSource.fetchFavoriteMovies(token: token)
+        let movieShortList = moviesResponse.movies.map { $0.toDomain() }
+
+        let movies = try await getMovieList(movieShortList)
+        favoriteMovies = movies
+
+        return movies
+    }
+
+    func getMoviesPagedList(page: Int) async throws -> MoviesPaged {
+        let moviesPagedListDto = try await movieRemoteDataSource.fetchShortMovies(page: page)
+
+        let pageInfo = moviesPagedListDto.pageInfo.toDomain()
+        let movieShorts = moviesPagedListDto.movies.map { $0.toDomain() }
+
+        let movies = try await getMovieList(movieShorts)
+        let moviesPagedList = MoviesPaged(movies: movies, pageInfo: pageInfo)
+
+        return moviesPagedList
+    }
+}
+
+private extension MovieRepository {
+
     func getMovie(id: String) async throws -> Movie {
         let movieDto = try await movieRemoteDataSource.fetchMovie(id: id)
         let isFavorite = favoriteMovies.contains(where: { $0.id == movieDto.id })
@@ -34,16 +59,20 @@ extension MovieRepository: MovieRepositoryProtocol {
         return movieDto.toDomain(isFavorite: isFavorite)
     }
 
-    func getMoviesPagedList(page: Int) async throws -> MoviesPaged {
-        let moviesPagedList = try await movieRemoteDataSource.fetchShortMovies(page: page)
-        return moviesPagedList.toDomain()
-    }
+    func getMovieList(_ movieShorts: [MovieShort]) async throws -> [Movie] {
+        return try await withThrowingTaskGroup(
+            of: Movie.self,
+            returning: [Movie].self
+        ) { taskGroup in
+            for movieShort in movieShorts {
+                taskGroup.addTask {
+                    try await self.getMovie(id: movieShort.id)
+                }
+            }
 
-    func getFavoriteMovies(token: String) async throws -> [MovieShort] {
-        let moviesResponse = try await movieRemoteDataSource.fetchFavoriteMovies(token: token)
-        let movies = moviesResponse.movies.map { $0.toDomain() }
-        self.favoriteMovies = movies
-
-        return movies
+            return try await taskGroup.reduce(into: [Movie]()) { partialResult, movie in
+                partialResult.append(movie)
+            }
+        }
     }
 }

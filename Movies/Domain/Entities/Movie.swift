@@ -24,3 +24,8 @@ struct Movie {
     let ageLimit: Int
     var isFavorite: Bool
 }
+
+struct MoviesPaged {
+    let movies: [Movie]
+    let pageInfo: PageInfo
+}

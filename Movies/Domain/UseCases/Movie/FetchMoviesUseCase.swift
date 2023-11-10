@@ -36,9 +36,9 @@ final class FetchMoviesUseCase {
 
         let moviesPagedList = try await movieRepository.getMoviesPagedList(page: currentPage)
         self.pageCount = moviesPagedList.pageInfo.pageCount
-        let movieShortList = moviesPagedList.movies
+        let movieList = moviesPagedList.movies
 
-        let movieDetailsList = try await getDetailsFromMovies.execute(movieShortList)
+        let movieDetailsList = getDetailsFromMovies.execute(movieList)
         return movieDetailsList
     }
 }
