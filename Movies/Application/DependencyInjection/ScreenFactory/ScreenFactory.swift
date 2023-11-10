@@ -42,7 +42,8 @@ extension ScreenFactory: MovieDetailsViewFactory {
         let viewModel = MovieDetailsViewModel(
             movie: movieDetails,
             router: router,
-            addFavoriteMovieUseCase: appFactory.makeAddFavoriteMovieUseCase()
+            addFavoriteMovieUseCase: appFactory.makeAddFavoriteMovieUseCase(),
+            deleteFavoriteMovieUseCase: appFactory.makeDeleteFavoriteMovieUseCase()
         )
         let view = MovieDetailsView(viewModel: viewModel)
 

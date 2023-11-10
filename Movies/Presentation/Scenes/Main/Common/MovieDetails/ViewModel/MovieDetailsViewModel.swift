@@ -13,16 +13,20 @@ final class MovieDetailsViewModel: ViewModel {
 
     private let movie: MovieDetails
     private let router: MovieDetailsRouter
+
     private let addFavoriteMovieUseCase: AddFavoriteMovieUseCase
+    private let deleteFavoriteMovieUseCase: DeleteFavoriteMovieUseCase
 
     init(
         movie: MovieDetails,
         router: MovieDetailsRouter,
-        addFavoriteMovieUseCase: AddFavoriteMovieUseCase
+        addFavoriteMovieUseCase: AddFavoriteMovieUseCase,
+        deleteFavoriteMovieUseCase: DeleteFavoriteMovieUseCase
     ) {
         self.movie = movie
         self.router = router
         self.addFavoriteMovieUseCase = addFavoriteMovieUseCase
+        self.deleteFavoriteMovieUseCase = deleteFavoriteMovieUseCase
         state = .loaded(getViewData())
     }
 
@@ -42,12 +46,12 @@ private extension MovieDetailsViewModel {
     func favoriteToggled() async {
         guard case .loaded(let viewData) = state else { return }
 
-        if viewData.isFavorite {
-            do {
-                try await addFavoriteMovieUseCase.execute(id: movie.id)
-            } catch {
-                print(error.localizedDescription)
-            }
+        do {
+            try await viewData.isFavorite ?
+            addFavoriteMovieUseCase.execute(movie.id) :
+            deleteFavoriteMovieUseCase.execute(movie.id)
+        } catch {
+            print(error.localizedDescription)
         }
     }
 
