@@ -10,15 +10,28 @@ import SwiftUI
 struct ExpandableText: View {
 
     let text: String
+    let lineLimit: Int
+    let fontSize: CGFloat
 
     @State private var isExpanded = false
     @State private var isTruncated = false
 
+    init(
+        text: String,
+        fontSize: CGFloat = Constants.fontSize,
+        lineLimit: Int = Constants.Text.lineLimit
+    ) {
+        self.text = text
+        self.fontSize = fontSize
+        self.lineLimit = lineLimit
+    }
+
     var body: some View{
         VStack(alignment: .leading, spacing: Constants.contentSpacing) {
             Text(text)
+                .font(.system(size: fontSize))
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .lineLimit(isExpanded ? nil : Constants.Text.lineLimit)
+                .lineLimit(isExpanded ? nil : lineLimit)
                 .overlay {
                     if isExpanded == false, isTruncated == true {
                         gradient
@@ -69,28 +82,30 @@ struct ExpandableText: View {
     }
 
     private func determineTruncation(_ geometry: GeometryProxy) {
-        let total = self.text.boundingRect(
+        let total = text.boundingRect(
             with: CGSize(
                 width: geometry.size.width,
                 height: .greatestFiniteMagnitude
             ),
             options: .usesLineFragmentOrigin,
+            attributes: [.font: UIFont.systemFont(ofSize: fontSize)],
             context: nil
         )
 
         if total.size.height > geometry.size.height {
-            self.isTruncated = true
+            isTruncated = true
         }
     }
 
     private enum Constants {
+        static let fontSize: CGFloat = 17
         static let degrees: Double = -180
         static let animationDuration = 0.4
         static let startDegrees: Double = 0
         static let contentSpacing: CGFloat = 5
 
         enum Text {
-            static let lineLimit = 4
+            static let lineLimit = 2
             static let gradientEndOpacity: CGFloat = 0
         }
 

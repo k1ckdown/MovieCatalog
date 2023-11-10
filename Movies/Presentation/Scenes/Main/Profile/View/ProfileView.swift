@@ -83,6 +83,7 @@ struct ProfileView: View {
                     .padding()
                 }
             }
+            .padding(.top)
         }
         .scrollIndicators(.hidden)
         .appBackground()
