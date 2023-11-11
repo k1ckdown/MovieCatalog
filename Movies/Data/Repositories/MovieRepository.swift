@@ -13,11 +13,13 @@ final class MovieRepository {
         case maxPagesReached
     }
 
-    private var movies = [Movie]()
+    private var loadedMovies = [Movie]()
     private var pagination = Pagination()
 
     private var isFavoritesLoaded = false
-    private var favoriteMovies = [Movie]()
+    private var favoriteMovies: [Movie] {
+        loadedMovies.filter { $0.isFavorite }
+    }
 
     private let movieRemoteDataSource: MovieRemoteDataSource
 
@@ -30,21 +32,16 @@ extension MovieRepository: MovieRepositoryProtocol {
 
     func addFavoriteMovie(_ id: String, token: String) async throws {
         try await movieRemoteDataSource.addFavoriteMovie(token: token, movieId: id)
-        if let movie = movies.first(where: { $0.id == id }) {
-            favoriteMovies.append(movie)
+        if let index = loadedMovies.firstIndex(where: { $0.id == id }) {
+            loadedMovies[index].isFavorite = true
         }
     }
 
     func deleteFavoriteMovie(_ id: String, token: String) async throws {
         try await movieRemoteDataSource.deleteFavoriteMovie(token: token, movieId: id)
-        if let index = movies.firstIndex(where: { $0.id == id }) {
-            favoriteMovies.remove(at: index)
+        if let index = loadedMovies.firstIndex(where: { $0.id == id }) {
+            loadedMovies[index].isFavorite = false
         }
-    }
-
-    func getMovie(id: String) async throws -> Movie {
-        let movieDto = try await movieRemoteDataSource.fetchMovie(id: id)
-        return movieDto.toDomain()
     }
 
     func getFavoriteMovies(token: String) async throws -> [Movie] {
@@ -54,6 +51,18 @@ extension MovieRepository: MovieRepositoryProtocol {
         }
 
         return favoriteMovies
+    }
+
+    func getMovie(id: String) async throws -> Movie {
+        let movieDto = try await movieRemoteDataSource.fetchMovie(id: id)
+        var movie = movieDto.toDomain()
+
+        if let index = loadedMovies.firstIndex(where: { $0.id == movie.id }) {
+            movie.isFavorite = loadedMovies[index].isFavorite
+            loadedMovies[index] = movie
+        }
+
+        return movie
     }
 
     func getMovieList(page: Page) async throws -> [Movie] {
@@ -68,12 +77,9 @@ extension MovieRepository: MovieRepositoryProtocol {
         )
 
         pagination.pageCount = moviesPagedListDto.pageInfo.pageCount
-        let movieShorts = moviesPagedListDto.movies.map { $0.toDomain() }
+        let movieShortIds = moviesPagedListDto.movies.map { $0.toDomain().id }
 
-        let movieList = try await getMovieList(from: movieShorts)
-        movies.append(contentsOf: movieList)
-
-        return movieList
+        return try await loadMovieList(movieShortIds)
     }
 }
 
@@ -83,27 +89,44 @@ private extension MovieRepository {
         let moviesResponse = try await movieRemoteDataSource.fetchFavoriteMovies(token: token)
         let movieShortIds = moviesResponse.movies.map { $0.toDomain().id }
 
-        for id in movieShortIds {
-            if let index = movies.firstIndex(where: { $0.id == id }) {
-                movies[index].isFavorite = true
+        try await withThrowingTaskGroup(of: Movie.self) { taskGroup in
+            for id in movieShortIds {
+                if let index = loadedMovies.firstIndex(where: { $0.id == id }) {
+                    loadedMovies[index].isFavorite = true
+                } else {
+                    taskGroup.addTask {
+                        try await self.getMovie(id: id)
+                    }
+                }
+            }
+
+            for try await var movie in taskGroup {
+                movie.isFavorite = true
+                loadedMovies.append(movie)
             }
         }
     }
 
-    func getMovieList(from movieShorts: [MovieShort]) async throws -> [Movie] {
-        return try await withThrowingTaskGroup(
+    func loadMovieList(_ identifiers: [String]) async throws -> [Movie] {
+        try await withThrowingTaskGroup(
             of: Movie.self,
-            returning: [Movie].self
-        ) { taskGroup in
-            for movieShort in movieShorts {
-                taskGroup.addTask {
-                    try await self.getMovie(id: movieShort.id)
+            returning: [Movie].self) { taskGroup in
+                var movies = [Movie]()
+
+                for id in identifiers {
+                    if let loadedMovie = loadedMovies.first(where: { $0.id == id }) {
+                        movies.append(loadedMovie)
+                    } else {
+                        taskGroup.addTask {
+                            try await self.getMovie(id: id)
+                        }
+                    }
+                }
+
+                return try await taskGroup.reduce(into: movies) { partialResult, movie in
+                    loadedMovies.append(movie)
+                    partialResult.append(movie)
                 }
             }
-
-            return try await taskGroup.reduce(into: [Movie]()) { partialResult, movie in
-                partialResult.append(movie)
-            }
-        }
     }
 }

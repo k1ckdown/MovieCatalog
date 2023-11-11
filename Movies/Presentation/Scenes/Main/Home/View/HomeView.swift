@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @ObservedObject private(set) var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel
 
     var body: some View {
         ZStack {
@@ -49,7 +49,7 @@ struct HomeView: View {
         static let contentSpacing: CGFloat = 12
 
         static let numberOfCards = 4
-        static let countPlaceholders = numberOfCards + 3
+        static let countPlaceholders = numberOfCards + 2
 
         static let moviePageHeight: CGFloat = 497
         static let spacingMovieItems: CGFloat = 17

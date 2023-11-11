@@ -87,7 +87,6 @@ extension AppFactory {
     func makeFetchMovieListUseCase() -> FetchMovieListUseCase {
         FetchMovieListUseCase(
             movieRepository: movieRepository,
-            keychainRepository: keychainRepository,
             makeMovieDetailsUseCase: makeMakeMovieDetailsUseCase()
         )
     }
@@ -95,6 +94,7 @@ extension AppFactory {
     func makeFetchMovieUseCase() -> FetchMovieUseCase {
         FetchMovieUseCase(
             movieRepository: movieRepository,
+            keychainRepository: keychainRepository,
             makeMovieDetailsUseCase: makeMakeMovieDetailsUseCase()
         )
     }
