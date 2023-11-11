@@ -1,5 +1,5 @@
 //
-//  GetDetailsFromMoviesUseCase.swift
+//  MakeMovieDetailsUseCase.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 02.11.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class GetDetailsFromMoviesUseCase {
+final class MakeMovieDetailsUseCase {
 
     private let movieRepository: MovieRepositoryProtocol
     private let profileRepository: ProfileRepositoryProtocol
@@ -23,33 +23,17 @@ final class GetDetailsFromMoviesUseCase {
         self.keychainRepository = keychainRepository
     }
 
-    func execute(_ movies: [MovieShort]) async throws -> [MovieDetails] {
-        let movieIds = movies.map { $0.id }
-        let userId = try? profileRepository.getProfileId()
+    func execute(_ movies: [Movie]) async throws -> [MovieDetails] {
         let token = try keychainRepository.retrieveToken()
+        let userId = try? await profileRepository.getProfile(token: token).id
 
-        let movieDetailsList = try await withThrowingTaskGroup(
-            of: MovieDetails.self,
-            returning: [MovieDetails].self
-        ) { taskGroup in
-            for id in movieIds {
-                taskGroup.addTask {
-                    try await self.fetchDetails(id, userId: userId, token: token)
-                }
-            }
-
-            return try await taskGroup.reduce(into: [MovieDetails]()) { result, movie in
-                result.append(movie)
-            }
-        }
-
-        return movieDetailsList
+        return movies.map { makeMovieDetails(for: $0, userId: userId) }
     }
 }
 
-private extension GetDetailsFromMoviesUseCase {
+private extension MakeMovieDetailsUseCase {
 
-    func getReviewDetails(_ review: Review, isUserReview: Bool) -> ReviewDetails {
+    func makeReviewDetails(for review: Review, isUserReview: Bool) -> ReviewDetails {
         .init(
             id: review.id,
             rating: review.rating,
@@ -61,16 +45,15 @@ private extension GetDetailsFromMoviesUseCase {
         )
     }
 
-    func fetchDetails(_ id: String, userId: String?, token: String) async throws -> MovieDetails {
-        let movie = try await movieRepository.getMovie(id: id)
+    func makeMovieDetails(for movie: Movie, userId: String?) -> MovieDetails {
         let reviews = movie.reviews ?? []
 
         let totalRating = reviews.compactMap { $0.rating }.reduce(0, +)
         let averageRating = Double(totalRating) / Double(reviews.count)
 
-        let userRating = reviews.first(where: { $0.author?.userId == userId })?.rating
+        let userReview = reviews.first(where: { $0.author?.userId == userId })
         let reviewDetailsList = reviews.map {
-            getReviewDetails($0, isUserReview: $0.id == userId)
+            makeReviewDetails(for: $0, isUserReview: $0.id == userReview?.id)
         }
 
         return .init(
@@ -89,7 +72,7 @@ private extension GetDetailsFromMoviesUseCase {
             fees: movie.fees,
             ageLimit: movie.ageLimit,
             rating: averageRating,
-            userRating: userRating,
+            userRating: userReview?.rating,
             isFavorite: movie.isFavorite
         )
     }

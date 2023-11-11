@@ -84,12 +84,25 @@ extension AppFactory {
 
 extension AppFactory {
 
-    func makeFetchMoviesUseCase() -> FetchMoviesUseCase {
-        FetchMoviesUseCase(
+    func makeFetchMovieListUseCase() -> FetchMovieListUseCase {
+        FetchMovieListUseCase(
             movieRepository: movieRepository,
-            getDetailsFromMovies: makeGetDetailsFromMoviesUseCase()
+            makeMovieDetailsUseCase: makeMakeMovieDetailsUseCase()
         )
     }
+
+    func makeFetchMovieUseCase() -> FetchMovieUseCase {
+        FetchMovieUseCase(
+            movieRepository: movieRepository,
+            keychainRepository: keychainRepository,
+            makeMovieDetailsUseCase: makeMakeMovieDetailsUseCase()
+        )
+    }
+}
+
+// MARK: - FavoriteMovie
+
+extension AppFactory {
 
     func makeDeleteFavoriteMovieUseCase() -> DeleteFavoriteMovieUseCase {
         DeleteFavoriteMovieUseCase(
@@ -112,7 +125,7 @@ extension AppFactory {
             movieRepository: movieRepository,
             keychainRepository: keychainRepository,
             closeSessionUseCase: makeCloseSessionUseCase(),
-            getDetailsFromMoviesUseCase: makeGetDetailsFromMoviesUseCase()
+            makeMovieDetailsUseCase: makeMakeMovieDetailsUseCase()
         )
     }
 }
@@ -126,8 +139,8 @@ private extension AppFactory {
         )
     }
 
-    func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
-        GetDetailsFromMoviesUseCase(
+    func makeMakeMovieDetailsUseCase() -> MakeMovieDetailsUseCase {
+        MakeMovieDetailsUseCase(
             movieRepository: movieRepository,
             profileRepository: profileRepository,
             keychainRepository: keychainRepository
