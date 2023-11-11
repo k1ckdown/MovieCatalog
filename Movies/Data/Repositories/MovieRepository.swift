@@ -9,7 +9,16 @@ import Foundation
 
 final class MovieRepository {
 
+    enum MovieRepositoryError: Error {
+        case maxPagesReached
+    }
+
+    private var movies = [Movie]()
+    private var pagination = Pagination()
+
+    private var isFavoritesLoaded = false
     private var favoriteMovies = [Movie]()
+
     private let movieRemoteDataSource: MovieRemoteDataSource
 
     init(movieRemoteDataSource: MovieRemoteDataSource) {
@@ -21,45 +30,67 @@ extension MovieRepository: MovieRepositoryProtocol {
 
     func addFavoriteMovie(_ id: String, token: String) async throws {
         try await movieRemoteDataSource.addFavoriteMovie(token: token, movieId: id)
+        if let movie = movies.first(where: { $0.id == id }) {
+            favoriteMovies.append(movie)
+        }
     }
 
     func deleteFavoriteMovie(_ id: String, token: String) async throws {
         try await movieRemoteDataSource.deleteFavoriteMovie(token: token, movieId: id)
+        if let index = movies.firstIndex(where: { $0.id == id }) {
+            favoriteMovies.remove(at: index)
+        }
+    }
+
+    func getMovie(id: String) async throws -> Movie {
+        let movieDto = try await movieRemoteDataSource.fetchMovie(id: id)
+        return movieDto.toDomain()
     }
 
     func getFavoriteMovies(token: String) async throws -> [Movie] {
-        let moviesResponse = try await movieRemoteDataSource.fetchFavoriteMovies(token: token)
-        let movieShortList = moviesResponse.movies.map { $0.toDomain() }
+        if isFavoritesLoaded == false {
+            try await loadFavoriteMovies(token: token)
+            isFavoritesLoaded = true
+        }
 
-        let movies = try await getMovieList(movieShortList)
-        favoriteMovies = movies
-
-        return movies
+        return favoriteMovies
     }
 
-    func getMoviesPagedList(page: Int) async throws -> MoviesPaged {
-        let moviesPagedListDto = try await movieRemoteDataSource.fetchShortMovies(page: page)
+    func getMovieList(page: Page) async throws -> [Movie] {
+        pagination.page = page
 
-        let pageInfo = moviesPagedListDto.pageInfo.toDomain()
+        guard pagination.isLimitReached == false else {
+            throw MovieRepositoryError.maxPagesReached
+        }
+
+        let moviesPagedListDto = try await movieRemoteDataSource.fetchShortMovies(
+            page: pagination.currentPage
+        )
+
+        pagination.pageCount = moviesPagedListDto.pageInfo.pageCount
         let movieShorts = moviesPagedListDto.movies.map { $0.toDomain() }
 
-        let movies = try await getMovieList(movieShorts)
-        let moviesPagedList = MoviesPaged(movies: movies, pageInfo: pageInfo)
+        let movieList = try await getMovieList(from: movieShorts)
+        movies.append(contentsOf: movieList)
 
-        return moviesPagedList
+        return movieList
     }
 }
 
 private extension MovieRepository {
 
-    func getMovie(id: String) async throws -> Movie {
-        let movieDto = try await movieRemoteDataSource.fetchMovie(id: id)
-        let isFavorite = favoriteMovies.contains(where: { $0.id == movieDto.id })
+    func loadFavoriteMovies(token: String) async throws {
+        let moviesResponse = try await movieRemoteDataSource.fetchFavoriteMovies(token: token)
+        let movieShortIds = moviesResponse.movies.map { $0.toDomain().id }
 
-        return movieDto.toDomain(isFavorite: isFavorite)
+        for id in movieShortIds {
+            if let index = movies.firstIndex(where: { $0.id == id }) {
+                movies[index].isFavorite = true
+            }
+        }
     }
 
-    func getMovieList(_ movieShorts: [MovieShort]) async throws -> [Movie] {
+    func getMovieList(from movieShorts: [MovieShort]) async throws -> [Movie] {
         return try await withThrowingTaskGroup(
             of: Movie.self,
             returning: [Movie].self

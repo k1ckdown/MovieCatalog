@@ -1,5 +1,5 @@
 //
-//  GetDetailsFromMoviesUseCase.swift
+//  MakeMovieDetailsUseCase.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 02.11.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class GetDetailsFromMoviesUseCase {
+final class MakeMovieDetailsUseCase {
 
     private let movieRepository: MovieRepositoryProtocol
     private let profileRepository: ProfileRepositoryProtocol
@@ -23,13 +23,15 @@ final class GetDetailsFromMoviesUseCase {
         self.keychainRepository = keychainRepository
     }
 
-    func execute(_ movies: [Movie]) -> [MovieDetails] {
-        let userId = try? profileRepository.getProfileId()
+    func execute(_ movies: [Movie]) async throws -> [MovieDetails] {
+        let token = try keychainRepository.retrieveToken()
+        let userId = try? await profileRepository.getProfile(token: token).id
+
         return movies.map { makeMovieDetails(for: $0, userId: userId) }
     }
 }
 
-private extension GetDetailsFromMoviesUseCase {
+private extension MakeMovieDetailsUseCase {
 
     func makeReviewDetails(for review: Review, isUserReview: Bool) -> ReviewDetails {
         .init(

@@ -37,11 +37,12 @@ extension ScreenFactory: FavoritesViewFactory {
 // MARK: - MovieDetailsFactory
 
 extension ScreenFactory: MovieDetailsViewFactory {
-    func makeMovieDetailsView(movieDetails: MovieDetails, showAuthSceneHandler: @escaping () -> Void) -> MovieDetailsView {
+    func makeMovieDetailsView(movieId: String, showAuthSceneHandler: @escaping () -> Void) -> MovieDetailsView {
         let router = MovieDetailsRouter(showAuthSceneHandler: showAuthSceneHandler)
         let viewModel = MovieDetailsViewModel(
-            movie: movieDetails,
+            movieId: movieId,
             router: router,
+            fetchMovieUseCase: appFactory.makeFetchMovieUseCase(),
             addFavoriteMovieUseCase: appFactory.makeAddFavoriteMovieUseCase(),
             deleteFavoriteMovieUseCase: appFactory.makeDeleteFavoriteMovieUseCase()
         )
@@ -57,7 +58,7 @@ extension ScreenFactory: HomeViewFactory {
     func makeHomeView(coordinator: HomeCoordinatorProtocol) -> HomeView {
         let viewModel = HomeViewModel(
             coordinator: coordinator,
-            fetchMoviesUseCase: appFactory.makeFetchMoviesUseCase()
+            fetchMovieListUseCase: appFactory.makeFetchMovieListUseCase()
         )
         let view = HomeView(viewModel: viewModel)
 

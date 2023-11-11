@@ -9,29 +9,35 @@ import Foundation
 
 final class MovieDetailsViewModel: ViewModel {
 
-    @Published private(set) var state = MovieDetailsViewState.idle
+    @Published private(set) var state: MovieDetailsViewState
 
-    private let movie: MovieDetails
+    private let movieId: String
     private let router: MovieDetailsRouter
 
+    private let fetchMovieUseCase: FetchMovieUseCase
     private let addFavoriteMovieUseCase: AddFavoriteMovieUseCase
     private let deleteFavoriteMovieUseCase: DeleteFavoriteMovieUseCase
 
     init(
-        movie: MovieDetails,
+        movieId: String,
         router: MovieDetailsRouter,
+        fetchMovieUseCase: FetchMovieUseCase,
         addFavoriteMovieUseCase: AddFavoriteMovieUseCase,
         deleteFavoriteMovieUseCase: DeleteFavoriteMovieUseCase
     ) {
-        self.movie = movie
+        state = .idle
+        self.movieId = movieId
         self.router = router
+        self.fetchMovieUseCase = fetchMovieUseCase
         self.addFavoriteMovieUseCase = addFavoriteMovieUseCase
         self.deleteFavoriteMovieUseCase = deleteFavoriteMovieUseCase
-        state = .loaded(getViewData())
     }
 
     func handle(_ event: MovieDetailsViewEvent) {
         switch event {
+        case .onAppear:
+            Task { await retrieveMovie() }
+
         case .favoriteTapped:
             state = state.toggleFavorite()
             Task { await favoriteToggled() }
@@ -43,38 +49,57 @@ final class MovieDetailsViewModel: ViewModel {
 
 private extension MovieDetailsViewModel {
 
+    func retrieveMovie() async {
+        state = .loading
+
+        do {
+            let movie = try await fetchMovieUseCase.execute(movieId: movieId)
+            state = .loaded(getViewData(for: movie))
+        } catch {
+            state = .error(error.localizedDescription)
+        }
+    }
+
     func favoriteToggled() async {
         guard case .loaded(let viewData) = state else { return }
 
         do {
             try await viewData.isFavorite ?
-            addFavoriteMovieUseCase.execute(movie.id) :
-            deleteFavoriteMovieUseCase.execute(movie.id)
+            addFavoriteMovieUseCase.execute(movieId) :
+            deleteFavoriteMovieUseCase.execute(movieId)
         } catch {
             print(error.localizedDescription)
         }
     }
 
-    func getViewData() -> MovieDetailsViewState.ViewData {
-        let genres = movie.genres?.compactMap { $0.name }
-
+    func getViewData(for movie: MovieDetails) -> MovieDetailsViewState.ViewData {
         let aboutMovieViewModel = makeAboutMovieViewModel(movie)
-        let reviewViewModels = movie.reviews?.compactMap { makeReviewViewModel(review: $0) }
+        let reviewViewModels = movie.reviews?.compactMap { makeReviewViewModel($0) }
+        let genreViewModels = makeGenreViewModels(movie.genres ?? [])
 
-        return .init(
-            name: movie.name,
+        let model = MovieDetailsView.Model(
+            name: movie.name ?? LocalizedKeysConstants.Content.notAvailable,
             rating: movie.rating,
             poster: movie.poster,
-            isFavorite: movie.isFavorite,
-            genres: genres,
-            description: movie.description,
-            reviewViewModels: reviewViewModels,
+            genres: genreViewModels,
+            description: movie.description ?? LocalizedKeysConstants.Content.notAvailable,
+            reviewViewModels: reviewViewModels ?? [],
             aboutMovieViewModel: aboutMovieViewModel
         )
+
+        return .init(isFavorite: movie.isFavorite, model: model)
+    }
+    
+    func makeGenreViewModels(_ genres: [Genre]) -> [GenreViewModel] {
+        genres.compactMap { genre in
+            guard let name = genre.name else { return nil }
+            return .init(id: genre.id, name: name, style: .body)
+        }
     }
 
-    func makeReviewViewModel(review: ReviewDetails) -> ReviewViewModel {
+    func makeReviewViewModel(_ review: ReviewDetails) -> ReviewViewModel {
         .init(
+            id: review.id,
             rating: review.rating,
             isUserReview: review.isUserReview,
             reviewText: review.reviewText,
@@ -85,25 +110,15 @@ private extension MovieDetailsViewModel {
     }
 
     func makeAboutMovieViewModel(_ movie: MovieDetails) -> AboutMovieViewModel {
-        let notAvailable = LocalizedKeysConstants.Content.notAvailable
-
-        return .init(
+        .init(
             year: movie.year,
-            country: movie.country ?? notAvailable,
-            tagline: movie.tagline ?? notAvailable,
-            director: movie.director ?? notAvailable,
-            budget: getMonetaryDescription(value: movie.budget),
-            fees: getMonetaryDescription(value: movie.fees),
+            country: movie.country,
+            tagline: movie.tagline,
+            director: movie.director,
+            budget: movie.budget,
+            fees: movie.fees,
             ageLimit: movie.ageLimit,
             time: movie.time
         )
-    }
-
-    func getMonetaryDescription(value: Int?) -> String {
-        if let value {
-            return "$\(value.formatted())"
-        }
-
-        return LocalizedKeysConstants.Content.notAvailable
     }
 }

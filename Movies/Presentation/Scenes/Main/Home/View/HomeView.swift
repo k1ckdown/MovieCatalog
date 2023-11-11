@@ -145,12 +145,3 @@ private extension HomeView {
         .padding(.horizontal)
     }
 }
-
-//#Preview {
-//    HomeView(
-//        viewModel: .init(
-//            coordinator: HomeCoordinator(),
-//            fetchMoviesUseCase: AppFactory().makeFetchMoviesUseCase()
-//        )
-//    )
-//}

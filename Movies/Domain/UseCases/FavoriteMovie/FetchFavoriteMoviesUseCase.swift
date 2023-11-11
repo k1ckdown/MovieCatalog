@@ -12,18 +12,18 @@ final class FetchFavoriteMoviesUseCase {
     private let movieRepository: MovieRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
     private let closeSessionUseCase: CloseSessionUseCase
-    private let getDetailsFromMoviesUseCase: GetDetailsFromMoviesUseCase
+    private let makeMovieDetailsUseCase: MakeMovieDetailsUseCase
 
     init(
         movieRepository: MovieRepositoryProtocol,
         keychainRepository: KeychainRepositoryProtocol,
         closeSessionUseCase: CloseSessionUseCase,
-        getDetailsFromMoviesUseCase: GetDetailsFromMoviesUseCase
+        makeMovieDetailsUseCase: MakeMovieDetailsUseCase
     ) {
         self.movieRepository = movieRepository
         self.keychainRepository = keychainRepository
         self.closeSessionUseCase = closeSessionUseCase
-        self.getDetailsFromMoviesUseCase = getDetailsFromMoviesUseCase
+        self.makeMovieDetailsUseCase = makeMovieDetailsUseCase
     }
     
     func execute() async throws -> [MovieDetails] {
@@ -31,7 +31,7 @@ final class FetchFavoriteMoviesUseCase {
 
         do {
             let movieList = try await movieRepository.getFavoriteMovies(token: token)
-            let movieDetailsList = getDetailsFromMoviesUseCase.execute(movieList)
+            let movieDetailsList = try await makeMovieDetailsUseCase.execute(movieList)
             return movieDetailsList
         } catch {
             if error as? AuthError == .unauthorized {

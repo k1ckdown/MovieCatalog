@@ -20,7 +20,7 @@ struct AppCoordinatorView: View {
     var body: some View {
         sceneView
             .onAppear {
-                coordinator.handle(.checkProfile)
+                coordinator.handle(.checkAuthorization)
             }
     }
 
@@ -49,12 +49,3 @@ struct AppCoordinatorView: View {
         }
     }
 }
-
-//#Preview {
-//    let appFactory = AppFactory()
-//    return AppCoordinatorView(
-//        screenFactory: ScreenFactory(appFactory: appFactory),
-//        coordinator: AppCoordinator(fetchProfileUseCase: appFactory.makeFetchProfileUseCase())
-//    )
-//    .environment(\.locale, .init(identifier: "ru"))
-//}

@@ -29,9 +29,9 @@ struct FavoritesCoordinatorView: View {
     @ViewBuilder
     private func destination(_ screen: FavoritesCoordinator.Screen) -> some View {
         switch screen {
-        case .movieDetails(let movieDetails):
+        case .movieDetails(let movieId):
             factory.makeMovieDetailsView(
-                movieDetails: movieDetails,
+                movieId: movieId,
                 showAuthSceneHandler: { coordinator.showAuthScene() }
             )
         }

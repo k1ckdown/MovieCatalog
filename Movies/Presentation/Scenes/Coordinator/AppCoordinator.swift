@@ -18,9 +18,9 @@ final class AppCoordinator: ObservableObject {
     }
 
     enum Action {
-        case checkProfile
         case showAuth
         case showMain
+        case checkAuthorization
     }
 
     @Published private(set) var state: State
@@ -39,7 +39,7 @@ final class AppCoordinator: ObservableObject {
 
     func handle(_ action: Action) {
         switch action {
-        case .checkProfile:
+        case .checkAuthorization:
             Task { await loadData() }
         case .showAuth:
             state = .auth
@@ -53,14 +53,11 @@ private extension AppCoordinator {
 
     func loadData() async {
         state = .loading
-        do {
-            async let profile = try fetchProfileUseCase.execute()
-            async let favorites = try fetchFavoriteMoviesUseCase.execute()
-            _ = try await (profile, favorites)
 
+        do {
+            _ = try await fetchProfileUseCase.execute()
             state = .main
         } catch {
-            print(error)
             state = .auth
         }
     }
