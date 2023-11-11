@@ -44,15 +44,14 @@ struct GenreTag: View {
         }
     }
 
-    let name: String
-    let style: Style
+    let viewModel: GenreViewModel
 
     var body: some View {
-        Text(name)
-            .font(style.font)
-            .padding(.vertical, style.verticalInsets)
-            .padding(.horizontal, style.horizontalInsets)
-            .background(style.backgroundColor)
+        Text(viewModel.name)
+            .font(viewModel.style.font)
+            .padding(.vertical, viewModel.style.verticalInsets)
+            .padding(.horizontal, viewModel.style.horizontalInsets)
+            .background(viewModel.style.backgroundColor)
             .clipShape(.rect(cornerRadius: Constants.cornerRadius))
     }
 

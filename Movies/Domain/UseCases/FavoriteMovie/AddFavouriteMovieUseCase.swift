@@ -23,11 +23,11 @@ final class AddFavoriteMovieUseCase {
         self.closeSessionUseCase = closeSessionUseCase
     }
 
-    func execute(id: String) async throws {
+    func execute(_ movieId: String) async throws {
         let token = try keychainRepository.retrieveToken()
 
         do {
-            try await movieRepository.addFavoriteMovie(id, token: token)
+            try await movieRepository.addFavoriteMovie(movieId, token: token)
         } catch {
             if error as? AuthError == .unauthorized {
                 try closeSessionUseCase.execute()

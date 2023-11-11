@@ -38,7 +38,8 @@ struct MovieDTO: Decodable {
             director: director,
             budget: budget,
             fees: fees,
-            ageLimit: ageLimit
+            ageLimit: ageLimit,
+            isFavorite: false
         )
     }
 }

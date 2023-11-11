@@ -15,7 +15,7 @@ struct AboutMovieView: View {
         VStack(alignment: .leading, spacing: Constants.contentSpacing) {
             rowView(
                 name: LocalizedKeysConstants.Content.Description.year,
-                value: "\(viewModel.year)"
+                value: viewModel.year
             )
             rowView(
                 name: LocalizedKeysConstants.Content.Description.country,
@@ -39,11 +39,11 @@ struct AboutMovieView: View {
             )
             rowView(
                 name: LocalizedKeysConstants.Content.Description.ageLimit,
-                value: "\(viewModel.ageLimit)+"
+                value: viewModel.ageLimit
             )
             rowView(
                 name: LocalizedKeysConstants.Content.Description.time,
-                value: "\(viewModel.time) мин."
+                value: viewModel.time
             )
         }
     }

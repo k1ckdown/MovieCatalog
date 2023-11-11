@@ -9,8 +9,12 @@ import SwiftUI
 
 struct MovieDetailsView: View {
 
-    @ObservedObject private(set) var viewModel: MovieDetailsViewModel
     @State private var tabBarVisibility = Visibility.visible
+    @StateObject private var viewModel: MovieDetailsViewModel
+
+    init(viewModel: MovieDetailsViewModel) {
+        _viewModel = .init(wrappedValue: viewModel)
+    }
 
     var body: some View {
         contentView
@@ -18,7 +22,9 @@ struct MovieDetailsView: View {
             .toolbarRole(.editor)
             .toolbar(tabBarVisibility, for: .tabBar)
             .navigationBarTitleDisplayMode(.inline)
+            .redacted(if: viewModel.state == .loading)
             .onAppear() {
+                viewModel.handle(.onAppear)
                 withAnimation(.spring) {
                     tabBarVisibility = .hidden
                 }
@@ -30,8 +36,15 @@ struct MovieDetailsView: View {
         switch viewModel.state {
         case .idle:
             EmptyView()
+
+        case .loading:
+            detailsView(data: .init(isFavorite: false, model: .placeholder()))
+
         case .loaded(let viewData):
             detailsView(data: viewData)
+
+        case .error(let message):
+            Text(message)
         }
     }
 
@@ -57,26 +70,21 @@ private extension MovieDetailsView {
     func detailsView(data: MovieDetailsViewState.ViewData) -> some View {
         ScrollView(.vertical) {
             VStack(spacing: Constants.posterSpacing) {
-                posterView(data.poster)
+                posterView(data.model.poster)
 
                 VStack(spacing: Constants.Content.spacing) {
-                    headerView(name: data.name, rating: data.rating, isFavorite: data.isFavorite)
+                    headerView(
+                        name: data.model.name,
+                        rating: data.model.rating,
+                        isFavorite: data.isFavorite
+                    )
 
-                    if let description = data.description {
-                        ExpandableText(text: description)
-                    }
+                    ExpandableText(text: data.model.description)
 
                     VStack(alignment: .leading, spacing: Constants.detailsSpacing) {
-
-                        if let genres = data.genres {
-                            genreListView(genres: genres)
-                        }
-
-                        aboutMovieView(viewModel: data.aboutMovieViewModel)
-
-                        if let reviewViewModels = data.reviewViewModels {
-                            reviewListView(viewModels: reviewViewModels)
-                        }
+                        genreListView(genres: data.model.genres)
+                        aboutMovieView(viewModel: data.model.aboutMovieViewModel)
+                        reviewListView(viewModels: data.model.reviewViewModels)
                     }
                 }
                 .padding(.horizontal, Constants.Content.horizontalInsets)
@@ -100,17 +108,15 @@ private extension MovieDetailsView {
             }
     }
 
-    func headerView(name: String?, rating: Double, isFavorite: Bool) -> some View {
+    func headerView(name: String, rating: Double, isFavorite: Bool) -> some View {
         HStack {
             RatingTagView(style: .titleOnly(.medium), value: rating)
 
             Spacer()
 
-            if let name {
-                Text(name)
-                    .font(.title.bold())
-                    .multilineTextAlignment(.center)
-            }
+            Text(name)
+                .font(.title.bold())
+                .multilineTextAlignment(.center)
 
             Spacer()
 
@@ -123,10 +129,10 @@ private extension MovieDetailsView {
 
 private extension MovieDetailsView {
 
-    func genreListView(genres: [String]) -> some View {
+    func genreListView(genres: [GenreViewModel]) -> some View {
         TagLayout(spacing: Constants.genresSpacing) {
-            ForEach(genres, id: \.self) { genre in
-                GenreTag(name: genre, style: .body)
+            ForEach(genres) { genre in
+                GenreTag(viewModel: genre)
             }
         }
         .mediumLabeled(LocalizedKeysConstants.Content.genres)

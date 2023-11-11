@@ -13,12 +13,12 @@ final class HomeViewModel: ViewModel {
 
     private var movies = [MovieDetails]()
     private let coordinator: HomeCoordinatorProtocol
-    private let fetchMoviesUseCase: FetchMoviesUseCase
+    private let fetchMovieListUseCase: FetchMovieListUseCase
 
-    init(coordinator: HomeCoordinatorProtocol, fetchMoviesUseCase: FetchMoviesUseCase) {
+    init(coordinator: HomeCoordinatorProtocol, fetchMovieListUseCase: FetchMovieListUseCase) {
         self.state = .idle
         self.coordinator = coordinator
-        self.fetchMoviesUseCase = fetchMoviesUseCase
+        self.fetchMovieListUseCase = fetchMovieListUseCase
     }
 
     func handle(_ event: HomeViewEvent) {
@@ -30,7 +30,7 @@ final class HomeViewModel: ViewModel {
             Task { await loadMore() }
 
         case .onSelectMovie(let id):
-            movieSelected(id)
+            coordinator.showMovieDetails(id)
         }
     }
 }
@@ -39,21 +39,15 @@ private extension HomeViewModel {
 
     func loadMore() async {
         do {
-            let nextMovies = try await fetchMoviesUseCase.execute(.next)
+            let nextMovies = try await fetchMovieListUseCase.execute(.next)
             movies.append(contentsOf: nextMovies)
 
             let itemViewModels = nextMovies.map { makeItemViewModel($0) }
             state = state.loadedMore(itemViewModels)
-        } catch let error as FetchMoviesUseCase.FetchMoviesError {
+        } catch let error as MovieRepository.MovieRepositoryError {
             state = error == .maxPagesReached ? state.unavailableLoadMore() : state.failedLoadMore()
         } catch {
             state = state.failedLoadMore()
-        }
-    }
-
-    func movieSelected(_ id: String) {
-        if let movie = movies.first(where: { $0.id == id }) {
-            coordinator.showMovieDetails(movie)
         }
     }
 
@@ -61,7 +55,7 @@ private extension HomeViewModel {
         state = .loading
 
         do {
-            movies = try await fetchMoviesUseCase.execute(.first)
+            movies = try await fetchMovieListUseCase.execute(.first)
             let itemViewModels = movies.map { makeItemViewModel($0) }
             state = .loaded(.init(loadMore: .available, movieItems: itemViewModels))
         } catch {
@@ -70,18 +64,14 @@ private extension HomeViewModel {
     }
 
     func makeItemViewModel(_ movie: MovieDetails) -> MovieDetailsItemViewModel {
-        let genres = movie.genres ?? []
-        let notAvailable = LocalizedKeysConstants.Content.notAvailable
-
-        return .init(id: movie.id,
-                     name: movie.name ?? notAvailable,
-                     year: movie.year,
-                     country: movie.country ?? notAvailable,
-                     poster: movie.poster,
-                     rating: movie.rating,
-                     userRating: movie.userRating,
-                     genres: genres.compactMap { $0.name },
-                     shouldShowGenresEllipsis: genres.count > 5
+        .init(id: movie.id,
+              name: movie.name,
+              year: movie.year,
+              country: movie.country,
+              poster: movie.poster,
+              rating: movie.rating,
+              userRating: movie.userRating,
+              genres: movie.genres
         )
     }
 }

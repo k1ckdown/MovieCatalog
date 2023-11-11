@@ -22,6 +22,6 @@ final class CloseSessionUseCase {
 
     func execute() throws {
         try keychainRepository.deleteToken()
-        profileRepository.removeLocalProfile()
+        profileRepository.removeProfile()
     }
 }

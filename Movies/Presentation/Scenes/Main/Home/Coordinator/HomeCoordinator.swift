@@ -10,7 +10,7 @@ import Foundation
 final class HomeCoordinator: Coordinator {
     
     enum Screen: Routable {
-        case movieDetails(MovieDetails)
+        case movieDetails(String)
     }
     
     @Published var navigationPath = [Screen]()
@@ -27,7 +27,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
         showAuthSceneHandler()
     }
     
-    func showMovieDetails(_ movie: MovieDetails) {
-        navigationPath.append(.movieDetails(movie))
+    func showMovieDetails(_ movieId: String) {
+        navigationPath.append(.movieDetails(movieId))
     }
 }

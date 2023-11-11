@@ -18,23 +18,29 @@ final class AppCoordinator: ObservableObject {
     }
 
     enum Action {
-        case checkProfile
         case showAuth
         case showMain
+        case checkAuthorization
     }
 
     @Published private(set) var state: State
-    private let fetchProfileUseCase: FetchProfileUseCase
 
-    init(fetchProfileUseCase: FetchProfileUseCase) {
+    private let fetchProfileUseCase: FetchProfileUseCase
+    private let fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase
+
+    init(
+        fetchProfileUseCase: FetchProfileUseCase,
+        fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase
+    ) {
         state = .idle
         self.fetchProfileUseCase = fetchProfileUseCase
+        self.fetchFavoriteMoviesUseCase = fetchFavoriteMoviesUseCase
     }
 
     func handle(_ action: Action) {
         switch action {
-        case .checkProfile:
-            Task { await getProfile() }
+        case .checkAuthorization:
+            Task { await loadData() }
         case .showAuth:
             state = .auth
         case .showMain:
@@ -45,10 +51,11 @@ final class AppCoordinator: ObservableObject {
 
 private extension AppCoordinator {
 
-    func getProfile() async {
+    func loadData() async {
         state = .loading
+
         do {
-            let _ = try await fetchProfileUseCase.execute()
+            _ = try await fetchProfileUseCase.execute()
             state = .main
         } catch {
             state = .auth

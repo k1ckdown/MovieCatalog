@@ -22,4 +22,10 @@ struct Movie {
     let budget: Int?
     let fees: Int?
     let ageLimit: Int
+    var isFavorite: Bool
+}
+
+struct MoviesPaged {
+    let movies: [Movie]
+    let pageInfo: PageInfo
 }
