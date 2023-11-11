@@ -54,7 +54,7 @@ private extension PasswordRegistrationViewModel {
         if state.password == confirmPassword {
             state.confirmPasswordError = nil
         } else {
-            state.confirmPasswordError = LocalizedKeysConstants.ErrorMessage.Password.invalidConfirmPassword
+            state.confirmPasswordError = LocalizedKey.ErrorMessage.Password.invalidConfirmPassword
         }
     }
 
@@ -90,7 +90,7 @@ private extension PasswordRegistrationViewModel {
             state.registerError = nil
             coordinator.showMainScene()
         } catch {
-            state.registerError = LocalizedKeysConstants.ErrorMessage.registrationFailed
+            state.registerError = LocalizedKey.ErrorMessage.registrationFailed
         }
         state.isLoading = false
     }

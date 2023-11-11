@@ -51,21 +51,21 @@ struct MainCoordinatorView: View {
     private var home: some View {
         HomeCoordinatorView(homeCoordinator, factory: factory)
             .tabItem {
-                Label(LocalizedKeysConstants.ScreenTitle.home, systemImage: Constants.houseImage)
+                Label(LocalizedKey.ScreenTitle.home, systemImage: Constants.houseImage)
             }
     }
 
     private var favorites: some View {
         FavoritesCoordinatorView(favoritesCoordinator, factory: factory)
             .tabItem {
-                Label(LocalizedKeysConstants.ScreenTitle.favorites, systemImage: Constants.heartImage)
+                Label(LocalizedKey.ScreenTitle.favorites, systemImage: Constants.heartImage)
             }
     }
 
     private var profile: some View {
         ProfileCoordinatorView(profileCoordinator, factory: factory)
             .tabItem {
-                Label(LocalizedKeysConstants.ScreenTitle.profile, systemImage: Constants.person)
+                Label(LocalizedKey.ScreenTitle.profile, systemImage: Constants.person)
             }
     }
 

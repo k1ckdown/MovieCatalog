@@ -233,6 +233,23 @@
         }
       }
     },
+    "DeleteReview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete a review"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить отзыв"
+          }
+        }
+      }
+    },
     "Director" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -246,6 +263,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Режиссер"
+          }
+        }
+      }
+    },
+    "Edit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактировать"
           }
         }
       }

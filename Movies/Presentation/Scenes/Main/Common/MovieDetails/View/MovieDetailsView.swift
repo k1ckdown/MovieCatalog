@@ -29,6 +29,16 @@ struct MovieDetailsView: View {
                     tabBarVisibility = .hidden
                 }
             }
+            .confirmationDialog("", isPresented: isDialogPresented) {
+                Button(LocalizedKey.Content.Action.edit) {
+                    viewModel.handle(.editReviewTapped)
+                }
+
+                Button(LocalizedKey.Content.Action.deleteReview, role: .destructive) {
+                    viewModel.handle(.deleteReviewTapped)
+                }
+            }
+            .preferredColorScheme(.dark)
     }
 
     @ViewBuilder
@@ -46,6 +56,17 @@ struct MovieDetailsView: View {
         case .error(let message):
             Text(message)
         }
+    }
+
+    var isDialogPresented: Binding<Bool> {
+        guard case .loaded(let viewData) = viewModel.state else {
+            return .falseBinding
+        }
+
+        return Binding(
+            get: { viewData.isDialogPresenting },
+            set: { viewModel.handle(.onDialogPresented($0)) }
+        )
     }
 
     private enum Constants {
@@ -135,26 +156,34 @@ private extension MovieDetailsView {
                 GenreTag(viewModel: genre)
             }
         }
-        .mediumLabeled(LocalizedKeysConstants.Content.genres)
+        .mediumLabeled(LocalizedKey.Content.genres)
     }
 
     func aboutMovieView(viewModel: AboutMovieViewModel) -> some View {
         AboutMovieView(viewModel: viewModel)
-            .mediumLabeled(LocalizedKeysConstants.Content.aboutMovie)
+            .mediumLabeled(LocalizedKey.Content.aboutMovie)
     }
 
     func reviewListView(viewModels: [ReviewViewModel]) -> some View {
         VStack(alignment: .leading) {
-            Text(LocalizedKeysConstants.Content.reviews)
+            Text(LocalizedKey.Content.reviews)
                 .font(.system(size: Constants.sectionHeaderFontSize, weight: .bold))
 
             VStack(spacing: Constants.reviewsSpacing) {
-                ForEach(viewModels) { viewModel in
-                    ReviewView(viewModel: viewModel) {
-
+                ForEach(viewModels) { itemViewModel in
+                    ReviewView(viewModel: itemViewModel) {
+                        viewModel.handle(.reviewOptionsTapped)
                     }
                 }
             }
         }
     }
+}
+
+#Preview {
+    ScreenFactory(appFactory: .init())
+        .makeMovieDetailsView(
+            movieId: "",
+            showAuthSceneHandler: {}
+        )
 }

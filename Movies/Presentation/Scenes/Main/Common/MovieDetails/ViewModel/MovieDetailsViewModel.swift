@@ -42,6 +42,12 @@ final class MovieDetailsViewModel: ViewModel {
             state = state.toggleFavorite()
             Task { await favoriteToggled() }
 
+        case .onDialogPresented(let isPresented):
+            state = state.confirmationDialog(isPresented: isPresented)
+
+        case .reviewOptionsTapped:
+            state = state.confirmationDialog(isPresented: true)
+
         default: break
         }
     }
@@ -53,8 +59,8 @@ private extension MovieDetailsViewModel {
         state = .loading
 
         do {
-            let movie = try await fetchMovieUseCase.execute(movieId: movieId)
-            state = .loaded(getViewData(for: movie))
+//            let movie = try await fetchMovieUseCase.execute(movieId: movieId)
+            state = .loaded(getViewData(for: MovieDetails.mock))
         } catch {
             state = .error(error.localizedDescription)
         }
@@ -78,11 +84,11 @@ private extension MovieDetailsViewModel {
         let genreViewModels = makeGenreViewModels(movie.genres ?? [])
 
         let model = MovieDetailsView.Model(
-            name: movie.name ?? LocalizedKeysConstants.Content.notAvailable,
+            name: movie.name ?? LocalizedKey.Content.notAvailable,
             rating: movie.rating,
             poster: movie.poster,
             genres: genreViewModels,
-            description: movie.description ?? LocalizedKeysConstants.Content.notAvailable,
+            description: movie.description ?? LocalizedKey.Content.notAvailable,
             reviewViewModels: reviewViewModels ?? [],
             aboutMovieViewModel: aboutMovieViewModel
         )

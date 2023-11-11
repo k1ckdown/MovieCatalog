@@ -28,9 +28,9 @@ struct ReviewViewModel: Equatable, Identifiable {
         self.id = id
         self.rating = Double(rating)
         self.isUserReview = isUserReview
-        self.reviewText = reviewText ?? LocalizedKeysConstants.Content.notAvailable
+        self.reviewText = reviewText ?? LocalizedKey.Content.notAvailable
         self.createDateTime = createDateTime.formatToDateMonthYear()
-        self.authorNickname = authorNickname ?? LocalizedKeysConstants.Content.notAvailable
+        self.authorNickname = authorNickname ?? LocalizedKey.Content.notAvailable
         self.authorAvatarLink = authorAvatarLink ?? ""
     }
 }

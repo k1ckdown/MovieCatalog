@@ -166,7 +166,7 @@ private extension ProfileViewModel {
             let url = URL(string: urlString),
             url.isImageType()
         else {
-            state.avatarLinkError = LocalizedKeysConstants.ErrorMessage.invalidLink
+            state.avatarLinkError = LocalizedKey.ErrorMessage.invalidLink
             return
         }
 

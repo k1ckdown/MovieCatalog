@@ -28,9 +28,9 @@ struct AboutMovieViewModel: Equatable {
         time: Int
     ) {
         self.year = "\(year)"
-        self.country = country ?? LocalizedKeysConstants.Content.notAvailable
-        self.tagline = tagline ?? LocalizedKeysConstants.Content.notAvailable
-        self.director = director ?? LocalizedKeysConstants.Content.notAvailable
+        self.country = country ?? LocalizedKey.Content.notAvailable
+        self.tagline = tagline ?? LocalizedKey.Content.notAvailable
+        self.director = director ?? LocalizedKey.Content.notAvailable
         self.budget = AboutMovieViewModel.getMonetaryDescription(value: fees)
         self.fees = AboutMovieViewModel.getMonetaryDescription(value: fees)
         self.ageLimit = "\(ageLimit)+"
@@ -42,7 +42,7 @@ struct AboutMovieViewModel: Equatable {
             return "$\(value.formatted())"
         }
 
-        return LocalizedKeysConstants.Content.notAvailable
+        return LocalizedKey.Content.notAvailable
     }
 }
 

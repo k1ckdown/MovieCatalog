@@ -9,12 +9,21 @@ import Foundation
 
 extension MovieDetailsViewState {
 
-    func toggleFavorite() -> Self {
+    func toggleFavorite() -> MovieDetailsViewState {
         guard case .loaded(var viewData) = self else {
             return self
         }
 
         viewData.isFavorite.toggle()
+        return .loaded(viewData)
+    }
+
+    func confirmationDialog(isPresented: Bool) -> MovieDetailsViewState {
+        guard case .loaded(var viewData) = self else {
+            return self
+        }
+
+        viewData.isDialogPresenting = isPresented
         return .loaded(viewData)
     }
 }
