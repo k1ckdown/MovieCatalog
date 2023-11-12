@@ -116,6 +116,12 @@
 		499E0E122AF3352600D4EEA2 /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E0E112AF3352600D4EEA2 /* FavoritesCoordinator.swift */; };
 		499E0E142AF3354100D4EEA2 /* FavoritesCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E0E132AF3354100D4EEA2 /* FavoritesCoordinatorView.swift */; };
 		49A050F52B00AED000AFE4A7 /* ReviewDialogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050F42B00AED000AFE4A7 /* ReviewDialogViewModel.swift */; };
+		49A050F72B00D02000AFE4A7 /* ReviewModify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050F62B00D01F00AFE4A7 /* ReviewModify.swift */; };
+		49A050FA2B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050F92B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift */; };
+		49A050FC2B00D15200AFE4A7 /* ReviewRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050FB2B00D15200AFE4A7 /* ReviewRepository.swift */; };
+		49A050FF2B00D2D900AFE4A7 /* AddReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050FE2B00D2D900AFE4A7 /* AddReviewUseCase.swift */; };
+		49A051012B01092400AFE4A7 /* UpdateReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A051002B01092400AFE4A7 /* UpdateReviewUseCase.swift */; };
+		49A051032B010A4200AFE4A7 /* DeleteReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A051022B010A4200AFE4A7 /* DeleteReviewUseCase.swift */; };
 		49A3FACA2AED798E0043512C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAC92AED798E0043512C /* ProfileView.swift */; };
 		49A3FACD2AED79AA0043512C /* ProfileViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FACC2AED79AA0043512C /* ProfileViewState.swift */; };
 		49A3FACF2AED7ACB0043512C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */; };
@@ -293,6 +299,12 @@
 		499E0E112AF3352600D4EEA2 /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		499E0E132AF3354100D4EEA2 /* FavoritesCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinatorView.swift; sourceTree = "<group>"; };
 		49A050F42B00AED000AFE4A7 /* ReviewDialogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDialogViewModel.swift; sourceTree = "<group>"; };
+		49A050F62B00D01F00AFE4A7 /* ReviewModify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModify.swift; sourceTree = "<group>"; };
+		49A050F92B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRepositoryProtocol.swift; sourceTree = "<group>"; };
+		49A050FB2B00D15200AFE4A7 /* ReviewRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRepository.swift; sourceTree = "<group>"; };
+		49A050FE2B00D2D900AFE4A7 /* AddReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewUseCase.swift; sourceTree = "<group>"; };
+		49A051002B01092400AFE4A7 /* UpdateReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateReviewUseCase.swift; sourceTree = "<group>"; };
+		49A051022B010A4200AFE4A7 /* DeleteReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteReviewUseCase.swift; sourceTree = "<group>"; };
 		49A3FAC92AED798E0043512C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		49A3FACC2AED79AA0043512C /* ProfileViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewState.swift; sourceTree = "<group>"; };
 		49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -524,6 +536,7 @@
 				4978317E2AEEEA2B00860C41 /* MovieDetails.swift */,
 				497831822AEEF83D00860C41 /* PageInfo.swift */,
 				49A63F5B2AFECD3B000165EB /* Pagination.swift */,
+				49A050F62B00D01F00AFE4A7 /* ReviewModify.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -977,6 +990,16 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		49A050FD2B00D2C900AFE4A7 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				49A050FE2B00D2D900AFE4A7 /* AddReviewUseCase.swift */,
+				49A051002B01092400AFE4A7 /* UpdateReviewUseCase.swift */,
+				49A051022B010A4200AFE4A7 /* DeleteReviewUseCase.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
 		49A3FACB2AED799E0043512C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -993,6 +1016,7 @@
 				490297C72AEC46D7000AFDB4 /* KeychainRepositoryProtocol.swift */,
 				49A3FAE12AEDADA90043512C /* ProfileRepositoryProtocol.swift */,
 				497831672AEED4E600860C41 /* MovieRepositoryProtocol.swift */,
+				49A050F92B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1004,6 +1028,7 @@
 				49A3FAE42AEDAEE60043512C /* ProfileRepository.swift */,
 				4978316F2AEED5E800860C41 /* MovieRepository.swift */,
 				49E64D952AFB9BCE0048C668 /* KeychainRepository.swift */,
+				49A050FB2B00D15200AFE4A7 /* ReviewRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1020,6 +1045,7 @@
 		49B6D75B2AE9A41200451DAF /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				49A050FD2B00D2C900AFE4A7 /* Review */,
 				4980E8302AFF678B00EF6F78 /* FavoriteMovie */,
 				497831732AEEE1A800860C41 /* Movie */,
 				49A3FAE62AEDB3250043512C /* Profile */,
@@ -1363,6 +1389,7 @@
 				49EB265D2AECF2EF00FFD335 /* HomeView.swift in Sources */,
 				49E64D992AFB9EC80048C668 /* MovieRemoteDataSource.swift in Sources */,
 				49330CEF2ADD663B00BFA4C6 /* NetworkManager.swift in Sources */,
+				49A050FA2B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift in Sources */,
 				49EB26762AED5E3900FFD335 /* GenreTag.swift in Sources */,
 				490297CB2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift in Sources */,
 				49C3CE9E2AEA595A009FACF4 /* PersonalInfoRegistrationView.swift in Sources */,
@@ -1387,8 +1414,10 @@
 				49C3CEA42AEA5B10009FACF4 /* PasswordRegistrationViewState.swift in Sources */,
 				49330CE02ADD2ED200BFA4C6 /* UserShortDTO.swift in Sources */,
 				49A3FADB2AED8A9A0043512C /* UpdateProfileUseCase.swift in Sources */,
+				49A050FF2B00D2D900AFE4A7 /* AddReviewUseCase.swift in Sources */,
 				49D462A32AFC219700696452 /* FavoritesCoordinatorProtocol.swift in Sources */,
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
+				49A050FC2B00D15200AFE4A7 /* ReviewRepository.swift in Sources */,
 				49330CD12ADD278900BFA4C6 /* MovieShortDTO.swift in Sources */,
 				4955831D2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift in Sources */,
 				49D462962AFC050400696452 /* HTTPStatusCode.swift in Sources */,
@@ -1442,6 +1471,7 @@
 				497831722AEEE09200860C41 /* FetchMovieListUseCase.swift in Sources */,
 				4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */,
 				49D462A12AFC20D100696452 /* MovieDetailsRouter.swift in Sources */,
+				49A050F72B00D02000AFE4A7 /* ReviewModify.swift in Sources */,
 				49A63F5C2AFECD3B000165EB /* Pagination.swift in Sources */,
 				4955831B2AF0159200E3AA69 /* MovieDetailsViewModel.swift in Sources */,
 				4961F47C2AE021C800A717AB /* ViewModel.swift in Sources */,
@@ -1485,6 +1515,7 @@
 				490297BF2AEC3F63000AFDB4 /* UserRegister.swift in Sources */,
 				498772D02AF2FDD100B706F6 /* FavoritesLayout.swift in Sources */,
 				49A050F52B00AED000AFE4A7 /* ReviewDialogViewModel.swift in Sources */,
+				49A051032B010A4200AFE4A7 /* DeleteReviewUseCase.swift in Sources */,
 				49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */,
 				4903B1F72AE7045F00BDA83D /* AuthView.swift in Sources */,
 				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,
@@ -1501,6 +1532,7 @@
 				49C654592AF44B6800920771 /* HomeViewState+Mutating.swift in Sources */,
 				49115C2E2AEF832600B50FB9 /* AboutMovieViewModel.swift in Sources */,
 				49A3FACA2AED798E0043512C /* ProfileView.swift in Sources */,
+				49A051012B01092400AFE4A7 /* UpdateReviewUseCase.swift in Sources */,
 				4961F4742AE0210900A717AB /* LoginView.swift in Sources */,
 				49B6D75D2AE9A41B00451DAF /* ValidateEmailUseCase.swift in Sources */,
 				493BB4E72AE1901D004C879F /* DatePickerField.swift in Sources */,
