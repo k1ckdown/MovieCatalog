@@ -38,7 +38,6 @@ struct MovieDetailsView: View {
                     viewModel.handle(.deleteReviewTapped)
                 }
             }
-            .preferredColorScheme(.dark)
     }
 
     @ViewBuilder

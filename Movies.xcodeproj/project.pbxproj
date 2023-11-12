@@ -57,6 +57,7 @@
 		49330D032ADD996300BFA4C6 /* ReviewNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */; };
 		493BB4E72AE1901D004C879F /* DatePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493BB4E62AE1901D004C879F /* DatePickerField.swift */; };
 		49442BE02B00097800E972CF /* Binding+FalseBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49442BDF2B00097800E972CF /* Binding+FalseBinding.swift */; };
+		49442BE32B000E6000E972CF /* ReviewDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49442BE22B000E6000E972CF /* ReviewDialog.swift */; };
 		4951B0F42AF32E1300B040EE /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951B0F32AF32E1300B040EE /* ProfileCoordinator.swift */; };
 		4951B0F62AF32E5E00B040EE /* ProfileCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951B0F52AF32E5E00B040EE /* ProfileCoordinatorView.swift */; };
 		495583152AF003EC00E3AA69 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495583142AF003EC00E3AA69 /* FavoriteButton.swift */; };
@@ -114,6 +115,7 @@
 		499B07DD2AF359E700261472 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B07DC2AF359E700261472 /* FavoritesViewModel.swift */; };
 		499E0E122AF3352600D4EEA2 /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E0E112AF3352600D4EEA2 /* FavoritesCoordinator.swift */; };
 		499E0E142AF3354100D4EEA2 /* FavoritesCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E0E132AF3354100D4EEA2 /* FavoritesCoordinatorView.swift */; };
+		49A050F52B00AED000AFE4A7 /* ReviewDialogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050F42B00AED000AFE4A7 /* ReviewDialogViewModel.swift */; };
 		49A3FACA2AED798E0043512C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAC92AED798E0043512C /* ProfileView.swift */; };
 		49A3FACD2AED79AA0043512C /* ProfileViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FACC2AED79AA0043512C /* ProfileViewState.swift */; };
 		49A3FACF2AED7ACB0043512C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */; };
@@ -231,6 +233,7 @@
 		49330D022ADD996300BFA4C6 /* ReviewNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNetworkConfig.swift; sourceTree = "<group>"; };
 		493BB4E62AE1901D004C879F /* DatePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerField.swift; sourceTree = "<group>"; };
 		49442BDF2B00097800E972CF /* Binding+FalseBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+FalseBinding.swift"; sourceTree = "<group>"; };
+		49442BE22B000E6000E972CF /* ReviewDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDialog.swift; sourceTree = "<group>"; };
 		4951B0F32AF32E1300B040EE /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		4951B0F52AF32E5E00B040EE /* ProfileCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorView.swift; sourceTree = "<group>"; };
 		495583142AF003EC00E3AA69 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
@@ -289,6 +292,7 @@
 		499B07DC2AF359E700261472 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		499E0E112AF3352600D4EEA2 /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		499E0E132AF3354100D4EEA2 /* FavoritesCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinatorView.swift; sourceTree = "<group>"; };
+		49A050F42B00AED000AFE4A7 /* ReviewDialogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDialogViewModel.swift; sourceTree = "<group>"; };
 		49A3FAC92AED798E0043512C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		49A3FACC2AED79AA0043512C /* ProfileViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewState.swift; sourceTree = "<group>"; };
 		49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -418,6 +422,7 @@
 		49115C2A2AEF82EC00B50FB9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				49442BE12B000E4D00E972CF /* ReviewDialog */,
 				49295E442AEFC4C500F09ABE /* Review */,
 				49115C2F2AEF841A00B50FB9 /* AboutMovie */,
 			);
@@ -595,6 +600,15 @@
 				49D462952AFC050400696452 /* HTTPStatusCode.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		49442BE12B000E4D00E972CF /* ReviewDialog */ = {
+			isa = PBXGroup;
+			children = (
+				49442BE22B000E6000E972CF /* ReviewDialog.swift */,
+				49A050F42B00AED000AFE4A7 /* ReviewDialogViewModel.swift */,
+			);
+			path = ReviewDialog;
 			sourceTree = "<group>";
 		};
 		4951B0F22AF32E0100B040EE /* Coordinator */ = {
@@ -1340,6 +1354,7 @@
 				499E0E142AF3354100D4EEA2 /* FavoritesCoordinatorView.swift in Sources */,
 				4978316E2AEED57900860C41 /* UserShort.swift in Sources */,
 				490297C82AEC46D7000AFDB4 /* KeychainRepositoryProtocol.swift in Sources */,
+				49442BE32B000E6000E972CF /* ReviewDialog.swift in Sources */,
 				49F8D0DC2AFD46040039BCE8 /* CloseSessionUseCase.swift in Sources */,
 				499B07DB2AF3599500261472 /* FavoritesViewState.swift in Sources */,
 				497831832AEEF83D00860C41 /* PageInfo.swift in Sources */,
@@ -1469,6 +1484,7 @@
 				49C3CE9A2AEA5716009FACF4 /* PersonalInfoRegistrationViewState.swift in Sources */,
 				490297BF2AEC3F63000AFDB4 /* UserRegister.swift in Sources */,
 				498772D02AF2FDD100B706F6 /* FavoritesLayout.swift in Sources */,
+				49A050F52B00AED000AFE4A7 /* ReviewDialogViewModel.swift in Sources */,
 				49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */,
 				4903B1F72AE7045F00BDA83D /* AuthView.swift in Sources */,
 				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,

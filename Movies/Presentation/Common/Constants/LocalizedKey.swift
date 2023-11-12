@@ -15,6 +15,11 @@ enum LocalizedKey {
         static let favorites = "Favorites"
     }
 
+    enum Review {
+        static let leave = LocalizedStringKey("LeaveReview")
+        static let anonymous = LocalizedStringKey("AnonymousReview")
+    }
+
     enum Content {
         static let notAvailable = "N/A"
         static let genres = LocalizedStringKey("Genres")

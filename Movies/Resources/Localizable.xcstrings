@@ -115,6 +115,23 @@
         }
       }
     },
+    "AnonymousReview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anonymous review"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Анонимный отзыв"
+          }
+        }
+      }
+    },
     "AvatarLink" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -569,6 +586,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Может содержать только буквы или цифры"
+          }
+        }
+      }
+    },
+    "LeaveReview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leave a review"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оставить отзыв"
           }
         }
       }
