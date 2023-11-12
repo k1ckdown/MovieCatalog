@@ -121,6 +121,7 @@
 		49A050FC2B00D15200AFE4A7 /* ReviewRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050FB2B00D15200AFE4A7 /* ReviewRepository.swift */; };
 		49A050FF2B00D2D900AFE4A7 /* AddReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050FE2B00D2D900AFE4A7 /* AddReviewUseCase.swift */; };
 		49A051012B01092400AFE4A7 /* UpdateReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A051002B01092400AFE4A7 /* UpdateReviewUseCase.swift */; };
+		49A051032B010A4200AFE4A7 /* DeleteReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A051022B010A4200AFE4A7 /* DeleteReviewUseCase.swift */; };
 		49A3FACA2AED798E0043512C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAC92AED798E0043512C /* ProfileView.swift */; };
 		49A3FACD2AED79AA0043512C /* ProfileViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FACC2AED79AA0043512C /* ProfileViewState.swift */; };
 		49A3FACF2AED7ACB0043512C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */; };
@@ -303,6 +304,7 @@
 		49A050FB2B00D15200AFE4A7 /* ReviewRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRepository.swift; sourceTree = "<group>"; };
 		49A050FE2B00D2D900AFE4A7 /* AddReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewUseCase.swift; sourceTree = "<group>"; };
 		49A051002B01092400AFE4A7 /* UpdateReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateReviewUseCase.swift; sourceTree = "<group>"; };
+		49A051022B010A4200AFE4A7 /* DeleteReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteReviewUseCase.swift; sourceTree = "<group>"; };
 		49A3FAC92AED798E0043512C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		49A3FACC2AED79AA0043512C /* ProfileViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewState.swift; sourceTree = "<group>"; };
 		49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -993,6 +995,7 @@
 			children = (
 				49A050FE2B00D2D900AFE4A7 /* AddReviewUseCase.swift */,
 				49A051002B01092400AFE4A7 /* UpdateReviewUseCase.swift */,
+				49A051022B010A4200AFE4A7 /* DeleteReviewUseCase.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -1512,6 +1515,7 @@
 				490297BF2AEC3F63000AFDB4 /* UserRegister.swift in Sources */,
 				498772D02AF2FDD100B706F6 /* FavoritesLayout.swift in Sources */,
 				49A050F52B00AED000AFE4A7 /* ReviewDialogViewModel.swift in Sources */,
+				49A051032B010A4200AFE4A7 /* DeleteReviewUseCase.swift in Sources */,
 				49612AC32ADAD8AF0081832B /* MoviesApp.swift in Sources */,
 				4903B1F72AE7045F00BDA83D /* AuthView.swift in Sources */,
 				49330CFF2ADD8F2400BFA4C6 /* FavoriteMoviesNetworkConfig.swift in Sources */,

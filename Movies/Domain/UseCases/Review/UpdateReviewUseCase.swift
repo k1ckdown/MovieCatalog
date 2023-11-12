@@ -9,13 +9,16 @@ import Foundation
 
 final class UpdateReviewUseCase {
 
+    private let closeSessionUseCase: CloseSessionUseCase
     private let reviewRepository: ReviewRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
 
     init(
+        closeSessionUseCase: CloseSessionUseCase,
         reviewRepository: ReviewRepositoryProtocol,
         keychainRepository: KeychainRepositoryProtocol
     ) {
+        self.closeSessionUseCase = closeSessionUseCase
         self.reviewRepository = reviewRepository
         self.keychainRepository = keychainRepository
     }
@@ -32,7 +35,7 @@ final class UpdateReviewUseCase {
             )
         } catch {
             if error as? AuthError == .unauthorized {
-                try keychainRepository.deleteToken()
+                try closeSessionUseCase.execute()
             }
 
             throw error

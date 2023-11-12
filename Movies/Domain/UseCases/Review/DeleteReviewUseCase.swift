@@ -1,5 +1,5 @@
 //
-//  AddReviewUseCase.swift
+//  DeleteReviewUseCase.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 12.11.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AddReviewUseCase {
+final class DeleteReviewUseCase {
 
     private let closeSessionUseCase: CloseSessionUseCase
     private let reviewRepository: ReviewRepositoryProtocol
@@ -23,11 +23,15 @@ final class AddReviewUseCase {
         self.keychainRepository = keychainRepository
     }
 
-    func execute(review: ReviewModify, movieId: String) async throws {
+    func execute(_ reviewId: String, movieId: String) async throws {
         let token = try keychainRepository.retrieveToken()
 
         do {
-            try await reviewRepository.addReview(review, movieId: movieId, token: token)
+            try await reviewRepository.deleteReview(
+                reviewId: reviewId,
+                movieId: movieId,
+                token: token
+            )
         } catch {
             if error as? AuthError == .unauthorized {
                 try closeSessionUseCase.execute()
