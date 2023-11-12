@@ -9,7 +9,8 @@ import Foundation
 
 struct ReviewViewModel: Equatable, Identifiable {
     let id: String
-    let rating: Double
+    let rating: Int
+    let isAnonymous: Bool
     let isUserReview: Bool
     let reviewText: String
     let createDateTime: String
@@ -19,6 +20,7 @@ struct ReviewViewModel: Equatable, Identifiable {
     init(
         id: String,
         rating: Int,
+        isAnonymous: Bool,
         isUserReview: Bool,
         reviewText: String?,
         createDateTime: Date,
@@ -26,11 +28,12 @@ struct ReviewViewModel: Equatable, Identifiable {
         authorAvatarLink: String?
     ) {
         self.id = id
-        self.rating = Double(rating)
+        self.rating = rating
+        self.isAnonymous = isAnonymous
         self.isUserReview = isUserReview
-        self.reviewText = reviewText ?? LocalizedKeysConstants.Content.notAvailable
+        self.reviewText = reviewText ?? LocalizedKey.Content.notAvailable
         self.createDateTime = createDateTime.formatToDateMonthYear()
-        self.authorNickname = authorNickname ?? LocalizedKeysConstants.Content.notAvailable
+        self.authorNickname = authorNickname ?? LocalizedKey.Content.notAvailable
         self.authorAvatarLink = authorAvatarLink ?? ""
     }
 }
@@ -40,6 +43,7 @@ extension ReviewViewModel: HasPlaceholder {
         .init(
             id: id,
             rating: 9,
+            isAnonymous: false,
             isUserReview: false,
             reviewText: .placeholder(length: 20),
             createDateTime: .now,

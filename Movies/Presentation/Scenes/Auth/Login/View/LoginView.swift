@@ -15,20 +15,20 @@ struct LoginView: View {
         AuthView(
             style: .login,
             isFormButtonDisabled: viewModel.state.isLogInDisabled,
-            screenTitle: LocalizedKeysConstants.Auth.Label.entrance,
-            formButtonTitle: LocalizedKeysConstants.Auth.Action.logIn,
-            calloutText: LocalizedKeysConstants.Auth.Callout.noAccountYet,
-            calloutButtonTitle: LocalizedKeysConstants.Auth.Callout.registerAccount
+            screenTitle: LocalizedKey.Auth.Label.entrance,
+            formButtonTitle: LocalizedKey.Auth.Action.logIn,
+            calloutText: LocalizedKey.Auth.Callout.noAccountYet,
+            calloutButtonTitle: LocalizedKey.Auth.Callout.registerAccount
         ) {
             Group {
                 TextField("", text: username)
                     .formBorderedTextFieldStyle(
                         style: viewModel.state.isLoginErrorShowing ? .error : .default
                     )
-                    .smallLabeled(LocalizedKeysConstants.Profile.username)
+                    .smallLabeled(LocalizedKey.Profile.username)
 
                 SecureInputView(text: password, isErrorShowed: viewModel.state.isLoginErrorShowing)
-                    .smallLabeled(LocalizedKeysConstants.Profile.password)
+                    .smallLabeled(LocalizedKey.Profile.password)
 
                 if viewModel.state.isLoading {
                     BaseProgressView()

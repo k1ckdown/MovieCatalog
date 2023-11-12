@@ -103,7 +103,7 @@ private extension HomeView {
 private extension HomeView {
 
     func listHeader() -> some View {
-        Text(LocalizedKeysConstants.Content.catalog)
+        Text(LocalizedKey.Content.catalog)
             .bold()
             .font(.title)
             .foregroundStyle(.white)

@@ -1,5 +1,5 @@
 //
-//  LocalizedKeysConstants.swift
+//  LocalizedKey.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 21.10.2023.
@@ -7,12 +7,17 @@
 
 import SwiftUI
 
-enum LocalizedKeysConstants {
+enum LocalizedKey {
 
     enum ScreenTitle {
         static let home = "Home"
         static let profile = "Profile"
         static let favorites = "Favorites"
+    }
+
+    enum Review {
+        static let leave = LocalizedStringKey("LeaveReview")
+        static let anonymous = LocalizedStringKey("AnonymousReview")
     }
 
     enum Content {
@@ -25,6 +30,11 @@ enum LocalizedKeysConstants {
         static let aboutMovie = LocalizedStringKey("AboutMovie")
         static let noFavorites = LocalizedStringKey("NoFavorites")
         static let addFavorites = LocalizedStringKey("AddFavorites")
+
+        enum Action {
+            static let edit = LocalizedStringKey("Edit")
+            static let deleteReview = LocalizedStringKey("DeleteReview")
+        }
 
         enum Description {
             static let time = "Time"

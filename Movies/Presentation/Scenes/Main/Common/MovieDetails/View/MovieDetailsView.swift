@@ -38,18 +38,29 @@ struct MovieDetailsView: View {
             EmptyView()
 
         case .loading:
-            detailsView(data: .init(isFavorite: false, model: .placeholder()))
+            detailsView(model: .placeholder())
 
         case .loaded(let viewData):
-            detailsView(data: viewData)
+            loadedView(data: viewData)
 
         case .error(let message):
             Text(message)
         }
     }
 
+    private var isConfirmationDialogPresented: Binding<Bool> {
+        guard case .loaded(let viewData) = viewModel.state else {
+            return .falseBinding
+        }
+
+        return Binding(
+            get: { viewData.isConfirmationDialogPresenting },
+            set: { viewModel.handle(.onConfirmationDialogPresented($0)) }
+        )
+    }
+
     private enum Constants {
-        static let posterHeight: CGFloat = 515
+        static let posterHeight: CGFloat = 560
         static let gradientEndOpacity: CGFloat = 0
         static let sectionHeaderFontSize: CGFloat = 18
 
@@ -62,39 +73,80 @@ struct MovieDetailsView: View {
             static let spacing: CGFloat = 28
             static let horizontalInsets: CGFloat = 18
         }
+
+        enum ReviewDialog {
+            static let blur: CGFloat = 2
+            static let opacity: CGFloat = 0.4
+            static let horizontalInsets: CGFloat = 25
+        }
     }
 }
 
+// MARK: - Loaded view
+
 private extension MovieDetailsView {
 
-    func detailsView(data: MovieDetailsViewState.ViewData) -> some View {
+    func loadedView(data: MovieDetailsViewState.ViewData) -> some View {
+        detailsView(model: data.movie)
+            .disabled(data.isReviewDialogPresented)
+            .opacity(data.isReviewDialogPresented ? Constants.ReviewDialog.opacity : 1)
+            .blur(radius: data.isReviewDialogPresented ? Constants.ReviewDialog.blur : 0)
+            .scrollIndicators(.hidden)
+            .confirmationDialog("", isPresented: isConfirmationDialogPresented) {
+                Button(LocalizedKey.Content.Action.edit) {
+                    withAnimation {
+                        viewModel.handle(.editReviewTapped)
+                    }
+                }
+
+                Button(LocalizedKey.Content.Action.deleteReview, role: .destructive) {
+                    viewModel.handle(.deleteReviewTapped)
+                }
+            }
+            .overlay(alignment: .center) {
+                if let reviewDialog = data.reviewDialog {
+                    ReviewDialog(viewModel: reviewDialog) { event in
+                        withAnimation {
+                            viewModel.handle(.reviewDialogSentEvent(event))
+                        }
+                    }
+                    .padding(.horizontal, Constants.ReviewDialog.horizontalInsets)
+                }
+            }
+    }
+}
+
+// MARK: - Details view
+
+private extension MovieDetailsView {
+
+    func detailsView(model: MovieDetailsView.Model) -> some View {
         ScrollView(.vertical) {
             VStack(spacing: Constants.posterSpacing) {
-                posterView(data.model.poster)
+                posterView(model.poster)
 
                 VStack(spacing: Constants.Content.spacing) {
                     headerView(
-                        name: data.model.name,
-                        rating: data.model.rating,
-                        isFavorite: data.isFavorite
+                        name: model.name,
+                        rating: model.rating,
+                        isFavorite: model.isFavorite
                     )
 
-                    ExpandableText(text: data.model.description)
+                    ExpandableText(text: model.description)
 
                     VStack(alignment: .leading, spacing: Constants.detailsSpacing) {
-                        genreListView(genres: data.model.genres)
-                        aboutMovieView(viewModel: data.model.aboutMovieViewModel)
-                        reviewListView(viewModels: data.model.reviewViewModels)
+                        genreListView(genres: model.genres)
+                        aboutMovieView(viewModel: model.aboutMovieViewModel)
+                        reviewListView(
+                            viewModels: model.reviewViewModels,
+                            shouldShowAddReview: model.userHasReview == false
+                        )
                     }
                 }
                 .padding(.horizontal, Constants.Content.horizontalInsets)
             }
         }
-        .scrollIndicators(.hidden)
     }
-}
-
-private extension MovieDetailsView {
 
     func posterView(_ poster: String?) -> some View {
         MovieAsyncImage(urlString: poster, isShowingProgressView: true)
@@ -125,9 +177,6 @@ private extension MovieDetailsView {
             }
         }
     }
-}
-
-private extension MovieDetailsView {
 
     func genreListView(genres: [GenreViewModel]) -> some View {
         TagLayout(spacing: Constants.genresSpacing) {
@@ -135,26 +184,51 @@ private extension MovieDetailsView {
                 GenreTag(viewModel: genre)
             }
         }
-        .mediumLabeled(LocalizedKeysConstants.Content.genres)
+        .mediumLabeled(LocalizedKey.Content.genres)
     }
 
     func aboutMovieView(viewModel: AboutMovieViewModel) -> some View {
         AboutMovieView(viewModel: viewModel)
-            .mediumLabeled(LocalizedKeysConstants.Content.aboutMovie)
+            .mediumLabeled(LocalizedKey.Content.aboutMovie)
     }
 
-    func reviewListView(viewModels: [ReviewViewModel]) -> some View {
+    func reviewListView(viewModels: [ReviewViewModel], shouldShowAddReview: Bool) -> some View {
         VStack(alignment: .leading) {
-            Text(LocalizedKeysConstants.Content.reviews)
-                .font(.system(size: Constants.sectionHeaderFontSize, weight: .bold))
+            HStack {
+                Text(LocalizedKey.Content.reviews)
+                    .font(.system(size: Constants.sectionHeaderFontSize, weight: .bold))
+
+                Spacer()
+
+                if shouldShowAddReview {
+                    Button {
+                        withAnimation {
+                            viewModel.handle(.addReviewTapped)
+                        }
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title)
+                            .foregroundStyle(.white, .appAccent)
+                    }
+                }
+            }
 
             VStack(spacing: Constants.reviewsSpacing) {
-                ForEach(viewModels) { viewModel in
-                    ReviewView(viewModel: viewModel) {
-
+                ForEach(viewModels) { itemViewModel in
+                    ReviewView(viewModel: itemViewModel) {
+                        viewModel.handle(.reviewOptionsTapped(itemViewModel.id))
                     }
                 }
             }
         }
     }
+}
+
+
+#Preview {
+    ScreenFactory(appFactory: .init())
+        .makeMovieDetailsView(
+            movieId: "",
+            showAuthSceneHandler: {}
+        )
 }

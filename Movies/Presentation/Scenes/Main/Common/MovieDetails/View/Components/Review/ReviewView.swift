@@ -25,7 +25,7 @@ struct ReviewView: View {
                     .font(.subheadline)
 
                     if viewModel.isUserReview {
-                        Text(LocalizedKeysConstants.Content.myReview)
+                        Text(LocalizedKey.Content.myReview)
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     }
@@ -36,7 +36,7 @@ struct ReviewView: View {
                 HStack {
                     RatingTagView(
                         style: .titleAndIcon,
-                        value: viewModel.rating
+                        value: Double(viewModel.rating)
                     )
 
                     if viewModel.isUserReview {

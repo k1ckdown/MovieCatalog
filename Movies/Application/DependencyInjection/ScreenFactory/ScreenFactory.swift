@@ -34,24 +34,6 @@ extension ScreenFactory: FavoritesViewFactory {
     }
 }
 
-// MARK: - MovieDetailsFactory
-
-extension ScreenFactory: MovieDetailsViewFactory {
-    func makeMovieDetailsView(movieId: String, showAuthSceneHandler: @escaping () -> Void) -> MovieDetailsView {
-        let router = MovieDetailsRouter(showAuthSceneHandler: showAuthSceneHandler)
-        let viewModel = MovieDetailsViewModel(
-            movieId: movieId,
-            router: router,
-            fetchMovieUseCase: appFactory.makeFetchMovieUseCase(),
-            addFavoriteMovieUseCase: appFactory.makeAddFavoriteMovieUseCase(),
-            deleteFavoriteMovieUseCase: appFactory.makeDeleteFavoriteMovieUseCase()
-        )
-        let view = MovieDetailsView(viewModel: viewModel)
-
-        return view
-    }
-}
-
 // MARK: - HomeViewFactory
 
 extension ScreenFactory: HomeViewFactory {
@@ -139,6 +121,27 @@ extension ScreenFactory: PasswordRegistrationViewFactory {
             validatePasswordUseCase: appFactory.makeValidatePasswordUseCase()
         )
         let view = PasswordRegistrationView(viewModel: viewModel)
+
+        return view
+    }
+}
+
+// MARK: - MovieDetailsFactory
+
+extension ScreenFactory: MovieDetailsViewFactory {
+    func makeMovieDetailsView(movieId: String, showAuthSceneHandler: @escaping () -> Void) -> MovieDetailsView {
+        let router = MovieDetailsRouter(showAuthSceneHandler: showAuthSceneHandler)
+        let viewModel = MovieDetailsViewModel(
+            movieId: movieId,
+            router: router,
+            addReviewUseCase: appFactory.makeAddReviewUseCase(),
+            updateReviewUseCase: appFactory.makeUpdateReviewUseCase(),
+            deleteReviewUseCase: appFactory.makeDeleteReviewUseCase(),
+            fetchMovieUseCase: appFactory.makeFetchMovieUseCase(),
+            addFavoriteMovieUseCase: appFactory.makeAddFavoriteMovieUseCase(),
+            deleteFavoriteMovieUseCase: appFactory.makeDeleteFavoriteMovieUseCase()
+        )
+        let view = MovieDetailsView(viewModel: viewModel)
 
         return view
     }
