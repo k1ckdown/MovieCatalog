@@ -42,17 +42,17 @@ final class MovieDetailsViewModel: ViewModel {
             state = state.toggleFavorite()
             Task { await favoriteToggled() }
 
-        case .reviewOptionsTapped:
-            state = state.confirmationDialog(isPresented: true)
+        case .reviewOptionsTapped(let reviewId):
+            state = state.reviewSelected(id: reviewId)
 
         case .onConfirmationDialogPresented(let isPresented):
             state = state.confirmationDialog(isPresented: isPresented)
 
         case .editReviewTapped:
-            state = state.reviewDialog(isPresented: true)
+            state = state.editReview()
 
-        case .cancelReviewTapped:
-            state = state.reviewDialog(isPresented: false)
+        case .reviewDialogSentEvent(let reviewDialogEvent):
+            handleReviewDialogEvent(reviewDialogEvent)
 
         default: break
         }
@@ -76,7 +76,7 @@ private extension MovieDetailsViewModel {
         guard case .loaded(let viewData) = state else { return }
 
         do {
-            try await viewData.isFavorite ?
+            try await viewData.detailsModel.isFavorite ?
             addFavoriteMovieUseCase.execute(movieId) :
             deleteFavoriteMovieUseCase.execute(movieId)
         } catch {
@@ -84,41 +84,31 @@ private extension MovieDetailsViewModel {
         }
     }
 
-    func getViewData(for movie: MovieDetails) -> MovieDetailsViewState.ViewData {
-        let aboutMovieViewModel = makeAboutMovieViewModel(movie)
-        let reviewViewModels = movie.reviews?.compactMap { makeReviewViewModel($0) }
-        let genreViewModels = makeGenreViewModels(movie.genres ?? [])
-
-        let model = MovieDetailsView.Model(
-            name: movie.name ?? LocalizedKey.Content.notAvailable,
-            rating: movie.rating,
-            poster: movie.poster,
-            genres: genreViewModels,
-            description: movie.description ?? LocalizedKey.Content.notAvailable,
-            reviewViewModels: reviewViewModels ?? [],
-            aboutMovieViewModel: aboutMovieViewModel
-        )
-
-        return .init(isFavorite: movie.isFavorite, model: model)
+    func handleReviewDialogEvent(_ event: ReviewDialogViewEvent) {
+        switch event {
+        case .saveTapped:
+            state = state.saveReview()
+        case .cancelTapped:
+            state = state.cancelReviewEditing()
+        case .isAnonymous(let value):
+            state = state.isAnonymous(value)
+        case .ratingChanged(let rating):
+            state = state.updateRating(rating)
+        case .reviewTextChanged(let text):
+            state = state.updateReviewText(text)
+        }
     }
-    
+}
+
+// MARK: - View data
+
+private extension MovieDetailsViewModel {
+
     func makeGenreViewModels(_ genres: [Genre]) -> [GenreViewModel] {
         genres.compactMap { genre in
             guard let name = genre.name else { return nil }
             return .init(id: genre.id, name: name, style: .body)
         }
-    }
-
-    func makeReviewViewModel(_ review: ReviewDetails) -> ReviewViewModel {
-        .init(
-            id: review.id,
-            rating: review.rating,
-            isUserReview: review.isUserReview,
-            reviewText: review.reviewText,
-            createDateTime: review.createDateTime,
-            authorNickname: review.author?.nickName,
-            authorAvatarLink: review.author?.avatar
-        )
     }
 
     func makeAboutMovieViewModel(_ movie: MovieDetails) -> AboutMovieViewModel {
@@ -132,5 +122,37 @@ private extension MovieDetailsViewModel {
             ageLimit: movie.ageLimit,
             time: movie.time
         )
+    }
+
+    func makeReviewViewModel(_ review: ReviewDetails) -> ReviewViewModel {
+        .init(
+            id: review.id,
+            rating: review.rating,
+            isAnonymous: review.isAnonymous,
+            isUserReview: review.isUserReview,
+            reviewText: review.reviewText,
+            createDateTime: review.createDateTime,
+            authorNickname: review.author?.nickName,
+            authorAvatarLink: review.author?.avatar
+        )
+    }
+
+    func getViewData(for movie: MovieDetails) -> MovieDetailsViewState.ViewData {
+        let aboutMovieViewModel = makeAboutMovieViewModel(movie)
+        let reviewViewModels = movie.reviews?.compactMap { makeReviewViewModel($0) }
+        let genreViewModels = makeGenreViewModels(movie.genres ?? [])
+        
+        let model = MovieDetailsView.Model(
+            name: movie.name ?? LocalizedKey.Content.notAvailable,
+            rating: movie.rating,
+            poster: movie.poster,
+            isFavorite: movie.isFavorite,
+            description: movie.description ?? LocalizedKey.Content.notAvailable,
+            genres: genreViewModels,
+            reviewViewModels: reviewViewModels ?? [],
+            aboutMovieViewModel: aboutMovieViewModel
+        )
+
+        return .init(detailsModel: model)
     }
 }

@@ -36,7 +36,7 @@ struct ReviewView: View {
                 HStack {
                     RatingTagView(
                         style: .titleAndIcon,
-                        value: viewModel.rating
+                        value: Double(viewModel.rating)
                     )
 
                     if viewModel.isUserReview {

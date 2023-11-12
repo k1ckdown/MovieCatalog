@@ -12,8 +12,6 @@ struct MovieDetailsView: View {
     @State private var tabBarVisibility = Visibility.visible
     @StateObject private var viewModel: MovieDetailsViewModel
 
-    @State private var reviewViewModel = ReviewDialogViewModel(rating: 8, text: "Text", isAnonymous: true)
-
     init(viewModel: MovieDetailsViewModel) {
         _viewModel = .init(wrappedValue: viewModel)
     }
@@ -40,23 +38,13 @@ struct MovieDetailsView: View {
             EmptyView()
 
         case .loading:
-            detailsView(data: .init(isFavorite: false, model: .placeholder()))
+            detailsView(model: .placeholder())
 
         case .loaded(let viewData):
-            detailsView(data: viewData)
+            loadedView(data: viewData)
 
         case .error(let message):
             Text(message)
-        }
-    }
-
-    private var isReviewDialogPresented: Bool {
-        withAnimation {
-            guard case .loaded(let viewData) = viewModel.state else {
-                return false
-            }
-
-            return viewData.isReviewDialogPresenting
         }
     }
 
@@ -94,62 +82,66 @@ struct MovieDetailsView: View {
     }
 }
 
+// MARK: - Loaded view
+
 private extension MovieDetailsView {
 
-    func detailsView(data: MovieDetailsViewState.ViewData) -> some View {
+    func loadedView(data: MovieDetailsViewState.ViewData) -> some View {
+        detailsView(model: data.detailsModel)
+            .disabled(data.isReviewDialogPresented)
+            .opacity(data.isReviewDialogPresented ? Constants.ReviewDialog.opacity : 1)
+            .blur(radius: data.isReviewDialogPresented ? Constants.ReviewDialog.blur : 0)
+            .scrollIndicators(.hidden)
+            .confirmationDialog("", isPresented: isConfirmationDialogPresented) {
+                Button(LocalizedKey.Content.Action.edit) {
+                    withAnimation {
+                        viewModel.handle(.editReviewTapped)
+                    }
+                }
+
+                Button(LocalizedKey.Content.Action.deleteReview, role: .destructive) {
+                    viewModel.handle(.deleteReviewTapped)
+                }
+            }
+            .overlay(alignment: .center) {
+                if let reviewDialog = data.reviewDialog {
+                    ReviewDialog(viewModel: reviewDialog) { event in
+                        viewModel.handle(.reviewDialogSentEvent(event))
+                    }
+                    .padding(.horizontal, Constants.ReviewDialog.horizontalInsets)
+                }
+            }
+    }
+}
+
+// MARK: - Details view
+
+private extension MovieDetailsView {
+
+    func detailsView(model: MovieDetailsView.Model) -> some View {
         ScrollView(.vertical) {
             VStack(spacing: Constants.posterSpacing) {
-                posterView(data.model.poster)
+                posterView(model.poster)
 
                 VStack(spacing: Constants.Content.spacing) {
                     headerView(
-                        name: data.model.name,
-                        rating: data.model.rating,
-                        isFavorite: data.isFavorite
+                        name: model.name,
+                        rating: model.rating,
+                        isFavorite: model.isFavorite
                     )
 
-                    ExpandableText(text: data.model.description)
+                    ExpandableText(text: model.description)
 
                     VStack(alignment: .leading, spacing: Constants.detailsSpacing) {
-                        genreListView(genres: data.model.genres)
-                        aboutMovieView(viewModel: data.model.aboutMovieViewModel)
-                        reviewListView(viewModels: data.model.reviewViewModels)
+                        genreListView(genres: model.genres)
+                        aboutMovieView(viewModel: model.aboutMovieViewModel)
+                        reviewListView(viewModels: model.reviewViewModels)
                     }
                 }
                 .padding(.horizontal, Constants.Content.horizontalInsets)
             }
         }
-        .disabled(isReviewDialogPresented)
-        .opacity(data.isReviewDialogPresenting ? Constants.ReviewDialog.opacity : 1)
-        .blur(radius: data.isReviewDialogPresenting ? Constants.ReviewDialog.blur : 0)
-        .scrollIndicators(.hidden)
-        .confirmationDialog("", isPresented: isConfirmationDialogPresented) {
-            Button(LocalizedKey.Content.Action.edit) {
-                withAnimation {
-                    viewModel.handle(.editReviewTapped)
-                }
-            }
-
-            Button(LocalizedKey.Content.Action.deleteReview, role: .destructive) {
-                viewModel.handle(.deleteReviewTapped)
-            }
-        }
-        .overlay(alignment: .center) {
-            if data.isReviewDialogPresenting {
-                ReviewDialog(viewModel: $reviewViewModel, saveTappedHandler: {
-                    viewModel.handle(.saveReviewTapped)
-                }, cancelTappedHandler: {
-                    withAnimation {
-                        viewModel.handle(.cancelReviewTapped)
-                    }
-                })
-                .padding(.horizontal, Constants.ReviewDialog.horizontalInsets)
-            }
-        }
     }
-}
-
-private extension MovieDetailsView {
 
     func posterView(_ poster: String?) -> some View {
         MovieAsyncImage(urlString: poster, isShowingProgressView: true)
@@ -180,9 +172,6 @@ private extension MovieDetailsView {
             }
         }
     }
-}
-
-private extension MovieDetailsView {
 
     func genreListView(genres: [GenreViewModel]) -> some View {
         TagLayout(spacing: Constants.genresSpacing) {
@@ -206,13 +195,14 @@ private extension MovieDetailsView {
             VStack(spacing: Constants.reviewsSpacing) {
                 ForEach(viewModels) { itemViewModel in
                     ReviewView(viewModel: itemViewModel) {
-                        viewModel.handle(.reviewOptionsTapped)
+                        viewModel.handle(.reviewOptionsTapped(itemViewModel.id))
                     }
                 }
             }
         }
     }
 }
+
 
 #Preview {
     ScreenFactory(appFactory: .init())

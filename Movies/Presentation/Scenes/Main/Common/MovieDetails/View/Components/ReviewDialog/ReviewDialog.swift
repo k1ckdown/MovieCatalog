@@ -9,10 +9,8 @@ import SwiftUI
 
 struct ReviewDialog: View {
 
-    @Binding var viewModel: ReviewDialogViewModel
-    
-    let saveTappedHandler: () -> Void
-    let cancelTappedHandler: () -> Void
+    let viewModel: ReviewDialogViewModel
+    let eventHandler: (ReviewDialogViewEvent) -> Void
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -28,7 +26,7 @@ struct ReviewDialog: View {
 
                         Button {
                             withAnimation(.interpolatingSpring) {
-                                viewModel.rating = value
+                                eventHandler(.ratingChanged(value))
                             }
                         } label: {
                             Image(
@@ -42,7 +40,7 @@ struct ReviewDialog: View {
                     .imageScale(.large)
                 }
 
-                TextEditor(text: $viewModel.text)
+                TextEditor(text: reviewText)
                     .tint(.appAccent)
                     .frame(height: Constants.TextEditor.height)
                     .clipShape(.rect(cornerRadius: Constants.TextEditor.cornerRadius))
@@ -55,7 +53,7 @@ struct ReviewDialog: View {
 
                 HStack {
                     Button {
-                        viewModel.isAnonymous.toggle()
+                        eventHandler(.isAnonymous(viewModel.isAnonymous == false))
                     } label: {
                         Image(systemName: Constants.Content.checkmarkName)
                             .foregroundStyle(.white, viewModel.isAnonymous ? .appAccent : .white)
@@ -71,23 +69,37 @@ struct ReviewDialog: View {
 
             Spacer()
 
-            VStack {
-                Button(LocalizedKey.Profile.save) {
-                    saveTappedHandler()
-                }
-                .baseButtonStyle()
-                .disabled(viewModel.text.isEmpty)
+            if viewModel.isLoading {
+                ProgressView()
+                    .tint(.appAccent)
+                    .frame(maxWidth: .infinity)
+                    .padding(.bottom)
+            } else {
+                VStack {
+                    Button(LocalizedKey.Profile.save) {
+                        eventHandler(.saveTapped)
+                    }
+                    .baseButtonStyle()
+                    .disabled(viewModel.text.isEmpty)
 
-                Button(LocalizedKey.Profile.cancel) {
-                    cancelTappedHandler()
+                    Button(LocalizedKey.Profile.cancel) {
+                        eventHandler(.cancelTapped)
+                    }
+                    .baseButtonStyle(isProminent: false)
                 }
-                .baseButtonStyle(isProminent: false)
             }
         }
         .padding()
         .appBackground()
         .frame(height: Constants.Content.height)
         .clipShape(.rect(cornerRadius: Constants.Content.cornerRadius))
+    }
+
+    private var reviewText: Binding<String> {
+        Binding(
+            get: { viewModel.text },
+            set: { eventHandler(.reviewTextChanged($0)) }
+        )
     }
 
     private enum Constants {
