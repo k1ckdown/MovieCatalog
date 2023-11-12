@@ -68,6 +68,15 @@ extension MovieDetailsViewState {
         return .loaded(viewData)
     }
 
+    func reviewDeleted() -> MovieDetailsViewState {
+        guard case .loaded(var viewData) = self else {
+            return self
+        }
+
+        viewData.selectedReview = nil
+        return .loaded(viewData)
+    }
+
     func reviewLoading() -> MovieDetailsViewState {
         guard case .loaded(var  viewData) = self else {
             return self
