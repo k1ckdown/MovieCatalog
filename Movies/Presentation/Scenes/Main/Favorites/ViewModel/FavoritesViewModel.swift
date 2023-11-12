@@ -30,18 +30,12 @@ final class FavoritesViewModel: ViewModel {
             Task { await fetchMovies() }
 
         case .onSelectMovie(let id):
-            movieSelected(id)
+            coordinator.showMovieDetails(id)
         }
     }
 }
 
 private extension FavoritesViewModel {
-
-    func movieSelected(_ id: String) {
-        if let movie = movies.first(where: { $0.id == id }) {
-            coordinator.showMovieDetails(movie)
-        }
-    }
 
     func fetchMovies() async {
         state = .loading

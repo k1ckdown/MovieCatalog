@@ -15,24 +15,24 @@ struct PasswordRegistrationView: View {
         AuthView(
             style: .passwords,
             isFormButtonDisabled: viewModel.state.isRegisterDisabled,
-            screenTitle: LocalizedKeysConstants.Auth.Label.registration,
-            formButtonTitle: LocalizedKeysConstants.Auth.Action.register,
-            calloutText: LocalizedKeysConstants.Auth.Callout.alreadyHaveAccount,
-            calloutButtonTitle: LocalizedKeysConstants.Auth.Callout.logInToAccount) {
+            screenTitle: LocalizedKey.Auth.Label.registration,
+            formButtonTitle: LocalizedKey.Auth.Action.register,
+            calloutText: LocalizedKey.Auth.Callout.alreadyHaveAccount,
+            calloutButtonTitle: LocalizedKey.Auth.Callout.logInToAccount) {
                 Group {
                     SecureInputView(
                         text: password,
                         errorMessage: viewModel.state.passwordError,
                         isErrorShowed: viewModel.state.isPasswordErrorShowing
                     )
-                    .smallLabeled(LocalizedKeysConstants.Profile.password)
+                    .smallLabeled(LocalizedKey.Profile.password)
                     
                     SecureInputView(
                         text: confirmPassword,
                         errorMessage: viewModel.state.confirmPasswordError,
                         isErrorShowed: viewModel.state.isConfirmPasswordErrorShowing
                     )
-                    .smallLabeled(LocalizedKeysConstants.Profile.confirmPassword)
+                    .smallLabeled(LocalizedKey.Profile.confirmPassword)
                     
                     if viewModel.state.isLoading {
                         BaseProgressView()

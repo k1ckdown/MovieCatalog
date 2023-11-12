@@ -10,13 +10,36 @@ import Foundation
 struct MovieDetailsItemViewModel: Identifiable, Equatable {
     let id: String
     let name: String
-    let year: Int
+    let year: String
     let country: String
     let poster: String?
     let rating: Double
     let userRating: Int?
-    let genres: [String]
+    let genres: [GenreViewModel]
     let shouldShowGenresEllipsis: Bool
+    
+    init(
+        id: String,
+        name: String?,
+        year: Int,
+        country: String?,
+        poster: String?,
+        rating: Double,
+        userRating: Int?,
+        genres: [Genre]?
+    ) {
+        self.id = id
+        self.name = name ?? LocalizedKey.Content.notAvailable
+        self.year = "\(year)"
+        self.country = country ?? LocalizedKey.Content.notAvailable
+        self.poster = poster
+        self.rating = rating
+        self.userRating = userRating
+        self.genres = genres?.map {
+            .init(id: $0.id, name: $0.name ?? "", style: .note)
+        } ?? []
+        self.shouldShowGenresEllipsis = self.genres.count > 5
+    }
 }
 
 extension MovieDetailsItemViewModel: HasPlaceholder {
@@ -29,8 +52,7 @@ extension MovieDetailsItemViewModel: HasPlaceholder {
             poster: "",
             rating: 10,
             userRating: nil,
-            genres: [],
-            shouldShowGenresEllipsis: false
+            genres: []
         )
     }
 }

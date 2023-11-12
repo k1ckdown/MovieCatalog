@@ -1,5 +1,5 @@
 //
-//  GetDetailsFromMoviesUseCase.swift
+//  MakeMovieDetailsUseCase.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 02.11.2023.
@@ -7,32 +7,33 @@
 
 import Foundation
 
-final class GetDetailsFromMoviesUseCase {
+final class MakeMovieDetailsUseCase {
 
     private let movieRepository: MovieRepositoryProtocol
     private let profileRepository: ProfileRepositoryProtocol
+    private let keychainRepository: KeychainRepositoryProtocol
 
-    init(movieRepository: MovieRepositoryProtocol, profileRepository: ProfileRepositoryProtocol) {
+    init(
+        movieRepository: MovieRepositoryProtocol,
+        profileRepository: ProfileRepositoryProtocol,
+        keychainRepository: KeychainRepositoryProtocol
+    ) {
         self.movieRepository = movieRepository
         self.profileRepository = profileRepository
+        self.keychainRepository = keychainRepository
     }
 
-    func execute(_ movies: [MovieShort]) async throws -> [MovieDetails] {
-        let userId = try? profileRepository.getProfileId()
-        var movieDetailsList = [MovieDetails]()
+    func execute(_ movies: [Movie]) async throws -> [MovieDetails] {
+        let token = try keychainRepository.retrieveToken()
+        let userId = try? await profileRepository.getProfile(token: token).id
 
-        for movie in movies {
-            let movieDetail = try await fetchDetails(movie.id, userId: userId)
-            movieDetailsList.append(movieDetail)
-        }
-
-        return movieDetailsList
+        return movies.map { makeMovieDetails(for: $0, userId: userId) }
     }
 }
 
-private extension GetDetailsFromMoviesUseCase {
+private extension MakeMovieDetailsUseCase {
 
-    func getReviewDetails(_ review: Review, isUserReview: Bool) -> ReviewDetails {
+    func makeReviewDetails(for review: Review, isUserReview: Bool) -> ReviewDetails {
         .init(
             id: review.id,
             rating: review.rating,
@@ -44,16 +45,15 @@ private extension GetDetailsFromMoviesUseCase {
         )
     }
 
-    func fetchDetails(_ id: String, userId: String?) async throws -> MovieDetails {
-        let movie = try await movieRepository.getMovie(id: id)
+    func makeMovieDetails(for movie: Movie, userId: String?) -> MovieDetails {
         let reviews = movie.reviews ?? []
 
         let totalRating = reviews.compactMap { $0.rating }.reduce(0, +)
         let averageRating = Double(totalRating) / Double(reviews.count)
 
-        let userRating = reviews.first(where: { $0.id == userId })?.rating
+        let userReview = reviews.first(where: { $0.author?.userId == userId })
         let reviewDetailsList = reviews.map {
-            getReviewDetails($0, isUserReview: $0.id == userId)
+            makeReviewDetails(for: $0, isUserReview: $0.id == userReview?.id)
         }
 
         return .init(
@@ -66,13 +66,14 @@ private extension GetDetailsFromMoviesUseCase {
             reviews: reviewDetailsList,
             time: movie.time,
             tagline: movie.tagline,
-            description: movie.director,
+            description: movie.description,
             director: movie.director,
             budget: movie.budget,
             fees: movie.fees,
             ageLimit: movie.ageLimit,
             rating: averageRating,
-            userRating: userRating
+            userRating: userReview?.rating,
+            isFavorite: movie.isFavorite
         )
     }
 }

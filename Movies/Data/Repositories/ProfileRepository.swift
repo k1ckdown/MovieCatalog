@@ -33,12 +33,8 @@ final class ProfileRepository {
 
 extension ProfileRepository: ProfileRepositoryProtocol {
 
-    func getProfileId() throws -> String {
-        guard let profile else {
-            throw ProfileRepositoryError.notFound
-        }
-
-        return profile.id
+    func removeProfile() {
+        profile = nil
     }
 
     func getProfile(token: String) async throws -> Profile {
