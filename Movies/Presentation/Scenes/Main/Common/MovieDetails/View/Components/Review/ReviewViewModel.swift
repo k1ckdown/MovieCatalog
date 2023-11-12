@@ -9,10 +9,10 @@ import Foundation
 
 struct ReviewViewModel: Equatable, Identifiable {
     let id: String
-    var rating: Int
-    var isAnonymous: Bool
+    let rating: Int
+    let isAnonymous: Bool
     let isUserReview: Bool
-    var reviewText: String
+    let reviewText: String
     let createDateTime: String
     let authorNickname: String
     let authorAvatarLink: String

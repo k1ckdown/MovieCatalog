@@ -13,6 +13,12 @@ struct ReviewDialogViewModel: Equatable {
     var isAnonymous: Bool
     var isLoading = false
 
+    init() {
+        rating = 0
+        text = ""
+        isAnonymous = false
+    }
+
     init(_ reviewViewModel: ReviewViewModel) {
         rating = reviewViewModel.rating
         text = reviewViewModel.reviewText

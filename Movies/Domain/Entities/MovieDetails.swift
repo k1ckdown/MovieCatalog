@@ -44,7 +44,7 @@ extension MovieDetails {
         fees: 463517383,
         ageLimit: 16,
         rating: 9.5,
-        userRating: nil,
+        userRating: 8,
         isFavorite: true
     )
 }

@@ -87,7 +87,7 @@ struct MovieDetailsView: View {
 private extension MovieDetailsView {
 
     func loadedView(data: MovieDetailsViewState.ViewData) -> some View {
-        detailsView(model: data.detailsModel)
+        detailsView(model: data.movie)
             .disabled(data.isReviewDialogPresented)
             .opacity(data.isReviewDialogPresented ? Constants.ReviewDialog.opacity : 1)
             .blur(radius: data.isReviewDialogPresented ? Constants.ReviewDialog.blur : 0)
@@ -106,7 +106,9 @@ private extension MovieDetailsView {
             .overlay(alignment: .center) {
                 if let reviewDialog = data.reviewDialog {
                     ReviewDialog(viewModel: reviewDialog) { event in
-                        viewModel.handle(.reviewDialogSentEvent(event))
+                        withAnimation {
+                            viewModel.handle(.reviewDialogSentEvent(event))
+                        }
                     }
                     .padding(.horizontal, Constants.ReviewDialog.horizontalInsets)
                 }
@@ -135,7 +137,10 @@ private extension MovieDetailsView {
                     VStack(alignment: .leading, spacing: Constants.detailsSpacing) {
                         genreListView(genres: model.genres)
                         aboutMovieView(viewModel: model.aboutMovieViewModel)
-                        reviewListView(viewModels: model.reviewViewModels)
+                        reviewListView(
+                            viewModels: model.reviewViewModels,
+                            shouldShowAddReview: model.userHasReview == false
+                        )
                     }
                 }
                 .padding(.horizontal, Constants.Content.horizontalInsets)
@@ -187,10 +192,26 @@ private extension MovieDetailsView {
             .mediumLabeled(LocalizedKey.Content.aboutMovie)
     }
 
-    func reviewListView(viewModels: [ReviewViewModel]) -> some View {
+    func reviewListView(viewModels: [ReviewViewModel], shouldShowAddReview: Bool) -> some View {
         VStack(alignment: .leading) {
-            Text(LocalizedKey.Content.reviews)
-                .font(.system(size: Constants.sectionHeaderFontSize, weight: .bold))
+            HStack {
+                Text(LocalizedKey.Content.reviews)
+                    .font(.system(size: Constants.sectionHeaderFontSize, weight: .bold))
+
+                Spacer()
+
+                if shouldShowAddReview {
+                    Button {
+                        withAnimation {
+                            viewModel.handle(.addReviewTapped)
+                        }
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title)
+                            .foregroundStyle(.white, .appAccent)
+                    }
+                }
+            }
 
             VStack(spacing: Constants.reviewsSpacing) {
                 ForEach(viewModels) { itemViewModel in

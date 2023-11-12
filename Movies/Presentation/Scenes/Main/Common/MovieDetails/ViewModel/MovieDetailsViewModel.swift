@@ -36,6 +36,7 @@ final class MovieDetailsViewModel: ViewModel {
     func handle(_ event: MovieDetailsViewEvent) {
         switch event {
         case .onAppear:
+            state = .loading
             Task { await retrieveMovie() }
 
         case .favoriteTapped:
@@ -54,7 +55,11 @@ final class MovieDetailsViewModel: ViewModel {
         case .reviewDialogSentEvent(let reviewDialogEvent):
             handleReviewDialogEvent(reviewDialogEvent)
 
-        default: break
+        case .addReviewTapped:
+            state = state.addReview()
+
+        case .deleteReviewTapped:
+            break
         }
     }
 }
@@ -62,8 +67,6 @@ final class MovieDetailsViewModel: ViewModel {
 private extension MovieDetailsViewModel {
 
     func retrieveMovie() async {
-        state = .loading
-
         do {
             let movie = try await fetchMovieUseCase.execute(movieId: movieId)
             state = .loaded(getViewData(for: movie))
@@ -76,9 +79,9 @@ private extension MovieDetailsViewModel {
         guard case .loaded(let viewData) = state else { return }
 
         do {
-            try await viewData.detailsModel.isFavorite ?
-            addFavoriteMovieUseCase.execute(movieId) :
-            deleteFavoriteMovieUseCase.execute(movieId)
+            try await viewData.movie.isFavorite
+            ? addFavoriteMovieUseCase.execute(movieId)
+            : deleteFavoriteMovieUseCase.execute(movieId)
         } catch {
             print(error.localizedDescription)
         }
@@ -87,13 +90,18 @@ private extension MovieDetailsViewModel {
     func handleReviewDialogEvent(_ event: ReviewDialogViewEvent) {
         switch event {
         case .saveTapped:
-            state = state.saveReview()
+            state = state.reviewLoading()
+            Task { await retrieveMovie() }
+
         case .cancelTapped:
             state = state.cancelReviewEditing()
+
         case .isAnonymous(let value):
             state = state.isAnonymous(value)
+
         case .ratingChanged(let rating):
             state = state.updateRating(rating)
+
         case .reviewTextChanged(let text):
             state = state.updateReviewText(text)
         }
@@ -147,12 +155,13 @@ private extension MovieDetailsViewModel {
             rating: movie.rating,
             poster: movie.poster,
             isFavorite: movie.isFavorite,
+            userHasReview: movie.userRating != nil,
             description: movie.description ?? LocalizedKey.Content.notAvailable,
             genres: genreViewModels,
             reviewViewModels: reviewViewModels ?? [],
             aboutMovieViewModel: aboutMovieViewModel
         )
 
-        return .init(detailsModel: model)
+        return .init(movie: model)
     }
 }

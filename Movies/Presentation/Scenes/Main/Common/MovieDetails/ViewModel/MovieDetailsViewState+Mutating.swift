@@ -14,7 +14,7 @@ extension MovieDetailsViewState {
             return self
         }
 
-        viewData.detailsModel.isFavorite.toggle()
+        viewData.movie.isFavorite.toggle()
         return .loaded(viewData)
     }
 
@@ -59,6 +59,24 @@ extension MovieDetailsViewState {
         return .loaded(viewData)
     }
 
+    func addReview() -> MovieDetailsViewState {
+        guard case .loaded(var viewData) = self else {
+            return self
+        }
+
+        viewData.reviewDialog = .init()
+        return .loaded(viewData)
+    }
+
+    func reviewLoading() -> MovieDetailsViewState {
+        guard case .loaded(var  viewData) = self else {
+            return self
+        }
+
+        viewData.reviewDialog?.isLoading = true
+        return .loaded(viewData)
+    }
+
     func cancelReviewEditing() -> MovieDetailsViewState {
         guard case .loaded(var viewData) = self else {
             return self
@@ -85,34 +103,13 @@ extension MovieDetailsViewState {
     func reviewSelected(id: String) -> MovieDetailsViewState {
         guard
             case .loaded(var viewData) = self,
-            let review = viewData.detailsModel.reviewViewModels.first(where: {
+            let review = viewData.movie.reviewViewModels.first(where: {
                 $0.id == id
             })
         else { return self }
 
         viewData.selectedReview = review
         viewData.isConfirmationDialogPresenting = true
-
-        return .loaded(viewData)
-    }
-
-    func saveReview() -> MovieDetailsViewState {
-        guard
-            case .loaded(var viewData) = self,
-            let newReview = viewData.reviewDialog,
-            let selectedReviewIndex = viewData.detailsModel.reviewViewModels.firstIndex(where: {
-                $0.id == viewData.selectedReview?.id
-            })
-        else {
-            return self
-        }
-
-        viewData.detailsModel.reviewViewModels[selectedReviewIndex].rating = newReview.rating
-        viewData.detailsModel.reviewViewModels[selectedReviewIndex].reviewText = newReview.text
-        viewData.detailsModel.reviewViewModels[selectedReviewIndex].isAnonymous = newReview.isAnonymous
-
-        viewData.reviewDialog = nil
-        viewData.selectedReview = nil
 
         return .loaded(viewData)
     }
