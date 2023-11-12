@@ -12,6 +12,7 @@ final class AppFactory {
     private lazy var keychainRepository = KeychainRepository()
     private lazy var authRepository = AuthRepository(authDataSource: networkService)
     private lazy var movieRepository = MovieRepository(movieRemoteDataSource: networkService)
+    private lazy var reviewRepository = ReviewRepository(reviewRemoteDataSource: networkService)
     private lazy var profileRepository = ProfileRepository(profileRemoteDataSource: networkService)
 }
 
@@ -84,10 +85,31 @@ extension AppFactory {
 
 extension AppFactory {
 
-    func makeFetchMoviesUseCase() -> FetchMoviesUseCase {
-        FetchMoviesUseCase(
+    func makeFetchMovieListUseCase() -> FetchMovieListUseCase {
+        FetchMovieListUseCase(
             movieRepository: movieRepository,
-            getDetailsFromMovies: makeGetDetailsFromMoviesUseCase()
+            makeMovieDetailsUseCase: makeMakeMovieDetailsUseCase()
+        )
+    }
+
+    func makeFetchMovieUseCase() -> FetchMovieUseCase {
+        FetchMovieUseCase(
+            movieRepository: movieRepository,
+            keychainRepository: keychainRepository,
+            makeMovieDetailsUseCase: makeMakeMovieDetailsUseCase()
+        )
+    }
+}
+
+// MARK: - FavoriteMovie
+
+extension AppFactory {
+
+    func makeDeleteFavoriteMovieUseCase() -> DeleteFavoriteMovieUseCase {
+        DeleteFavoriteMovieUseCase(
+            closeSessionUseCase: makeCloseSessionUseCase(),
+            movieRepository: movieRepository,
+            keychainRepository: keychainRepository
         )
     }
 
@@ -104,7 +126,36 @@ extension AppFactory {
             movieRepository: movieRepository,
             keychainRepository: keychainRepository,
             closeSessionUseCase: makeCloseSessionUseCase(),
-            getDetailsFromMoviesUseCase: makeGetDetailsFromMoviesUseCase()
+            makeMovieDetailsUseCase: makeMakeMovieDetailsUseCase()
+        )
+    }
+}
+
+// MARK: - Review
+
+extension AppFactory {
+
+    func makeAddReviewUseCase() -> AddReviewUseCase {
+        AddReviewUseCase(
+            closeSessionUseCase: makeCloseSessionUseCase(),
+            reviewRepository: reviewRepository,
+            keychainRepository: keychainRepository
+        )
+    }
+
+    func makeUpdateReviewUseCase() -> UpdateReviewUseCase {
+        UpdateReviewUseCase(
+            closeSessionUseCase: makeCloseSessionUseCase(),
+            reviewRepository: reviewRepository,
+            keychainRepository: keychainRepository
+        )
+    }
+
+    func makeDeleteReviewUseCase() -> DeleteReviewUseCase {
+        DeleteReviewUseCase(
+            closeSessionUseCase: makeCloseSessionUseCase(),
+            reviewRepository: reviewRepository,
+            keychainRepository: keychainRepository
         )
     }
 }
@@ -117,11 +168,12 @@ private extension AppFactory {
             keychainRepository: keychainRepository
         )
     }
-    
-    func makeGetDetailsFromMoviesUseCase() -> GetDetailsFromMoviesUseCase {
-        GetDetailsFromMoviesUseCase(
+
+    func makeMakeMovieDetailsUseCase() -> MakeMovieDetailsUseCase {
+        MakeMovieDetailsUseCase(
             movieRepository: movieRepository,
-            profileRepository: profileRepository
+            profileRepository: profileRepository,
+            keychainRepository: keychainRepository
         )
     }
 }

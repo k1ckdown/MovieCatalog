@@ -21,12 +21,11 @@ struct ReviewView: View {
                 )
 
                 VStack(alignment: .leading, spacing: Constants.nicknameSpacing) {
-                    Text(viewModel.authorNickname ??
-                         LocalizedKeysConstants.Content.notAvailable)
+                    Text(viewModel.authorNickname)
                     .font(.subheadline)
 
                     if viewModel.isUserReview {
-                        Text(LocalizedKeysConstants.Content.myReview)
+                        Text(LocalizedKey.Content.myReview)
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     }
@@ -54,8 +53,8 @@ struct ReviewView: View {
             }
 
             VStack(alignment: .leading, spacing: Constants.optionsSpacing) {
-                Text(viewModel.reviewText ?? LocalizedKeysConstants.Content.notAvailable)
-                Text(viewModel.createDateTime.formatToDateMonthYear())
+                Text(viewModel.reviewText)
+                Text(viewModel.createDateTime)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
@@ -73,20 +72,4 @@ struct ReviewView: View {
             static let insets: CGFloat = 11
         }
     }
-}
-
-#Preview {
-    let mock = ReviewDetails.mock
-    let viewModel = ReviewViewModel(
-        rating: 9,
-        isUserReview: true,
-        reviewText: mock.reviewText,
-        createDateTime: mock.createDateTime,
-        authorNickname: mock.author?.nickName,
-        authorAvatarLink: mock.author?.avatar
-    )
-
-    return ReviewView(viewModel: viewModel, optionsTappedHandler: {  })
-        .appBackground()
-        .environment(\.locale, .init(identifier: "ru"))
 }

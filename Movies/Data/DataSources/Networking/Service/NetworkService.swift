@@ -40,15 +40,27 @@ extension NetworkService: ReviewRemoteDataSource {
         try await request(with: config, token: token)
     }
 
-    func addReview(token: String, movieId: String, review: ReviewModifyDTO) async throws {
-        let data = try encode(review)
+    func addReview(token: String, movieId: String, review: ReviewModify) async throws {
+        let reviewDto = ReviewModifyDTO(
+            reviewText: review.reviewText,
+            rating: review.rating,
+            isAnonymous: review.isAnonymous
+        )
+
+        let data = try encode(reviewDto)
         let config = ReviewNetworkConfig.add(movieId: movieId, review: data)
 
         try await request(with: config, token: token)
     }
 
-    func updateReview(token: String, movieId: String, reviewId: String, review: ReviewModifyDTO) async throws {
-        let data = try encode(review)
+    func updateReview(token: String, movieId: String, reviewId: String, review: ReviewModify) async throws {
+        let reviewDto = ReviewModifyDTO(
+            reviewText: review.reviewText,
+            rating: review.rating,
+            isAnonymous: review.isAnonymous
+        )
+
+        let data = try encode(reviewDto)
         let config = ReviewNetworkConfig.edit(movieId: movieId, reviewId: reviewId, review: data)
 
         try await request(with: config, token: token)

@@ -9,6 +9,6 @@ import Foundation
 
 protocol ReviewRemoteDataSource {
     func deleteReview(token: String, movieId: String, reviewId: String) async throws
-    func addReview(token: String, movieId: String, review: ReviewModifyDTO) async throws
-    func updateReview(token: String, movieId: String, reviewId: String, review: ReviewModifyDTO) async throws
+    func addReview(token: String, movieId: String, review: ReviewModify) async throws
+    func updateReview(token: String, movieId: String, reviewId: String, review: ReviewModify) async throws
 }

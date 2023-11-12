@@ -22,7 +22,7 @@ enum ValidationErrorHandler {
             return emailMessage(emailError)
         }
 
-        return LocalizedKeysConstants.ErrorMessage.unknownError
+        return LocalizedKey.ErrorMessage.unknownError
     }
 
     private static func passwordMessage(
@@ -30,7 +30,7 @@ enum ValidationErrorHandler {
     ) -> String {
         switch error {
         case .invalidPassword:
-            return LocalizedKeysConstants.ErrorMessage.Password.invalidPassword
+            return LocalizedKey.ErrorMessage.Password.invalidPassword
         }
     }
 
@@ -39,7 +39,7 @@ enum ValidationErrorHandler {
     ) -> String {
         switch error {
         case .invalidUsername:
-            return LocalizedKeysConstants.ErrorMessage.invalidUsername
+            return LocalizedKey.ErrorMessage.invalidUsername
         }
     }
 
@@ -48,13 +48,13 @@ enum ValidationErrorHandler {
     ) -> String {
         switch error {
         case .invalidUsername:
-            return LocalizedKeysConstants.ErrorMessage.Email.invalidUsername
+            return LocalizedKey.ErrorMessage.Email.invalidUsername
         case .missingKeySign:
-            return LocalizedKeysConstants.ErrorMessage.Email.missingKeySign
+            return LocalizedKey.ErrorMessage.Email.missingKeySign
         case .invalidDomainPart:
-            return LocalizedKeysConstants.ErrorMessage.Email.invalidDomainPart
+            return LocalizedKey.ErrorMessage.Email.invalidDomainPart
         case .invalidTopLevelDomain:
-            return LocalizedKeysConstants.ErrorMessage.Email.invalidTopLevelDomain
+            return LocalizedKey.ErrorMessage.Email.invalidTopLevelDomain
         }
     }
 }

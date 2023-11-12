@@ -34,29 +34,13 @@ extension ScreenFactory: FavoritesViewFactory {
     }
 }
 
-// MARK: - MovieDetailsFactory
-
-extension ScreenFactory: MovieDetailsViewFactory {
-    func makeMovieDetailsView(movieDetails: MovieDetails, showAuthSceneHandler: @escaping () -> Void) -> MovieDetailsView {
-        let router = MovieDetailsRouter(showAuthSceneHandler: showAuthSceneHandler)
-        let viewModel = MovieDetailsViewModel(
-            movie: movieDetails,
-            router: router,
-            addFavoriteMovieUseCase: appFactory.makeAddFavoriteMovieUseCase()
-        )
-        let view = MovieDetailsView(viewModel: viewModel)
-
-        return view
-    }
-}
-
 // MARK: - HomeViewFactory
 
 extension ScreenFactory: HomeViewFactory {
     func makeHomeView(coordinator: HomeCoordinatorProtocol) -> HomeView {
         let viewModel = HomeViewModel(
             coordinator: coordinator,
-            fetchMoviesUseCase: appFactory.makeFetchMoviesUseCase()
+            fetchMovieListUseCase: appFactory.makeFetchMovieListUseCase()
         )
         let view = HomeView(viewModel: viewModel)
 
@@ -137,6 +121,27 @@ extension ScreenFactory: PasswordRegistrationViewFactory {
             validatePasswordUseCase: appFactory.makeValidatePasswordUseCase()
         )
         let view = PasswordRegistrationView(viewModel: viewModel)
+
+        return view
+    }
+}
+
+// MARK: - MovieDetailsFactory
+
+extension ScreenFactory: MovieDetailsViewFactory {
+    func makeMovieDetailsView(movieId: String, showAuthSceneHandler: @escaping () -> Void) -> MovieDetailsView {
+        let router = MovieDetailsRouter(showAuthSceneHandler: showAuthSceneHandler)
+        let viewModel = MovieDetailsViewModel(
+            movieId: movieId,
+            router: router,
+            addReviewUseCase: appFactory.makeAddReviewUseCase(),
+            updateReviewUseCase: appFactory.makeUpdateReviewUseCase(),
+            deleteReviewUseCase: appFactory.makeDeleteReviewUseCase(),
+            fetchMovieUseCase: appFactory.makeFetchMovieUseCase(),
+            addFavoriteMovieUseCase: appFactory.makeAddFavoriteMovieUseCase(),
+            deleteFavoriteMovieUseCase: appFactory.makeDeleteFavoriteMovieUseCase()
+        )
+        let view = MovieDetailsView(viewModel: viewModel)
 
         return view
     }

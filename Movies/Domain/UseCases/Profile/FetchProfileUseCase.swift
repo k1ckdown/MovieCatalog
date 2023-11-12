@@ -25,6 +25,7 @@ final class FetchProfileUseCase {
 
     func execute() async throws -> Profile {
         let token = try keychainRepository.retrieveToken()
+        
         do {
             let profile = try await profileRepository.getProfile(token: token)
             return profile
