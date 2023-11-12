@@ -9,10 +9,20 @@ import SwiftUI
 
 struct ReviewDialog: View {
 
-    @Binding var viewModel: ReviewDialogViewModel
-    
-    let saveTappedHandler: () -> Void
+    let saveTappedHandler: (ReviewDialogViewModel) -> Void
     let cancelTappedHandler: () -> Void
+
+    @State private var viewModel: ReviewDialogViewModel
+
+    init(
+        viewModel: ReviewDialogViewModel,
+        saveTappedHandler: @escaping (ReviewDialogViewModel) -> Void,
+        cancelTappedHandler: @escaping () -> Void
+    ) {
+        _viewModel = .init(initialValue: viewModel)
+        self.saveTappedHandler = saveTappedHandler
+        self.cancelTappedHandler = cancelTappedHandler
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -73,7 +83,7 @@ struct ReviewDialog: View {
 
             VStack {
                 Button(LocalizedKey.Profile.save) {
-                    saveTappedHandler()
+                    saveTappedHandler(viewModel)
                 }
                 .baseButtonStyle()
                 .disabled(viewModel.text.isEmpty)
@@ -89,6 +99,13 @@ struct ReviewDialog: View {
         .frame(height: Constants.Content.height)
         .clipShape(.rect(cornerRadius: Constants.Content.cornerRadius))
     }
+
+//    private var reviewText: Binding<String> {
+//        Binding(
+//            get: { viewModel.text },
+//            set: { viewModel.text = $0 }
+//        )
+//    }
 
     private enum Constants {
         enum StarRating {

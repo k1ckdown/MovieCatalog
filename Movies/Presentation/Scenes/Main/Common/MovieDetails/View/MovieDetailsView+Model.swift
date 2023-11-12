@@ -13,9 +13,10 @@ extension MovieDetailsView {
         let name: String
         let rating: Double
         let poster: String?
-        let genres: [GenreViewModel]
+        var isFavorite: Bool
         let description: String
-        let reviewViewModels: [ReviewViewModel]
+        let genres: [GenreViewModel]
+        var reviewViewModels: [ReviewViewModel]
         let aboutMovieViewModel: AboutMovieViewModel
     }
 }
@@ -26,8 +27,9 @@ extension MovieDetailsView.Model: HasPlaceholder {
             name: .placeholder(length: 13),
             rating: 10,
             poster: nil,
-            genres: .placeholders(count: 4),
+            isFavorite: false,
             description: .placeholder(length: 60),
+            genres: .placeholders(count: 4),
             reviewViewModels: .placeholders(count: 4),
             aboutMovieViewModel: .placeholder()
         )

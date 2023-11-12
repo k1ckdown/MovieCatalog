@@ -7,8 +7,14 @@
 
 import Foundation
 
-struct ReviewDialogViewModel {
+struct ReviewDialogViewModel: Equatable {
     var rating: Int
     var text: String
     var isAnonymous: Bool
+
+    init(_ reviewViewModel: ReviewViewModel) {
+        rating = reviewViewModel.rating
+        text = reviewViewModel.reviewText
+        isAnonymous = reviewViewModel.isAnonymous
+    }
 }
