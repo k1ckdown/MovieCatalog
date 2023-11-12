@@ -12,12 +12,7 @@ enum MovieDetailsViewState: Equatable {
     case loaded(ViewData)
 
     struct ViewData: Equatable {
-        struct ReviewDialog: Equatable {
-            var isLoading = false
-            let viewModel: ReviewDialogViewModel
-        }
-
-        var reviewDialog: ReviewDialog?
+        var reviewDialog: ReviewDialogViewModel?
         var selectedReview: ReviewViewModel?
         var detailsModel: MovieDetailsView.Model
 
@@ -32,12 +27,10 @@ enum MovieDetailsViewEvent {
     case onAppear
     case favoriteTapped
 
-    case cancelReviewTapped
-    case saveReviewTapped(ReviewDialogViewModel)
-
     case editReviewTapped
     case deleteReviewTapped
 
     case reviewOptionsTapped(String)
     case onConfirmationDialogPresented(Bool)
+    case reviewDialogSentEvent(ReviewDialogViewEvent)
 }

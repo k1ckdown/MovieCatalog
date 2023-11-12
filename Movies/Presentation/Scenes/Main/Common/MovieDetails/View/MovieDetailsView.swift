@@ -104,14 +104,10 @@ private extension MovieDetailsView {
                 }
             }
             .overlay(alignment: .center) {
-                if let reviewDialogViewModel = data.reviewDialog?.viewModel {
-                    ReviewDialog(viewModel: reviewDialogViewModel, saveTappedHandler: { updatedViewModel in
-                        viewModel.handle(.saveReviewTapped(updatedViewModel))
-                    }, cancelTappedHandler: {
-                        withAnimation {
-                            viewModel.handle(.cancelReviewTapped)
-                        }
-                    })
+                if let reviewDialog = data.reviewDialog {
+                    ReviewDialog(viewModel: reviewDialog) { event in
+                        viewModel.handle(.reviewDialogSentEvent(event))
+                    }
                     .padding(.horizontal, Constants.ReviewDialog.horizontalInsets)
                 }
             }

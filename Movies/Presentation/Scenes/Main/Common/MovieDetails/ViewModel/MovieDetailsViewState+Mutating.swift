@@ -5,6 +5,8 @@
 //  Created by Ivan Semenov on 31.10.2023.
 //
 
+// MARK: - Content
+
 extension MovieDetailsViewState {
 
     func toggleFavorite() -> MovieDetailsViewState {
@@ -22,6 +24,38 @@ extension MovieDetailsViewState {
         }
 
         viewData.isConfirmationDialogPresenting = isPresented
+        return .loaded(viewData)
+    }
+}
+
+// MARK: - Review dialog
+
+extension MovieDetailsViewState {
+
+    func updateReviewText(_ text: String) -> MovieDetailsViewState {
+        guard case .loaded(var viewData) = self else {
+            return self
+        }
+
+        viewData.reviewDialog?.text = text
+        return .loaded(viewData)
+    }
+
+    func updateRating(_ rating: Int) -> MovieDetailsViewState {
+        guard case .loaded(var viewData) = self else {
+            return self
+        }
+
+        viewData.reviewDialog?.rating = rating
+        return .loaded(viewData)
+    }
+
+    func isAnonymous(_ value: Bool) -> MovieDetailsViewState {
+        guard case .loaded(var viewData) = self else {
+            return self
+        }
+
+        viewData.reviewDialog?.isAnonymous = value
         return .loaded(viewData)
     }
 
@@ -43,7 +77,7 @@ extension MovieDetailsViewState {
         else { return self }
 
         let reviewDialogViewModel = ReviewDialogViewModel(selectedReview)
-        viewData.reviewDialog = .init(viewModel: reviewDialogViewModel)
+        viewData.reviewDialog = .init(reviewDialogViewModel)
 
         return .loaded(viewData)
     }
@@ -62,9 +96,10 @@ extension MovieDetailsViewState {
         return .loaded(viewData)
     }
 
-    func saveReview(_ review: ReviewDialogViewModel) -> MovieDetailsViewState {
+    func saveReview() -> MovieDetailsViewState {
         guard
             case .loaded(var viewData) = self,
+            let newReview = viewData.reviewDialog,
             let selectedReviewIndex = viewData.detailsModel.reviewViewModels.firstIndex(where: {
                 $0.id == viewData.selectedReview?.id
             })
@@ -72,9 +107,9 @@ extension MovieDetailsViewState {
             return self
         }
 
-        viewData.detailsModel.reviewViewModels[selectedReviewIndex].rating = review.rating
-        viewData.detailsModel.reviewViewModels[selectedReviewIndex].reviewText = review.text
-        viewData.detailsModel.reviewViewModels[selectedReviewIndex].isAnonymous = review.isAnonymous
+        viewData.detailsModel.reviewViewModels[selectedReviewIndex].rating = newReview.rating
+        viewData.detailsModel.reviewViewModels[selectedReviewIndex].reviewText = newReview.text
+        viewData.detailsModel.reviewViewModels[selectedReviewIndex].isAnonymous = newReview.isAnonymous
 
         viewData.reviewDialog = nil
         viewData.selectedReview = nil

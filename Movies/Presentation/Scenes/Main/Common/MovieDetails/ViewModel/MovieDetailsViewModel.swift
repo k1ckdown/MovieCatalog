@@ -51,11 +51,8 @@ final class MovieDetailsViewModel: ViewModel {
         case .editReviewTapped:
             state = state.editReview()
 
-        case .cancelReviewTapped:
-            state = state.cancelReviewEditing()
-
-        case .saveReviewTapped(let updatedReview):
-            state = state.saveReview(updatedReview)
+        case .reviewDialogSentEvent(let reviewDialogEvent):
+            handleReviewDialogEvent(reviewDialogEvent)
 
         default: break
         }
@@ -86,6 +83,26 @@ private extension MovieDetailsViewModel {
             print(error.localizedDescription)
         }
     }
+
+    func handleReviewDialogEvent(_ event: ReviewDialogViewEvent) {
+        switch event {
+        case .saveTapped:
+            state = state.saveReview()
+        case .cancelTapped:
+            state = state.cancelReviewEditing()
+        case .isAnonymous(let value):
+            state = state.isAnonymous(value)
+        case .ratingChanged(let rating):
+            state = state.updateRating(rating)
+        case .reviewTextChanged(let text):
+            state = state.updateReviewText(text)
+        }
+    }
+}
+
+// MARK: - View data
+
+private extension MovieDetailsViewModel {
 
     func makeGenreViewModels(_ genres: [Genre]) -> [GenreViewModel] {
         genres.compactMap { genre in
@@ -124,7 +141,7 @@ private extension MovieDetailsViewModel {
         let aboutMovieViewModel = makeAboutMovieViewModel(movie)
         let reviewViewModels = movie.reviews?.compactMap { makeReviewViewModel($0) }
         let genreViewModels = makeGenreViewModels(movie.genres ?? [])
-
+        
         let model = MovieDetailsView.Model(
             name: movie.name ?? LocalizedKey.Content.notAvailable,
             rating: movie.rating,
