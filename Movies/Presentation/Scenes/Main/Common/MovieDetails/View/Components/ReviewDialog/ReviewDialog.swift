@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ReviewDialog: View {
 
-    @State private var text = ""
+    @Binding var viewModel: ReviewDialogViewModel
+    
+    let saveTappedHandler: () -> Void
+    let cancelTappedHandler: () -> Void
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,14 +23,26 @@ struct ReviewDialog: View {
 
             VStack(alignment: .leading, spacing: Constants.TextEditor.spacing) {
                 HStack(spacing: Constants.StarRating.spacing) {
-                    ForEach(0...9, id: \.self) { _ in
-                        Image(systemName: Constants.StarRating.imageName)
+                    ForEach(1...Constants.StarRating.max, id: \.self) { value in
+                        let isSelected = value <= viewModel.rating
+
+                        Button {
+                            withAnimation(.interpolatingSpring) {
+                                viewModel.rating = value
+                            }
+                        } label: {
+                            Image(
+                                systemName: isSelected
+                                ? Constants.StarRating.starFill
+                                : Constants.StarRating.star
+                            )
+                            .foregroundStyle(isSelected ? .yellow : .appGray)
+                        }
                     }
                     .imageScale(.large)
-                    .foregroundStyle(.yellow)
                 }
 
-                TextEditor(text: $text)
+                TextEditor(text: $viewModel.text)
                     .tint(.appAccent)
                     .frame(height: Constants.TextEditor.height)
                     .clipShape(.rect(cornerRadius: Constants.TextEditor.cornerRadius))
@@ -39,31 +54,35 @@ struct ReviewDialog: View {
                     }
 
                 HStack {
-                    Image(systemName: Constants.Content.checkmarkName)
-                        .foregroundStyle(.white, .appAccent)
-                        .imageScale(.large)
-                        .bold()
+                    Button {
+                        viewModel.isAnonymous.toggle()
+                    } label: {
+                        Image(systemName: Constants.Content.checkmarkName)
+                            .foregroundStyle(.white, viewModel.isAnonymous ? .appAccent : .white)
+                            .imageScale(.large)
+                            .bold()
+                    }
 
                     Text(LocalizedKey.Review.anonymous)
                         .font(.callout.weight(.medium))
                 }
             }
+            .padding(.bottom)
 
             Spacer()
 
             VStack {
                 Button(LocalizedKey.Profile.save) {
-
+                    saveTappedHandler()
                 }
                 .baseButtonStyle()
-                .disabled(text.isEmpty)
+                .disabled(viewModel.text.isEmpty)
 
                 Button(LocalizedKey.Profile.cancel) {
-
+                    cancelTappedHandler()
                 }
                 .baseButtonStyle(isProminent: false)
             }
-            .padding(.top)
         }
         .padding()
         .appBackground()
@@ -73,27 +92,23 @@ struct ReviewDialog: View {
 
     private enum Constants {
         enum StarRating {
+            static let max = 10
+            static let star = "star"
+            static let starFill = "star.fill"
             static let spacing: CGFloat = 5
-            static let imageName = "star.fill"
         }
 
         enum TextEditor {
             static let spacing: CGFloat = 12
-            static let height: CGFloat = 105
+            static let height: CGFloat = 110
             static let cornerRadius: CGFloat = 5
             static let horizontalInsets: CGFloat = 6
         }
 
         enum Content {
-            static let height: CGFloat = 375
+            static let height: CGFloat = 380
             static let cornerRadius: CGFloat = 10
             static let checkmarkName = "checkmark.square.fill"
         }
     }
-}
-
-#Preview {
-    ReviewDialog()
-        .padding(.horizontal, 35)
-        .environment(\.locale, .init(identifier: "ru"))
 }

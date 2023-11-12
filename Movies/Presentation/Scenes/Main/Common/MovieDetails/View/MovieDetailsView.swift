@@ -12,6 +12,8 @@ struct MovieDetailsView: View {
     @State private var tabBarVisibility = Visibility.visible
     @StateObject private var viewModel: MovieDetailsViewModel
 
+    @State private var reviewViewModel = ReviewDialogViewModel(rating: 8, text: "Text", isAnonymous: true)
+
     init(viewModel: MovieDetailsViewModel) {
         _viewModel = .init(wrappedValue: viewModel)
     }
@@ -27,15 +29,6 @@ struct MovieDetailsView: View {
                 viewModel.handle(.onAppear)
                 withAnimation(.spring) {
                     tabBarVisibility = .hidden
-                }
-            }
-            .confirmationDialog("", isPresented: isDialogPresented) {
-                Button(LocalizedKey.Content.Action.edit) {
-                    viewModel.handle(.editReviewTapped)
-                }
-
-                Button(LocalizedKey.Content.Action.deleteReview, role: .destructive) {
-                    viewModel.handle(.deleteReviewTapped)
                 }
             }
     }
@@ -57,19 +50,29 @@ struct MovieDetailsView: View {
         }
     }
 
-    var isDialogPresented: Binding<Bool> {
+    private var isReviewDialogPresented: Bool {
+        withAnimation {
+            guard case .loaded(let viewData) = viewModel.state else {
+                return false
+            }
+
+            return viewData.isReviewDialogPresenting
+        }
+    }
+
+    private var isConfirmationDialogPresented: Binding<Bool> {
         guard case .loaded(let viewData) = viewModel.state else {
             return .falseBinding
         }
 
         return Binding(
-            get: { viewData.isDialogPresenting },
-            set: { viewModel.handle(.onDialogPresented($0)) }
+            get: { viewData.isConfirmationDialogPresenting },
+            set: { viewModel.handle(.onConfirmationDialogPresented($0)) }
         )
     }
 
     private enum Constants {
-        static let posterHeight: CGFloat = 515
+        static let posterHeight: CGFloat = 560
         static let gradientEndOpacity: CGFloat = 0
         static let sectionHeaderFontSize: CGFloat = 18
 
@@ -81,6 +84,12 @@ struct MovieDetailsView: View {
         enum Content {
             static let spacing: CGFloat = 28
             static let horizontalInsets: CGFloat = 18
+        }
+
+        enum ReviewDialog {
+            static let blur: CGFloat = 2
+            static let opacity: CGFloat = 0.4
+            static let horizontalInsets: CGFloat = 25
         }
     }
 }
@@ -110,7 +119,33 @@ private extension MovieDetailsView {
                 .padding(.horizontal, Constants.Content.horizontalInsets)
             }
         }
+        .disabled(isReviewDialogPresented)
+        .opacity(data.isReviewDialogPresenting ? Constants.ReviewDialog.opacity : 1)
+        .blur(radius: data.isReviewDialogPresenting ? Constants.ReviewDialog.blur : 0)
         .scrollIndicators(.hidden)
+        .confirmationDialog("", isPresented: isConfirmationDialogPresented) {
+            Button(LocalizedKey.Content.Action.edit) {
+                withAnimation {
+                    viewModel.handle(.editReviewTapped)
+                }
+            }
+
+            Button(LocalizedKey.Content.Action.deleteReview, role: .destructive) {
+                viewModel.handle(.deleteReviewTapped)
+            }
+        }
+        .overlay(alignment: .center) {
+            if data.isReviewDialogPresenting {
+                ReviewDialog(viewModel: $reviewViewModel, saveTappedHandler: {
+                    viewModel.handle(.saveReviewTapped)
+                }, cancelTappedHandler: {
+                    withAnimation {
+                        viewModel.handle(.cancelReviewTapped)
+                    }
+                })
+                .padding(.horizontal, Constants.ReviewDialog.horizontalInsets)
+            }
+        }
     }
 }
 

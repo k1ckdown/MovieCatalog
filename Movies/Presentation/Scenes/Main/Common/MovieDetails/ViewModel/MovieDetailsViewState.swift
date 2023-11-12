@@ -13,7 +13,8 @@ enum MovieDetailsViewState: Equatable {
 
     struct ViewData: Equatable {
         var isFavorite: Bool
-        var isDialogPresenting = false
+        var isReviewDialogPresenting = false
+        var isConfirmationDialogPresenting = false
         let model: MovieDetailsView.Model
     }
 }
@@ -21,9 +22,13 @@ enum MovieDetailsViewState: Equatable {
 enum MovieDetailsViewEvent {
     case onAppear
     case favoriteTapped
-    case addReviewTapped
+
+    case saveReviewTapped
+    case cancelReviewTapped
+
     case editReviewTapped
     case deleteReviewTapped
+
     case reviewOptionsTapped
-    case onDialogPresented(Bool)
+    case onConfirmationDialogPresented(Bool)
 }

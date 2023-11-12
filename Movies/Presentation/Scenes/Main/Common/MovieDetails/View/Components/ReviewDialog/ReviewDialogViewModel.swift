@@ -8,7 +8,7 @@
 import Foundation
 
 struct ReviewDialogViewModel {
-    let rating: Int
-    let text: String
-    let isAnonymous: Bool
+    var rating: Int
+    var text: String
+    var isAnonymous: Bool
 }

@@ -42,11 +42,17 @@ final class MovieDetailsViewModel: ViewModel {
             state = state.toggleFavorite()
             Task { await favoriteToggled() }
 
-        case .onDialogPresented(let isPresented):
-            state = state.confirmationDialog(isPresented: isPresented)
-
         case .reviewOptionsTapped:
             state = state.confirmationDialog(isPresented: true)
+
+        case .onConfirmationDialogPresented(let isPresented):
+            state = state.confirmationDialog(isPresented: isPresented)
+
+        case .editReviewTapped:
+            state = state.reviewDialog(isPresented: true)
+
+        case .cancelReviewTapped:
+            state = state.reviewDialog(isPresented: false)
 
         default: break
         }
@@ -59,8 +65,8 @@ private extension MovieDetailsViewModel {
         state = .loading
 
         do {
-//            let movie = try await fetchMovieUseCase.execute(movieId: movieId)
-            state = .loaded(getViewData(for: MovieDetails.mock))
+            let movie = try await fetchMovieUseCase.execute(movieId: movieId)
+            state = .loaded(getViewData(for: movie))
         } catch {
             state = .error(error.localizedDescription)
         }

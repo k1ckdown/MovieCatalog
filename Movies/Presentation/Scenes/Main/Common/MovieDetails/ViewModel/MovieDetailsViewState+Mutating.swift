@@ -5,8 +5,6 @@
 //  Created by Ivan Semenov on 31.10.2023.
 //
 
-import Foundation
-
 extension MovieDetailsViewState {
 
     func toggleFavorite() -> MovieDetailsViewState {
@@ -18,12 +16,21 @@ extension MovieDetailsViewState {
         return .loaded(viewData)
     }
 
+    func reviewDialog(isPresented: Bool) -> MovieDetailsViewState {
+        guard case .loaded(var viewData) = self else {
+            return self
+        }
+
+        viewData.isReviewDialogPresenting = isPresented
+        return .loaded(viewData)
+    }
+
     func confirmationDialog(isPresented: Bool) -> MovieDetailsViewState {
         guard case .loaded(var viewData) = self else {
             return self
         }
 
-        viewData.isDialogPresenting = isPresented
+        viewData.isConfirmationDialogPresenting = isPresented
         return .loaded(viewData)
     }
 }
