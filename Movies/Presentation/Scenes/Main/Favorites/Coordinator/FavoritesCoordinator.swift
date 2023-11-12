@@ -10,7 +10,7 @@ import Foundation
 final class FavoritesCoordinator: Coordinator {
 
     enum Screen: Routable {
-        case movieDetails(String)
+        case movieDetails(String, RatingUpdateHandler)
     }
 
     @Published var navigationPath = [Screen]()
@@ -27,7 +27,7 @@ extension FavoritesCoordinator: FavoritesCoordinatorProtocol {
         showAuthSceneHandler()
     }
 
-    func showMovieDetails(_ movieId: String) {
-        navigationPath.append(.movieDetails(movieId))
+    func showMovieDetails(_ movieId: String, ratingUpdateHandler: RatingUpdateHandler) {
+        navigationPath.append(.movieDetails(movieId, ratingUpdateHandler))
     }
 }

@@ -9,5 +9,5 @@ import Foundation
 
 @MainActor
 protocol HomeCoordinatorProtocol {
-    func showMovieDetails(_ movieId: String)
+    func showMovieDetails(_ movieId: String, ratingUpdateHandler: RatingUpdateHandler)
 }

@@ -129,11 +129,16 @@ extension ScreenFactory: PasswordRegistrationViewFactory {
 // MARK: - MovieDetailsFactory
 
 extension ScreenFactory: MovieDetailsViewFactory {
-    func makeMovieDetailsView(movieId: String, showAuthSceneHandler: @escaping () -> Void) -> MovieDetailsView {
+    func makeMovieDetailsView(
+        movieId: String,
+        ratingUpdateHandler: RatingUpdateHandler,
+        showAuthSceneHandler: @escaping () -> Void
+    ) -> MovieDetailsView {
         let router = MovieDetailsRouter(showAuthSceneHandler: showAuthSceneHandler)
         let viewModel = MovieDetailsViewModel(
             movieId: movieId,
             router: router,
+            ratingUpdateHandler: ratingUpdateHandler,
             addReviewUseCase: appFactory.makeAddReviewUseCase(),
             updateReviewUseCase: appFactory.makeUpdateReviewUseCase(),
             deleteReviewUseCase: appFactory.makeDeleteReviewUseCase(),

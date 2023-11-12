@@ -29,9 +29,10 @@ struct HomeCoordinatorView: View {
     @ViewBuilder
     private func destination(_ screen: HomeCoordinator.Screen) -> some View {
         switch screen {
-        case .movieDetails(let movieId):
+        case .movieDetails(let movieId, let ratingUpdateHandler):
             factory.makeMovieDetailsView(
                 movieId: movieId,
+                ratingUpdateHandler: ratingUpdateHandler,
                 showAuthSceneHandler: { coordinator.showAuthScene() }
             )
         }

@@ -7,12 +7,15 @@
 
 import Foundation
 
+typealias RatingUpdateHandler = ((Int?) -> Void)?
+
 final class MovieDetailsViewModel: ViewModel {
 
     @Published private(set) var state: MovieDetailsViewState
 
     private let movieId: String
     private let router: MovieDetailsRouter
+    private let ratingUpdateHandler: RatingUpdateHandler
 
     private let addReviewUseCase: AddReviewUseCase
     private let updateReviewUseCase: UpdateReviewUseCase
@@ -25,6 +28,7 @@ final class MovieDetailsViewModel: ViewModel {
     init(
         movieId: String,
         router: MovieDetailsRouter,
+        ratingUpdateHandler: RatingUpdateHandler,
         addReviewUseCase: AddReviewUseCase,
         updateReviewUseCase: UpdateReviewUseCase,
         deleteReviewUseCase: DeleteReviewUseCase,
@@ -35,6 +39,7 @@ final class MovieDetailsViewModel: ViewModel {
         state = .idle
         self.movieId = movieId
         self.router = router
+        self.ratingUpdateHandler = ratingUpdateHandler
         self.addReviewUseCase = addReviewUseCase
         self.updateReviewUseCase = updateReviewUseCase
         self.deleteReviewUseCase = deleteReviewUseCase
@@ -115,7 +120,7 @@ private extension MovieDetailsViewModel {
             let movie = try await fetchMovieUseCase.execute(movieId: movieId)
             state = .loaded(getViewData(for: movie))
         } catch {
-            state = .error(error.localizedDescription)
+            handleError(error)
         }
     }
 
@@ -139,7 +144,9 @@ private extension MovieDetailsViewModel {
 
         do {
             try await deleteReviewUseCase.execute(selectedReview.id, movieId: movieId)
+
             state = state.reviewDeleted()
+            ratingUpdateHandler?(nil)
         } catch {
             handleError(error)
         }
@@ -167,6 +174,8 @@ private extension MovieDetailsViewModel {
             } else {
                 try await addReviewUseCase.execute(review: reviewModify, movieId: movieId)
             }
+
+            ratingUpdateHandler?(reviewModify.rating)
         } catch {
             handleError(error)
         }
