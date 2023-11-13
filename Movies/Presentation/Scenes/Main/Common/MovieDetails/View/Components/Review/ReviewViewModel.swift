@@ -16,6 +16,7 @@ struct ReviewViewModel: Equatable, Identifiable {
     let createDateTime: String
     let authorNickname: String
     let authorAvatarLink: String
+    let shouldShowAnonymous: Bool
 
     init(
         id: String,
@@ -25,7 +26,8 @@ struct ReviewViewModel: Equatable, Identifiable {
         reviewText: String?,
         createDateTime: Date,
         authorNickname: String?,
-        authorAvatarLink: String?
+        authorAvatarLink: String?,
+        shouldShowAnonymous: Bool
     ) {
         self.id = id
         self.rating = rating
@@ -35,6 +37,7 @@ struct ReviewViewModel: Equatable, Identifiable {
         self.createDateTime = createDateTime.formatToDateMonthYear()
         self.authorNickname = authorNickname ?? LocalizedKey.Content.notAvailable
         self.authorAvatarLink = authorAvatarLink ?? ""
+        self.shouldShowAnonymous = shouldShowAnonymous
     }
 }
 
@@ -48,7 +51,8 @@ extension ReviewViewModel: HasPlaceholder {
             reviewText: .placeholder(length: 20),
             createDateTime: .now,
             authorNickname: .placeholder(length: 10),
-            authorAvatarLink: nil
+            authorAvatarLink: nil,
+            shouldShowAnonymous: false
         )
     }
 }

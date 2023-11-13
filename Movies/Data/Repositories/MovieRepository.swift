@@ -65,20 +65,31 @@ extension MovieRepository: MovieRepositoryProtocol {
         return movie
     }
 
-    func getMovieList(page: Page) async throws -> [Movie] {
+    func getMovieList(page: Page?) async throws -> [Movie] {
+        guard let page else {
+            return loadedMovies.filter { $0.isPaged }
+        }
+
         pagination.page = page
 
         guard pagination.isLimitReached == false else {
             throw MovieRepositoryError.maxPagesReached
         }
 
+        if page == .first {
+            loadedMovies = []
+            isFavoritesLoaded = false
+        }
+
         let moviesPagedListDto = try await movieRemoteDataSource.fetchShortMovies(
             page: pagination.currentPage
         )
 
-        pagination.pageCount = moviesPagedListDto.pageInfo.pageCount
-        let movieShortIds = moviesPagedListDto.movies.map { $0.toDomain().id }
+        if pagination.pageCount == nil {
+            pagination.pageCount = moviesPagedListDto.pageInfo.pageCount
+        }
 
+        let movieShortIds = moviesPagedListDto.movies.map { $0.toDomain().id }
         return try await loadMovieList(movieShortIds)
     }
 }
@@ -101,6 +112,7 @@ private extension MovieRepository {
             }
 
             for try await var movie in taskGroup {
+                movie.isPaged = false
                 movie.isFavorite = true
                 loadedMovies.append(movie)
             }
@@ -114,7 +126,8 @@ private extension MovieRepository {
                 var movies = [Movie]()
 
                 for id in identifiers {
-                    if let loadedMovie = loadedMovies.first(where: { $0.id == id }) {
+                    if var loadedMovie = loadedMovies.first(where: { $0.id == id }) {
+                        loadedMovie.isPaged = true
                         movies.append(loadedMovie)
                     } else {
                         taskGroup.addTask {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Routable: Hashable, Identifiable, Equatable {}
+protocol Routable: Hashable, Identifiable {}
 
 extension Routable {
     var id: String {

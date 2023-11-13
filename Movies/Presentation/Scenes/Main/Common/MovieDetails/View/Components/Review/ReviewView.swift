@@ -17,11 +17,13 @@ struct ReviewView: View {
             HStack {
                 AvatarAsyncImage(
                     size: Constants.avatarImageSize,
-                    urlString: viewModel.authorAvatarLink
+                    urlString: viewModel.shouldShowAnonymous ? nil : viewModel.authorAvatarLink
                 )
 
                 VStack(alignment: .leading, spacing: Constants.nicknameSpacing) {
-                    Text(viewModel.authorNickname)
+                    Text(viewModel.shouldShowAnonymous
+                         ? LocalizedKey.Review.anonymousUser
+                         : LocalizedStringKey(viewModel.authorNickname))
                     .font(.subheadline)
 
                     if viewModel.isUserReview {
@@ -51,7 +53,7 @@ struct ReviewView: View {
                     }
                 }
             }
-
+            
             VStack(alignment: .leading, spacing: Constants.optionsSpacing) {
                 Text(viewModel.reviewText)
                 Text(viewModel.createDateTime)

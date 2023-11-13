@@ -8,11 +8,12 @@
 import Foundation
 
 struct Pagination {
-    var pageCount = 1
+    var pageCount: Int?
     var currentPage = 1
 
     var isLimitReached: Bool {
-        currentPage > pageCount
+        guard let pageCount else { return false }
+        return currentPage > pageCount
     }
 
     var page: Page = .first {

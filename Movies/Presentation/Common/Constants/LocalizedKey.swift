@@ -18,6 +18,7 @@ enum LocalizedKey {
     enum Review {
         static let leave = LocalizedStringKey("LeaveReview")
         static let anonymous = LocalizedStringKey("AnonymousReview")
+        static let anonymousUser = LocalizedStringKey("AnonymousUser")
     }
 
     enum Content {

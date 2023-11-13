@@ -17,7 +17,7 @@ struct HomeView: View {
         }
         .redacted(if: viewModel.state == .loading)
         .appBackground()
-        .firstAppear {
+        .onAppear {
             viewModel.handle(.onAppear)
         }
     }
@@ -117,7 +117,7 @@ private extension HomeView {
             ProgressView()
                 .tint(.appAccent)
                 .onAppear {
-                    viewModel.handle(.willDisplayLastItem)
+                    viewModel.handle(.willDisplayLastMovie)
                 }
 
         case .failed, .unavailable:
