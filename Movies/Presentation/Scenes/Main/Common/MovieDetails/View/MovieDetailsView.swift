@@ -230,7 +230,6 @@ private extension MovieDetailsView {
     ScreenFactory(appFactory: .init())
         .makeMovieDetailsView(
             movieId: "",
-            ratingUpdateHandler: {_ in },
             showAuthSceneHandler: {}
         )
 }

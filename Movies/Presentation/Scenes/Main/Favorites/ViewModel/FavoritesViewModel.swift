@@ -30,7 +30,7 @@ final class FavoritesViewModel: ViewModel {
             Task { await fetchMovies() }
 
         case .onSelectMovie(let id):
-            coordinator.showMovieDetails(id, ratingUpdateHandler: nil)
+            coordinator.showMovieDetails(id)
         }
     }
 }

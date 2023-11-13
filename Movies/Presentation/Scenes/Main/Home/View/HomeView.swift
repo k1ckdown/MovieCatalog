@@ -17,7 +17,7 @@ struct HomeView: View {
         }
         .redacted(if: viewModel.state == .loading)
         .appBackground()
-        .firstAppear {
+        .onAppear {
             viewModel.handle(.onAppear)
         }
     }

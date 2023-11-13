@@ -29,37 +29,16 @@ final class HomeViewModel: ViewModel {
             Task { await loadMore() }
 
         case .onSelectMovie(let id):
-            movieSelected(id: id)
+            coordinator.showMovieDetails(id)
         }
     }
 }
 
 private extension HomeViewModel {
 
-    func movieSelected(id: String) {
-        let ratingUpdateHandler: RatingUpdateHandler = { [weak self] rating in
-            guard let self else { return }
-            state = state.userRatingUpdated(rating, movieId: id)
-        }
-
-        coordinator.showMovieDetails(id, ratingUpdateHandler: ratingUpdateHandler)
-    }
-
-    func fetchMovies() async {
-        state = .loading
-
-        do {
-            let movies = try await fetchMovieListUseCase.execute(.first)
-            let itemViewModels = makeItemViewModels(movies)
-            state = .loaded(.init(loadMore: .available, movieItems: itemViewModels))
-        } catch {
-            state = .error("\(error)")
-        }
-    }
-
     func loadMore() async {
         do {
-            let movies = try await fetchMovieListUseCase.execute(.next)
+            let movies = try await fetchMovieListUseCase.execute(page: .next)
             let itemViewModels = makeItemViewModels(movies)
             state = state.loadedMore(itemViewModels)
         } catch let error as MovieRepository.MovieRepositoryError {
@@ -68,6 +47,27 @@ private extension HomeViewModel {
             state = state.failedLoadMore()
         }
     }
+
+    func fetchMovies() async {
+        var page: Page?
+        if case .idle = state {
+            state = .loading
+            page = .first
+        }
+
+        do {
+            let movies = try await fetchMovieListUseCase.execute(page: page)
+            let itemViewModels = makeItemViewModels(movies)
+            state = .loaded(.init(loadMore: .available, movieItems: itemViewModels))
+        } catch {
+            state = .error("\(error)")
+        }
+    }
+}
+
+// MARK: - View data
+
+private extension HomeViewModel {
 
     func makeItemViewModels(_ movies: [MovieDetails]) -> [MovieDetailsItemViewModel] {
         movies.map { movie in

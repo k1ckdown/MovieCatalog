@@ -36,7 +36,6 @@ protocol PersonalInfoRegistrationViewFactory {
 protocol MovieDetailsViewFactory {
     func makeMovieDetailsView(
         movieId: String,
-        ratingUpdateHandler: RatingUpdateHandler,
         showAuthSceneHandler: @escaping () -> Void
     ) -> MovieDetailsView
 }
