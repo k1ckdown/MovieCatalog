@@ -132,7 +132,7 @@ private extension MovieDetailsViewModel {
     }
 
     func deleteReview() async {
-        guard 
+        guard
             case .loaded(let viewData) = state,
             let selectedReview = viewData.selectedReview
         else { return }
@@ -197,7 +197,7 @@ private extension MovieDetailsViewModel {
         )
     }
 
-    func makeReviewViewModel(_ review: ReviewDetails, shouldShowAnonymous: Bool) -> ReviewViewModel {
+    func makeReviewViewModel(_ review: ReviewDetails) -> ReviewViewModel {
         ReviewViewModel(
             id: review.id,
             rating: review.rating,
@@ -207,16 +207,16 @@ private extension MovieDetailsViewModel {
             createDateTime: review.createDateTime,
             authorNickname: review.author?.nickName,
             authorAvatarLink: review.author?.avatar,
-            shouldShowAnonymous: shouldShowAnonymous
+            shouldShowAnonymous: review.isAnonymous && review.isUserReview == false
         )
     }
 
     func getViewData(for movie: MovieDetails) -> MovieDetailsViewState.ViewData {
         let aboutMovieViewModel = makeAboutMovieViewModel(movie)
         let genreViewModels = makeGenreViewModels(movie.genres ?? [])
-        let reviewViewModels = movie.reviews?.compactMap {
-            makeReviewViewModel($0, shouldShowAnonymous: $0.isAnonymous && movie.userRating == nil)
-        }
+        let reviewViewModels = movie.reviews?.compactMap { review in
+            makeReviewViewModel(review)
+        }.sorted { $0.isUserReview && $1.isUserReview == false }
 
         let model = MovieDetailsView.Model(
             name: movie.name ?? LocalizedKey.Content.notAvailable,
