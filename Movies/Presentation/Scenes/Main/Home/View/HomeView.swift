@@ -16,7 +16,7 @@ struct HomeView: View {
             contentView
         }
         .redacted(if: viewModel.state == .loading)
-        .appBackground()
+        .backgroundColor()
         .onAppear {
             viewModel.handle(.onAppear)
         }

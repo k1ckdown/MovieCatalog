@@ -24,18 +24,18 @@ struct ReviewView: View {
                     Text(viewModel.shouldShowAnonymous
                          ? LocalizedKey.Review.anonymousUser
                          : LocalizedStringKey(viewModel.authorNickname))
-                    .font(.subheadline)
+                    .fontWeight(.medium)
 
                     if viewModel.isUserReview {
                         Text(LocalizedKey.Content.myReview)
-                            .font(.footnote)
+                            .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
                 }
 
                 Spacer()
 
-                HStack {
+                HStack(spacing: Constants.OptionsButton.spacing) {
                     RatingTagView(
                         style: .titleAndIcon,
                         value: Double(viewModel.rating)
@@ -45,33 +45,38 @@ struct ReviewView: View {
                         Button {
                             optionsTappedHandler()
                         } label: {
-                            Image(systemName: Constants.OptionsImage.name)
+                            Image(systemName: Constants.OptionsButton.imageName)
+                                .tint(.accent)
                                 .fontWeight(.semibold)
                         }
-                        .padding(Constants.OptionsImage.insets)
+                        .padding(Constants.OptionsButton.insets)
+                        .frame(width: Constants.OptionsButton.size, height: Constants.OptionsButton.size)
                         .background(Circle().fill(.pebble))
                     }
                 }
             }
-            
-            VStack(alignment: .leading, spacing: Constants.optionsSpacing) {
+
+            VStack(alignment: .leading, spacing: Constants.dateSpacing) {
                 Text(viewModel.reviewText)
+
                 Text(viewModel.createDateTime)
-                    .font(.footnote)
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
         }
     }
 
     private enum Constants {
-        static let optionsSpacing: CGFloat = 5
+        static let dateSpacing: CGFloat = 5
         static let contentSpacing: CGFloat = 10
         static let nicknameSpacing: CGFloat = 3
-        static let avatarImageSize: CGFloat = 37
+        static let avatarImageSize: CGFloat = 43
 
-        enum OptionsImage {
-            static let name = "ellipsis"
+        enum OptionsButton {
+            static let size: CGFloat = 32
             static let insets: CGFloat = 11
+            static let spacing: CGFloat = 13
+            static let imageName = "ellipsis"
         }
     }
 }

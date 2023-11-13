@@ -90,7 +90,7 @@ struct ReviewDialog: View {
             }
         }
         .padding()
-        .appBackground()
+        .backgroundColor()
         .frame(height: Constants.Content.height)
         .clipShape(.rect(cornerRadius: Constants.Content.cornerRadius))
     }
@@ -123,4 +123,9 @@ struct ReviewDialog: View {
             static let checkmarkName = "checkmark.square.fill"
         }
     }
+}
+
+#Preview {
+    ReviewDialog(viewModel: .init(), eventHandler: {_ in})
+        .backgroundColor()
 }

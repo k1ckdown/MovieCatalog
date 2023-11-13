@@ -18,7 +18,7 @@ struct MovieDetailsView: View {
 
     var body: some View {
         contentView
-            .appBackground()
+            .backgroundColor()
             .toolbarRole(.editor)
             .toolbar(tabBarVisibility, for: .tabBar)
             .navigationBarTitleDisplayMode(.inline)
@@ -62,13 +62,19 @@ struct MovieDetailsView: View {
     private enum Constants {
         static let posterHeight: CGFloat = 560
         static let gradientEndOpacity: CGFloat = 0
-        static let sectionHeaderFontSize: CGFloat = 18
-        static let plusImageName = "plus.circle.fill"
+
+        static let reviewSectionSpacing: CGFloat = 20
+        static let sectionHeaderFontSize: CGFloat = 19
 
         static let posterSpacing: CGFloat = 30
         static let genresSpacing: CGFloat = 9
-        static let reviewsSpacing: CGFloat = 18
+        static let reviewsSpacing: CGFloat = 20
         static let detailsSpacing: CGFloat = 25
+
+        enum PlusButton {
+            static let size: CGFloat = 37
+            static let imageName = "plus.circle.fill"
+        }
 
         enum Content {
             static let spacing: CGFloat = 28
@@ -79,6 +85,7 @@ struct MovieDetailsView: View {
             static let blur: CGFloat = 2
             static let opacity: CGFloat = 0.4
             static let horizontalInsets: CGFloat = 25
+            static let backgroundOpacity: CGFloat = 0.35
         }
     }
 }
@@ -112,6 +119,7 @@ private extension MovieDetailsView {
                         }
                     }
                     .padding(.horizontal, Constants.ReviewDialog.horizontalInsets)
+                    .backgroundColor(.black.opacity(Constants.ReviewDialog.backgroundOpacity))
                 }
             }
     }
@@ -194,7 +202,7 @@ private extension MovieDetailsView {
     }
 
     func reviewListView(viewModels: [ReviewViewModel], shouldShowAddReview: Bool) -> some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: Constants.reviewSectionSpacing) {
             HStack {
                 Text(LocalizedKey.Content.reviews)
                     .font(.system(size: Constants.sectionHeaderFontSize, weight: .bold))
@@ -207,8 +215,9 @@ private extension MovieDetailsView {
                             viewModel.handle(.addReviewTapped)
                         }
                     } label: {
-                        Image(systemName: Constants.plusImageName)
-                            .font(.title)
+                        Image(systemName: Constants.PlusButton.imageName)
+                            .resizable()
+                            .frame(width: Constants.PlusButton.size, height: Constants.PlusButton.size)
                             .foregroundStyle(.white, .appAccent)
                     }
                 }
@@ -232,4 +241,5 @@ private extension MovieDetailsView {
             movieId: "",
             showAuthSceneHandler: {}
         )
+        .environment(\.locale, .init(identifier: "ru"))
 }

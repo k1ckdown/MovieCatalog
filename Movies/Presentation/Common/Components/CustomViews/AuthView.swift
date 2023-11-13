@@ -68,7 +68,7 @@ struct AuthView<Content: View>: View {
             .buttonStyle(CalloutButtonStyle(calloutText: calloutText))
         }
         .padding(.top)
-        .appBackground()
+        .backgroundColor()
         .appNavigationTitle()
     }
 }

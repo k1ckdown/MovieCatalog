@@ -46,9 +46,11 @@ struct AboutMovieView: View {
                 value: viewModel.time
             )
         }
+        .font(.system(size: Constants.fontSize))
     }
 
     private enum Constants {
+        static let fontSize: CGFloat = 16
         static let contentSpacing: CGFloat = 11
         static let nameLabelWidth: CGFloat = 115
     }
@@ -61,6 +63,5 @@ struct AboutMovieView: View {
 
             Text(value)
         }
-        .font(.callout)
     }
 }

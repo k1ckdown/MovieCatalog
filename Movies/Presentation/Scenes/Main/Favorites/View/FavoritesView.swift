@@ -14,7 +14,7 @@ struct FavoritesView: View {
     var body: some View {
         contentView
             .redacted(if: viewModel.state == .loading)
-            .appBackground()
+            .backgroundColor()
             .navigationBarTitleDisplayMode(.large)
             .navigationTitle(LocalizedKey.ScreenTitle.favorites)
             .onAppear {
