@@ -20,7 +20,7 @@ final class FetchMovieListUseCase {
         self.makeMovieDetailsUseCase = makeMovieDetailsUseCase
     }
 
-    func execute(_ page: Page) async throws -> [MovieDetails] {
+    func execute(page: Page?) async throws -> [MovieDetails] {
         let movieList = try await movieRepository.getMovieList(page: page)
         let movieDetailsList = try await makeMovieDetailsUseCase.execute(movieList)
 

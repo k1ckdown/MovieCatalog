@@ -11,7 +11,6 @@ final class HomeViewModel: ViewModel {
 
     @Published private(set) var state: HomeViewState
 
-    private var movies = [MovieDetails]()
     private let coordinator: HomeCoordinatorProtocol
     private let fetchMovieListUseCase: FetchMovieListUseCase
 
@@ -26,7 +25,7 @@ final class HomeViewModel: ViewModel {
         case .onAppear:
             Task { await fetchMovies() }
 
-        case .willDisplayLastItem:
+        case .willDisplayLastMovie:
             Task { await loadMore() }
 
         case .onSelectMovie(let id):
@@ -39,10 +38,8 @@ private extension HomeViewModel {
 
     func loadMore() async {
         do {
-            let nextMovies = try await fetchMovieListUseCase.execute(.next)
-            movies.append(contentsOf: nextMovies)
-
-            let itemViewModels = nextMovies.map { makeItemViewModel($0) }
+            let movies = try await fetchMovieListUseCase.execute(page: .next)
+            let itemViewModels = makeItemViewModels(movies)
             state = state.loadedMore(itemViewModels)
         } catch let error as MovieRepository.MovieRepositoryError {
             state = error == .maxPagesReached ? state.unavailableLoadMore() : state.failedLoadMore()
@@ -52,26 +49,38 @@ private extension HomeViewModel {
     }
 
     func fetchMovies() async {
-        state = .loading
+        var page: Page?
+        if case .idle = state {
+            state = .loading
+            page = .first
+        }
 
         do {
-            movies = try await fetchMovieListUseCase.execute(.first)
-            let itemViewModels = movies.map { makeItemViewModel($0) }
+            let movies = try await fetchMovieListUseCase.execute(page: page)
+            let itemViewModels = makeItemViewModels(movies)
             state = .loaded(.init(loadMore: .available, movieItems: itemViewModels))
         } catch {
             state = .error("\(error)")
         }
     }
+}
 
-    func makeItemViewModel(_ movie: MovieDetails) -> MovieDetailsItemViewModel {
-        .init(id: movie.id,
-              name: movie.name,
-              year: movie.year,
-              country: movie.country,
-              poster: movie.poster,
-              rating: movie.rating,
-              userRating: movie.userRating,
-              genres: movie.genres
-        )
+// MARK: - View data
+
+private extension HomeViewModel {
+
+    func makeItemViewModels(_ movies: [MovieDetails]) -> [MovieDetailsItemViewModel] {
+        movies.map { movie in
+            MovieDetailsItemViewModel(
+                id: movie.id,
+                name: movie.name,
+                year: movie.year,
+                country: movie.country,
+                poster: movie.poster,
+                rating: movie.rating,
+                userRating: movie.userRating,
+                genres: movie.genres
+            )
+        }
     }
 }

@@ -63,6 +63,7 @@ struct MovieDetailsView: View {
         static let posterHeight: CGFloat = 560
         static let gradientEndOpacity: CGFloat = 0
         static let sectionHeaderFontSize: CGFloat = 18
+        static let plusImageName = "plus.circle.fill"
 
         static let posterSpacing: CGFloat = 30
         static let genresSpacing: CGFloat = 9
@@ -206,7 +207,7 @@ private extension MovieDetailsView {
                             viewModel.handle(.addReviewTapped)
                         }
                     } label: {
-                        Image(systemName: "plus.circle.fill")
+                        Image(systemName: Constants.plusImageName)
                             .font(.title)
                             .foregroundStyle(.white, .appAccent)
                     }
