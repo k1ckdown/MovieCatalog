@@ -33,5 +33,5 @@ enum MovieDetailsViewEvent {
 
     case reviewOptionsTapped(String)
     case onConfirmationDialogPresented(Bool)
-    case reviewDialogSentEvent(ReviewDialogViewEvent)
+    case reviewDialog(ReviewDialogViewEvent)
 }

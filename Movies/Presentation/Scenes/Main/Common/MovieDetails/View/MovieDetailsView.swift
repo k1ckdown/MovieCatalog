@@ -115,7 +115,7 @@ private extension MovieDetailsView {
                 if let reviewDialog = data.reviewDialog {
                     ReviewDialog(viewModel: reviewDialog) { event in
                         withAnimation {
-                            viewModel.handle(.reviewDialogSentEvent(event))
+                            viewModel.handle(.reviewDialog(event))
                         }
                     }
                     .padding(.horizontal, Constants.ReviewDialog.horizontalInsets)
