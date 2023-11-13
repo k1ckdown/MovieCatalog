@@ -197,7 +197,7 @@ private extension MovieDetailsViewModel {
         )
     }
 
-    func makeReviewViewModel(_ review: ReviewDetails) -> ReviewViewModel {
+    func makeReviewViewModel(_ review: ReviewDetails, shouldShowAnonymous: Bool) -> ReviewViewModel {
         ReviewViewModel(
             id: review.id,
             rating: review.rating,
@@ -206,14 +206,17 @@ private extension MovieDetailsViewModel {
             reviewText: review.reviewText,
             createDateTime: review.createDateTime,
             authorNickname: review.author?.nickName,
-            authorAvatarLink: review.author?.avatar
+            authorAvatarLink: review.author?.avatar,
+            shouldShowAnonymous: shouldShowAnonymous
         )
     }
 
     func getViewData(for movie: MovieDetails) -> MovieDetailsViewState.ViewData {
         let aboutMovieViewModel = makeAboutMovieViewModel(movie)
-        let reviewViewModels = movie.reviews?.compactMap { makeReviewViewModel($0) }
         let genreViewModels = makeGenreViewModels(movie.genres ?? [])
+        let reviewViewModels = movie.reviews?.compactMap {
+            makeReviewViewModel($0, shouldShowAnonymous: $0.isAnonymous && movie.userRating == nil)
+        }
 
         let model = MovieDetailsView.Model(
             name: movie.name ?? LocalizedKey.Content.notAvailable,
