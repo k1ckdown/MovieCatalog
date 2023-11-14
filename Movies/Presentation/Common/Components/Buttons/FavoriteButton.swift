@@ -9,27 +9,46 @@ import SwiftUI
 
 struct FavoriteButton: View {
 
+    enum Size {
+        case small
+        case medium
+
+        var value: CGFloat {
+            switch self {
+            case .small: Constants.Size.small
+            case .medium: Constants.Size.medium
+            }
+        }
+    }
+
+    let size: Size
     let isSet: Bool
     let action: () -> Void
 
     var body: some View {
-        Button {
-            action()
-        } label: {
+        ZStack {
+            Color.pebble
+
             Image(systemName: isSet ? Constants.heartFill : Constants.heart)
                 .imageScale(.large)
-                .fontWeight(.medium)
                 .foregroundStyle(isSet ? .appAccent : .white)
+                .onTapGesture {
+                    withAnimation {
+                        action()
+                    }
+                }
         }
-        .padding(Constants.insets)
-        .background(
-            Circle().fill(.pebble)
-        )
+        .frame(width: size.value, height: size.value)
+        .clipShape(.circle)
     }
-    
+
     private enum Constants {
         static let heart = "heart"
         static let heartFill = "heart.fill"
-        static let insets: CGFloat = 9
+
+        enum Size {
+            static let small: CGFloat = 36
+            static let medium: CGFloat = 41
+        }
     }
 }
