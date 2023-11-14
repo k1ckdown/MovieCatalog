@@ -27,16 +27,19 @@ struct FavoritesView: View {
         switch viewModel.state {
         case .idle:
             EmptyView()
+
         case .error(let message):
             Text(message)
+
         case .loading:
             collectionView(
                 itemViewModels: .placeholders(
                     count: Constants.Collection.countPlaceholders
                 )
             )
+
         case .loaded(let viewData):
-            collectionView(itemViewModels: viewData.movieItems)
+            loadedView(data: viewData)
         }
     }
 
@@ -58,24 +61,28 @@ struct FavoritesView: View {
 private extension FavoritesView {
 
     @ViewBuilder
-    func collectionView(itemViewModels: [MovieShortItemViewModel]) -> some View {
-        if itemViewModels.count > 0 {
-            ScrollView(.vertical) {
-                FavoritesLayout {
-                    ForEach(itemViewModels) { itemViewModel in
-                        MovieShortItem(viewModel: itemViewModel)
-                            .onTapGesture {
-                                viewModel.handle(.onSelectMovie(itemViewModel.id))
-                            }
-                    }
-                }
-                .padding(.vertical)
-                .padding(.horizontal, Constants.Collection.horizontalInset)
-            }
-            .scrollIndicators(.hidden)
-        } else {
+    func loadedView(data: FavoritesViewState.ViewData) -> some View {
+        if data.shouldShowPlaceholder {
             placeholder()
+        } else {
+            collectionView(itemViewModels: data.movieItems)
         }
+    }
+
+    func collectionView(itemViewModels: [MovieShortItemViewModel]) -> some View {
+        ScrollView(.vertical) {
+            FavoritesLayout {
+                ForEach(itemViewModels) { itemViewModel in
+                    MovieShortItem(viewModel: itemViewModel)
+                        .onTapGesture {
+                            viewModel.handle(.onSelectMovie(itemViewModel.id))
+                        }
+                }
+            }
+            .padding(.vertical)
+            .padding(.horizontal, Constants.Collection.horizontalInset)
+        }
+        .scrollIndicators(.hidden)
     }
 
     func placeholder() -> some View {

@@ -13,7 +13,7 @@ struct MovieDetailsView: View {
     @StateObject private var viewModel: MovieDetailsViewModel
 
     init(viewModel: MovieDetailsViewModel) {
-        _viewModel = .init(wrappedValue: viewModel)
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
@@ -60,7 +60,7 @@ struct MovieDetailsView: View {
     }
 
     private enum Constants {
-        static let posterHeight: CGFloat = 560
+        static let posterHeight: CGFloat = 520
         static let gradientEndOpacity: CGFloat = 0
 
         static let reviewSectionSpacing: CGFloat = 20
@@ -71,14 +71,19 @@ struct MovieDetailsView: View {
         static let reviewsSpacing: CGFloat = 20
         static let detailsSpacing: CGFloat = 25
 
+        enum Content {
+            static let spacing: CGFloat = 28
+            static let horizontalInsets: CGFloat = 16
+        }
+
+        enum Header {
+            static let lineLimit = 4
+            static let minimumScaleFactor: CGFloat = 0.75
+        }
+
         enum PlusButton {
             static let size: CGFloat = 37
             static let imageName = "plus.circle.fill"
-        }
-
-        enum Content {
-            static let spacing: CGFloat = 28
-            static let horizontalInsets: CGFloat = 18
         }
 
         enum ReviewDialog {
@@ -178,6 +183,8 @@ private extension MovieDetailsView {
             Text(name)
                 .font(.title.bold())
                 .multilineTextAlignment(.center)
+                .lineLimit(Constants.Header.lineLimit)
+                .minimumScaleFactor(Constants.Header.minimumScaleFactor)
 
             Spacer()
 
