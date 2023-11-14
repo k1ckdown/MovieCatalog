@@ -7,24 +7,31 @@
 
 enum MovieDetailsViewState: Equatable {
     case idle
+    case loading
+    case error(String)
     case loaded(ViewData)
 
     struct ViewData: Equatable {
-        let name: String?
-        let rating: Double
-        let poster: String?
-        var isFavorite: Bool
-        let genres: [String]?
-        let description: String?
-        let reviewViewModels: [ReviewViewModel]?
-        let aboutMovieViewModel: AboutMovieViewModel
+        var reviewDialog: ReviewDialogViewModel?
+        var selectedReview: ReviewViewModel?
+        var movie: MovieDetailsView.Model
+
+        var isConfirmationDialogPresenting = false
+        var isReviewDialogPresented: Bool {
+            reviewDialog != nil
+        }
     }
 }
 
 enum MovieDetailsViewEvent {
+    case onAppear
     case favoriteTapped
+
     case addReviewTapped
     case editReviewTapped
     case deleteReviewTapped
-    case reviewOptionsTapped
+
+    case reviewOptionsTapped(String)
+    case onConfirmationDialogPresented(Bool)
+    case reviewDialog(ReviewDialogViewEvent)
 }

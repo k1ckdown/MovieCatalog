@@ -17,24 +17,25 @@ struct ReviewView: View {
             HStack {
                 AvatarAsyncImage(
                     size: Constants.avatarImageSize,
-                    urlString: viewModel.authorAvatarLink
+                    urlString: viewModel.shouldShowAnonymous ? nil : viewModel.authorAvatarLink
                 )
 
                 VStack(alignment: .leading, spacing: Constants.nicknameSpacing) {
-                    Text(viewModel.authorNickname ??
-                         LocalizedKeysConstants.Content.notAvailable)
-                    .font(.subheadline)
+                    Text(viewModel.shouldShowAnonymous
+                         ? LocalizedKey.Review.anonymousUser
+                         : LocalizedStringKey(viewModel.authorNickname))
+                    .fontWeight(.medium)
 
                     if viewModel.isUserReview {
-                        Text(LocalizedKeysConstants.Content.myReview)
-                            .font(.footnote)
+                        Text(LocalizedKey.Content.myReview)
+                            .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
                 }
 
                 Spacer()
 
-                HStack {
+                HStack(spacing: Constants.OptionsButton.spacing) {
                     RatingTagView(
                         style: .titleAndIcon,
                         value: Double(viewModel.rating)
@@ -44,49 +45,38 @@ struct ReviewView: View {
                         Button {
                             optionsTappedHandler()
                         } label: {
-                            Image(systemName: Constants.OptionsImage.name)
+                            Image(systemName: Constants.OptionsButton.imageName)
+                                .tint(.accent)
                                 .fontWeight(.semibold)
                         }
-                        .padding(Constants.OptionsImage.insets)
+                        .padding(Constants.OptionsButton.insets)
+                        .frame(width: Constants.OptionsButton.size, height: Constants.OptionsButton.size)
                         .background(Circle().fill(.pebble))
                     }
                 }
             }
 
-            VStack(alignment: .leading, spacing: Constants.optionsSpacing) {
-                Text(viewModel.reviewText ?? LocalizedKeysConstants.Content.notAvailable)
-                Text(viewModel.createDateTime.formatToDateMonthYear())
-                    .font(.footnote)
+            VStack(alignment: .leading, spacing: Constants.dateSpacing) {
+                Text(viewModel.reviewText)
+
+                Text(viewModel.createDateTime)
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
         }
     }
 
     private enum Constants {
-        static let optionsSpacing: CGFloat = 5
+        static let dateSpacing: CGFloat = 5
         static let contentSpacing: CGFloat = 10
         static let nicknameSpacing: CGFloat = 3
-        static let avatarImageSize: CGFloat = 37
+        static let avatarImageSize: CGFloat = 43
 
-        enum OptionsImage {
-            static let name = "ellipsis"
+        enum OptionsButton {
+            static let size: CGFloat = 32
             static let insets: CGFloat = 11
+            static let spacing: CGFloat = 13
+            static let imageName = "ellipsis"
         }
     }
-}
-
-#Preview {
-    let mock = ReviewDetails.mock
-    let viewModel = ReviewViewModel(
-        rating: 9,
-        isUserReview: true,
-        reviewText: mock.reviewText,
-        createDateTime: mock.createDateTime,
-        authorNickname: mock.author?.nickName,
-        authorAvatarLink: mock.author?.avatar
-    )
-
-    return ReviewView(viewModel: viewModel, optionsTappedHandler: {  })
-        .appBackground()
-        .environment(\.locale, .init(identifier: "ru"))
 }

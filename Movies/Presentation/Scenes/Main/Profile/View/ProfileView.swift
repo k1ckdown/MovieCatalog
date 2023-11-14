@@ -24,7 +24,7 @@ struct ProfileView: View {
                         .font(.title2)
                         .bold()
 
-                    Button(LocalizedKeysConstants.Auth.Action.logOut) {
+                    Button(LocalizedKey.Auth.Action.logOut) {
                         viewModel.handle(.logOutTapped)
                     }
                     .fontWeight(.semibold)
@@ -39,27 +39,27 @@ struct ProfileView: View {
                                 message: viewModel.state.emailError,
                                 isErrorShowed: viewModel.state.isEmailErrorShowing
                             )
-                            .smallLabeled(LocalizedKeysConstants.Profile.email)
+                            .smallLabeled(LocalizedKey.Profile.email)
 
                         TextField("", text: avatarLink)
                             .formErrorableItem(
                                 message: viewModel.state.avatarLinkError,
                                 isErrorShowed: viewModel.state.isAvatarLinkErrorShowing
                             )
-                            .smallLabeled(LocalizedKeysConstants.Profile.avatarLink)
+                            .smallLabeled(LocalizedKey.Profile.avatarLink)
                     }
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
 
                     TextField("", text: name)
                         .formBorderedTextFieldStyle()
-                        .smallLabeled(LocalizedKeysConstants.Profile.name)
+                        .smallLabeled(LocalizedKey.Profile.name)
 
                     GenderSegmentedPicker(selection: gender)
-                        .smallLabeled(LocalizedKeysConstants.Profile.gender)
+                        .smallLabeled(LocalizedKey.Profile.gender)
 
                     DatePickerField(date: birthdate)
-                        .smallLabeled(LocalizedKeysConstants.Profile.birthdate)
+                        .smallLabeled(LocalizedKey.Profile.birthdate)
                 }
                 .padding(.horizontal)
 
@@ -68,13 +68,13 @@ struct ProfileView: View {
                         .tint(.appAccent)
                 } else {
                     VStack(spacing: Constants.buttonSpacing) {
-                        Button(LocalizedKeysConstants.Profile.save) {
+                        Button(LocalizedKey.Profile.save) {
                             viewModel.handle(.saveTapped)
                         }
                         .baseButtonStyle()
                         .disabled(viewModel.state.isSaveDisabled)
 
-                        Button(LocalizedKeysConstants.Profile.cancel) {
+                        Button(LocalizedKey.Profile.cancel) {
                             viewModel.handle(.cancelTapped)
                         }
                         .baseButtonStyle(isProminent: false)
@@ -83,15 +83,16 @@ struct ProfileView: View {
                     .padding()
                 }
             }
+            .padding(.top)
         }
         .scrollIndicators(.hidden)
-        .appBackground()
-        .alert(LocalizedKeysConstants.ErrorMessage.error, isPresented: isAlertPresented) {
+        .backgroundColor()
+        .alert(LocalizedKey.ErrorMessage.error, isPresented: isAlertPresented) {
             Button("OK", role: .cancel, action: {})
         } message: {
             Text(viewModel.state.errorMessage)
         }
-        .firstAppear {
+        .onLoad {
             viewModel.handle(.onAppear)
         }
     }

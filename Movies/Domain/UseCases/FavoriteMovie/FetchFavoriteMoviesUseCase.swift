@@ -11,28 +11,31 @@ final class FetchFavoriteMoviesUseCase {
 
     private let movieRepository: MovieRepositoryProtocol
     private let keychainRepository: KeychainRepositoryProtocol
-    private let getDetailsFromMoviesUseCase: GetDetailsFromMoviesUseCase
+    private let closeSessionUseCase: CloseSessionUseCase
+    private let makeMovieDetailsUseCase: MakeMovieDetailsUseCase
 
     init(
         movieRepository: MovieRepositoryProtocol,
         keychainRepository: KeychainRepositoryProtocol,
-        getDetailsFromMoviesUseCase: GetDetailsFromMoviesUseCase
+        closeSessionUseCase: CloseSessionUseCase,
+        makeMovieDetailsUseCase: MakeMovieDetailsUseCase
     ) {
-        self.keychainRepository = keychainRepository
         self.movieRepository = movieRepository
-        self.getDetailsFromMoviesUseCase = getDetailsFromMoviesUseCase
+        self.keychainRepository = keychainRepository
+        self.closeSessionUseCase = closeSessionUseCase
+        self.makeMovieDetailsUseCase = makeMovieDetailsUseCase
     }
-
+    
     func execute() async throws -> [MovieDetails] {
         let token = try keychainRepository.retrieveToken()
 
         do {
-            let movieShortList = try await movieRepository.getFavoriteMovies(token: token)
-            let movieDetailsList = try await getDetailsFromMoviesUseCase.execute(movieShortList)
+            let movieList = try await movieRepository.getFavoriteMovies(token: token)
+            let movieDetailsList = try await makeMovieDetailsUseCase.execute(movieList)
             return movieDetailsList
         } catch {
             if error as? AuthError == .unauthorized {
-                try keychainRepository.deleteToken()
+                try closeSessionUseCase.execute()
             }
 
             throw error

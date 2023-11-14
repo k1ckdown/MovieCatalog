@@ -9,15 +9,15 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @ObservedObject private(set) var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel
 
     var body: some View {
         ZStack {
             contentView
         }
         .redacted(if: viewModel.state == .loading)
-        .appBackground()
-        .firstAppear {
+        .backgroundColor()
+        .onAppear {
             viewModel.handle(.onAppear)
         }
     }
@@ -49,18 +49,15 @@ struct HomeView: View {
         static let contentSpacing: CGFloat = 12
 
         static let numberOfCards = 4
-        static let countPlaceholders = 11
+        static let countPlaceholders = numberOfCards + 2
 
-        static let moviePageHeight: CGFloat = 515
+        static let moviePageHeight: CGFloat = 497
+        static let spacingMovieItems: CGFloat = 17
         static let titleVerticalInsets: CGFloat = 5
-        static let listItemInsets = EdgeInsets(
-            top: 0,
-            leading: 15,
-            bottom: 15,
-            trailing: 15
-        )
     }
 }
+
+// MARK: - List view
 
 private extension HomeView {
 
@@ -71,20 +68,17 @@ private extension HomeView {
         ScrollView {
             VStack(alignment: .leading, spacing: Constants.contentSpacing) {
                 tabView(Array(movieItems[0..<Constants.numberOfCards]))
-                Group {
-                    listHeader()
-                    LazyVStack {
-                        movieListView(itemViewModels: Array(movieItems[Constants.numberOfCards...]))
-                        loadMoreView(loadMore)
-                    }
-                }
-                .padding(.horizontal)
+                movieListView(
+                    loadMore: loadMore,
+                    itemViewModels: Array(movieItems[Constants.numberOfCards...])
+                )
             }
         }
         .scrollIndicators(.hidden)
-
     }
 }
+
+// MARK: - Tab view
 
 private extension HomeView {
 
@@ -102,23 +96,18 @@ private extension HomeView {
         .indexViewStyle(.page(backgroundDisplayMode: .always))
         .listRowInsets(EdgeInsets())
     }
+}
+
+// MARK: - Movie list view
+
+private extension HomeView {
 
     func listHeader() -> some View {
-        Text(LocalizedKeysConstants.Content.catalog)
+        Text(LocalizedKey.Content.catalog)
             .bold()
             .font(.title)
             .foregroundStyle(.white)
             .padding(.vertical, Constants.titleVerticalInsets)
-    }
-
-    func movieListView(itemViewModels: [MovieDetailsItemViewModel]) -> some View {
-        ForEach(itemViewModels) { itemViewModel in
-            MovieDetailsItem(viewModel: itemViewModel)
-                .onTapGesture {
-                    viewModel.handle(.onSelectMovie(itemViewModel.id))
-                }
-        }
-        .listRowInsets(Constants.listItemInsets)
     }
 
     @ViewBuilder
@@ -128,20 +117,31 @@ private extension HomeView {
             ProgressView()
                 .tint(.appAccent)
                 .onAppear {
-                    viewModel.handle(.willDisplayLastItem)
+                    viewModel.handle(.willDisplayLastMovie)
                 }
 
         case .failed, .unavailable:
             EmptyView()
         }
     }
-}
 
-//#Preview {
-//    HomeView(
-//        viewModel: .init(
-//            coordinator: HomeCoordinator(),
-//            fetchMoviesUseCase: AppFactory().makeFetchMoviesUseCase()
-//        )
-//    )
-//}
+    func movieListView(
+        loadMore: HomeViewState.ViewData.LoadMore,
+        itemViewModels: [MovieDetailsItemViewModel]
+    ) -> some View {
+        Group {
+            listHeader()
+            LazyVStack(spacing: Constants.spacingMovieItems) {
+                ForEach(itemViewModels) { itemViewModel in
+                    MovieDetailsItem(viewModel: itemViewModel)
+                        .onTapGesture {
+                            viewModel.handle(.onSelectMovie(itemViewModel.id))
+                        }
+                }
+                loadMoreView(loadMore)
+            }
+            .padding(.bottom)
+        }
+        .padding(.horizontal)
+    }
+}

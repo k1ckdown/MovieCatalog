@@ -44,8 +44,8 @@ struct MovieDetailsItem: View {
                 }
 
                 TagLayout {
-                    ForEach(viewModel.genres, id: \.self) { genre in
-                        GenreTag(name: genre, style: .note)
+                    ForEach(viewModel.genres) { genre in
+                        GenreTag(viewModel: genre)
                     }
 
                     if viewModel.shouldShowGenresEllipsis {
@@ -68,7 +68,7 @@ struct MovieDetailsItem: View {
 
         enum MovieImage {
             static let width: CGFloat = 105
-            static let ratingInsets: CGFloat = 5
+            static let ratingInsets: CGFloat = 3
             static let cornerRadius: CGFloat = 5
         }
 
@@ -81,21 +81,4 @@ struct MovieDetailsItem: View {
             static let descriptionSpacing: CGFloat = 8
         }
     }
-}
-
-#Preview {
-    let mock = MovieShort.mockedMovie
-    let viewModel = MovieDetailsItemViewModel(
-        id: mock.id,
-        name: mock.name ?? "",
-        year: mock.year,
-        country: mock.country ?? "",
-        poster: mock.poster ?? "",
-        rating: 3.444,
-        userRating: 8,
-        genres: mock.genres?.compactMap { $0.name } ?? [],
-        shouldShowGenresEllipsis: false
-    )
-
-    return MovieDetailsItem(viewModel: viewModel)
 }
