@@ -21,7 +21,8 @@ final class LoginUseCase {
     }
 
     func execute(username: String, password: String) async throws {
-        let token = try await authRepository.logIn(username: username, password: password)
+        let credentials = LoginCredentials(username: username, password: password)
+        let token = try await authRepository.logIn(credentials: credentials)
         try keychainRepository.saveToken(token)
     }
 }

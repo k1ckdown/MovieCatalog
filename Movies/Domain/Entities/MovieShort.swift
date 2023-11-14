@@ -17,11 +17,6 @@ struct MovieShort {
     let reviews: [ReviewShort]?
 }
 
-struct MoviesPaged {
-    let movies: [MovieShort]
-    let pageInfo: PageInfo
-}
-
 extension MovieShort {
     static let mockedMovies: [MovieShort] = .init(repeating: mockedMovie, count: 10)
 

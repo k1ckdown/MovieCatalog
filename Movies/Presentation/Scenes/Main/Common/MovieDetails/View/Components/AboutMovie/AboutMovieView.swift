@@ -14,41 +14,43 @@ struct AboutMovieView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Constants.contentSpacing) {
             rowView(
-                name: LocalizedKeysConstants.Content.Description.year,
-                value: "\(viewModel.year)"
+                name: LocalizedKey.Content.Description.year,
+                value: viewModel.year
             )
             rowView(
-                name: LocalizedKeysConstants.Content.Description.country,
+                name: LocalizedKey.Content.Description.country,
                 value: viewModel.country
             )
             rowView(
-                name: LocalizedKeysConstants.Content.Description.tagline,
+                name: LocalizedKey.Content.Description.tagline,
                 value: viewModel.tagline
             )
             rowView(
-                name: LocalizedKeysConstants.Content.Description.director,
+                name: LocalizedKey.Content.Description.director,
                 value: viewModel.director
             )
             rowView(
-                name: LocalizedKeysConstants.Content.Description.budget,
+                name: LocalizedKey.Content.Description.budget,
                 value: viewModel.budget
             )
             rowView(
-                name: LocalizedKeysConstants.Content.Description.fees,
+                name: LocalizedKey.Content.Description.fees,
                 value: viewModel.fees
             )
             rowView(
-                name: LocalizedKeysConstants.Content.Description.ageLimit,
-                value: "\(viewModel.ageLimit)+"
+                name: LocalizedKey.Content.Description.ageLimit,
+                value: viewModel.ageLimit
             )
             rowView(
-                name: LocalizedKeysConstants.Content.Description.time,
-                value: "\(viewModel.time) мин."
+                name: LocalizedKey.Content.Description.time,
+                value: viewModel.time
             )
         }
+        .font(.system(size: Constants.fontSize))
     }
 
     private enum Constants {
+        static let fontSize: CGFloat = 16
         static let contentSpacing: CGFloat = 11
         static let nameLabelWidth: CGFloat = 115
     }
@@ -61,6 +63,5 @@ struct AboutMovieView: View {
 
             Text(value)
         }
-        .font(.callout)
     }
 }

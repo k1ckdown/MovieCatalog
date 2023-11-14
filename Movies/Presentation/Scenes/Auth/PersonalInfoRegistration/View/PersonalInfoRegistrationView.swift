@@ -15,18 +15,18 @@ struct PersonalInfoRegistrationView: View {
         AuthView(
             style: .personalInfo,
             isFormButtonDisabled: viewModel.state.isContinueDisabled,
-            screenTitle: LocalizedKeysConstants.Auth.Label.registration,
-            formButtonTitle: LocalizedKeysConstants.Auth.Action.continue,
-            calloutText: LocalizedKeysConstants.Auth.Callout.alreadyHaveAccount,
-            calloutButtonTitle: LocalizedKeysConstants.Auth.Callout.logInToAccount
+            screenTitle: LocalizedKey.Auth.Label.registration,
+            formButtonTitle: LocalizedKey.Auth.Action.continue,
+            calloutText: LocalizedKey.Auth.Callout.alreadyHaveAccount,
+            calloutButtonTitle: LocalizedKey.Auth.Callout.logInToAccount
         ) {
             Group {
                 TextField("", text: name)
-                    .smallLabeled(LocalizedKeysConstants.Profile.name)
+                    .smallLabeled(LocalizedKey.Profile.name)
                     .formBorderedTextFieldStyle()
 
                 GenderSegmentedPicker(selection: gender)
-                    .smallLabeled(LocalizedKeysConstants.Profile.gender)
+                    .smallLabeled(LocalizedKey.Profile.gender)
 
                 TextField("", text: username)
                     .autocorrectionDisabled()
@@ -35,7 +35,7 @@ struct PersonalInfoRegistrationView: View {
                         message: viewModel.state.usernameError,
                         isErrorShowed: viewModel.state.isUsernameErrorShowing
                     )
-                    .smallLabeled(LocalizedKeysConstants.Profile.username)
+                    .smallLabeled(LocalizedKey.Profile.username)
 
                 TextField("", text: email)
                     .keyboardType(.emailAddress)
@@ -43,10 +43,10 @@ struct PersonalInfoRegistrationView: View {
                         message: viewModel.state.emailError,
                         isErrorShowed: viewModel.state.isEmailErrorShowing
                     )
-                    .smallLabeled(LocalizedKeysConstants.Profile.email)
+                    .smallLabeled(LocalizedKey.Profile.email)
 
                 DatePickerField(date: birthdate)
-                    .smallLabeled(LocalizedKeysConstants.Profile.birthdate)
+                    .smallLabeled(LocalizedKey.Profile.birthdate)
             }
         } formAction: {
             viewModel.handle(.continueTapped)

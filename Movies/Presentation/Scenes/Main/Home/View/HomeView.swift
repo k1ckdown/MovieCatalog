@@ -9,15 +9,15 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @ObservedObject private(set) var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel
 
     var body: some View {
         ZStack {
             contentView
         }
         .redacted(if: viewModel.state == .loading)
-        .appBackground()
-        .firstAppear {
+        .backgroundColor()
+        .onAppear {
             viewModel.handle(.onAppear)
         }
     }
@@ -49,7 +49,7 @@ struct HomeView: View {
         static let contentSpacing: CGFloat = 12
 
         static let numberOfCards = 4
-        static let countPlaceholders = numberOfCards + 3
+        static let countPlaceholders = numberOfCards + 2
 
         static let moviePageHeight: CGFloat = 497
         static let spacingMovieItems: CGFloat = 17
@@ -103,7 +103,7 @@ private extension HomeView {
 private extension HomeView {
 
     func listHeader() -> some View {
-        Text(LocalizedKeysConstants.Content.catalog)
+        Text(LocalizedKey.Content.catalog)
             .bold()
             .font(.title)
             .foregroundStyle(.white)
@@ -117,7 +117,7 @@ private extension HomeView {
             ProgressView()
                 .tint(.appAccent)
                 .onAppear {
-                    viewModel.handle(.willDisplayLastItem)
+                    viewModel.handle(.willDisplayLastMovie)
                 }
 
         case .failed, .unavailable:
@@ -145,12 +145,3 @@ private extension HomeView {
         .padding(.horizontal)
     }
 }
-
-//#Preview {
-//    HomeView(
-//        viewModel: .init(
-//            coordinator: HomeCoordinator(),
-//            fetchMoviesUseCase: AppFactory().makeFetchMoviesUseCase()
-//        )
-//    )
-//}

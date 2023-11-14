@@ -20,23 +20,23 @@ struct WelcomeView: View {
                 .padding(.top, Constants.AmicoImage.topInset)
 
             VStack(spacing: Constants.DescriptionStack.spacing) {
-                Text(LocalizedKeysConstants.Welcome.title)
+                Text(LocalizedKey.Welcome.title)
                     .bold()
                     .font(.title2)
 
-                Text(LocalizedKeysConstants.Welcome.body)
+                Text(LocalizedKey.Welcome.body)
                     .font(.body)
             }
             .multilineTextAlignment(.center)
             .padding()
 
             VStack(spacing: Constants.ButtonStack.spacing) {
-                Button(LocalizedKeysConstants.Auth.Label.registration) {
+                Button(LocalizedKey.Auth.Label.registration) {
                     viewModel.handle(.registrationTapped)
                 }
                 .baseButtonStyle()
 
-                Button(LocalizedKeysConstants.Auth.Action.logIn) {
+                Button(LocalizedKey.Auth.Action.logIn) {
                     viewModel.handle(.logInTapped)
                 }
                 .baseButtonStyle(isProminent: false)
@@ -45,7 +45,7 @@ struct WelcomeView: View {
 
             Spacer()
         }
-        .appBackground()
+        .backgroundColor()
         .appNavigationTitle()
     }
 

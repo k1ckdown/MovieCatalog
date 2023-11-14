@@ -46,7 +46,7 @@ private extension LoginViewModel {
             state.loginError = nil
             coordinator.showMainScene()
         } catch {
-            state.loginError = LocalizedKeysConstants.ErrorMessage.loginFailed
+            state.loginError = LocalizedKey.ErrorMessage.loginFailed
         }
         state.isLoading = false
     }
