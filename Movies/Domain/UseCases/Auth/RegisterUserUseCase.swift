@@ -21,7 +21,7 @@ final class RegisterUserUseCase {
     }
 
     func execute(_ user: UserRegister) async throws {
-        let token = try await authRepository.register(user)
+        let token = try await authRepository.register(user: user)
         try keychainRepository.saveToken(token)
     }
 }
