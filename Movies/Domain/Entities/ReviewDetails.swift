@@ -25,6 +25,6 @@ extension ReviewDetails {
         isAnonymous: true,
         createDateTime: .now,
         author: UserShort.init(userId: "id", nickName: "Username", avatar: nil),
-        isUserReview: false
+        isUserReview: true
     )
 }

@@ -45,7 +45,7 @@ struct WelcomeView: View {
 
             Spacer()
         }
-        .appBackground()
+        .backgroundColor()
         .appNavigationTitle()
     }
 

@@ -86,13 +86,13 @@ struct ProfileView: View {
             .padding(.top)
         }
         .scrollIndicators(.hidden)
-        .appBackground()
+        .backgroundColor()
         .alert(LocalizedKey.ErrorMessage.error, isPresented: isAlertPresented) {
             Button("OK", role: .cancel, action: {})
         } message: {
             Text(viewModel.state.errorMessage)
         }
-        .firstAppear {
+        .onLoad {
             viewModel.handle(.onAppear)
         }
     }

@@ -62,7 +62,7 @@ final class MovieDetailsViewModel: ViewModel {
         case .editReviewTapped:
             state = state.editReview()
 
-        case .reviewDialogSentEvent(let reviewDialogEvent):
+        case .reviewDialog(let reviewDialogEvent):
             handleReviewDialogEvent(reviewDialogEvent)
 
         case .addReviewTapped:

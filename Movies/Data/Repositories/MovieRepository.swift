@@ -58,6 +58,7 @@ extension MovieRepository: MovieRepositoryProtocol {
         var movie = movieDto.toDomain()
 
         if let index = loadedMovies.firstIndex(where: { $0.id == movie.id }) {
+            movie.isPaged = loadedMovies[index].isPaged
             movie.isFavorite = loadedMovies[index].isFavorite
             loadedMovies[index] = movie
         }
@@ -76,7 +77,7 @@ extension MovieRepository: MovieRepositoryProtocol {
             throw MovieRepositoryError.maxPagesReached
         }
 
-        if page == .first {
+        if case .first = page {
             loadedMovies = []
             isFavoritesLoaded = false
         }
@@ -126,9 +127,9 @@ private extension MovieRepository {
                 var movies = [Movie]()
 
                 for id in identifiers {
-                    if var loadedMovie = loadedMovies.first(where: { $0.id == id }) {
-                        loadedMovie.isPaged = true
-                        movies.append(loadedMovie)
+                    if let index = loadedMovies.firstIndex(where: { $0.id == id }) {
+                        loadedMovies[index].isPaged = true
+                        movies.append(loadedMovies[index])
                     } else {
                         taskGroup.addTask {
                             try await self.getMovie(id: id)

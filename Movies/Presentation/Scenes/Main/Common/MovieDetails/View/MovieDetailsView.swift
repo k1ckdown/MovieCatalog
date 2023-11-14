@@ -13,12 +13,12 @@ struct MovieDetailsView: View {
     @StateObject private var viewModel: MovieDetailsViewModel
 
     init(viewModel: MovieDetailsViewModel) {
-        _viewModel = .init(wrappedValue: viewModel)
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
         contentView
-            .appBackground()
+            .backgroundColor()
             .toolbarRole(.editor)
             .toolbar(tabBarVisibility, for: .tabBar)
             .navigationBarTitleDisplayMode(.inline)
@@ -60,25 +60,37 @@ struct MovieDetailsView: View {
     }
 
     private enum Constants {
-        static let posterHeight: CGFloat = 560
+        static let posterHeight: CGFloat = 520
         static let gradientEndOpacity: CGFloat = 0
-        static let sectionHeaderFontSize: CGFloat = 18
-        static let plusImageName = "plus.circle.fill"
+
+        static let reviewSectionSpacing: CGFloat = 20
+        static let sectionHeaderFontSize: CGFloat = 19
 
         static let posterSpacing: CGFloat = 30
         static let genresSpacing: CGFloat = 9
-        static let reviewsSpacing: CGFloat = 18
+        static let reviewsSpacing: CGFloat = 20
         static let detailsSpacing: CGFloat = 25
 
         enum Content {
             static let spacing: CGFloat = 28
-            static let horizontalInsets: CGFloat = 18
+            static let horizontalInsets: CGFloat = 16
+        }
+
+        enum Header {
+            static let lineLimit = 4
+            static let minimumScaleFactor: CGFloat = 0.75
+        }
+
+        enum PlusButton {
+            static let size: CGFloat = 37
+            static let imageName = "plus.circle.fill"
         }
 
         enum ReviewDialog {
             static let blur: CGFloat = 2
             static let opacity: CGFloat = 0.4
             static let horizontalInsets: CGFloat = 25
+            static let backgroundOpacity: CGFloat = 0.35
         }
     }
 }
@@ -108,10 +120,11 @@ private extension MovieDetailsView {
                 if let reviewDialog = data.reviewDialog {
                     ReviewDialog(viewModel: reviewDialog) { event in
                         withAnimation {
-                            viewModel.handle(.reviewDialogSentEvent(event))
+                            viewModel.handle(.reviewDialog(event))
                         }
                     }
                     .padding(.horizontal, Constants.ReviewDialog.horizontalInsets)
+                    .backgroundColor(.black.opacity(Constants.ReviewDialog.backgroundOpacity))
                 }
             }
     }
@@ -170,6 +183,8 @@ private extension MovieDetailsView {
             Text(name)
                 .font(.title.bold())
                 .multilineTextAlignment(.center)
+                .lineLimit(Constants.Header.lineLimit)
+                .minimumScaleFactor(Constants.Header.minimumScaleFactor)
 
             Spacer()
 
@@ -194,7 +209,7 @@ private extension MovieDetailsView {
     }
 
     func reviewListView(viewModels: [ReviewViewModel], shouldShowAddReview: Bool) -> some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: Constants.reviewSectionSpacing) {
             HStack {
                 Text(LocalizedKey.Content.reviews)
                     .font(.system(size: Constants.sectionHeaderFontSize, weight: .bold))
@@ -207,8 +222,9 @@ private extension MovieDetailsView {
                             viewModel.handle(.addReviewTapped)
                         }
                     } label: {
-                        Image(systemName: Constants.plusImageName)
-                            .font(.title)
+                        Image(systemName: Constants.PlusButton.imageName)
+                            .resizable()
+                            .frame(width: Constants.PlusButton.size, height: Constants.PlusButton.size)
                             .foregroundStyle(.white, .appAccent)
                     }
                 }
@@ -232,4 +248,5 @@ private extension MovieDetailsView {
             movieId: "",
             showAuthSceneHandler: {}
         )
+        .environment(\.locale, .init(identifier: "ru"))
 }
