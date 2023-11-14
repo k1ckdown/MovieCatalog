@@ -56,7 +56,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
             email: profile.email,
             avatarLink: profile.avatarLink,
             name: profile.name,
-            birthDate: profile.birthDate.ISO8601Format(),
+            birthDate: DateFormatter.iso8601Full.string(from: profile.birthDate),
             gender: profile.gender == .male ? .male : .female)
 
         do {

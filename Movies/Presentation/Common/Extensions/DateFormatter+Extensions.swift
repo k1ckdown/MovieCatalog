@@ -20,9 +20,16 @@ extension DateFormatter {
         return formatter
     }()
 
+    static let iso8601FullWithMs: DateFormatter = {
+        let formatter = iso8601Full
+        formatter.dateFormat += ".SSSSSSS"
+        return formatter
+    }()
+
     static let iso8601Full: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        formatter.calendar = Calendar(identifier: .iso8601)
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
