@@ -49,9 +49,13 @@ struct TagLayout: Layout {
         var x: Double = 0
 
         for subview in subviews {
-            let subviewWidth = subview.sizeThatFits(.unspecified).width
+            var subviewWidth = subview.sizeThatFits(.unspecified).width
 
-            if (x + subviewWidth + spacing) > width {
+            if subview != subviews.last {
+                subviewWidth += spacing
+            }
+
+            if (x + subviewWidth) > width {
                 x = 0
                 numberOfRows += 1
             }
