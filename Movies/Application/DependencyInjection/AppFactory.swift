@@ -10,10 +10,22 @@ import Foundation
 final class AppFactory {
     private lazy var networkService = NetworkService()
     private lazy var keychainRepository = KeychainRepository()
-    private lazy var authRepository = AuthRepository(authDataSource: networkService)
-    private lazy var movieRepository = MovieRepository(movieRemoteDataSource: networkService)
-    private lazy var reviewRepository = ReviewRepository(reviewRemoteDataSource: networkService)
-    private lazy var profileRepository = ProfileRepository(profileRemoteDataSource: networkService)
+    private lazy var authRepository = AuthRepository(networkService: networkService)
+
+    private lazy var movieRepository: MovieRepository = {
+        let remoteDataSource = MovieRemoteDataSource(networkService: networkService)
+        return MovieRepository(movieRemoteDataSource: remoteDataSource)
+    }()
+
+    private lazy var reviewRepository: ReviewRepository = {
+        let remoteDataSource = ReviewRemoteDataSource(networkService: networkService)
+        return ReviewRepository(reviewRemoteDataSource: remoteDataSource)
+    }()
+
+    private lazy var profileRepository: ProfileRepository = {
+        let remoteDataSource = ProfileRemoteDataSource(networkService: networkService)
+        return ProfileRepository(profileRemoteDataSource: remoteDataSource)
+    }()
 }
 
 // MARK: - Profile

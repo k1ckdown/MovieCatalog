@@ -9,27 +9,41 @@ import Foundation
 
 final class AuthRepository {
 
-    private let authDataSource: AuthDataSource
+    private let networkService: NetworkService
 
-    init(authDataSource: AuthDataSource) {
-        self.authDataSource = authDataSource
+    init(networkService: NetworkService) {
+        self.networkService = networkService
     }
 }
 
 extension AuthRepository: AuthRepositoryProtocol {
 
-    func logOut(token: String) async throws {
-        let _ = try await authDataSource.logOut(token: token)
+    func logOut(_ token: String) async throws {
+        let config = AuthNetworkConfig.logout
+        try await networkService.request(with: config)
     }
 
-    func register(_ user: UserRegister) async throws -> String {
-        let tokenInfo = try await authDataSource.register(user: user)
+    func logIn(credentials: LoginCredentials) async throws -> String {
+        let data = try networkService.encode(credentials)
+        let config = AuthNetworkConfig.login(data)
+        let tokenInfo: TokenInfo = try await networkService.request(with: config)
+        
         return tokenInfo.token
     }
 
-    func logIn(username: String, password: String) async throws -> String {
-        let credentials = LoginCredentials(username: username, password: password)
-        let tokenInfo = try await authDataSource.logIn(credentials: credentials)
+    func register(user: UserRegister) async throws -> String {
+        let userDto = UserRegisterDTO(
+            userName: user.userName,
+            name: user.name,
+            password: user.password,
+            email: user.email,
+            birthDate: user.birthDate,
+            gender: user.gender == .female ? .female : .male
+        )
+
+        let data = try networkService.encode(userDto)
+        let config = AuthNetworkConfig.register(data)
+        let tokenInfo: TokenInfo = try await networkService.request(with: config)
 
         return tokenInfo.token
     }
