@@ -21,7 +21,7 @@ struct ReviewDTO: Decodable {
             rating: rating,
             reviewText: reviewText,
             isAnonymous: isAnonymous,
-            createDateTime: (try? Date(createDateTime, strategy: .iso8601)) ?? .now,
+            createDateTime: Date().convertFromServer(createDateTime),
             author: author?.toDomain()
         )
     }

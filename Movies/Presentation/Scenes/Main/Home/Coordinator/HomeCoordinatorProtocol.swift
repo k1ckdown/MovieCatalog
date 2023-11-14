@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 protocol HomeCoordinatorProtocol {
-    func showMovieDetails(_ movie: MovieDetails)
+    func showMovieDetails(_ movieId: String)
 }

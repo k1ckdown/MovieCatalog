@@ -14,4 +14,16 @@ final class ProfileCoordinator: Coordinator {
     }
 
     @Published var navigationPath = [Screen]()
+    private let showAuthSceneHandler: () -> Void
+
+    init(showAuthSceneHandler: @escaping () -> Void) {
+        self.showAuthSceneHandler = showAuthSceneHandler
+    }
+}
+
+extension ProfileCoordinator: ProfileCoordinatorProtocol {
+
+    func showAuthScene() {
+        showAuthSceneHandler()
+    }
 }

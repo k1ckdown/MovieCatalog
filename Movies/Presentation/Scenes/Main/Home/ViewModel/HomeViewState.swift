@@ -7,7 +7,7 @@
 
 enum HomeViewEvent {
     case onAppear
-    case willDisplayLastItem
+    case willDisplayLastMovie
     case onSelectMovie(String)
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ProfileRepositoryProtocol {
-    func getProfile() async throws -> Profile
-    func loadProfile(token: String) async throws
+    func removeProfile()
+    func getProfile(token: String) async throws -> Profile
     func updateProfile(_ profile: Profile, token: String) async throws
 }

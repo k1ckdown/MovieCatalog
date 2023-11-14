@@ -23,25 +23,12 @@ final class ScreenFactory: AuthCoordinatorFactory,
 // MARK: - FavoritesViewFactory
 
 extension ScreenFactory: FavoritesViewFactory {
-    func makeFavoritesView() -> FavoritesView {
+    func makeFavoritesView(coordinator: FavoritesCoordinatorProtocol) -> FavoritesView {
         let viewModel = FavoritesViewModel(
+            coordinator: coordinator,
             fetchFavoriteMoviesUseCase: appFactory.makeFetchFavoriteMoviesUseCase()
         )
         let view = FavoritesView(viewModel: viewModel)
-
-        return view
-    }
-}
-
-// MARK: - MovieDetailsFactory
-
-extension ScreenFactory: MovieDetailsViewFactory {
-    func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView {
-        let viewModel = MovieDetailsViewModel(
-            movie: movieDetails,
-            addFavouriteMovieUseCase: appFactory.makeAddFavouriteMovieUseCase()
-        )
-        let view = MovieDetailsView(viewModel: viewModel)
 
         return view
     }
@@ -53,7 +40,7 @@ extension ScreenFactory: HomeViewFactory {
     func makeHomeView(coordinator: HomeCoordinatorProtocol) -> HomeView {
         let viewModel = HomeViewModel(
             coordinator: coordinator,
-            fetchMoviesUseCase: appFactory.makeFetchMoviesUseCase()
+            fetchMovieListUseCase: appFactory.makeFetchMovieListUseCase()
         )
         let view = HomeView(viewModel: viewModel)
 
@@ -64,9 +51,11 @@ extension ScreenFactory: HomeViewFactory {
 // MARK: - ProfileViewFactory
 
 extension ScreenFactory: ProfileViewFactory {
-    func makeProfileView() -> ProfileView {
+    func makeProfileView(coordinator: ProfileCoordinatorProtocol) -> ProfileView {
         let viewModel = ProfileViewModel(
-            getProfileUseCase: appFactory.makeGetProfileUseCase(),
+            coordinator: coordinator,
+            logoutUseCase: appFactory.makeLogoutUseCase(),
+            getProfileUseCase: appFactory.makeFetchProfileUseCase(),
             updateProfileUseCase: appFactory.makeUpdateProfileUseCase(),
             validateEmailUseCase: appFactory.makeValidateEmailUseCase()
         )
@@ -132,6 +121,30 @@ extension ScreenFactory: PasswordRegistrationViewFactory {
             validatePasswordUseCase: appFactory.makeValidatePasswordUseCase()
         )
         let view = PasswordRegistrationView(viewModel: viewModel)
+
+        return view
+    }
+}
+
+// MARK: - MovieDetailsFactory
+
+extension ScreenFactory: MovieDetailsViewFactory {
+    func makeMovieDetailsView(
+        movieId: String,
+        showAuthSceneHandler: @escaping () -> Void
+    ) -> MovieDetailsView {
+        let router = MovieDetailsRouter(showAuthSceneHandler: showAuthSceneHandler)
+        let viewModel = MovieDetailsViewModel(
+            movieId: movieId,
+            router: router,
+            addReviewUseCase: appFactory.makeAddReviewUseCase(),
+            updateReviewUseCase: appFactory.makeUpdateReviewUseCase(),
+            deleteReviewUseCase: appFactory.makeDeleteReviewUseCase(),
+            fetchMovieUseCase: appFactory.makeFetchMovieUseCase(),
+            addFavoriteMovieUseCase: appFactory.makeAddFavoriteMovieUseCase(),
+            deleteFavoriteMovieUseCase: appFactory.makeDeleteFavoriteMovieUseCase()
+        )
+        let view = MovieDetailsView(viewModel: viewModel)
 
         return view
     }

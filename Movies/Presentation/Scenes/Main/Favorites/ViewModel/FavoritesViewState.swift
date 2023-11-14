@@ -12,10 +12,12 @@ enum FavoritesViewState: Equatable {
     case loaded(ViewData)
 
     struct ViewData: Equatable {
+        let shouldShowPlaceholder: Bool
         let movieItems: [MovieShortItemViewModel]
     }
 }
 
 enum FavoritesViewEvent {
     case onAppear
+    case onSelectMovie(String)
 }

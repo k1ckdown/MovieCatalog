@@ -16,7 +16,7 @@ struct FavoritesCoordinatorView: View {
     init(_ coordinator: FavoritesCoordinator, factory: FavoritesCoordinatorFactory) {
         self.factory = factory
         self.coordinator = coordinator
-        rootView = factory.makeFavoritesView()
+        rootView = factory.makeFavoritesView(coordinator: coordinator)
     }
 
     var body: some View {
@@ -29,8 +29,11 @@ struct FavoritesCoordinatorView: View {
     @ViewBuilder
     private func destination(_ screen: FavoritesCoordinator.Screen) -> some View {
         switch screen {
-        case .movieDetails(let movieDetails):
-            factory.makeMovieDetailsView(movieDetails: movieDetails)
+        case .movieDetails(let movieId):
+            factory.makeMovieDetailsView(
+                movieId: movieId,
+                showAuthSceneHandler: { coordinator.showAuthScene() }
+            )
         }
     }
 }

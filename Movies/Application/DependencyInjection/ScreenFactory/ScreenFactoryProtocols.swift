@@ -8,19 +8,15 @@
 import SwiftUI
 
 protocol ProfileViewFactory {
-    func makeProfileView() -> ProfileView
+    func makeProfileView(coordinator: ProfileCoordinatorProtocol) -> ProfileView
 }
 
 protocol FavoritesViewFactory {
-    func makeFavoritesView() -> FavoritesView
+    func makeFavoritesView(coordinator: FavoritesCoordinatorProtocol) -> FavoritesView
 }
 
 protocol HomeViewFactory {
     func makeHomeView(coordinator: HomeCoordinatorProtocol) -> HomeView
-}
-
-protocol MovieDetailsViewFactory {
-    func makeMovieDetailsView(movieDetails: MovieDetails) -> MovieDetailsView
 }
 
 protocol LoginViewFactory {
@@ -35,6 +31,13 @@ protocol PersonalInfoRegistrationViewFactory {
     func makePersonalInfoRegistrationView(
         coordinator: AuthCoordinatorProtocol
     ) -> PersonalInfoRegistrationView
+}
+
+protocol MovieDetailsViewFactory {
+    func makeMovieDetailsView(
+        movieId: String,
+        showAuthSceneHandler: @escaping () -> Void
+    ) -> MovieDetailsView
 }
 
 protocol PasswordRegistrationViewFactory {

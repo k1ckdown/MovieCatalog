@@ -10,10 +10,16 @@ import Foundation
 final class FavoritesViewModel: ViewModel {
 
     @Published private(set) var state: FavoritesViewState
+
+    private let coordinator: FavoritesCoordinatorProtocol
     private let fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase
 
-    init(fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase) {
+    init(
+        coordinator: FavoritesCoordinatorProtocol,
+        fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase
+    ) {
         state = .idle
+        self.coordinator = coordinator
         self.fetchFavoriteMoviesUseCase = fetchFavoriteMoviesUseCase
     }
 
@@ -21,6 +27,9 @@ final class FavoritesViewModel: ViewModel {
         switch event {
         case .onAppear:
             Task { await fetchMovies() }
+
+        case .onSelectMovie(let id):
+            coordinator.showMovieDetails(id)
         }
     }
 }
@@ -28,18 +37,24 @@ final class FavoritesViewModel: ViewModel {
 private extension FavoritesViewModel {
 
     func fetchMovies() async {
-        state = .loading
+        if case .idle = state {
+            state = .loading
+        }
 
         do {
             let movies = try await fetchFavoriteMoviesUseCase.execute()
             let itemViewModels = movies.map { makeMovieItemViewModel($0) }
-            state = .loaded(.init(movieItems: itemViewModels))
+            state = .loaded(.init(shouldShowPlaceholder: itemViewModels.isEmpty, movieItems: itemViewModels))
         } catch {
-            state = .error(error.localizedDescription)
+            if error as? AuthError == .unauthorized {
+                coordinator.showAuthScene()
+            } else {
+                state = .error(error.localizedDescription)
+            }
         }
     }
 
     func makeMovieItemViewModel(_ movie: MovieDetails) -> MovieShortItemViewModel {
-        .init(rating: movie.userRating, name: movie.name, imageUrl: movie.poster)
+        .init(id: movie.id, rating: movie.rating, name: movie.name, imageUrl: movie.poster)
     }
 }

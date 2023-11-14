@@ -64,6 +64,23 @@
         }
       }
     },
+    "AddFavorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select your favorite movie in the catalog and add it to your favorites"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите понравившийся фильм в каталоге и добавьте его в любимые"
+          }
+        }
+      }
+    },
     "AgeLimit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -94,6 +111,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Уже есть аккаунт?"
+          }
+        }
+      }
+    },
+    "AnonymousReview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anonymous review"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Анонимный отзыв"
+          }
+        }
+      }
+    },
+    "AnonymousUser" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anonymous user"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Анонимный пользователь"
           }
         }
       }
@@ -216,6 +267,23 @@
         }
       }
     },
+    "DeleteReview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete a review"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить отзыв"
+          }
+        }
+      }
+    },
     "Director" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -229,6 +297,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Режиссер"
+          }
+        }
+      }
+    },
+    "Edit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактировать"
           }
         }
       }
@@ -454,6 +539,23 @@
         }
       }
     },
+    "InvalidLink" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid link"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Некорректная ссылка"
+          }
+        }
+      }
+    },
     "InvalidPassword" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -501,6 +603,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Может содержать только буквы или цифры"
+          }
+        }
+      }
+    },
+    "LeaveReview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leave a review"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оставить отзыв"
           }
         }
       }
@@ -671,6 +790,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Имя"
+          }
+        }
+      }
+    },
+    "NoFavorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any favorite movies yet"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У вас пока нет любимых фильмов."
           }
         }
       }
