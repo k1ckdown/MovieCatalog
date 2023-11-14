@@ -21,7 +21,7 @@ struct ReviewDTO: Decodable {
             rating: rating,
             reviewText: reviewText,
             isAnonymous: isAnonymous,
-            createDateTime: Date().convertFromServer(createDateTime),
+            createDateTime: DateFormatter.iso8601FullWithMs.date(from: createDateTime) ?? .now,
             author: author?.toDomain()
         )
     }
