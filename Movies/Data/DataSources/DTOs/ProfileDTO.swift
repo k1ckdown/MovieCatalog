@@ -23,7 +23,7 @@ struct ProfileDTO: Codable {
             email: email,
             avatarLink: avatarLink ?? "",
             name: name,
-            birthDate: (try? Date(birthDate, strategy: .iso8601)) ?? .now,
+            birthDate: DateFormatter.iso8601Full.date(from: birthDate) ?? .now,
             gender: gender == .male ? .male : .female
         )
     }
