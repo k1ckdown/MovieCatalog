@@ -163,10 +163,15 @@ private extension MovieDetailsView {
 private extension MovieDetailsView {
 
     func detailsView(model: MovieDetailsView.Model) -> some View {
-        GeometryReader { scrollGeometry in
+        GeometryReader { geometry in
             ScrollView(.vertical) {
                 VStack(spacing: Constants.posterSpacing) {
                     posterView(model.poster)
+                        .overlay { GeometryReader { geometry in
+                            Color.background
+                                .opacity(1 - Double(geometry.frame(in: .global).maxY
+                                                    / (Constants.posterHeight + geometry.safeAreaInsets.top)))
+                        }}
 
                     VStack(spacing: Constants.Content.spacing) {
                         headerView(
@@ -175,7 +180,7 @@ private extension MovieDetailsView {
                             isFavorite: model.isFavorite
                         )
                         .onPreferenceChange(HeaderRectPreferenceKey.self) { value in
-                            isHeaderBarShowing = value.maxY <= scrollGeometry.safeAreaInsets.top
+                            isHeaderBarShowing = value.maxY <= geometry.safeAreaInsets.top
                         }
 
                         ExpandableText(text: model.description)
