@@ -12,4 +12,7 @@ import CoreData
 @objc(CDGenre)
 public class CDGenre: NSManagedObject {
 
+    func toDomain() -> Genre {
+        .init(id: id, name: name)
+    }
 }

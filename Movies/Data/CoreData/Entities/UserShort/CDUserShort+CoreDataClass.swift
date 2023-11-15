@@ -12,4 +12,11 @@ import CoreData
 @objc(CDUserShort)
 public class CDUserShort: NSManagedObject {
 
+    func toDomain() -> UserShort {
+        .init(
+            userId: userId,
+            nickName: nickname,
+            avatar: avatar
+        )
+    }
 }

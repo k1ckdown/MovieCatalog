@@ -129,6 +129,9 @@
 		49A3D3F62B049B2F006FAC1A /* CDUserShort+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3EE2B049B2F006FAC1A /* CDUserShort+CoreDataClass.swift */; };
 		49A3D3F72B049B2F006FAC1A /* CDUserShort+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3EF2B049B2F006FAC1A /* CDUserShort+CoreDataProperties.swift */; };
 		49A3D3F92B049BE3006FAC1A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3F82B049BE3006FAC1A /* CoreDataManager.swift */; };
+		49A3D3FC2B049E50006FAC1A /* ProfileLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3FB2B049E50006FAC1A /* ProfileLocalDataSource.swift */; };
+		49A3D4042B04A3BC006FAC1A /* CDProfile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D4022B04A3BC006FAC1A /* CDProfile+CoreDataClass.swift */; };
+		49A3D4052B04A3BC006FAC1A /* CDProfile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D4032B04A3BC006FAC1A /* CDProfile+CoreDataProperties.swift */; };
 		49A3FACA2AED798E0043512C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAC92AED798E0043512C /* ProfileView.swift */; };
 		49A3FACD2AED79AA0043512C /* ProfileViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FACC2AED79AA0043512C /* ProfileViewState.swift */; };
 		49A3FACF2AED7ACB0043512C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */; };
@@ -320,6 +323,9 @@
 		49A3D3EE2B049B2F006FAC1A /* CDUserShort+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDUserShort+CoreDataClass.swift"; sourceTree = "<group>"; };
 		49A3D3EF2B049B2F006FAC1A /* CDUserShort+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDUserShort+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		49A3D3F82B049BE3006FAC1A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		49A3D3FB2B049E50006FAC1A /* ProfileLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLocalDataSource.swift; sourceTree = "<group>"; };
+		49A3D4022B04A3BC006FAC1A /* CDProfile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDProfile+CoreDataClass.swift"; sourceTree = "<group>"; };
+		49A3D4032B04A3BC006FAC1A /* CDProfile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDProfile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		49A3FAC92AED798E0043512C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		49A3FACC2AED79AA0043512C /* ProfileViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewState.swift; sourceTree = "<group>"; };
 		49A3FACE2AED7ACB0043512C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -430,6 +436,7 @@
 		490872582B03915300770CAE /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				49330CC82ADD277E00BFA4C6 /* DTOs */,
 				49E64D9C2AFB9F3F0048C668 /* ProfileRemoteDataSource.swift */,
 				49E64D9E2AFB9F500048C668 /* ReviewRemoteDataSource.swift */,
 				49E64D982AFB9EC80048C668 /* MovieRemoteDataSource.swift */,
@@ -1010,6 +1017,23 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
+		49A3D3FA2B049E2E006FAC1A /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				49A3D3FB2B049E50006FAC1A /* ProfileLocalDataSource.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		49A3D4012B04A395006FAC1A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				49A3D4022B04A3BC006FAC1A /* CDProfile+CoreDataClass.swift */,
+				49A3D4032B04A3BC006FAC1A /* CDProfile+CoreDataProperties.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		49A3FACB2AED799E0043512C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1177,6 +1201,7 @@
 			isa = PBXGroup;
 			children = (
 				49C48E5B2B0491F800FB4B1D /* Movie.xcdatamodeld */,
+				49A3D4012B04A395006FAC1A /* Profile */,
 				49C48E712B0495F900FB4B1D /* UserShort */,
 				49C48E702B0495F200FB4B1D /* Review */,
 				49C48E6F2B0495EC00FB4B1D /* Genre */,
@@ -1270,8 +1295,8 @@
 		49E64D972AFB9E3C0048C668 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				49A3D3FA2B049E2E006FAC1A /* Local */,
 				490872582B03915300770CAE /* Remote */,
-				49330CC82ADD277E00BFA4C6 /* DTOs */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -1454,6 +1479,7 @@
 				4961F48F2AE0490B00A717AB /* FormTextFieldStyle.swift in Sources */,
 				4961F4772AE021A200A717AB /* LoginViewModel.swift in Sources */,
 				49EB265D2AECF2EF00FFD335 /* HomeView.swift in Sources */,
+				49A3D4042B04A3BC006FAC1A /* CDProfile+CoreDataClass.swift in Sources */,
 				49E64D992AFB9EC80048C668 /* MovieRemoteDataSource.swift in Sources */,
 				49330CEF2ADD663B00BFA4C6 /* NetworkService.swift in Sources */,
 				49A050FA2B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift in Sources */,
@@ -1552,6 +1578,7 @@
 				490297C22AEC417C000AFDB4 /* RegisterUserUseCase.swift in Sources */,
 				49A3FAE82AEDBB270043512C /* FetchProfileUseCase.swift in Sources */,
 				49330CF42ADD7C7B00BFA4C6 /* NetworkConfig.swift in Sources */,
+				49A3D4052B04A3BC006FAC1A /* CDProfile+CoreDataProperties.swift in Sources */,
 				49115C292AEF702500B50FB9 /* MovieDetailsView.swift in Sources */,
 				49E890542AFD0786003C4F4F /* CacheAsyncImage.swift in Sources */,
 				4961F48D2AE045A700A717AB /* SecureInputView.swift in Sources */,
@@ -1619,6 +1646,7 @@
 				49EB26622AED01E200FFD335 /* MovieShort.swift in Sources */,
 				49E64D922AFB98ED0048C668 /* AuthRepository.swift in Sources */,
 				49A3FAE52AEDAEE70043512C /* ProfileRepository.swift in Sources */,
+				49A3D3FC2B049E50006FAC1A /* ProfileLocalDataSource.swift in Sources */,
 				490297CD2AEC5DFC000AFDB4 /* LoginUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
