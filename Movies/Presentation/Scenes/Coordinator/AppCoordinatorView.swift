@@ -33,7 +33,7 @@ struct AppCoordinatorView: View {
         case .loading:
             ProgressView()
                 .tint(.appAccent)
-                .appBackground()
+                .backgroundColor()
 
         case .auth:
             AuthCoordinatorView(

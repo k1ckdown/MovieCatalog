@@ -37,7 +37,7 @@ extension View {
 
     func mediumLabeled(_ title: LocalizedStringKey) -> some View {
         modifier(
-            LabeledViewModifier(title: title, fontSize: 18, fontWeight: .bold)
+            LabeledViewModifier(title: title, fontSize: 19, fontWeight: .bold)
         )
     }
 }

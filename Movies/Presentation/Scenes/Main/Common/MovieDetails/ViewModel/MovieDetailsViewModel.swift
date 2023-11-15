@@ -62,7 +62,7 @@ final class MovieDetailsViewModel: ViewModel {
         case .editReviewTapped:
             state = state.editReview()
 
-        case .reviewDialogSentEvent(let reviewDialogEvent):
+        case .reviewDialog(let reviewDialogEvent):
             handleReviewDialogEvent(reviewDialogEvent)
 
         case .addReviewTapped:
@@ -115,7 +115,7 @@ private extension MovieDetailsViewModel {
             let movie = try await fetchMovieUseCase.execute(movieId: movieId)
             state = .loaded(getViewData(for: movie))
         } catch {
-            state = .error(error.localizedDescription)
+            handleError(error)
         }
     }
 
@@ -132,7 +132,7 @@ private extension MovieDetailsViewModel {
     }
 
     func deleteReview() async {
-        guard 
+        guard
             case .loaded(let viewData) = state,
             let selectedReview = viewData.selectedReview
         else { return }
@@ -206,14 +206,17 @@ private extension MovieDetailsViewModel {
             reviewText: review.reviewText,
             createDateTime: review.createDateTime,
             authorNickname: review.author?.nickName,
-            authorAvatarLink: review.author?.avatar
+            authorAvatarLink: review.author?.avatar,
+            shouldShowAnonymous: review.isAnonymous && review.isUserReview == false
         )
     }
 
     func getViewData(for movie: MovieDetails) -> MovieDetailsViewState.ViewData {
         let aboutMovieViewModel = makeAboutMovieViewModel(movie)
-        let reviewViewModels = movie.reviews?.compactMap { makeReviewViewModel($0) }
         let genreViewModels = makeGenreViewModels(movie.genres ?? [])
+        let reviewViewModels = movie.reviews?.compactMap { review in
+            makeReviewViewModel(review)
+        }.sorted { $0.isUserReview && $1.isUserReview == false }
 
         let model = MovieDetailsView.Model(
             name: movie.name ?? LocalizedKey.Content.notAvailable,

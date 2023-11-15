@@ -132,6 +132,23 @@
         }
       }
     },
+    "AnonymousUser" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anonymous user"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Анонимный пользователь"
+          }
+        }
+      }
+    },
     "AvatarLink" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1078,6 +1095,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Погрузись в мир кино"
+          }
+        }
+      }
+    },
+    "WriteReview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write a review"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Напишите отзыв"
           }
         }
       }

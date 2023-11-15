@@ -14,7 +14,7 @@ struct MovieDetailsItemViewModel: Identifiable, Equatable {
     let country: String
     let poster: String?
     let rating: Double
-    let userRating: Int?
+    var userRating: Int?
     let genres: [GenreViewModel]
     let shouldShowGenresEllipsis: Bool
     

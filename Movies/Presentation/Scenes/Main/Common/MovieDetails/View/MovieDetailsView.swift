@@ -9,22 +9,25 @@ import SwiftUI
 
 struct MovieDetailsView: View {
 
+    @State private var isHeaderBarShowing = false
     @State private var tabBarVisibility = Visibility.visible
+
     @StateObject private var viewModel: MovieDetailsViewModel
 
     init(viewModel: MovieDetailsViewModel) {
-        _viewModel = .init(wrappedValue: viewModel)
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
         contentView
-            .appBackground()
+            .backgroundColor()
             .toolbarRole(.editor)
             .toolbar(tabBarVisibility, for: .tabBar)
             .navigationBarTitleDisplayMode(.inline)
             .redacted(if: viewModel.state == .loading)
             .onAppear() {
                 viewModel.handle(.onAppear)
+
                 withAnimation(.spring) {
                     tabBarVisibility = .hidden
                 }
@@ -59,25 +62,49 @@ struct MovieDetailsView: View {
         )
     }
 
+    private struct HeaderRectPreferenceKey: PreferenceKey {
+        typealias Value = CGRect
+
+        static var defaultValue = CGRect.zero
+
+        static func reduce(value: inout CGRect, nextValue: () -> CGRect) {
+            value = nextValue()
+        }
+    }
+
     private enum Constants {
-        static let posterHeight: CGFloat = 560
+        static let posterHeight: CGFloat = 520
         static let gradientEndOpacity: CGFloat = 0
-        static let sectionHeaderFontSize: CGFloat = 18
+
+        static let reviewSectionSpacing: CGFloat = 20
+        static let sectionHeaderFontSize: CGFloat = 19
 
         static let posterSpacing: CGFloat = 30
         static let genresSpacing: CGFloat = 9
-        static let reviewsSpacing: CGFloat = 18
+        static let reviewsSpacing: CGFloat = 20
         static let detailsSpacing: CGFloat = 25
 
         enum Content {
             static let spacing: CGFloat = 28
-            static let horizontalInsets: CGFloat = 18
+            static let horizontalInsets: CGFloat = 16
+        }
+
+        enum Header {
+            static let lineLimit = 4
+            static let barLineLimit = 1
+            static let minimumScaleFactor: CGFloat = 0.75
+        }
+
+        enum PlusButton {
+            static let size: CGFloat = 37
+            static let imageName = "plus.circle.fill"
         }
 
         enum ReviewDialog {
             static let blur: CGFloat = 2
             static let opacity: CGFloat = 0.4
             static let horizontalInsets: CGFloat = 25
+            static let backgroundOpacity: CGFloat = 0.35
         }
     }
 }
@@ -92,6 +119,20 @@ private extension MovieDetailsView {
             .opacity(data.isReviewDialogPresented ? Constants.ReviewDialog.opacity : 1)
             .blur(radius: data.isReviewDialogPresented ? Constants.ReviewDialog.blur : 0)
             .scrollIndicators(.hidden)
+            .toolbar {
+                if isHeaderBarShowing {
+                    ToolbarItem(placement: .principal) {
+                        Text(data.movie.name)
+                            .font(.title2.bold())
+                            .lineLimit(Constants.Header.barLineLimit)
+                            .minimumScaleFactor(Constants.Header.minimumScaleFactor)
+                    }
+
+                    ToolbarItem(placement: .topBarTrailing) {
+                        favoriteButton(.small, isSet: data.movie.isFavorite)
+                    }
+                }
+            }
             .confirmationDialog("", isPresented: isConfirmationDialogPresented) {
                 Button(LocalizedKey.Content.Action.edit) {
                     withAnimation {
@@ -106,11 +147,10 @@ private extension MovieDetailsView {
             .overlay(alignment: .center) {
                 if let reviewDialog = data.reviewDialog {
                     ReviewDialog(viewModel: reviewDialog) { event in
-                        withAnimation {
-                            viewModel.handle(.reviewDialogSentEvent(event))
-                        }
+                        viewModel.handle(.reviewDialog(event))
                     }
                     .padding(.horizontal, Constants.ReviewDialog.horizontalInsets)
+                    .backgroundColor(.black.opacity(Constants.ReviewDialog.backgroundOpacity))
                 }
             }
     }
@@ -121,36 +161,49 @@ private extension MovieDetailsView {
 private extension MovieDetailsView {
 
     func detailsView(model: MovieDetailsView.Model) -> some View {
-        ScrollView(.vertical) {
-            VStack(spacing: Constants.posterSpacing) {
-                posterView(model.poster)
+        GeometryReader { geometry in
+            ScrollView(.vertical) {
+                VStack(spacing: Constants.posterSpacing) {
+                    posterView(model.poster)
+                        .overlay { GeometryReader { geometry in
+                            Color.background
+                                .opacity(1 - Double(geometry.frame(in: .global).maxY
+                                                    / (Constants.posterHeight + geometry.safeAreaInsets.top)))
+                        }}
 
-                VStack(spacing: Constants.Content.spacing) {
-                    headerView(
-                        name: model.name,
-                        rating: model.rating,
-                        isFavorite: model.isFavorite
-                    )
-
-                    ExpandableText(text: model.description)
-
-                    VStack(alignment: .leading, spacing: Constants.detailsSpacing) {
-                        genreListView(genres: model.genres)
-                        aboutMovieView(viewModel: model.aboutMovieViewModel)
-                        reviewListView(
-                            viewModels: model.reviewViewModels,
-                            shouldShowAddReview: model.userHasReview == false
+                    VStack(spacing: Constants.Content.spacing) {
+                        headerView(
+                            name: model.name,
+                            rating: model.rating,
+                            isFavorite: model.isFavorite
                         )
+                        .onPreferenceChange(HeaderRectPreferenceKey.self) { value in
+                            isHeaderBarShowing = value.maxY <= geometry.safeAreaInsets.top
+                        }
+
+                        ExpandableText(text: model.description)
+
+                        VStack(alignment: .leading, spacing: Constants.detailsSpacing) {
+                            genreListView(genres: model.genres)
+                            aboutMovieView(viewModel: model.aboutMovieViewModel)
+                            reviewListView(
+                                viewModels: model.reviewViewModels,
+                                shouldShowAddReview: model.userHasReview == false
+                            )
+                        }
                     }
+                    .padding(.horizontal, Constants.Content.horizontalInsets)
                 }
-                .padding(.horizontal, Constants.Content.horizontalInsets)
+                .disabled(viewModel.state == .loading)
             }
         }
     }
 
     func posterView(_ poster: String?) -> some View {
         MovieAsyncImage(urlString: poster, isShowingProgressView: true)
+            .scaledToFill()
             .frame(height: Constants.posterHeight)
+            .clipped()
             .overlay {
                 LinearGradient(
                     colors: [.background, .background.opacity(Constants.gradientEndOpacity)],
@@ -158,6 +211,12 @@ private extension MovieDetailsView {
                     endPoint: .center
                 )
             }
+    }
+
+    func favoriteButton(_ size: FavoriteButton.Size, isSet: Bool) -> some View {
+        FavoriteButton(size: size, isSet: isSet) {
+            viewModel.handle(.favoriteTapped)
+        }
     }
 
     func headerView(name: String, rating: Double, isFavorite: Bool) -> some View {
@@ -169,12 +228,18 @@ private extension MovieDetailsView {
             Text(name)
                 .font(.title.bold())
                 .multilineTextAlignment(.center)
+                .lineLimit(Constants.Header.lineLimit)
+                .minimumScaleFactor(Constants.Header.minimumScaleFactor)
+                .background(GeometryReader { geometry in
+                    Color.clear.preference(
+                        key: HeaderRectPreferenceKey.self,
+                        value: geometry.frame(in: .global)
+                    )
+                })
 
             Spacer()
 
-            FavoriteButton(isSet: isFavorite) {
-                viewModel.handle(.favoriteTapped)
-            }
+            favoriteButton(.medium, isSet: isFavorite)
         }
     }
 
@@ -193,7 +258,7 @@ private extension MovieDetailsView {
     }
 
     func reviewListView(viewModels: [ReviewViewModel], shouldShowAddReview: Bool) -> some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: Constants.reviewSectionSpacing) {
             HStack {
                 Text(LocalizedKey.Content.reviews)
                     .font(.system(size: Constants.sectionHeaderFontSize, weight: .bold))
@@ -206,8 +271,9 @@ private extension MovieDetailsView {
                             viewModel.handle(.addReviewTapped)
                         }
                     } label: {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.title)
+                        Image(systemName: Constants.PlusButton.imageName)
+                            .resizable()
+                            .frame(width: Constants.PlusButton.size, height: Constants.PlusButton.size)
                             .foregroundStyle(.white, .appAccent)
                     }
                 }
@@ -226,9 +292,12 @@ private extension MovieDetailsView {
 
 
 #Preview {
-    ScreenFactory(appFactory: .init())
-        .makeMovieDetailsView(
-            movieId: "",
-            showAuthSceneHandler: {}
-        )
+    NavigationStack {
+        ScreenFactory(appFactory: .init())
+            .makeMovieDetailsView(
+                movieId: "",
+                showAuthSceneHandler: {}
+            )
+            .environment(\.locale, .init(identifier: "ru"))
+    }
 }

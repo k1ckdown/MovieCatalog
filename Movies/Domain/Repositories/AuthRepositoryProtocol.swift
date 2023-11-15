@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AuthRepositoryProtocol {
-    func logOut(token: String) async throws
-    func register(_ user: UserRegister) async throws -> String
-    func logIn(username: String, password: String) async throws -> String
+    func logOut(_ token: String) async throws
+    func register(user: UserRegister) async throws -> String
+    func logIn(credentials: LoginCredentials) async throws -> String
 }

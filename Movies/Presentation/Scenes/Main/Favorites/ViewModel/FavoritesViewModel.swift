@@ -11,7 +11,6 @@ final class FavoritesViewModel: ViewModel {
 
     @Published private(set) var state: FavoritesViewState
 
-    private var movies = [MovieDetails]()
     private let coordinator: FavoritesCoordinatorProtocol
     private let fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase
 
@@ -38,12 +37,14 @@ final class FavoritesViewModel: ViewModel {
 private extension FavoritesViewModel {
 
     func fetchMovies() async {
-        state = .loading
+        if case .idle = state {
+            state = .loading
+        }
 
         do {
-            movies = try await fetchFavoriteMoviesUseCase.execute()
+            let movies = try await fetchFavoriteMoviesUseCase.execute()
             let itemViewModels = movies.map { makeMovieItemViewModel($0) }
-            state = .loaded(.init(movieItems: itemViewModels))
+            state = .loaded(.init(shouldShowPlaceholder: itemViewModels.isEmpty, movieItems: itemViewModels))
         } catch {
             if error as? AuthError == .unauthorized {
                 coordinator.showAuthScene()

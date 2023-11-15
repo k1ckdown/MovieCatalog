@@ -12,7 +12,7 @@ struct DatePickerField: View {
     @Binding var date: Date
 
     var body: some View {
-        Text(date.formatToDateMonthYear())
+        Text(DateFormatter.dateOnly.string(from: date))
             .frame(height: Constants.Label.height)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading, Constants.Label.leadingInset)

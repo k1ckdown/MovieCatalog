@@ -39,7 +39,7 @@ struct GenreTag: View {
             case .note:
                 return .subheadline
             case .body:
-                return .callout.weight(.medium)
+                return .body.weight(.medium)
             }
         }
     }

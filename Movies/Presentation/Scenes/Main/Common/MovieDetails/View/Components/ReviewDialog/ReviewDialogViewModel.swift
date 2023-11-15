@@ -16,7 +16,7 @@ struct ReviewDialogViewModel: Equatable {
     init() {
         rating = 0
         text = ""
-        isAnonymous = false
+        isAnonymous = true
     }
 
     init(_ reviewViewModel: ReviewViewModel) {
