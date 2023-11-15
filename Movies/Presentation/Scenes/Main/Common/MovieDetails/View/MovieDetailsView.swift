@@ -47,7 +47,7 @@ struct MovieDetailsView: View {
             loadedView(data: viewData)
 
         case .error(let message):
-            Text(message)
+            ErrorView(message: message)
         }
     }
 

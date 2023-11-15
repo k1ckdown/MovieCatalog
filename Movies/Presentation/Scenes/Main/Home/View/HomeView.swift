@@ -41,7 +41,7 @@ struct HomeView: View {
             )
 
         case .error(let message):
-            Text(message)
+            ErrorView(message: message)
         }
     }
 

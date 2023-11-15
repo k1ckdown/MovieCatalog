@@ -29,7 +29,7 @@ struct FavoritesView: View {
             EmptyView()
 
         case .error(let message):
-            Text(message)
+            ErrorView(message: message)
 
         case .loading:
             collectionView(
