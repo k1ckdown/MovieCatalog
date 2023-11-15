@@ -37,6 +37,7 @@ final class ProfileRepository {
 extension ProfileRepository: ProfileRepositoryProtocol {
 
     func removeProfile() {
+        profile = nil
         try? localDataSource.deleteProfile()
     }
 
@@ -47,6 +48,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
 
         let profileDto = try await profileRemoteDataSource.fetchProfile(token: token)
         let profile = profileDto.toDomain()
+        self.profile = profile
         try? localDataSource.saveProfile(profile)
 
         return profile
