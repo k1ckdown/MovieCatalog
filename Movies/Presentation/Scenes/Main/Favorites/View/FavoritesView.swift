@@ -81,6 +81,7 @@ private extension FavoritesView {
             }
             .padding(.vertical)
             .padding(.horizontal, Constants.Collection.horizontalInset)
+            .disabled(viewModel.state == .loading)
         }
         .scrollIndicators(.hidden)
     }

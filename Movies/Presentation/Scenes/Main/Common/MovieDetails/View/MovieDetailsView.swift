@@ -194,6 +194,7 @@ private extension MovieDetailsView {
                     }
                     .padding(.horizontal, Constants.Content.horizontalInsets)
                 }
+                .disabled(viewModel.state == .loading)
             }
         }
     }

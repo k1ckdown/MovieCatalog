@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @StateObject var viewModel: HomeViewModel
+    @ObservedObject private(set) var viewModel: HomeViewModel
 
     var body: some View {
         ZStack {
@@ -73,6 +73,7 @@ private extension HomeView {
                     itemViewModels: Array(movieItems[Constants.numberOfCards...])
                 )
             }
+            .disabled(viewModel.state == .loading)
         }
         .scrollIndicators(.hidden)
     }
@@ -90,8 +91,10 @@ private extension HomeView {
                         viewModel.handle(.onSelectMovie(cardViewModel.id))
                     }
             }
+            .scaledToFill()
         }
         .frame(height: Constants.moviePageHeight)
+        .clipped()
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
         .listRowInsets(EdgeInsets())
@@ -138,10 +141,15 @@ private extension HomeView {
                             viewModel.handle(.onSelectMovie(itemViewModel.id))
                         }
                 }
+
                 loadMoreView(loadMore)
             }
             .padding(.bottom)
         }
         .padding(.horizontal)
     }
+}
+
+#Preview {
+    ScreenFactory(appFactory: .init()).makeHomeView(coordinator: HomeCoordinator(showAuthSceneHandler: {}))
 }
