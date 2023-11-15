@@ -1099,6 +1099,23 @@
         }
       }
     },
+    "WriteReview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write a review"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Напишите отзыв"
+          }
+        }
+      }
+    },
     "Year" : {
       "extractionState" : "manual",
       "localizations" : {
