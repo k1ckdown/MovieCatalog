@@ -147,9 +147,7 @@ private extension MovieDetailsView {
             .overlay(alignment: .center) {
                 if let reviewDialog = data.reviewDialog {
                     ReviewDialog(viewModel: reviewDialog) { event in
-                        withAnimation {
-                            viewModel.handle(.reviewDialog(event))
-                        }
+                        viewModel.handle(.reviewDialog(event))
                     }
                     .padding(.horizontal, Constants.ReviewDialog.horizontalInsets)
                     .backgroundColor(.black.opacity(Constants.ReviewDialog.backgroundOpacity))

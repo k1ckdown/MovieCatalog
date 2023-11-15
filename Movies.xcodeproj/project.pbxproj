@@ -150,6 +150,7 @@
 		49C3CEA82AEA603D009FACF4 /* PasswordRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEA72AEA603D009FACF4 /* PasswordRegistrationViewModel.swift */; };
 		49C3CEAF2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEAE2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift */; };
 		49C3CEBA2AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEB92AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift */; };
+		49C48E532B04816D00FB4B1D /* TextEditorWithPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C48E522B04816D00FB4B1D /* TextEditorWithPlaceholder.swift */; };
 		49C654592AF44B6800920771 /* HomeViewState+Mutating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C654582AF44B6800920771 /* HomeViewState+Mutating.swift */; };
 		49CD15C42AEACE89003E6ADC /* ValidateUsernameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD15C32AEACE89003E6ADC /* ValidateUsernameUseCase.swift */; };
 		49CD15C62AEAD21A003E6ADC /* ValidatePasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD15C52AEAD21A003E6ADC /* ValidatePasswordUseCase.swift */; };
@@ -330,6 +331,7 @@
 		49C3CEA72AEA603D009FACF4 /* PasswordRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRegistrationViewModel.swift; sourceTree = "<group>"; };
 		49C3CEAE2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactoryProtocols.swift; sourceTree = "<group>"; };
 		49C3CEB92AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryProtocols.swift; sourceTree = "<group>"; };
+		49C48E522B04816D00FB4B1D /* TextEditorWithPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorWithPlaceholder.swift; sourceTree = "<group>"; };
 		49C654582AF44B6800920771 /* HomeViewState+Mutating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewState+Mutating.swift"; sourceTree = "<group>"; };
 		49CD15C32AEACE89003E6ADC /* ValidateUsernameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUsernameUseCase.swift; sourceTree = "<group>"; };
 		49CD15C52AEAD21A003E6ADC /* ValidatePasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatePasswordUseCase.swift; sourceTree = "<group>"; };
@@ -1250,6 +1252,7 @@
 				493BB4E62AE1901D004C879F /* DatePickerField.swift */,
 				49EB266C2AED272D00FFD335 /* RatingTagView.swift */,
 				4964A5672AF0576A0039F56B /* ExpandableText.swift */,
+				49C48E522B04816D00FB4B1D /* TextEditorWithPlaceholder.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1357,6 +1360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49330CFD2ADD85E500BFA4C6 /* UserNetworkConfig.swift in Sources */,
+				49C48E532B04816D00FB4B1D /* TextEditorWithPlaceholder.swift in Sources */,
 				4964A5682AF0576A0039F56B /* ExpandableText.swift in Sources */,
 				495583192AF0078700E3AA69 /* MovieDetailsViewState.swift in Sources */,
 				497831682AEED4E600860C41 /* MovieRepositoryProtocol.swift in Sources */,
