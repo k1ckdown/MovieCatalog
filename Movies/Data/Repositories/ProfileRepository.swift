@@ -24,6 +24,7 @@ final class ProfileRepository {
     }
 
     private var profile: Profile?
+    private let local = ProfileLocalDataSource()
     private let remoteDataSource: ProfileRemoteDataSource
 
     init(remoteDataSource: ProfileRemoteDataSource) {
@@ -35,6 +36,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
 
     func removeProfile() {
         profile = nil
+//        try? local.deleteProfile()
     }
 
     func getProfile(token: String) async throws -> Profile {
@@ -42,8 +44,14 @@ extension ProfileRepository: ProfileRepositoryProtocol {
             return loadedProfile
         }
 
+//        if let loadedProfile = local.fetchProfile()?.toDomain() {
+//            return loadedProfile
+//        }
+
         let profileDto = try await remoteDataSource.fetchProfile(token: token)
         let profile = profileDto.toDomain()
+
+//        try? local.saveProfile(profile)
         self.profile = profile
 
         return profile

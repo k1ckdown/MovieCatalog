@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MovieRepository {
+final class MovieRepository: @unchecked Sendable {
 
     enum MovieRepositoryError: Error {
         case maxPagesReached

@@ -34,6 +34,9 @@
 		49295E462AEFC4DB00F09ABE /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49295E452AEFC4DB00F09ABE /* ReviewViewModel.swift */; };
 		49295E482AEFD5A000F09ABE /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49295E472AEFD5A000F09ABE /* ReviewView.swift */; };
 		49295E4A2AEFD96300F09ABE /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49295E492AEFD96300F09ABE /* DateFormatter+Extensions.swift */; };
+		4932433D2B0623DA00E607EB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4932433C2B0623DA00E607EB /* Realm */; };
+		4932433F2B0623DA00E607EB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4932433E2B0623DA00E607EB /* RealmSwift */; };
+		493243432B06244D00E607EB /* ProfileObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493243422B06244D00E607EB /* ProfileObject.swift */; };
 		49330CCF2ADD278900BFA4C6 /* ReviewShortDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CCA2ADD278900BFA4C6 /* ReviewShortDTO.swift */; };
 		49330CD12ADD278900BFA4C6 /* MovieShortDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CCC2ADD278900BFA4C6 /* MovieShortDTO.swift */; };
 		49330CD22ADD278900BFA4C6 /* GenreDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49330CCD2ADD278900BFA4C6 /* GenreDTO.swift */; };
@@ -150,6 +153,8 @@
 		49C3CEAF2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEAE2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift */; };
 		49C3CEBA2AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEB92AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift */; };
 		49C48E532B04816D00FB4B1D /* TextEditorWithPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C48E522B04816D00FB4B1D /* TextEditorWithPlaceholder.swift */; };
+		49C5A1A62B06879300EBC906 /* ProfileLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5A1A52B06879300EBC906 /* ProfileLocalDataSource.swift */; };
+		49C5A1A92B0687BD00EBC906 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5A1A82B0687BD00EBC906 /* RealmManager.swift */; };
 		49C654592AF44B6800920771 /* HomeViewState+Mutating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C654582AF44B6800920771 /* HomeViewState+Mutating.swift */; };
 		49CD15C42AEACE89003E6ADC /* ValidateUsernameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD15C32AEACE89003E6ADC /* ValidateUsernameUseCase.swift */; };
 		49CD15C62AEAD21A003E6ADC /* ValidatePasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD15C52AEAD21A003E6ADC /* ValidatePasswordUseCase.swift */; };
@@ -213,6 +218,7 @@
 		49295E452AEFC4DB00F09ABE /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		49295E472AEFD5A000F09ABE /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		49295E492AEFD96300F09ABE /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		493243422B06244D00E607EB /* ProfileObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileObject.swift; sourceTree = "<group>"; };
 		49330CCA2ADD278900BFA4C6 /* ReviewShortDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewShortDTO.swift; sourceTree = "<group>"; };
 		49330CCC2ADD278900BFA4C6 /* MovieShortDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieShortDTO.swift; sourceTree = "<group>"; };
 		49330CCD2ADD278900BFA4C6 /* GenreDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreDTO.swift; sourceTree = "<group>"; };
@@ -330,6 +336,8 @@
 		49C3CEAE2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactoryProtocols.swift; sourceTree = "<group>"; };
 		49C3CEB92AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryProtocols.swift; sourceTree = "<group>"; };
 		49C48E522B04816D00FB4B1D /* TextEditorWithPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorWithPlaceholder.swift; sourceTree = "<group>"; };
+		49C5A1A52B06879300EBC906 /* ProfileLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLocalDataSource.swift; sourceTree = "<group>"; };
+		49C5A1A82B0687BD00EBC906 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		49C654582AF44B6800920771 /* HomeViewState+Mutating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewState+Mutating.swift"; sourceTree = "<group>"; };
 		49CD15C32AEACE89003E6ADC /* ValidateUsernameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUsernameUseCase.swift; sourceTree = "<group>"; };
 		49CD15C52AEAD21A003E6ADC /* ValidatePasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatePasswordUseCase.swift; sourceTree = "<group>"; };
@@ -370,6 +378,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4932433F2B0623DA00E607EB /* RealmSwift in Frameworks */,
+				4932433D2B0623DA00E607EB /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,7 +418,7 @@
 		490872582B03915300770CAE /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				49330CC82ADD277E00BFA4C6 /* DTOs */,
+				49330CC82ADD277E00BFA4C6 /* Models */,
 				49E64D9C2AFB9F3F0048C668 /* ProfileRemoteDataSource.swift */,
 				49E64D9E2AFB9F500048C668 /* ReviewRemoteDataSource.swift */,
 				49E64D982AFB9EC80048C668 /* MovieRemoteDataSource.swift */,
@@ -571,9 +581,27 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
+		493243402B0623F600E607EB /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				493243412B0623FB00E607EB /* Models */,
+				49C5A1A52B06879300EBC906 /* ProfileLocalDataSource.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		493243412B0623FB00E607EB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				493243422B06244D00E607EB /* ProfileObject.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		49330CC72ADD277200BFA4C6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				49C5A1A72B0687B600EBC906 /* Realm */,
 				4977E3C12ADBCF37008CE679 /* Networking */,
 				49A3FAE32AEDAE8E0043512C /* Repositories */,
 				49E64D972AFB9E3C0048C668 /* DataSources */,
@@ -581,7 +609,7 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		49330CC82ADD277E00BFA4C6 /* DTOs */ = {
+		49330CC82ADD277E00BFA4C6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				49330CE12ADD41B600BFA4C6 /* UserRegisterDTO.swift */,
@@ -595,7 +623,7 @@
 				49330CFA2ADD856D00BFA4C6 /* GenderDTO.swift */,
 				49330D002ADD992F00BFA4C6 /* ReviewModifyDTO.swift */,
 			);
-			path = DTOs;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		49330CF72ADD7D8600BFA4C6 /* Common */ = {
@@ -1140,6 +1168,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		49C5A1A72B0687B600EBC906 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				49C5A1A82B0687BD00EBC906 /* RealmManager.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		49CD15CA2AEAF788003E6ADC /* Validation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1181,6 +1217,7 @@
 		49E64D972AFB9E3C0048C668 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				493243402B0623F600E607EB /* Local */,
 				490872582B03915300770CAE /* Remote */,
 			);
 			path = DataSources;
@@ -1288,6 +1325,8 @@
 			);
 			name = Movies;
 			packageProductDependencies = (
+				4932433C2B0623DA00E607EB /* Realm */,
+				4932433E2B0623DA00E607EB /* RealmSwift */,
 			);
 			productName = Movies;
 			productReference = 49612ABF2ADAD8AF0081832B /* Movies.app */;
@@ -1319,6 +1358,7 @@
 			);
 			mainGroup = 49612AB62ADAD8AF0081832B;
 			packageReferences = (
+				4932433B2B0623DA00E607EB /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 49612AC02ADAD8AF0081832B /* Products */;
 			projectDirPath = "";
@@ -1395,6 +1435,7 @@
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
 				49A050FC2B00D15200AFE4A7 /* ReviewRepository.swift in Sources */,
 				49330CD12ADD278900BFA4C6 /* MovieShortDTO.swift in Sources */,
+				49C5A1A92B0687BD00EBC906 /* RealmManager.swift in Sources */,
 				4955831D2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift in Sources */,
 				49D462962AFC050400696452 /* HTTPStatusCode.swift in Sources */,
 				49684EFC2AF40F600003CF7F /* MainCoordinatorView.swift in Sources */,
@@ -1407,6 +1448,7 @@
 				49330CDA2ADD2AA500BFA4C6 /* MovieNetworkConfig.swift in Sources */,
 				49A3FACD2AED79AA0043512C /* ProfileViewState.swift in Sources */,
 				491EBBD62AEBDAFC00075FF0 /* FormBorderedTextFieldStyle.swift in Sources */,
+				493243432B06244D00E607EB /* ProfileObject.swift in Sources */,
 				499B07D42AF3549400261472 /* MakeMovieDetailsUseCase.swift in Sources */,
 				49DA5D7C2AEA7B4100F96E97 /* AuthCoordinator.swift in Sources */,
 				491EBBD32AEBDA9800075FF0 /* FormItemBackground.swift in Sources */,
@@ -1445,6 +1487,7 @@
 				497831722AEEE09200860C41 /* FetchMovieListUseCase.swift in Sources */,
 				4995FF1F2AE2C2B300948457 /* UISegmentedControl+ContentHugging.swift in Sources */,
 				49D462A12AFC20D100696452 /* MovieDetailsRouter.swift in Sources */,
+				49C5A1A62B06879300EBC906 /* ProfileLocalDataSource.swift in Sources */,
 				49A050F72B00D02000AFE4A7 /* ReviewModify.swift in Sources */,
 				49A63F5C2AFECD3B000165EB /* Pagination.swift in Sources */,
 				4955831B2AF0159200E3AA69 /* MovieDetailsViewModel.swift in Sources */,
@@ -1668,9 +1711,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = "\"-Wl,-no_warn_duplicate_libraries\"";
+				OTHER_SWIFT_FLAGS = "-enable-actor-data-race-checks";
 				PRODUCT_BUNDLE_IDENTIFIER = sem.Movies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1699,9 +1745,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = "\"-Wl,-no_warn_duplicate_libraries\"";
+				OTHER_SWIFT_FLAGS = "-enable-actor-data-race-checks";
 				PRODUCT_BUNDLE_IDENTIFIER = sem.Movies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1729,6 +1778,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4932433B2B0623DA00E607EB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4932433C2B0623DA00E607EB /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4932433B2B0623DA00E607EB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		4932433E2B0623DA00E607EB /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4932433B2B0623DA00E607EB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 49612AB72ADAD8AF0081832B /* Project object */;
 }

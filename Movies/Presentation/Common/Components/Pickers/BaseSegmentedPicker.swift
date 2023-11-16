@@ -15,7 +15,6 @@ struct BaseSegmentedPicker<SelectionValue, Content>: View where SelectionValue: 
     init(selection: Binding<SelectionValue>, content: @escaping () -> Content) {
         _selection = selection
         self.content = content
-        updateAppearance()
     }
     
     var body: some View {
@@ -24,9 +23,12 @@ struct BaseSegmentedPicker<SelectionValue, Content>: View where SelectionValue: 
         }
         .labelsHidden()
         .pickerStyle(.segmented)
+        .onAppear {
+            updateAppearance()
+        }
     }
-    
-    func updateAppearance() {
+
+    @MainActor func updateAppearance() {
         UISegmentedControl.appearance().selectedSegmentTintColor = .white
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.darkGray], for: .selected)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.lightGray], for: .normal)
