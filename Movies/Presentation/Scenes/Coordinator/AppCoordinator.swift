@@ -55,7 +55,7 @@ private extension AppCoordinator {
         state = .loading
 
         do {
-            _ = try await fetchProfileUseCase.execute()
+            try await fetchProfileUseCase.execute()
             state = .main
         } catch {
             state = .auth

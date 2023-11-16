@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ProfileView: View {
 
-    @ObservedObject private(set) var viewModel: ProfileViewModel
+    @StateObject private var viewModel: ProfileViewModel
+
+    init(viewModel: ProfileViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
         ScrollView {
@@ -147,8 +151,4 @@ struct ProfileView: View {
             set: { viewModel.handle(.onAlertPresented($0)) }
         )
     }
-}
-
-#Preview {
-    ScreenFactory(appFactory: .init()).makeProfileView(coordinator: ProfileCoordinator(showAuthSceneHandler: {}))
 }

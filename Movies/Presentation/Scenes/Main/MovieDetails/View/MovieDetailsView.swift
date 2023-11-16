@@ -289,15 +289,3 @@ private extension MovieDetailsView {
         }
     }
 }
-
-
-#Preview {
-    NavigationStack {
-        ScreenFactory(appFactory: .init())
-            .makeMovieDetailsView(
-                movieId: "",
-                showAuthSceneHandler: {}
-            )
-            .environment(\.locale, .init(identifier: "ru"))
-    }
-}

@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct LoginView: View {
-
-    @ObservedObject private(set) var viewModel: LoginViewModel
-
+    
+    @StateObject private var viewModel: LoginViewModel
+    
+    init(viewModel: LoginViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
     var body: some View {
         AuthView(
             style: .login,
@@ -26,10 +30,10 @@ struct LoginView: View {
                         style: viewModel.state.isLoginErrorShowing ? .error : .default
                     )
                     .smallLabeled(LocalizedKey.Profile.username)
-
+                
                 SecureInputView(text: password, isErrorShowed: viewModel.state.isLoginErrorShowing)
                     .smallLabeled(LocalizedKey.Profile.password)
-
+                
                 if viewModel.state.isLoading {
                     BaseProgressView()
                 }
@@ -47,18 +51,18 @@ struct LoginView: View {
             viewModel.handle(.registerTapped)
         }
     }
-
+    
     private enum Constants {
         static let formBottomInset: CGFloat = 5
     }
-
+    
     private var username: Binding<String> {
         Binding(
             get: { viewModel.state.username },
             set: { viewModel.handle(.usernameChanged($0)) }
         )
     }
-
+    
     private var password: Binding<String> {
         Binding(
             get: { viewModel.state.password },

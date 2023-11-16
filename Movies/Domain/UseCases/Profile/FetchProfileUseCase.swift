@@ -23,6 +23,7 @@ final class FetchProfileUseCase {
         self.closeSessionUseCase = closeSessionUseCase
     }
 
+    @discardableResult
     func execute() async throws -> Profile {
         let token = try keychainRepository.retrieveToken()
         

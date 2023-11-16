@@ -27,8 +27,8 @@ struct RatingTagView: View {
 
         var textColor: Color {
             switch self {
-            case .titleOnly(.small): .black
-            case .titleAndIcon, .titleOnly(.medium): .white
+            case .titleOnly: .black
+            case .titleAndIcon: .white
             }
         }
 

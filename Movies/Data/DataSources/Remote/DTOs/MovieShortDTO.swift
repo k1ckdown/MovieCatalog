@@ -36,4 +36,10 @@ struct MoviesResponse: Decodable {
 struct MoviesPagedResponse: Decodable {
     let movies: [MovieShortDTO]
     let pageInfo: PageInfoDTO
+
+    struct PageInfoDTO: Decodable {
+        let pageSize: Int
+        let pageCount: Int
+        let currentPage: Int
+    }
 }
