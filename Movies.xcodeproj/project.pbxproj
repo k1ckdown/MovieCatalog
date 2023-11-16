@@ -118,18 +118,6 @@
 		49A050FF2B00D2D900AFE4A7 /* AddReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050FE2B00D2D900AFE4A7 /* AddReviewUseCase.swift */; };
 		49A051012B01092400AFE4A7 /* UpdateReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A051002B01092400AFE4A7 /* UpdateReviewUseCase.swift */; };
 		49A051032B010A4200AFE4A7 /* DeleteReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A051022B010A4200AFE4A7 /* DeleteReviewUseCase.swift */; };
-		49A3D3F02B049B2F006FAC1A /* CDGenre+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3E82B049B2F006FAC1A /* CDGenre+CoreDataClass.swift */; };
-		49A3D3F12B049B2F006FAC1A /* CDGenre+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3E92B049B2F006FAC1A /* CDGenre+CoreDataProperties.swift */; };
-		49A3D3F22B049B2F006FAC1A /* CDReview+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3EA2B049B2F006FAC1A /* CDReview+CoreDataClass.swift */; };
-		49A3D3F32B049B2F006FAC1A /* CDReview+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3EB2B049B2F006FAC1A /* CDReview+CoreDataProperties.swift */; };
-		49A3D3F42B049B2F006FAC1A /* CDMovie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3EC2B049B2F006FAC1A /* CDMovie+CoreDataClass.swift */; };
-		49A3D3F52B049B2F006FAC1A /* CDMovie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3ED2B049B2F006FAC1A /* CDMovie+CoreDataProperties.swift */; };
-		49A3D3F62B049B2F006FAC1A /* CDUserShort+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3EE2B049B2F006FAC1A /* CDUserShort+CoreDataClass.swift */; };
-		49A3D3F72B049B2F006FAC1A /* CDUserShort+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3EF2B049B2F006FAC1A /* CDUserShort+CoreDataProperties.swift */; };
-		49A3D3F92B049BE3006FAC1A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3F82B049BE3006FAC1A /* CoreDataManager.swift */; };
-		49A3D3FC2B049E50006FAC1A /* ProfileLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D3FB2B049E50006FAC1A /* ProfileLocalDataSource.swift */; };
-		49A3D4042B04A3BC006FAC1A /* CDProfile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D4022B04A3BC006FAC1A /* CDProfile+CoreDataClass.swift */; };
-		49A3D4052B04A3BC006FAC1A /* CDProfile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D4032B04A3BC006FAC1A /* CDProfile+CoreDataProperties.swift */; };
 		49A3D4072B04D12A006FAC1A /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3D4062B04D12A006FAC1A /* ErrorView.swift */; };
 		49A3FACA2AED798E0043512C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAC92AED798E0043512C /* ProfileView.swift */; };
 		49A3FACD2AED79AA0043512C /* ProfileViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FACC2AED79AA0043512C /* ProfileViewState.swift */; };
@@ -162,7 +150,6 @@
 		49C3CEAF2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEAE2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift */; };
 		49C3CEBA2AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3CEB92AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift */; };
 		49C48E532B04816D00FB4B1D /* TextEditorWithPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C48E522B04816D00FB4B1D /* TextEditorWithPlaceholder.swift */; };
-		49C48E5D2B0491F800FB4B1D /* Movie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49C48E5B2B0491F800FB4B1D /* Movie.xcdatamodeld */; };
 		49C654592AF44B6800920771 /* HomeViewState+Mutating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C654582AF44B6800920771 /* HomeViewState+Mutating.swift */; };
 		49CD15C42AEACE89003E6ADC /* ValidateUsernameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD15C32AEACE89003E6ADC /* ValidateUsernameUseCase.swift */; };
 		49CD15C62AEAD21A003E6ADC /* ValidatePasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD15C52AEAD21A003E6ADC /* ValidatePasswordUseCase.swift */; };
@@ -311,18 +298,6 @@
 		49A050FE2B00D2D900AFE4A7 /* AddReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewUseCase.swift; sourceTree = "<group>"; };
 		49A051002B01092400AFE4A7 /* UpdateReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateReviewUseCase.swift; sourceTree = "<group>"; };
 		49A051022B010A4200AFE4A7 /* DeleteReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteReviewUseCase.swift; sourceTree = "<group>"; };
-		49A3D3E82B049B2F006FAC1A /* CDGenre+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDGenre+CoreDataClass.swift"; sourceTree = "<group>"; };
-		49A3D3E92B049B2F006FAC1A /* CDGenre+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDGenre+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		49A3D3EA2B049B2F006FAC1A /* CDReview+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDReview+CoreDataClass.swift"; sourceTree = "<group>"; };
-		49A3D3EB2B049B2F006FAC1A /* CDReview+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDReview+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		49A3D3EC2B049B2F006FAC1A /* CDMovie+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDMovie+CoreDataClass.swift"; sourceTree = "<group>"; };
-		49A3D3ED2B049B2F006FAC1A /* CDMovie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDMovie+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		49A3D3EE2B049B2F006FAC1A /* CDUserShort+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDUserShort+CoreDataClass.swift"; sourceTree = "<group>"; };
-		49A3D3EF2B049B2F006FAC1A /* CDUserShort+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDUserShort+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		49A3D3F82B049BE3006FAC1A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		49A3D3FB2B049E50006FAC1A /* ProfileLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLocalDataSource.swift; sourceTree = "<group>"; };
-		49A3D4022B04A3BC006FAC1A /* CDProfile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDProfile+CoreDataClass.swift"; sourceTree = "<group>"; };
-		49A3D4032B04A3BC006FAC1A /* CDProfile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDProfile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		49A3D4062B04D12A006FAC1A /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		49A3FAC92AED798E0043512C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		49A3FACC2AED79AA0043512C /* ProfileViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewState.swift; sourceTree = "<group>"; };
@@ -355,7 +330,6 @@
 		49C3CEAE2AEA6D32009FACF4 /* ScreenFactoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactoryProtocols.swift; sourceTree = "<group>"; };
 		49C3CEB92AEA725F009FACF4 /* CoordinatorFactoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryProtocols.swift; sourceTree = "<group>"; };
 		49C48E522B04816D00FB4B1D /* TextEditorWithPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorWithPlaceholder.swift; sourceTree = "<group>"; };
-		49C48E5C2B0491F800FB4B1D /* Movie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Movie.xcdatamodel; sourceTree = "<group>"; };
 		49C654582AF44B6800920771 /* HomeViewState+Mutating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewState+Mutating.swift"; sourceTree = "<group>"; };
 		49CD15C32AEACE89003E6ADC /* ValidateUsernameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUsernameUseCase.swift; sourceTree = "<group>"; };
 		49CD15C52AEAD21A003E6ADC /* ValidatePasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatePasswordUseCase.swift; sourceTree = "<group>"; };
@@ -600,7 +574,6 @@
 		49330CC72ADD277200BFA4C6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				49C48E592B0491CB00FB4B1D /* CoreData */,
 				4977E3C12ADBCF37008CE679 /* Networking */,
 				49A3FAE32AEDAE8E0043512C /* Repositories */,
 				49E64D972AFB9E3C0048C668 /* DataSources */,
@@ -1013,23 +986,6 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
-		49A3D3FA2B049E2E006FAC1A /* Local */ = {
-			isa = PBXGroup;
-			children = (
-				49A3D3FB2B049E50006FAC1A /* ProfileLocalDataSource.swift */,
-			);
-			path = Local;
-			sourceTree = "<group>";
-		};
-		49A3D4012B04A395006FAC1A /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				49A3D4022B04A3BC006FAC1A /* CDProfile+CoreDataClass.swift */,
-				49A3D4032B04A3BC006FAC1A /* CDProfile+CoreDataProperties.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
 		49A3FACB2AED799E0043512C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1184,64 +1140,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		49C48E592B0491CB00FB4B1D /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				49A3D3F82B049BE3006FAC1A /* CoreDataManager.swift */,
-				49C48E5A2B0491DF00FB4B1D /* Entities */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
-		49C48E5A2B0491DF00FB4B1D /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				49C48E5B2B0491F800FB4B1D /* Movie.xcdatamodeld */,
-				49A3D4012B04A395006FAC1A /* Profile */,
-				49C48E712B0495F900FB4B1D /* UserShort */,
-				49C48E702B0495F200FB4B1D /* Review */,
-				49C48E6F2B0495EC00FB4B1D /* Genre */,
-				49C48E6E2B0495E400FB4B1D /* Movie */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		49C48E6E2B0495E400FB4B1D /* Movie */ = {
-			isa = PBXGroup;
-			children = (
-				49A3D3EC2B049B2F006FAC1A /* CDMovie+CoreDataClass.swift */,
-				49A3D3ED2B049B2F006FAC1A /* CDMovie+CoreDataProperties.swift */,
-			);
-			path = Movie;
-			sourceTree = "<group>";
-		};
-		49C48E6F2B0495EC00FB4B1D /* Genre */ = {
-			isa = PBXGroup;
-			children = (
-				49A3D3E82B049B2F006FAC1A /* CDGenre+CoreDataClass.swift */,
-				49A3D3E92B049B2F006FAC1A /* CDGenre+CoreDataProperties.swift */,
-			);
-			path = Genre;
-			sourceTree = "<group>";
-		};
-		49C48E702B0495F200FB4B1D /* Review */ = {
-			isa = PBXGroup;
-			children = (
-				49A3D3EA2B049B2F006FAC1A /* CDReview+CoreDataClass.swift */,
-				49A3D3EB2B049B2F006FAC1A /* CDReview+CoreDataProperties.swift */,
-			);
-			path = Review;
-			sourceTree = "<group>";
-		};
-		49C48E712B0495F900FB4B1D /* UserShort */ = {
-			isa = PBXGroup;
-			children = (
-				49A3D3EE2B049B2F006FAC1A /* CDUserShort+CoreDataClass.swift */,
-				49A3D3EF2B049B2F006FAC1A /* CDUserShort+CoreDataProperties.swift */,
-			);
-			path = UserShort;
-			sourceTree = "<group>";
-		};
 		49CD15CA2AEAF788003E6ADC /* Validation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1283,7 +1181,6 @@
 		49E64D972AFB9E3C0048C668 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				49A3D3FA2B049E2E006FAC1A /* Local */,
 				490872582B03915300770CAE /* Remote */,
 			);
 			path = DataSources;
@@ -1463,11 +1360,9 @@
 				49442BE32B000E6000E972CF /* ReviewDialog.swift in Sources */,
 				49F8D0DC2AFD46040039BCE8 /* CloseSessionUseCase.swift in Sources */,
 				499B07DB2AF3599500261472 /* FavoritesViewState.swift in Sources */,
-				49A3D3F12B049B2F006FAC1A /* CDGenre+CoreDataProperties.swift in Sources */,
 				4961F48F2AE0490B00A717AB /* FormTextFieldStyle.swift in Sources */,
 				4961F4772AE021A200A717AB /* LoginViewModel.swift in Sources */,
 				49EB265D2AECF2EF00FFD335 /* HomeView.swift in Sources */,
-				49A3D4042B04A3BC006FAC1A /* CDProfile+CoreDataClass.swift in Sources */,
 				49E64D992AFB9EC80048C668 /* MovieRemoteDataSource.swift in Sources */,
 				49330CEF2ADD663B00BFA4C6 /* NetworkService.swift in Sources */,
 				49A050FA2B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift in Sources */,
@@ -1476,7 +1371,6 @@
 				490297CB2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift in Sources */,
 				49C3CE9E2AEA595A009FACF4 /* PersonalInfoRegistrationView.swift in Sources */,
 				499B07D62AF3549800261472 /* FetchFavoriteMoviesUseCase.swift in Sources */,
-				49A3D3F62B049B2F006FAC1A /* CDUserShort+CoreDataClass.swift in Sources */,
 				49115C2C2AEF831C00B50FB9 /* AboutMovieView.swift in Sources */,
 				49C189C12AE3F7750029BAF9 /* Coordinator.swift in Sources */,
 				497831752AEEE21F00860C41 /* String+Placeholder.swift in Sources */,
@@ -1487,7 +1381,6 @@
 				49A3FAD72AED81CB0043512C /* AvatarAsyncImage.swift in Sources */,
 				49A63F582AFE19F6000165EB /* DeleteFavoriteMovieUseCase.swift in Sources */,
 				49330CE82ADD424000BFA4C6 /* LoginCredentials.swift in Sources */,
-				49A3D3F52B049B2F006FAC1A /* CDMovie+CoreDataProperties.swift in Sources */,
 				49330CFB2ADD856D00BFA4C6 /* GenderDTO.swift in Sources */,
 				4961F4652AE0009E00A717AB /* BackgroundColorViewModifier.swift in Sources */,
 				49B6D75F2AE9A7AD00451DAF /* AppFactory.swift in Sources */,
@@ -1495,10 +1388,8 @@
 				49330CE42ADD420100BFA4C6 /* TokenInfo.swift in Sources */,
 				49D4629E2AFC129100696452 /* AuthError.swift in Sources */,
 				49C3CEA42AEA5B10009FACF4 /* PasswordRegistrationViewState.swift in Sources */,
-				49C48E5D2B0491F800FB4B1D /* Movie.xcdatamodeld in Sources */,
 				49330CE02ADD2ED200BFA4C6 /* UserShortDTO.swift in Sources */,
 				49A3FADB2AED8A9A0043512C /* UpdateProfileUseCase.swift in Sources */,
-				49A3D3F02B049B2F006FAC1A /* CDGenre+CoreDataClass.swift in Sources */,
 				49A050FF2B00D2D900AFE4A7 /* AddReviewUseCase.swift in Sources */,
 				49D462A32AFC219700696452 /* FavoritesCoordinatorProtocol.swift in Sources */,
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
@@ -1507,13 +1398,11 @@
 				4955831D2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift in Sources */,
 				49D462962AFC050400696452 /* HTTPStatusCode.swift in Sources */,
 				49684EFC2AF40F600003CF7F /* MainCoordinatorView.swift in Sources */,
-				49A3D3F42B049B2F006FAC1A /* CDMovie+CoreDataClass.swift in Sources */,
 				498772C72AF2719600B706F6 /* FavoritesView.swift in Sources */,
 				49330CDC2ADD2E7C00BFA4C6 /* MovieDTO.swift in Sources */,
 				49D462A82AFC2BD700696452 /* AppCoordinator.swift in Sources */,
 				497831702AEED5E800860C41 /* MovieRepository.swift in Sources */,
 				491EBBDF2AEBF0F000075FF0 /* ValidationErrorHandler.swift in Sources */,
-				49A3D3F22B049B2F006FAC1A /* CDReview+CoreDataClass.swift in Sources */,
 				497831772AEEE22C00860C41 /* View+Redacted.swift in Sources */,
 				49330CDA2ADD2AA500BFA4C6 /* MovieNetworkConfig.swift in Sources */,
 				49A3FACD2AED79AA0043512C /* ProfileViewState.swift in Sources */,
@@ -1567,7 +1456,6 @@
 				490297C22AEC417C000AFDB4 /* RegisterUserUseCase.swift in Sources */,
 				49A3FAE82AEDBB270043512C /* FetchProfileUseCase.swift in Sources */,
 				49330CF42ADD7C7B00BFA4C6 /* NetworkConfig.swift in Sources */,
-				49A3D4052B04A3BC006FAC1A /* CDProfile+CoreDataProperties.swift in Sources */,
 				49115C292AEF702500B50FB9 /* MovieDetailsView.swift in Sources */,
 				49E890542AFD0786003C4F4F /* CacheAsyncImage.swift in Sources */,
 				4961F48D2AE045A700A717AB /* SecureInputView.swift in Sources */,
@@ -1577,7 +1465,6 @@
 				497831642AEECD8300860C41 /* HomeViewModel.swift in Sources */,
 				49C189BF2AE3F70D0029BAF9 /* Routable.swift in Sources */,
 				49330CE22ADD41B600BFA4C6 /* UserRegisterDTO.swift in Sources */,
-				49A3D3F72B049B2F006FAC1A /* CDUserShort+CoreDataProperties.swift in Sources */,
 				49A3FAE22AEDADA90043512C /* ProfileRepositoryProtocol.swift in Sources */,
 				49330CD22ADD278900BFA4C6 /* GenreDTO.swift in Sources */,
 				4951B0F62AF32E5E00B040EE /* ProfileCoordinatorView.swift in Sources */,
@@ -1608,7 +1495,6 @@
 				49878FE72AE43E080076BF85 /* ScreenFactory.swift in Sources */,
 				49E9280C2AE3E4F3006CC6EF /* LocalizedKey.swift in Sources */,
 				49EB26662AED02A600FFD335 /* MovieDetailsItemViewModel.swift in Sources */,
-				49A3D3F32B049B2F006FAC1A /* CDReview+CoreDataProperties.swift in Sources */,
 				49A620672AE6EC0000CEE994 /* LabeledViewModifier.swift in Sources */,
 				49E64D9D2AFB9F3F0048C668 /* ProfileRemoteDataSource.swift in Sources */,
 				49A3FAD12AED7DE00043512C /* GenderSegmentedPicker.swift in Sources */,
@@ -1617,7 +1503,6 @@
 				4977E3C42ADBCF51008CE679 /* HTTPMethod.swift in Sources */,
 				49C654592AF44B6800920771 /* HomeViewState+Mutating.swift in Sources */,
 				49115C2E2AEF832600B50FB9 /* AboutMovieViewModel.swift in Sources */,
-				49A3D3F92B049BE3006FAC1A /* CoreDataManager.swift in Sources */,
 				49A3FACA2AED798E0043512C /* ProfileView.swift in Sources */,
 				49A051012B01092400AFE4A7 /* UpdateReviewUseCase.swift in Sources */,
 				4961F4742AE0210900A717AB /* LoginView.swift in Sources */,
@@ -1634,7 +1519,6 @@
 				49EB26622AED01E200FFD335 /* MovieShort.swift in Sources */,
 				49E64D922AFB98ED0048C668 /* AuthRepository.swift in Sources */,
 				49A3FAE52AEDAEE70043512C /* ProfileRepository.swift in Sources */,
-				49A3D3FC2B049E50006FAC1A /* ProfileLocalDataSource.swift in Sources */,
 				490297CD2AEC5DFC000AFDB4 /* LoginUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1845,20 +1729,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		49C48E5B2B0491F800FB4B1D /* Movie.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				49C48E5C2B0491F800FB4B1D /* Movie.xcdatamodel */,
-			);
-			currentVersion = 49C48E5C2B0491F800FB4B1D /* Movie.xcdatamodel */;
-			name = Movie.xcdatamodeld;
-			path = ../../../../../../../.Trash/CoreData/Entities/Movie.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 49612AB72ADAD8AF0081832B /* Project object */;
 }
