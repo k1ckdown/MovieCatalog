@@ -20,15 +20,15 @@ extension DateFormatter {
         return formatter
     }()
 
-    static let iso8601FullWithMs: ISO8601DateFormatter = {
-        let formatter = iso8601Full
-        formatter.formatOptions = [.withFractionalSeconds, .withFullDate]
-        return formatter
-    }()
-
     static let iso8601Full: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withFullDate]
+        return formatter
+    }()
+
+    static let iso8601FullWithMs: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFractionalSeconds, .withFullDate]
         return formatter
     }()
 }

@@ -9,8 +9,12 @@ import SwiftUI
 
 struct WelcomeView: View {
 
-    @ObservedObject private(set) var viewModel: WelcomeViewModel
-    
+    @StateObject private var viewModel: WelcomeViewModel
+
+    init(viewModel: WelcomeViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
     var body: some View {
         VStack(spacing: Constants.ContentStack.spacing) {
             Image(.amico)
@@ -48,7 +52,7 @@ struct WelcomeView: View {
         .backgroundColor()
         .appNavigationTitle()
     }
-
+    
     private enum Constants {
         enum ContentStack {
             static let spacing: CGFloat = 40

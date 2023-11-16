@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct PasswordRegistrationView: View {
-    
-    @ObservedObject private(set) var viewModel: PasswordRegistrationViewModel
-    
+
+    @StateObject private var viewModel: PasswordRegistrationViewModel
+
+    init(viewModel: PasswordRegistrationViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
     var body: some View {
         AuthView(
             style: .passwords,
@@ -26,14 +30,14 @@ struct PasswordRegistrationView: View {
                         isErrorShowed: viewModel.state.isPasswordErrorShowing
                     )
                     .smallLabeled(LocalizedKey.Profile.password)
-                    
+
                     SecureInputView(
                         text: confirmPassword,
                         errorMessage: viewModel.state.confirmPasswordError,
                         isErrorShowed: viewModel.state.isConfirmPasswordErrorShowing
                     )
                     .smallLabeled(LocalizedKey.Profile.confirmPassword)
-                    
+
                     if viewModel.state.isLoading {
                         BaseProgressView()
                     }
@@ -51,14 +55,14 @@ struct PasswordRegistrationView: View {
                 viewModel.handle(.logInTapped)
             }
     }
-    
+
     private var password: Binding<String> {
         Binding(
             get: { viewModel.state.password },
             set: { viewModel.handle(.passwordChanged($0)) }
         )
     }
-    
+
     private var confirmPassword: Binding<String> {
         Binding(
             get: { viewModel.state.confirmPassword },

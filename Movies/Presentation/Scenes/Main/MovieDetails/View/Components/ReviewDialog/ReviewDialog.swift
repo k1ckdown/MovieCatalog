@@ -131,8 +131,3 @@ struct ReviewDialog: View {
         }
     }
 }
-
-#Preview {
-    ReviewDialog(viewModel: .init(), eventHandler: {_ in})
-        .backgroundColor()
-}

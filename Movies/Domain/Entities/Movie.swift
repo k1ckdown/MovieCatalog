@@ -25,8 +25,3 @@ struct Movie {
     var isFavorite = false
     var isPaged = true
 }
-
-struct MoviesPaged {
-    let movies: [Movie]
-    let pageInfo: PageInfo
-}

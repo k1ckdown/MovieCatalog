@@ -9,7 +9,11 @@ import SwiftUI
 
 struct FavoritesView: View {
 
-    @ObservedObject private(set) var viewModel: FavoritesViewModel
+    @StateObject private var viewModel: FavoritesViewModel
+
+    init(viewModel: FavoritesViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
         contentView

@@ -66,6 +66,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
 
         do {
             try await profileRemoteDataSource.updateProfile(token: token, profile: profileDto)
+            self.profile = profile
             try? localDataSource.saveProfile(profile)
         } catch {
             throw ProfileRepositoryError.updateFailed

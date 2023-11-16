@@ -9,7 +9,11 @@ import SwiftUI
 
 struct PersonalInfoRegistrationView: View {
 
-    @ObservedObject private(set) var viewModel: PersonalInfoRegistrationViewModel
+    @StateObject private var viewModel: PersonalInfoRegistrationViewModel
+
+    init(viewModel: PersonalInfoRegistrationViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
         AuthView(
