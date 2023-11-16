@@ -24,13 +24,10 @@ final class ProfileRepository {
     }
 
     private var profile: Profile?
+    private let remoteDataSource: ProfileRemoteDataSource
 
-    private let localDataSource: ProfileLocalDataSource
-    private let profileRemoteDataSource: ProfileRemoteDataSource
-
-    init(localDataSource: ProfileLocalDataSource, profileRemoteDataSource: ProfileRemoteDataSource) {
-        self.localDataSource = localDataSource
-        self.profileRemoteDataSource = profileRemoteDataSource
+    init(remoteDataSource: ProfileRemoteDataSource) {
+        self.remoteDataSource = remoteDataSource
     }
 }
 
@@ -38,7 +35,6 @@ extension ProfileRepository: ProfileRepositoryProtocol {
 
     func removeProfile() {
         profile = nil
-        try? localDataSource.deleteProfile()
     }
 
     func getProfile(token: String) async throws -> Profile {
@@ -46,10 +42,9 @@ extension ProfileRepository: ProfileRepositoryProtocol {
             return loadedProfile
         }
 
-        let profileDto = try await profileRemoteDataSource.fetchProfile(token: token)
+        let profileDto = try await remoteDataSource.fetchProfile(token: token)
         let profile = profileDto.toDomain()
         self.profile = profile
-        try? localDataSource.saveProfile(profile)
 
         return profile
     }
@@ -65,9 +60,8 @@ extension ProfileRepository: ProfileRepositoryProtocol {
             gender: profile.gender == .male ? .male : .female)
 
         do {
-            try await profileRemoteDataSource.updateProfile(token: token, profile: profileDto)
+            try await remoteDataSource.updateProfile(token: token, profile: profileDto)
             self.profile = profile
-            try? localDataSource.saveProfile(profile)
         } catch {
             throw ProfileRepositoryError.updateFailed
         }

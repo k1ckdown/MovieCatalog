@@ -9,21 +9,21 @@ import Foundation
 
 final class ReviewRepository {
 
-    private let reviewRemoteDataSource: ReviewRemoteDataSource
+    private let remoteDataSource: ReviewRemoteDataSource
 
-    init(reviewRemoteDataSource: ReviewRemoteDataSource) {
-        self.reviewRemoteDataSource = reviewRemoteDataSource
+    init(remoteDataSource: ReviewRemoteDataSource) {
+        self.remoteDataSource = remoteDataSource
     }
 }
 
 extension ReviewRepository: ReviewRepositoryProtocol {
 
     func deleteReview(reviewId: String, movieId: String, token: String) async throws {
-        try await reviewRemoteDataSource.deleteReview(token: token, movieId: movieId, reviewId: reviewId)
+        try await remoteDataSource.deleteReview(token: token, movieId: movieId, reviewId: reviewId)
     }
     
     func addReview(_ review: ReviewModify, movieId: String, token: String) async throws {
-        try await reviewRemoteDataSource.addReview(token: token, movieId: movieId, review: review)
+        try await remoteDataSource.addReview(token: token, movieId: movieId, review: review)
     }
     
     func updateReview(
@@ -32,7 +32,7 @@ extension ReviewRepository: ReviewRepositoryProtocol {
         movieId: String,
         token: String
     ) async throws {
-        try await reviewRemoteDataSource.updateReview(
+        try await remoteDataSource.updateReview(
             token: token,
             movieId: movieId,
             reviewId: reviewId,

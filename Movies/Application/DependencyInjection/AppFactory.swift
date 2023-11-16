@@ -14,19 +14,17 @@ final class AppFactory {
 
     private lazy var movieRepository: MovieRepository = {
         let remoteDataSource = MovieRemoteDataSource(networkService: networkService)
-        return MovieRepository(movieRemoteDataSource: remoteDataSource)
+        return MovieRepository(remoteDataSource: remoteDataSource)
     }()
 
     private lazy var reviewRepository: ReviewRepository = {
         let remoteDataSource = ReviewRemoteDataSource(networkService: networkService)
-        return ReviewRepository(reviewRemoteDataSource: remoteDataSource)
+        return ReviewRepository(remoteDataSource: remoteDataSource)
     }()
 
     private lazy var profileRepository: ProfileRepository = {
-        let localDataSource = ProfileLocalDataSource()
         let remoteDataSource = ProfileRemoteDataSource(networkService: networkService)
-
-        return ProfileRepository(localDataSource: localDataSource, profileRemoteDataSource: remoteDataSource)
+        return ProfileRepository(remoteDataSource: remoteDataSource)
     }()
 }
 

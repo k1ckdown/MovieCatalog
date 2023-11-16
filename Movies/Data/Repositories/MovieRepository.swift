@@ -21,24 +21,24 @@ final class MovieRepository {
         loadedMovies.filter { $0.isFavorite }
     }
 
-    private let movieRemoteDataSource: MovieRemoteDataSource
+    private let remoteDataSource: MovieRemoteDataSource
 
-    init(movieRemoteDataSource: MovieRemoteDataSource) {
-        self.movieRemoteDataSource = movieRemoteDataSource
+    init(remoteDataSource: MovieRemoteDataSource) {
+        self.remoteDataSource = remoteDataSource
     }
 }
 
 extension MovieRepository: MovieRepositoryProtocol {
 
     func addFavoriteMovie(_ id: String, token: String) async throws {
-        try await movieRemoteDataSource.addFavoriteMovie(token: token, movieId: id)
+        try await remoteDataSource.addFavoriteMovie(token: token, movieId: id)
         if let index = loadedMovies.firstIndex(where: { $0.id == id }) {
             loadedMovies[index].isFavorite = true
         }
     }
 
     func deleteFavoriteMovie(_ id: String, token: String) async throws {
-        try await movieRemoteDataSource.deleteFavoriteMovie(token: token, movieId: id)
+        try await remoteDataSource.deleteFavoriteMovie(token: token, movieId: id)
         if let index = loadedMovies.firstIndex(where: { $0.id == id }) {
             loadedMovies[index].isFavorite = false
         }
@@ -54,7 +54,7 @@ extension MovieRepository: MovieRepositoryProtocol {
     }
 
     func getMovie(id: String) async throws -> Movie {
-        let movieDto = try await movieRemoteDataSource.fetchMovie(id: id)
+        let movieDto = try await remoteDataSource.fetchMovie(id: id)
         var movie = movieDto.toDomain()
 
         if let index = loadedMovies.firstIndex(where: { $0.id == movie.id }) {
@@ -82,7 +82,7 @@ extension MovieRepository: MovieRepositoryProtocol {
             isFavoritesLoaded = false
         }
 
-        let moviesPagedListDto = try await movieRemoteDataSource.fetchShortMovies(
+        let moviesPagedListDto = try await remoteDataSource.fetchShortMovies(
             page: pagination.currentPage
         )
 
@@ -98,7 +98,7 @@ extension MovieRepository: MovieRepositoryProtocol {
 private extension MovieRepository {
 
     func loadFavoriteMovies(token: String) async throws {
-        let moviesResponse = try await movieRemoteDataSource.fetchFavoriteMovies(token: token)
+        let moviesResponse = try await remoteDataSource.fetchFavoriteMovies(token: token)
         let movieShortIds = moviesResponse.movies.map { $0.toDomain().id }
 
         try await withThrowingTaskGroup(of: Movie.self) { taskGroup in
