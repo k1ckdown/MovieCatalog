@@ -34,13 +34,15 @@ struct HomeView: View {
 
         case .loading:
             listView(
-                movieItems: .placeholders(count: Constants.countPlaceholders),
+                cardItems: .placeholders(count: Constants.countCardPlaceholders),
+                listItems: .placeholders(count: Constants.countListPlaceholders),
                 loadMore: .unavailable
             )
 
         case .loaded(let viewData):
             listView(
-                movieItems: viewData.movieItems,
+                cardItems: viewData.cardItems,
+                listItems: viewData.listItems,
                 loadMore: viewData.loadMore
             )
 
@@ -52,8 +54,8 @@ struct HomeView: View {
     private enum Constants {
         static let contentSpacing: CGFloat = 12
 
-        static let numberOfCards = 4
-        static let countPlaceholders = numberOfCards + 2
+        static let countCardPlaceholders = 4
+        static let countListPlaceholders = 3
 
         static let moviePageHeight: CGFloat = 497
         static let spacingMovieItems: CGFloat = 17
@@ -66,15 +68,16 @@ struct HomeView: View {
 private extension HomeView {
 
     func listView(
-        movieItems: [MovieDetailsItemViewModel],
+        cardItems: [MovieDetailsItemViewModel],
+        listItems: [MovieDetailsItemViewModel],
         loadMore: HomeViewState.ViewData.LoadMore
     ) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Constants.contentSpacing) {
-                tabView(Array(movieItems[0..<Constants.numberOfCards]))
+                tabView(cardItems)
                 movieListView(
                     loadMore: loadMore,
-                    itemViewModels: Array(movieItems[Constants.numberOfCards...])
+                    itemViewModels: listItems
                 )
             }
             .disabled(viewModel.state == .loading)

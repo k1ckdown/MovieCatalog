@@ -9,7 +9,7 @@ import Foundation
 
 enum NetworkError: LocalizedError {
     case missingURL
-    case noInternet
+    case noConnect
     case invalidData
     case requestFailed
     case encodingError
@@ -20,7 +20,7 @@ enum NetworkError: LocalizedError {
         switch self {
         case .missingURL:
             return "URL is nil."
-        case .noInternet:
+        case .noConnect:
             return "No Internet Connection"
         case .invalidResponse:
             return "Invalid Response."

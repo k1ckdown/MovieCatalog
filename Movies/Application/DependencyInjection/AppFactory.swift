@@ -175,6 +175,7 @@ private extension AppFactory {
 
     func makeCloseSessionUseCase() -> CloseSessionUseCase {
         CloseSessionUseCase(
+            movieRepository: movieRepository,
             profileRepository: profileRepository,
             keychainRepository: keychainRepository
         )

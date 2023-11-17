@@ -25,6 +25,7 @@ enum HomeViewState: Equatable {
         }
 
         var loadMore: LoadMore
-        var movieItems: [MovieDetailsItemViewModel]
+        var cardItems: [MovieDetailsItemViewModel]
+        var listItems: [MovieDetailsItemViewModel]
     }
 }

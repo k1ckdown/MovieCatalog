@@ -39,7 +39,7 @@ final class ProfileRepository {
 extension ProfileRepository: ProfileRepositoryProtocol {
 
     func deleteProfile() async {
-        try? await localDataSource.deleteProfile()
+        await localDataSource.deleteProfile()
     }
 
     func getProfile(token: String) async throws -> Profile {
@@ -50,7 +50,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
             let profileDto = try await remoteDataSource.fetchProfile(token: token)
             let profile = profileDto.toDomain()
 
-            try? await localDataSource.saveProfile(ProfileObject(profile))
+            await localDataSource.saveProfile(ProfileObject(profile))
             isProfileLoaded = true
 
             return profile
@@ -58,9 +58,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
     }
 
     func updateProfile(_ profile: Profile, token: String) async throws {
-        guard NetworkMonitor.shared.isConnected else {
-            throw NetworkError.noInternet
-        }
+        guard NetworkMonitor.shared.isConnected else { throw NetworkError.noConnect }
 
         let profileDto = ProfileDTO(
             id: profile.id,
@@ -74,7 +72,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
 
         do {
             try await remoteDataSource.updateProfile(token: token, profile: profileDto)
-            try await localDataSource.saveProfile(ProfileObject(profile))
+            await localDataSource.saveProfile(ProfileObject(profile))
         } catch {
             throw ProfileRepositoryError.updateFailed
         }

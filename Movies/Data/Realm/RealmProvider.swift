@@ -14,7 +14,8 @@ actor RealmProvider {
 
     func realm() async -> Realm? {
         if realm == nil {
-            realm = try? await Realm(actor: self)
+            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+            realm = try? await Realm(configuration: config, actor: self)
         }
 
         return realm
