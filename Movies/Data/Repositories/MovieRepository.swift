@@ -21,10 +21,11 @@ final class MovieRepository: @unchecked Sendable {
         loadedMovies.filter { $0.isFavorite }
     }
 
-    private let localDataSource: MovieLocalDataSource = .init()
+    private let localDataSource: MovieLocalDataSource
     private let remoteDataSource: MovieRemoteDataSource
 
-    init(remoteDataSource: MovieRemoteDataSource) {
+    init(localDataSource: MovieLocalDataSource, remoteDataSource: MovieRemoteDataSource) {
+        self.localDataSource = localDataSource
         self.remoteDataSource = remoteDataSource
     }
 }
