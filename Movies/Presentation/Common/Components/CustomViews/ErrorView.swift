@@ -22,8 +22,9 @@ struct ErrorView: View {
                     )
 
                 Text(message)
-                    .font(.headline.weight(.medium))
+                    .font(.body.weight(.medium))
                     .multilineTextAlignment(.center)
+                    .padding(.horizontal)
             }
         }
         .offset(y: Constants.offsetY)

@@ -22,6 +22,9 @@ struct MoviesApp: App {
                 )
             )
             .preferredColorScheme(.dark)
+            .onAppear {
+                NetworkMonitor.shared.startMonitoring()
+            }
         }
     }
 }

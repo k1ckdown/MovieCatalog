@@ -201,8 +201,8 @@ private extension MovieDetailsView {
 
     func posterView(_ poster: String?) -> some View {
         MovieAsyncImage(urlString: poster, isShowingProgressView: true)
-            .scaledToFill()
             .frame(height: Constants.posterHeight)
+            .scaledToFill()
             .clipped()
             .overlay {
                 LinearGradient(

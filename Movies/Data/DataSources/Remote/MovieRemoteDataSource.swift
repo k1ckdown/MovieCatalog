@@ -23,7 +23,7 @@ extension MovieRemoteDataSource {
         return try await networkService.request(with: config)
     }
 
-    func fetchShortMovies(page: Int) async throws -> MoviesPagedResponse {
+    func fetchMoviesPagedList(page: Int) async throws -> MoviesPagedResponse {
         let config = MovieNetworkConfig.listByPage(page)
         return try await networkService.request(with: config)
     }

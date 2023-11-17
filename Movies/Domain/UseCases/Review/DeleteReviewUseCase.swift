@@ -34,7 +34,7 @@ final class DeleteReviewUseCase {
             )
         } catch {
             if error as? AuthError == .unauthorized {
-                try closeSessionUseCase.execute()
+                try await closeSessionUseCase.execute()
             }
 
             throw error

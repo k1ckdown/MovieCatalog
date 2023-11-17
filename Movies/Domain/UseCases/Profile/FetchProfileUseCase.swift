@@ -32,7 +32,7 @@ final class FetchProfileUseCase {
             return profile
         } catch {
             if error as? AuthError == .unauthorized {
-                try closeSessionUseCase.execute()
+                try await closeSessionUseCase.execute()
             }
 
             throw error

@@ -32,9 +32,23 @@ struct MainCoordinatorView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            home.tag(Tab.home)
-            favorites.tag(Tab.favorites)
-            profile.tag(Tab.profile)
+            HomeCoordinatorView(homeCoordinator, factory: factory)
+                .tabItem {
+                    Label(LocalizedKey.ScreenTitle.home, systemImage: Constants.houseImage)
+                }
+                .tag(Tab.home)
+
+            FavoritesCoordinatorView(favoritesCoordinator, factory: factory)
+                .tabItem {
+                    Label(LocalizedKey.ScreenTitle.favorites, systemImage: Constants.heartImage)
+                }
+                .tag(Tab.favorites)
+
+            ProfileCoordinatorView(profileCoordinator, factory: factory)
+                .tabItem {
+                    Label(LocalizedKey.ScreenTitle.profile, systemImage: Constants.person)
+                }
+                .tag(Tab.profile)
         }
         .tintColor(.appAccent)
         .onAppear {
@@ -48,28 +62,7 @@ struct MainCoordinatorView: View {
         static let person = "person"
     }
 
-    private var home: some View {
-        HomeCoordinatorView(homeCoordinator, factory: factory)
-            .tabItem {
-                Label(LocalizedKey.ScreenTitle.home, systemImage: Constants.houseImage)
-            }
-    }
-
-    private var favorites: some View {
-        FavoritesCoordinatorView(favoritesCoordinator, factory: factory)
-            .tabItem {
-                Label(LocalizedKey.ScreenTitle.favorites, systemImage: Constants.heartImage)
-            }
-    }
-
-    private var profile: some View {
-        ProfileCoordinatorView(profileCoordinator, factory: factory)
-            .tabItem {
-                Label(LocalizedKey.ScreenTitle.profile, systemImage: Constants.person)
-            }
-    }
-
-    private func setupTabBar() {
+    @MainActor private func setupTabBar() {
         UITabBar.appearance().tintColor = UIColor(resource: .appAccent)
         UITabBar.appearance().isTranslucent = true
 

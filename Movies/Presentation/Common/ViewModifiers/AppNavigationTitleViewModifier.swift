@@ -26,7 +26,7 @@ struct AppNavigationTitleViewModifier: ViewModifier {
         static let title = "FИЛЬМУС"
     }
 
-    private func setupNavigationBar(_ color: UIColor) {
+    @MainActor private func setupNavigationBar(_ color: UIColor) {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: color]
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: color]
     }

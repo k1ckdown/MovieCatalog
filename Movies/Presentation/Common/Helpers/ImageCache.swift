@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 final class ImageCache {
     static private var cache = [URL: Image]()
     static subscript(url: URL?) -> Image? {

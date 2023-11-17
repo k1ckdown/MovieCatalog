@@ -12,7 +12,7 @@ extension URL {
         static let imageFormats = ["jpg", "png", "gif", "svg", "webp"]
     }
 
-    func isImageType() -> Bool {
+    @MainActor func isImageType() -> Bool {
         UIApplication.shared.canOpenURL(self) &&
         Constants.imageFormats.contains(self.pathExtension.lowercased())
     }
