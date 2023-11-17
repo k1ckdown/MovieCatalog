@@ -30,7 +30,7 @@ final class AddReviewUseCase {
             try await reviewRepository.addReview(review, movieId: movieId, token: token)
         } catch {
             if error as? AuthError == .unauthorized {
-                try closeSessionUseCase.execute()
+                try await closeSessionUseCase.execute()
             }
 
             throw error

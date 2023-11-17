@@ -22,8 +22,3 @@ struct Pagination {
         }
     }
 }
-
-enum Page {
-    case first
-    case next
-}

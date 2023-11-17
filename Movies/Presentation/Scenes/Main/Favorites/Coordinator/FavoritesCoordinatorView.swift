@@ -20,7 +20,9 @@ struct FavoritesCoordinatorView: View {
     var body: some View {
         NavigationStack(path: $coordinator.navigationPath) {
             factory.makeFavoritesView(coordinator: coordinator)
-                .navigationDestination(for: FavoritesCoordinator.Screen.self, destination: destination)
+                .navigationDestination(for: FavoritesCoordinator.Screen.self) {
+                    destination($0)
+                }
         }
     }
 

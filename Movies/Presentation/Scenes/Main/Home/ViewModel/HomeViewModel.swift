@@ -57,10 +57,9 @@ private extension HomeViewModel {
 
         do {
             let movies = try await fetchMovieListUseCase.execute(page: page)
-            let itemViewModels = makeItemViewModels(movies)
-            state = .loaded(.init(loadMore: .available, movieItems: itemViewModels))
+            state = .loaded(getViewData(movies))
         } catch {
-            state = .error("\(error)")
+            state = .error("\(error.localizedDescription)")
         }
     }
 }
@@ -68,6 +67,16 @@ private extension HomeViewModel {
 // MARK: - View data
 
 private extension HomeViewModel {
+
+    func getViewData(_ movies: [MovieDetails]) -> HomeViewState.ViewData {
+        let itemViewModels = makeItemViewModels(movies)
+        let numberOfCards = 4
+        return .init(
+            loadMore: .available,
+            cardItems: Array(itemViewModels[0..<numberOfCards]),
+            listItems: Array(itemViewModels[numberOfCards...])
+        )
+    }
 
     func makeItemViewModels(_ movies: [MovieDetails]) -> [MovieDetailsItemViewModel] {
         movies.map { movie in

@@ -25,11 +25,11 @@ final class FetchMovieUseCase {
 
     func execute(movieId: String) async throws -> MovieDetails {
         let token = try keychainRepository.retrieveToken()
-        _ = try await movieRepository.getFavoriteMovies(token: token)
+        try await movieRepository.getFavoriteMovies(token: token)
 
         let movie = try await movieRepository.getMovie(id: movieId)
         let movieDetails = try await makeMovieDetailsUseCase.execute([movie])
-
+        
         return movieDetails[0]
     }
 }

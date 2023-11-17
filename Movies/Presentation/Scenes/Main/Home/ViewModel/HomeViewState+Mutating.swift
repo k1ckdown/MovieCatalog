@@ -24,19 +24,7 @@ extension HomeViewState {
     func loadedMore(_ items: [MovieDetailsItemViewModel]) -> HomeViewState {
         guard case .loaded(var viewData) = self else { return self }
 
-        viewData.movieItems.append(contentsOf: items)
-        return .loaded(viewData)
-    }
-
-    func userRatingUpdated(_ rating: Int?, movieId: String) -> HomeViewState {
-        guard
-            case .loaded(var viewData) = self,
-            let movieIndex = viewData.movieItems.firstIndex(where: {
-                $0.id == movieId
-            })
-        else { return self }
-
-        viewData.movieItems[movieIndex].userRating = rating
+        viewData.listItems.append(contentsOf: items)
         return .loaded(viewData)
     }
 }

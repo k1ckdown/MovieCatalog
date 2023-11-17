@@ -267,6 +267,23 @@
         }
       }
     },
+    "DecodingError" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decoding error."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка декодирования."
+          }
+        }
+      }
+    },
     "DeleteReview" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -331,6 +348,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Электронная почта"
+          }
+        }
+      }
+    },
+    "EncodingError" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encoding error."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка кодирования."
           }
         }
       }
@@ -471,6 +505,16 @@
         }
       }
     },
+    "Home" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Главная"
+          }
+        }
+      }
+    },
     "IncorrectLink" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -501,6 +545,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Пароли не совпадают"
+          }
+        }
+      }
+    },
+    "InvalidData" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Response returned with no data to decode."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ответ возвращен без каких-либо данных для декодирования."
           }
         }
       }
@@ -569,6 +630,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Должно быть не менее 6 символов"
+          }
+        }
+      }
+    },
+    "InvalidResponse" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid Response."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неверный ответ."
           }
         }
       }
@@ -743,6 +821,23 @@
         }
       }
     },
+    "MissingURL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL is nil."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL отсутствует"
+          }
+        }
+      }
+    },
     "MyReview" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -790,6 +885,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Имя"
+          }
+        }
+      }
+    },
+    "NoConnect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Internet Connection."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет подключения к Интернету."
           }
         }
       }
@@ -878,6 +990,40 @@
         }
       }
     },
+    "ProfileNotFound" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile not found"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Профиль не найден"
+          }
+        }
+      }
+    },
+    "ProfileUpdateFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile update failed"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось обновить профиль"
+          }
+        }
+      }
+    },
     "ReadMore" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -959,6 +1105,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ошибка: Что-то пошло не так. Не удалось выполнить регистрацию пользователя."
+          }
+        }
+      }
+    },
+    "RequestFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Request failed. Please, try again later."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запрос не выполнен. Пожалуйста, повторите попытку позже."
           }
         }
       }

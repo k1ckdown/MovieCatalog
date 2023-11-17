@@ -33,9 +33,9 @@ struct ReviewViewModel: Equatable, Identifiable {
         self.rating = rating
         self.isAnonymous = isAnonymous
         self.isUserReview = isUserReview
-        self.reviewText = reviewText ?? LocalizedKey.Content.notAvailable
+        self.reviewText = reviewText ?? LocalizedKey.Movie.notAvailable
         self.createDateTime = DateFormatter.dateOnly.string(from: createDateTime)
-        self.authorNickname = authorNickname ?? LocalizedKey.Content.notAvailable
+        self.authorNickname = authorNickname ?? LocalizedKey.Movie.notAvailable
         self.authorAvatarLink = authorAvatarLink ?? ""
         self.shouldShowAnonymous = shouldShowAnonymous
     }

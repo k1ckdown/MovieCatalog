@@ -20,7 +20,9 @@ struct AuthCoordinatorView: View {
     var body: some View {
         NavigationStack(path: $coordinator.navigationPath) {
             factory.makeWelcomeView(coordinator: coordinator)
-                .navigationDestination(for: AuthCoordinator.Screen.self, destination: destination)
+                .navigationDestination(for: AuthCoordinator.Screen.self) {
+                    destination($0)
+                }
         }
     }
 

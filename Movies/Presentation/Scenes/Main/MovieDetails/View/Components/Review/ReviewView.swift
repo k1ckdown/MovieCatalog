@@ -27,7 +27,7 @@ struct ReviewView: View {
                     .fontWeight(.medium)
 
                     if viewModel.isUserReview {
-                        Text(LocalizedKey.Content.myReview)
+                        Text(LocalizedKey.Movie.myReview)
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }

@@ -9,22 +9,23 @@ import Foundation
 
 final class AppFactory {
     private lazy var networkService = NetworkService()
+
     private lazy var keychainRepository = KeychainRepository()
     private lazy var authRepository = AuthRepository(networkService: networkService)
+    private lazy var reviewRepository = ReviewRepository(networkService: networkService)
 
     private lazy var movieRepository: MovieRepository = {
+        let localDataSource = MovieLocalDataSource()
         let remoteDataSource = MovieRemoteDataSource(networkService: networkService)
-        return MovieRepository(remoteDataSource: remoteDataSource)
-    }()
 
-    private lazy var reviewRepository: ReviewRepository = {
-        let remoteDataSource = ReviewRemoteDataSource(networkService: networkService)
-        return ReviewRepository(remoteDataSource: remoteDataSource)
+        return MovieRepository(localDataSource: localDataSource, remoteDataSource: remoteDataSource)
     }()
 
     private lazy var profileRepository: ProfileRepository = {
+        let localDataSource = ProfileLocalDataSource()
         let remoteDataSource = ProfileRemoteDataSource(networkService: networkService)
-        return ProfileRepository(remoteDataSource: remoteDataSource)
+
+        return ProfileRepository(localDataSource: localDataSource, remoteDataSource: remoteDataSource)
     }()
 }
 
@@ -176,6 +177,7 @@ private extension AppFactory {
 
     func makeCloseSessionUseCase() -> CloseSessionUseCase {
         CloseSessionUseCase(
+            movieRepository: movieRepository,
             profileRepository: profileRepository,
             keychainRepository: keychainRepository
         )

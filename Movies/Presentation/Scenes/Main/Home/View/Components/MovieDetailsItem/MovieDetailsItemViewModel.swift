@@ -29,9 +29,9 @@ struct MovieDetailsItemViewModel: Identifiable, Equatable {
         genres: [Genre]?
     ) {
         self.id = id
-        self.name = name ?? LocalizedKey.Content.notAvailable
+        self.name = name ?? LocalizedKey.Movie.notAvailable
         self.year = "\(year)"
-        self.country = country ?? LocalizedKey.Content.notAvailable
+        self.country = country ?? LocalizedKey.Movie.notAvailable
         self.poster = poster
         self.rating = rating
         self.userRating = userRating

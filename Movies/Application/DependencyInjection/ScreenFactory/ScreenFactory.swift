@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 final class ScreenFactory: AuthCoordinatorFactory,
                            HomeCoordinatorFactory,
                            ProfileCoordinatorFactory,

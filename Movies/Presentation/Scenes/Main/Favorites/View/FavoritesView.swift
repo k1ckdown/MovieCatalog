@@ -20,7 +20,7 @@ struct FavoritesView: View {
             .redacted(if: viewModel.state == .loading)
             .backgroundColor()
             .navigationBarTitleDisplayMode(.large)
-            .navigationTitle(LocalizedKey.ScreenTitle.favorites)
+            .navigationTitle(LocalizedKey.TabTitle.favorites)
             .onAppear {
                 viewModel.handle(.onAppear)
             }
@@ -92,12 +92,12 @@ private extension FavoritesView {
 
     func placeholder() -> some View {
         VStack(spacing: Constants.Placeholder.contentSpacing) {
-            Text(LocalizedKey.Content.noFavorites)
+            Text(LocalizedKey.Movie.noFavorites)
                 .font(.title3.weight(.bold))
                 .lineLimit(Constants.Placeholder.headerLineLimit)
                 .minimumScaleFactor(Constants.Placeholder.headerMinimumScale)
 
-            Text(LocalizedKey.Content.addFavorites)
+            Text(LocalizedKey.Movie.addFavorites)
                 .font(.subheadline)
 
             Spacer()

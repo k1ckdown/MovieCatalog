@@ -35,7 +35,7 @@ final class FetchFavoriteMoviesUseCase {
             return movieDetailsList
         } catch {
             if error as? AuthError == .unauthorized {
-                try closeSessionUseCase.execute()
+                try await closeSessionUseCase.execute()
             }
 
             throw error

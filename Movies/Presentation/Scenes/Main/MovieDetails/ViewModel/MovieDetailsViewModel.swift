@@ -219,12 +219,12 @@ private extension MovieDetailsViewModel {
         }.sorted { $0.isUserReview && $1.isUserReview == false }
 
         let model = MovieDetailsView.Model(
-            name: movie.name ?? LocalizedKey.Content.notAvailable,
+            name: movie.name ?? LocalizedKey.Movie.notAvailable,
             rating: movie.rating,
             poster: movie.poster,
             isFavorite: movie.isFavorite,
             userHasReview: movie.userRating != nil,
-            description: movie.description ?? LocalizedKey.Content.notAvailable,
+            description: movie.description ?? LocalizedKey.Movie.notAvailable,
             genres: genreViewModels,
             reviewViewModels: reviewViewModels ?? [],
             aboutMovieViewModel: aboutMovieViewModel
