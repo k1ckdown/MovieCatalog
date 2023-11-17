@@ -60,7 +60,7 @@ private extension HomeViewModel {
             let itemViewModels = makeItemViewModels(movies)
             state = .loaded(.init(loadMore: .available, movieItems: itemViewModels))
         } catch {
-            state = .error("\(error)")
+            state = .error("\(error.localizedDescription)")
         }
     }
 }

@@ -6,28 +6,39 @@
 //
 
 import Foundation
+@preconcurrency import RealmSwift
 
 final class ProfileLocalDataSource {
 
     private var profileObject: ProfileObject?
-    private let realmManager: RealmManager = .init()
+    private let realmProvider = RealmProvider()
 
-    func fetchProfile() -> ProfileObject? {
-        let profileObject = realmManager.read(by: ProfileObject.self)?.first
-        self.profileObject = profileObject
+    func fetchProfile() async -> ProfileObject? {
+        guard let storage = await realmProvider.realm() else { return nil }
+
+        let profileObjects = storage.objects(ProfileObject.self)
+        self.profileObject = profileObjects.first
 
         return profileObject
     }
 
-    func saveProfile(_ profile: Profile) throws {
-        let profileObject = ProfileObject(profile)
-        self.profileObject = profileObject
+    func saveProfile(_ profileObject: ProfileObject) async throws {
+        guard let storage = await realmProvider.realm() else { return }
 
-        try realmManager.create(object: profileObject)
+        self.profileObject = profileObject
+        storage.writeAsync {
+            storage.add(profileObject, update: .all)
+        }
     }
 
-    func deleteProfile() throws {
-        guard let profileObject else { return }
-        try realmManager.delete(object: profileObject)
+    func deleteProfile() async throws {
+        guard
+            let storage = await realmProvider.realm(),
+            let profileObject
+        else { return }
+
+        storage.writeAsync {
+            storage.delete(profileObject)
+        }
     }
 }

@@ -20,8 +20,8 @@ final class CloseSessionUseCase {
         self.keychainRepository = keychainRepository
     }
 
-    func execute() throws {
+    func execute() async throws {
         try keychainRepository.deleteToken()
-        profileRepository.removeProfile()
+        await profileRepository.deleteProfile()
     }
 }

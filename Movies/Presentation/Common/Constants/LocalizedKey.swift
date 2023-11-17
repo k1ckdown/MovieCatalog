@@ -91,7 +91,7 @@ enum LocalizedKey {
     }
 
     enum ErrorMessage {
-        static let error = "Error"
+        static let error = LocalizedStringKey("Error")
 
         static let unknownError = "UnknownError"
         static let invalidUsername = "InvalidUsername"

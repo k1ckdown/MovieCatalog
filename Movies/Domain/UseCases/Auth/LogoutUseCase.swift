@@ -28,10 +28,10 @@ final class LogoutUseCase {
 
         do {
             try await authRepository.logOut(token)
-            try closeSessionUseCase.execute()
+            try await closeSessionUseCase.execute()
         } catch {
             if error as? AuthError == .unauthorized {
-                try closeSessionUseCase.execute()
+                try await closeSessionUseCase.execute()
             }
 
             throw error

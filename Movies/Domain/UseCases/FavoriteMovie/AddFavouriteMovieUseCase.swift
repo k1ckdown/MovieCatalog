@@ -30,7 +30,7 @@ final class AddFavoriteMovieUseCase {
             try await movieRepository.addFavoriteMovie(movieId, token: token)
         } catch {
             if error as? AuthError == .unauthorized {
-                try closeSessionUseCase.execute()
+                try await closeSessionUseCase.execute()
             }
 
             throw error

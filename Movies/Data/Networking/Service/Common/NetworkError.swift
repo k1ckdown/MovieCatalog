@@ -9,16 +9,19 @@ import Foundation
 
 enum NetworkError: LocalizedError {
     case missingURL
+    case noInternet
     case invalidData
     case requestFailed
     case encodingError
     case decodingError
     case invalidResponse
-    
+
     var errorDescription: String? {
         switch self {
         case .missingURL:
             return "URL is nil."
+        case .noInternet:
+            return "No Internet Connection"
         case .invalidResponse:
             return "Invalid Response."
         case .invalidData:

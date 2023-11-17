@@ -23,8 +23,10 @@ final class AppFactory {
     }()
 
     private lazy var profileRepository: ProfileRepository = {
+        let localDataSource = ProfileLocalDataSource()
         let remoteDataSource = ProfileRemoteDataSource(networkService: networkService)
-        return ProfileRepository(remoteDataSource: remoteDataSource)
+
+        return ProfileRepository(localDataSource: localDataSource, remoteDataSource: remoteDataSource)
     }()
 }
 
