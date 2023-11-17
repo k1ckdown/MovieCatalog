@@ -19,19 +19,19 @@ enum NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .missingURL:
-            return "URL is nil."
+            return LocalizedKey.ErrorMessage.Network.missingURL
         case .noConnect:
-            return "No Internet Connection"
+            return LocalizedKey.ErrorMessage.Network.noConnect
         case .invalidResponse:
-            return "Invalid Response."
+            return LocalizedKey.ErrorMessage.Network.invalidResponse
         case .invalidData:
-            return "Response returned with no data to decode."
+            return LocalizedKey.ErrorMessage.Network.invalidData
         case .decodingError:
-            return "Decoding error."
+            return LocalizedKey.ErrorMessage.Network.decodingError
         case .encodingError:
-            return "Encoding error."
+            return LocalizedKey.ErrorMessage.Network.encodingError
         case .requestFailed:
-            return "Request failed. Please, try again later."
+            return LocalizedKey.ErrorMessage.Network.requestFailed
         }
     }
 }

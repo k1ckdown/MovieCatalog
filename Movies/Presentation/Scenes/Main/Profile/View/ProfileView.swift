@@ -94,7 +94,7 @@ struct ProfileView: View {
         .alert(LocalizedKey.ErrorMessage.error, isPresented: isAlertPresented) {
             Button("OK", role: .cancel, action: {})
         } message: {
-            Text(viewModel.state.errorMessage)
+            Text(LocalizedStringKey(viewModel.state.errorMessage))
         }
         .onAppear {
             viewModel.handle(.onAppear)

@@ -34,19 +34,19 @@ struct MainCoordinatorView: View {
         TabView(selection: $selectedTab) {
             HomeCoordinatorView(homeCoordinator, factory: factory)
                 .tabItem {
-                    Label(LocalizedKey.ScreenTitle.home, systemImage: Constants.houseImage)
+                    Label(LocalizedKey.TabTitle.home, systemImage: Constants.houseImage)
                 }
                 .tag(Tab.home)
 
             FavoritesCoordinatorView(favoritesCoordinator, factory: factory)
                 .tabItem {
-                    Label(LocalizedKey.ScreenTitle.favorites, systemImage: Constants.heartImage)
+                    Label(LocalizedKey.TabTitle.favorites, systemImage: Constants.heartImage)
                 }
                 .tag(Tab.favorites)
 
             ProfileCoordinatorView(profileCoordinator, factory: factory)
                 .tabItem {
-                    Label(LocalizedKey.ScreenTitle.profile, systemImage: Constants.person)
+                    Label(LocalizedKey.TabTitle.profile, systemImage: Constants.person)
                 }
                 .tag(Tab.profile)
         }

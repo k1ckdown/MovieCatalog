@@ -14,35 +14,35 @@ struct AboutMovieView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Constants.contentSpacing) {
             rowView(
-                name: LocalizedKey.Content.Description.year,
+                name: LocalizedKey.Movie.Description.year,
                 value: viewModel.year
             )
             rowView(
-                name: LocalizedKey.Content.Description.country,
+                name: LocalizedKey.Movie.Description.country,
                 value: viewModel.country
             )
             rowView(
-                name: LocalizedKey.Content.Description.tagline,
+                name: LocalizedKey.Movie.Description.tagline,
                 value: viewModel.tagline
             )
             rowView(
-                name: LocalizedKey.Content.Description.director,
+                name: LocalizedKey.Movie.Description.director,
                 value: viewModel.director
             )
             rowView(
-                name: LocalizedKey.Content.Description.budget,
+                name: LocalizedKey.Movie.Description.budget,
                 value: viewModel.budget
             )
             rowView(
-                name: LocalizedKey.Content.Description.fees,
+                name: LocalizedKey.Movie.Description.fees,
                 value: viewModel.fees
             )
             rowView(
-                name: LocalizedKey.Content.Description.ageLimit,
+                name: LocalizedKey.Movie.Description.ageLimit,
                 value: viewModel.ageLimit
             )
             rowView(
-                name: LocalizedKey.Content.Description.time,
+                name: LocalizedKey.Movie.Description.time,
                 value: viewModel.time
             )
         }

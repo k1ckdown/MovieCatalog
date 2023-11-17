@@ -113,7 +113,7 @@ private extension HomeView {
 private extension HomeView {
 
     func listHeader() -> some View {
-        Text(LocalizedKey.Content.catalog)
+        Text(LocalizedKey.Movie.catalog)
             .bold()
             .font(.title)
             .foregroundStyle(.white)

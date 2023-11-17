@@ -69,7 +69,7 @@ struct ExpandableText: View {
             }
         } label: {
             HStack(spacing: Constants.Label.spacing) {
-                Text(LocalizedKey.Content.readMore)
+                Text(LocalizedKey.Movie.readMore)
                     .font(.callout)
 
                 Image(systemName: Constants.Label.imageName)

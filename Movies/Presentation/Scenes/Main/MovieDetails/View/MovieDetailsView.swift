@@ -134,13 +134,13 @@ private extension MovieDetailsView {
                 }
             }
             .confirmationDialog("", isPresented: isConfirmationDialogPresented) {
-                Button(LocalizedKey.Content.Action.edit) {
+                Button(LocalizedKey.Movie.Action.edit) {
                     withAnimation {
                         viewModel.handle(.editReviewTapped)
                     }
                 }
 
-                Button(LocalizedKey.Content.Action.deleteReview, role: .destructive) {
+                Button(LocalizedKey.Movie.Action.deleteReview, role: .destructive) {
                     viewModel.handle(.deleteReviewTapped)
                 }
             }
@@ -249,18 +249,18 @@ private extension MovieDetailsView {
                 GenreTag(viewModel: genre)
             }
         }
-        .mediumLabeled(LocalizedKey.Content.genres)
+        .mediumLabeled(LocalizedKey.Movie.genres)
     }
 
     func aboutMovieView(viewModel: AboutMovieViewModel) -> some View {
         AboutMovieView(viewModel: viewModel)
-            .mediumLabeled(LocalizedKey.Content.aboutMovie)
+            .mediumLabeled(LocalizedKey.Movie.aboutMovie)
     }
 
     func reviewListView(viewModels: [ReviewViewModel], shouldShowAddReview: Bool) -> some View {
         VStack(alignment: .leading, spacing: Constants.reviewSectionSpacing) {
             HStack {
-                Text(LocalizedKey.Content.reviews)
+                Text(LocalizedKey.Movie.reviews)
                     .font(.system(size: Constants.sectionHeaderFontSize, weight: .bold))
 
                 Spacer()

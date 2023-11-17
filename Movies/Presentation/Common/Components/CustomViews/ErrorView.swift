@@ -21,7 +21,7 @@ struct ErrorView: View {
                         height: Constants.imageSize
                     )
 
-                Text(message)
+                Text(LocalizedStringKey(message))
                     .font(.body.weight(.medium))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)

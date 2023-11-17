@@ -16,9 +16,9 @@ final class ProfileRepository {
         var errorDescription: String? {
             switch self {
             case .notFound:
-                return "Profile not found"
+                return LocalizedKey.ErrorMessage.Profile.notFound
             case .updateFailed:
-                return "Profile update failed"
+                return LocalizedKey.ErrorMessage.Profile.updateFailed
             }
         }
     }
