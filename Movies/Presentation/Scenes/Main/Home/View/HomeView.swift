@@ -16,14 +16,12 @@ struct HomeView: View {
     }
 
     var body: some View {
-        ZStack {
-            contentView
-        }
-        .redacted(if: viewModel.state == .loading)
-        .backgroundColor()
-        .onAppear {
-            viewModel.handle(.onAppear)
-        }
+        contentView
+            .redacted(if: viewModel.state == .loading)
+            .backgroundColor()
+            .onAppear {
+                viewModel.handle(.onAppear)
+            }
     }
 
     @ViewBuilder
@@ -121,7 +119,7 @@ private extension HomeView {
     }
 
     @ViewBuilder
-    private func loadMoreView(_ loadMore: HomeViewState.ViewData.LoadMore) -> some View {
+    func loadMoreView(_ loadMore: HomeViewState.ViewData.LoadMore) -> some View {
         switch loadMore {
         case .available:
             ProgressView()
