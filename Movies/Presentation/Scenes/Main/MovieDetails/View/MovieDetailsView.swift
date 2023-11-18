@@ -27,7 +27,6 @@ struct MovieDetailsView: View {
             .redacted(if: viewModel.state == .loading)
             .onAppear() {
                 viewModel.handle(.onAppear)
-
                 withAnimation(.spring) {
                     tabBarVisibility = .hidden
                 }
@@ -62,26 +61,9 @@ struct MovieDetailsView: View {
         )
     }
 
-    private struct HeaderRectPreferenceKey: PreferenceKey {
-        typealias Value = CGRect
-
-        static var defaultValue = CGRect.zero
-
-        static func reduce(value: inout CGRect, nextValue: () -> CGRect) {
-            value = nextValue()
-        }
-    }
-
     private enum Constants {
-        static let posterHeight: CGFloat = 520
-        static let gradientEndOpacity: CGFloat = 0
-
-        static let reviewSectionSpacing: CGFloat = 20
-        static let sectionHeaderFontSize: CGFloat = 19
-
         static let posterSpacing: CGFloat = 30
         static let genresSpacing: CGFloat = 9
-        static let reviewsSpacing: CGFloat = 20
         static let detailsSpacing: CGFloat = 25
 
         enum Content {
@@ -89,15 +71,9 @@ struct MovieDetailsView: View {
             static let horizontalInsets: CGFloat = 16
         }
 
-        enum Header {
-            static let lineLimit = 4
-            static let barLineLimit = 1
+        enum HeaderBar {
+            static let lineLimit = 1
             static let minimumScaleFactor: CGFloat = 0.75
-        }
-
-        enum PlusButton {
-            static let size: CGFloat = 37
-            static let imageName = "plus.circle.fill"
         }
 
         enum ReviewDialog {
@@ -108,8 +84,6 @@ struct MovieDetailsView: View {
         }
     }
 }
-
-// MARK: - Loaded view
 
 private extension MovieDetailsView {
 
@@ -124,12 +98,14 @@ private extension MovieDetailsView {
                     ToolbarItem(placement: .principal) {
                         Text(data.movie.name)
                             .font(.title2.bold())
-                            .lineLimit(Constants.Header.barLineLimit)
-                            .minimumScaleFactor(Constants.Header.minimumScaleFactor)
+                            .lineLimit(Constants.HeaderBar.lineLimit)
+                            .minimumScaleFactor(Constants.HeaderBar.minimumScaleFactor)
                     }
 
                     ToolbarItem(placement: .topBarTrailing) {
-                        favoriteButton(.small, isSet: data.movie.isFavorite)
+                        FavoriteButton(size: .small, isSet: data.movie.isFavorite) {
+                            viewModel.handle(.favoriteTapped)
+                        }
                     }
                 }
             }
@@ -141,7 +117,9 @@ private extension MovieDetailsView {
                 }
 
                 Button(LocalizedKey.Movie.Action.deleteReview, role: .destructive) {
-                    viewModel.handle(.deleteReviewTapped)
+                    withAnimation {
+                        viewModel.handle(.deleteReviewTapped)
+                    }
                 }
             }
             .overlay(alignment: .center) {
@@ -154,137 +132,53 @@ private extension MovieDetailsView {
                 }
             }
     }
-}
-
-// MARK: - Details view
-
-private extension MovieDetailsView {
 
     func detailsView(model: MovieDetailsView.Model) -> some View {
         GeometryReader { geometry in
             ScrollView(.vertical) {
                 VStack(spacing: Constants.posterSpacing) {
-                    posterView(model.poster)
-                        .overlay { GeometryReader { geometry in
-                            Color.background
-                                .opacity(1 - Double(geometry.frame(in: .global).maxY
-                                                    / (Constants.posterHeight + geometry.safeAreaInsets.top)))
-                        }}
+                    MoviePosterView(
+                        imageUrl: model.poster,
+                        safeAreaInsetTop: geometry.safeAreaInsets.top
+                    )
 
                     VStack(spacing: Constants.Content.spacing) {
-                        headerView(
-                            name: model.name,
+                        MovieDetailsHeader(
+                            movieName: model.name,
                             rating: model.rating,
-                            isFavorite: model.isFavorite
-                        )
-                        .onPreferenceChange(HeaderRectPreferenceKey.self) { value in
-                            isHeaderBarShowing = value.maxY <= geometry.safeAreaInsets.top
+                            isFavorite: model.isFavorite,
+                            isDisappeared: $isHeaderBarShowing,
+                            safeAreaInsetTop: geometry.safeAreaInsets.top
+                        ) {
+                            viewModel.handle(.favoriteTapped)
                         }
 
                         ExpandableText(text: model.description)
 
                         VStack(alignment: .leading, spacing: Constants.detailsSpacing) {
-                            genreListView(genres: model.genres)
-                            aboutMovieView(viewModel: model.aboutMovieViewModel)
-                            reviewListView(
+                            TagLayout(spacing: Constants.genresSpacing) {
+                                ForEach(model.genres) { genre in
+                                    GenreTag(viewModel: genre)
+                                }
+                            }
+                            .mediumLabeled(LocalizedKey.Movie.genres)
+
+                            AboutMovieView(viewModel: model.aboutMovieViewModel)
+                                .mediumLabeled(LocalizedKey.Movie.aboutMovie)
+                            
+                            ReviewListSection(
                                 viewModels: model.reviewViewModels,
-                                shouldShowAddReview: model.userHasReview == false
-                            )
+                                shouldShowAddReview: model.shouldShowAddReview
+                            ) {
+                                viewModel.handle(.addReviewTapped)
+                            } reviewOptionsTappedHandler: { id in
+                                viewModel.handle(.reviewOptionsTapped(id))
+                            }
                         }
                     }
                     .padding(.horizontal, Constants.Content.horizontalInsets)
                 }
                 .disabled(viewModel.state == .loading)
-            }
-        }
-    }
-
-    func posterView(_ poster: String?) -> some View {
-        MovieAsyncImage(urlString: poster, isShowingProgressView: true)
-            .frame(height: Constants.posterHeight)
-            .scaledToFill()
-            .clipped()
-            .overlay {
-                LinearGradient(
-                    colors: [.background, .background.opacity(Constants.gradientEndOpacity)],
-                    startPoint: .bottom,
-                    endPoint: .center
-                )
-            }
-    }
-
-    func favoriteButton(_ size: FavoriteButton.Size, isSet: Bool) -> some View {
-        FavoriteButton(size: size, isSet: isSet) {
-            viewModel.handle(.favoriteTapped)
-        }
-    }
-
-    func headerView(name: String, rating: Double, isFavorite: Bool) -> some View {
-        HStack {
-            RatingTagView(style: .titleOnly(.medium), value: rating)
-
-            Spacer()
-
-            Text(name)
-                .font(.title.bold())
-                .multilineTextAlignment(.center)
-                .lineLimit(Constants.Header.lineLimit)
-                .minimumScaleFactor(Constants.Header.minimumScaleFactor)
-                .background(GeometryReader { geometry in
-                    Color.clear.preference(
-                        key: HeaderRectPreferenceKey.self,
-                        value: geometry.frame(in: .global)
-                    )
-                })
-
-            Spacer()
-
-            favoriteButton(.medium, isSet: isFavorite)
-        }
-    }
-
-    func genreListView(genres: [GenreViewModel]) -> some View {
-        TagLayout(spacing: Constants.genresSpacing) {
-            ForEach(genres) { genre in
-                GenreTag(viewModel: genre)
-            }
-        }
-        .mediumLabeled(LocalizedKey.Movie.genres)
-    }
-
-    func aboutMovieView(viewModel: AboutMovieViewModel) -> some View {
-        AboutMovieView(viewModel: viewModel)
-            .mediumLabeled(LocalizedKey.Movie.aboutMovie)
-    }
-
-    func reviewListView(viewModels: [ReviewViewModel], shouldShowAddReview: Bool) -> some View {
-        VStack(alignment: .leading, spacing: Constants.reviewSectionSpacing) {
-            HStack {
-                Text(LocalizedKey.Movie.reviews)
-                    .font(.system(size: Constants.sectionHeaderFontSize, weight: .bold))
-
-                Spacer()
-
-                if shouldShowAddReview {
-                    Button {
-                        withAnimation {
-                            viewModel.handle(.addReviewTapped)
-                        }
-                    } label: {
-                        Image(systemName: Constants.PlusButton.imageName)
-                            .resizable()
-                            .frame(width: Constants.PlusButton.size, height: Constants.PlusButton.size)
-                            .foregroundStyle(.white, .appAccent)
-                    }
-                }
-            }
-
-            VStack(spacing: Constants.reviewsSpacing) {
-                ForEach(viewModels) { itemViewModel in
-                    ReviewView(viewModel: itemViewModel) {
-                        viewModel.handle(.reviewOptionsTapped(itemViewModel.id))
-                    }
-                }
             }
         }
     }

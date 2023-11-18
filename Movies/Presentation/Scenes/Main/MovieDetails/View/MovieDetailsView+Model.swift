@@ -8,14 +8,14 @@
 import Foundation
 
 extension MovieDetailsView {
-
+    
     struct Model: Equatable {
         let name: String
         let rating: Double
         let poster: String?
         var isFavorite: Bool
-        let userHasReview: Bool
         let description: String
+        let shouldShowAddReview: Bool
         let genres: [GenreViewModel]
         let reviewViewModels: [ReviewViewModel]
         let aboutMovieViewModel: AboutMovieViewModel
@@ -29,8 +29,8 @@ extension MovieDetailsView.Model: HasPlaceholder {
             rating: 10,
             poster: nil,
             isFavorite: false,
-            userHasReview: false,
             description: .placeholder(length: 60),
+            shouldShowAddReview: true,
             genres: .placeholders(count: 4),
             reviewViewModels: .placeholders(count: 4),
             aboutMovieViewModel: .placeholder()

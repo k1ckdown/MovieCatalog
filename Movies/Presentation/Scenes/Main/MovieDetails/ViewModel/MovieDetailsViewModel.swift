@@ -223,8 +223,8 @@ private extension MovieDetailsViewModel {
             rating: movie.rating,
             poster: movie.poster,
             isFavorite: movie.isFavorite,
-            userHasReview: movie.userRating != nil,
             description: movie.description ?? LocalizedKey.Movie.notAvailable,
+            shouldShowAddReview: movie.userRating == nil,
             genres: genreViewModels,
             reviewViewModels: reviewViewModels ?? [],
             aboutMovieViewModel: aboutMovieViewModel
