@@ -1,4 +1,4 @@
-# 🎬 Movies Catalog
+# 🎬 Movie Catalog
 
 [![license](https://img.shields.io/badge/license-MIT-B32629)]()
 [![iOS](https://img.shields.io/badge/platform-iOS-black.svg)]()
