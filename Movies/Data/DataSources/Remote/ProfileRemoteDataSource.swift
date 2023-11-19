@@ -20,7 +20,7 @@ extension ProfileRemoteDataSource {
 
     func fetchProfile() async throws -> ProfileDTO {
         let config = UserNetworkConfig.retrieveProfile
-        return try await networkService.request(with: config, needToken: true)
+        return try await networkService.request(with: config, useToken: true)
     }
 
     func updateProfile(profile: ProfileDTO) async throws {

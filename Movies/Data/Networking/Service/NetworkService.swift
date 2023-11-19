@@ -23,15 +23,15 @@ final class NetworkService {
     }
 
     func request(with config: NetworkConfig, useToken: Bool = false) async throws {
-        let (_, response) = try await makeRequest(config: config, needToken: useToken)
+        let (_, response) = try await makeRequest(config: config, useToken: useToken)
         try handleResponse(response)
     }
 
     func request<Model: Decodable>(
         with config: NetworkConfig,
-        needToken: Bool = false
+        useToken: Bool = false
     ) async throws -> Model {
-        let (data, response) = try await makeRequest(config: config, needToken: needToken)
+        let (data, response) = try await makeRequest(config: config, useToken: useToken)
 
         try handleResponse(response)
         guard let model = try? decoder.decode(Model.self, from: data) else {
@@ -52,8 +52,8 @@ final class NetworkService {
 
 private extension NetworkService {
 
-    func makeRequest(config: NetworkConfig, needToken: Bool) async throws -> (Data, URLResponse) {
-        let token = needToken ? try keychainService.retrieveToken() : nil
+    func makeRequest(config: NetworkConfig, useToken: Bool) async throws -> (Data, URLResponse) {
+        let token = useToken ? try keychainService.retrieveToken() : nil
         let urlRequest = try buildRequest(with: config, token: token)
         return try await URLSession.shared.data(for: urlRequest)
     }
