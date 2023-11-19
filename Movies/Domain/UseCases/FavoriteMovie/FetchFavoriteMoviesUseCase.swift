@@ -10,30 +10,19 @@ import Foundation
 final class FetchFavoriteMoviesUseCase {
 
     private let movieRepository: MovieRepository
-    private let closeSessionUseCase: CloseSessionUseCase
-    private let makeMovieDetailsUseCase: MakeMovieDetailsUseCase
+    private let getMovieDetailsUseCase: GetMovieDetailsUseCase
 
     init(
         movieRepository: MovieRepository,
-        closeSessionUseCase: CloseSessionUseCase,
-        makeMovieDetailsUseCase: MakeMovieDetailsUseCase
+        getMovieDetailsUseCase: GetMovieDetailsUseCase
     ) {
         self.movieRepository = movieRepository
-        self.closeSessionUseCase = closeSessionUseCase
-        self.makeMovieDetailsUseCase = makeMovieDetailsUseCase
+        self.getMovieDetailsUseCase = getMovieDetailsUseCase
     }
-    
-    func execute() async throws -> [MovieDetails] {
-        do {
-            let movieList = try await movieRepository.getFavoriteMovies()
-            let movieDetailsList = try await makeMovieDetailsUseCase.execute(movieList)
-            return movieDetailsList
-        } catch {
-            if error as? AuthError == .unauthorized {
-                try await closeSessionUseCase.execute()
-            }
 
-            throw error
-        }
+    func execute() async throws -> [MovieDetails] {
+        let movieList = try await movieRepository.getFavoriteMovies()
+        let movieDetailsList = try await getMovieDetailsUseCase.execute(movieList)
+        return movieDetailsList
     }
 }

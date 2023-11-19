@@ -8,28 +8,24 @@
 import Foundation
 
 final class LogoutUseCase {
-    
+
     private let authRepository: AuthRepository
-    private let closeSessionUseCase: CloseSessionUseCase
-    
+    private let movieRepository: MovieRepository
+    private let profileRepository: ProfileRepository
+
     init(
         authRepository: AuthRepository,
-        closeSessionUseCase: CloseSessionUseCase
+        movieRepository: MovieRepository,
+        profileRepository: ProfileRepository
     ) {
         self.authRepository = authRepository
-        self.closeSessionUseCase = closeSessionUseCase
+        self.movieRepository = movieRepository
+        self.profileRepository = profileRepository
     }
-    
+
     func execute() async throws {
-        do {
-            try await authRepository.logOut()
-            try await closeSessionUseCase.execute()
-        } catch {
-            if error as? AuthError == .unauthorized {
-                try await closeSessionUseCase.execute()
-            }
-            
-            throw error
-        }
+        try await movieRepository.deleteAllMovies()
+        try await authRepository.logOut()
+        await profileRepository.deleteProfile()
     }
 }

@@ -9,26 +9,13 @@ import Foundation
 
 final class AddReviewUseCase {
 
-    private let closeSessionUseCase: CloseSessionUseCase
     private let reviewRepository: ReviewRepository
 
-    init(
-        closeSessionUseCase: CloseSessionUseCase,
-        reviewRepository: ReviewRepository
-    ) {
-        self.closeSessionUseCase = closeSessionUseCase
+    init(reviewRepository: ReviewRepository) {
         self.reviewRepository = reviewRepository
     }
 
     func execute(review: ReviewModify, movieId: String) async throws {
-        do {
-            try await reviewRepository.addReview(review, movieId: movieId)
-        } catch {
-            if error as? AuthError == .unauthorized {
-                try await closeSessionUseCase.execute()
-            }
-
-            throw error
-        }
+        try await reviewRepository.addReview(review, movieId: movieId)
     }
 }
