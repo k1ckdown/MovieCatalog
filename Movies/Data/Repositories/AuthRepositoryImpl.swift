@@ -1,5 +1,5 @@
 //
-//  AuthRepositoryImpl.swift
+//  AuthRepositoryImplementation.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 08.11.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AuthRepositoryImpl {
+final class AuthRepositoryImplementation {
 
     private let networkService: NetworkService
     private let keychainService: KeychainService
@@ -18,7 +18,7 @@ final class AuthRepositoryImpl {
     }
 }
 
-extension AuthRepositoryImpl: AuthRepository {
+extension AuthRepositoryImplementation: AuthRepository {
 
     func logOut() async throws {
         let config = AuthNetworkConfig.logout

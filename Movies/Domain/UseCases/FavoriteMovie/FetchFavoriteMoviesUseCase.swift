@@ -10,19 +10,12 @@ import Foundation
 final class FetchFavoriteMoviesUseCase {
 
     private let movieRepository: MovieRepository
-    private let getMovieDetailsUseCase: GetMovieDetailsUseCase
 
-    init(
-        movieRepository: MovieRepository,
-        getMovieDetailsUseCase: GetMovieDetailsUseCase
-    ) {
+    init(movieRepository: MovieRepository) {
         self.movieRepository = movieRepository
-        self.getMovieDetailsUseCase = getMovieDetailsUseCase
     }
 
-    func execute() async throws -> [MovieDetails] {
-        let movieList = try await movieRepository.getFavoriteMovies()
-        let movieDetailsList = try await getMovieDetailsUseCase.execute(movieList)
-        return movieDetailsList
+    func execute() async throws -> [Movie] {
+        return try await movieRepository.getFavoriteMovies()
     }
 }

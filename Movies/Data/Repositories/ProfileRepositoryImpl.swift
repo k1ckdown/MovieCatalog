@@ -1,5 +1,5 @@
 //
-//  ProfileRepositoryImpl.swift
+//  ProfileRepositoryImplementation.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 29.10.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ProfileRepositoryImpl {
+final class ProfileRepositoryImplementation {
     
     enum ProfileRepositoryError: LocalizedError {
         case notFound
@@ -36,10 +36,11 @@ final class ProfileRepositoryImpl {
     }
 }
 
-extension ProfileRepositoryImpl: ProfileRepository {
+extension ProfileRepositoryImplementation: ProfileRepository {
     
     func deleteProfile() async {
         await localDataSource.deleteProfile()
+        isProfileLoaded = false
     }
     
     func getProfile() async throws -> Profile {
@@ -85,7 +86,7 @@ extension ProfileRepositoryImpl: ProfileRepository {
     }
 }
 
-private extension ProfileRepositoryImpl {
+private extension ProfileRepositoryImplementation {
     
     func handleUnauthorizedError(_ error: Error) async {
         if error as? AuthError == .unauthorized {

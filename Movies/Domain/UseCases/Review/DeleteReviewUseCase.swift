@@ -16,9 +16,6 @@ final class DeleteReviewUseCase {
     }
 
     func execute(_ reviewId: String, movieId: String) async throws {
-        try await reviewRepository.deleteReview(
-            reviewId: reviewId,
-            movieId: movieId
-        )
+        try await reviewRepository.deleteReview(reviewId: reviewId, movieId: movieId)
     }
 }

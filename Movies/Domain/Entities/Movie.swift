@@ -24,4 +24,13 @@ struct Movie {
     let ageLimit: Int
     var isFavorite = false
     var isPaged = true
+
+    func getAverageRating() -> Double? {
+        guard let reviews else { return nil }
+
+        let totalRating = reviews.compactMap { $0.rating }.reduce(0, +)
+        let averageRating = Double(totalRating) / Double(reviews.count)
+        
+        return averageRating
+    }
 }

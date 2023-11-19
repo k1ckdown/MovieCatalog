@@ -9,14 +9,9 @@ import Foundation
 
 final class GetMovieDetailsUseCase {
 
-    private let movieRepository: MovieRepository
     private let profileRepository: ProfileRepository
 
-    init(
-        movieRepository: MovieRepository,
-        profileRepository: ProfileRepository
-    ) {
-        self.movieRepository = movieRepository
+    init(profileRepository: ProfileRepository) {
         self.profileRepository = profileRepository
     }
 
@@ -41,16 +36,11 @@ private extension GetMovieDetailsUseCase {
     }
 
     func makeMovieDetails(for movie: Movie, userId: String?) -> MovieDetails {
-        let reviews = movie.reviews ?? []
-
-        let totalRating = reviews.compactMap { $0.rating }.reduce(0, +)
-        let averageRating = Double(totalRating) / Double(reviews.count)
-
-        let userReview = reviews.first(where: { $0.author?.userId == userId })
-        let reviewDetailsList = reviews.map {
-            makeReviewDetails(for: $0, isUserReview: $0.id == userReview?.id)
+        let userReview = movie.reviews?.first(where: { $0.author?.userId == userId })
+        let reviewDetailsList = movie.reviews?.map { movie in
+            makeReviewDetails(for: movie, isUserReview: movie.id == userReview?.id)
         }
-        
+
         return .init(
             id: movie.id,
             name: movie.name,
@@ -66,7 +56,7 @@ private extension GetMovieDetailsUseCase {
             budget: movie.budget,
             fees: movie.fees,
             ageLimit: movie.ageLimit,
-            rating: averageRating,
+            rating: movie.getAverageRating(),
             userRating: userReview?.rating,
             isFavorite: movie.isFavorite
         )

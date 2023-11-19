@@ -13,18 +13,18 @@ struct MovieDetailsItemViewModel: Identifiable, Equatable {
     let year: String
     let country: String
     let poster: String?
-    let rating: Double
+    let rating: Double?
     var userRating: Int?
     let genres: [GenreViewModel]
     let shouldShowGenresEllipsis: Bool
-    
+
     init(
         id: String,
         name: String?,
         year: Int,
         country: String?,
         poster: String?,
-        rating: Double,
+        rating: Double?,
         userRating: Int?,
         genres: [Genre]?
     ) {
@@ -35,9 +35,11 @@ struct MovieDetailsItemViewModel: Identifiable, Equatable {
         self.poster = poster
         self.rating = rating
         self.userRating = userRating
+
         self.genres = genres?.map {
             .init(id: $0.id, name: $0.name ?? "", style: .note)
         } ?? []
+
         self.shouldShowGenresEllipsis = self.genres.count > 5
     }
 }

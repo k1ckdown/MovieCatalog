@@ -16,8 +16,10 @@ struct MovieShortItem: View {
             MovieAsyncImage(urlString: viewModel.imageUrl)
                 .clipShape(.rect(cornerRadius: Constants.cornerRadius))
                 .overlay(alignment: .topTrailing, content: {
-                    RatingTagView(style: .titleAndIcon, value: viewModel.rating)
-                        .padding([.top, .trailing], Constants.ratingTagInsets)
+                    if let rating = viewModel.rating {
+                        RatingTagView(style: .titleAndIcon, value: rating)
+                            .padding([.top, .trailing], Constants.ratingTagInsets)
+                    }
                 })
 
             if let name = viewModel.name {

@@ -27,6 +27,6 @@ extension ProfileRemoteDataSource {
         let data = try networkService.encode(profile)
         let config = UserNetworkConfig.updateProfile(data)
 
-        try await networkService.request(with: config, needToken: true)
+        try await networkService.request(with: config, useToken: true)
     }
 }

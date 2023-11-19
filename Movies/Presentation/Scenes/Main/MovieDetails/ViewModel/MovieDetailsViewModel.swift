@@ -19,6 +19,7 @@ final class MovieDetailsViewModel: ViewModel {
     private let deleteReviewUseCase: DeleteReviewUseCase
 
     private let fetchMovieUseCase: FetchMovieUseCase
+    private let getMovieDetailsUseCase: GetMovieDetailsUseCase
     private let addFavoriteMovieUseCase: AddFavoriteMovieUseCase
     private let deleteFavoriteMovieUseCase: DeleteFavoriteMovieUseCase
 
@@ -29,6 +30,7 @@ final class MovieDetailsViewModel: ViewModel {
         updateReviewUseCase: UpdateReviewUseCase,
         deleteReviewUseCase: DeleteReviewUseCase,
         fetchMovieUseCase: FetchMovieUseCase,
+        getMovieDetailsUseCase: GetMovieDetailsUseCase,
         addFavoriteMovieUseCase: AddFavoriteMovieUseCase,
         deleteFavoriteMovieUseCase: DeleteFavoriteMovieUseCase
     ) {
@@ -39,6 +41,7 @@ final class MovieDetailsViewModel: ViewModel {
         self.updateReviewUseCase = updateReviewUseCase
         self.deleteReviewUseCase = deleteReviewUseCase
         self.fetchMovieUseCase = fetchMovieUseCase
+        self.getMovieDetailsUseCase = getMovieDetailsUseCase
         self.addFavoriteMovieUseCase = addFavoriteMovieUseCase
         self.deleteFavoriteMovieUseCase = deleteFavoriteMovieUseCase
     }
@@ -113,7 +116,8 @@ private extension MovieDetailsViewModel {
     func retrieveMovie() async {
         do {
             let movie = try await fetchMovieUseCase.execute(movieId: movieId)
-            state = .loaded(getViewData(for: movie))
+            let movieDetails = try await getMovieDetailsUseCase.execute([movie])[0]
+            state = .loaded(getViewData(for: movieDetails))
         } catch {
             handleError(error)
         }

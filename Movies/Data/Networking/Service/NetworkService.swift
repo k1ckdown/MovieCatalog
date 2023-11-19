@@ -22,8 +22,8 @@ final class NetworkService {
         self.keychainService = keychainService
     }
 
-    func request(with config: NetworkConfig, needToken: Bool = false) async throws {
-        let (_, response) = try await makeRequest(config: config, needToken: needToken)
+    func request(with config: NetworkConfig, useToken: Bool = false) async throws {
+        let (_, response) = try await makeRequest(config: config, needToken: useToken)
         try handleResponse(response)
     }
 
