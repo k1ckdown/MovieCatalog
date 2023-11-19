@@ -1,5 +1,5 @@
 //
-//  MakeMovieDetailsUseCase.swift
+//  getMovieDetailsUseCase.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 02.11.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MakeMovieDetailsUseCase {
+final class GetMovieDetailsUseCase {
 
     private let movieRepository: MovieRepository
     private let profileRepository: ProfileRepository
@@ -26,7 +26,7 @@ final class MakeMovieDetailsUseCase {
     }
 }
 
-private extension MakeMovieDetailsUseCase {
+private extension GetMovieDetailsUseCase {
 
     func makeReviewDetails(for review: Review, isUserReview: Bool) -> ReviewDetails {
         .init(

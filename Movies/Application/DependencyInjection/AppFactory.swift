@@ -10,24 +10,24 @@ import Foundation
 final class AppFactory {
     private lazy var keychainService = KeychainService()
     private lazy var networkService = NetworkService(keychainService: keychainService)
-    
+
     private lazy var reviewRepository = ReviewRepositoryImpl(networkService: networkService)
     private lazy var authRepository = AuthRepositoryImpl(
         networkService: networkService,
         keychainService: keychainService
     )
-    
+
     private lazy var movieRepository: MovieRepositoryImpl = {
         let localDataSource = MovieLocalDataSource()
         let remoteDataSource = MovieRemoteDataSource(networkService: networkService)
-        
+
         return MovieRepositoryImpl(localDataSource: localDataSource, remoteDataSource: remoteDataSource)
     }()
-    
+
     private lazy var profileRepository: ProfileRepositoryImpl = {
         let localDataSource = ProfileLocalDataSource()
         let remoteDataSource = ProfileRemoteDataSource(networkService: networkService)
-        
+
         return ProfileRepositoryImpl(localDataSource: localDataSource, remoteDataSource: remoteDataSource)
     }()
 }
@@ -35,34 +35,28 @@ final class AppFactory {
 // MARK: - Profile
 
 extension AppFactory {
-    
+
     func makeFetchProfileUseCase() -> FetchProfileUseCase {
-        FetchProfileUseCase(
-            profileRepository: profileRepository,
-            closeSessionUseCase: makeCloseSessionUseCase()
-        )
+        FetchProfileUseCase(profileRepository: profileRepository)
     }
-    
+
     func makeUpdateProfileUseCase() -> UpdateProfileUseCase {
-        UpdateProfileUseCase(
-            profileRepository: profileRepository,
-            closeSessionUseCase: makeCloseSessionUseCase()
-        )
+        UpdateProfileUseCase(profileRepository: profileRepository)
     }
 }
 
 // MARK: - Validation
 
 extension AppFactory {
-    
+
     func makeValidateEmailUseCase() -> ValidateEmailUseCase {
         ValidateEmailUseCase()
     }
-    
+
     func makeValidateUsernameUseCase() -> ValidateUsernameUseCase {
         ValidateUsernameUseCase()
     }
-    
+
     func makeValidatePasswordUseCase() -> ValidatePasswordUseCase {
         ValidatePasswordUseCase()
     }
@@ -71,19 +65,20 @@ extension AppFactory {
 // MARK: - Auth
 
 extension AppFactory {
-    
+
     func makeLoginUseCase() -> LoginUseCase {
         LoginUseCase(authRepository: authRepository)
     }
-    
+
     func makeRegisterUserUseCase() -> RegisterUserUseCase {
         RegisterUserUseCase(authRepository: authRepository)
     }
-    
+
     func makeLogoutUseCase() -> LogoutUseCase {
         LogoutUseCase(
             authRepository: authRepository,
-            closeSessionUseCase: makeCloseSessionUseCase()
+            movieRepository: movieRepository,
+            profileRepository: profileRepository
         )
     }
 }
@@ -91,18 +86,18 @@ extension AppFactory {
 // MARK: - Movie
 
 extension AppFactory {
-    
+
     func makeFetchMovieListUseCase() -> FetchMovieListUseCase {
         FetchMovieListUseCase(
             movieRepository: movieRepository,
-            makeMovieDetailsUseCase: makeMakeMovieDetailsUseCase()
+            getMovieDetailsUseCase: makeGetMovieDetailsUseCase()
         )
     }
-    
+
     func makeFetchMovieUseCase() -> FetchMovieUseCase {
         FetchMovieUseCase(
             movieRepository: movieRepository,
-            makeMovieDetailsUseCase: makeMakeMovieDetailsUseCase()
+            getMovieDetailsUseCase: makeGetMovieDetailsUseCase()
         )
     }
 }
@@ -110,26 +105,19 @@ extension AppFactory {
 // MARK: - FavoriteMovie
 
 extension AppFactory {
-    
+
     func makeDeleteFavoriteMovieUseCase() -> DeleteFavoriteMovieUseCase {
-        DeleteFavoriteMovieUseCase(
-            closeSessionUseCase: makeCloseSessionUseCase(),
-            movieRepository: movieRepository
-        )
+        DeleteFavoriteMovieUseCase(movieRepository: movieRepository)
     }
-    
+
     func makeAddFavoriteMovieUseCase() -> AddFavoriteMovieUseCase {
-        AddFavoriteMovieUseCase(
-            movieRepository: movieRepository,
-            closeSessionUseCase: makeCloseSessionUseCase()
-        )
+        AddFavoriteMovieUseCase(movieRepository: movieRepository)
     }
-    
+
     func makeFetchFavoriteMoviesUseCase() -> FetchFavoriteMoviesUseCase {
         FetchFavoriteMoviesUseCase(
             movieRepository: movieRepository,
-            closeSessionUseCase: makeCloseSessionUseCase(),
-            makeMovieDetailsUseCase: makeMakeMovieDetailsUseCase()
+            getMovieDetailsUseCase: makeGetMovieDetailsUseCase()
         )
     }
 }
@@ -137,40 +125,24 @@ extension AppFactory {
 // MARK: - Review
 
 extension AppFactory {
-    
+
     func makeAddReviewUseCase() -> AddReviewUseCase {
-        AddReviewUseCase(
-            closeSessionUseCase: makeCloseSessionUseCase(),
-            reviewRepository: reviewRepository
-        )
+        AddReviewUseCase(reviewRepository: reviewRepository)
     }
-    
+
     func makeUpdateReviewUseCase() -> UpdateReviewUseCase {
-        UpdateReviewUseCase(
-            closeSessionUseCase: makeCloseSessionUseCase(),
-            reviewRepository: reviewRepository
-        )
+        UpdateReviewUseCase(reviewRepository: reviewRepository)
     }
-    
+
     func makeDeleteReviewUseCase() -> DeleteReviewUseCase {
-        DeleteReviewUseCase(
-            closeSessionUseCase: makeCloseSessionUseCase(),
-            reviewRepository: reviewRepository
-        )
+        DeleteReviewUseCase(reviewRepository: reviewRepository)
     }
 }
 
 private extension AppFactory {
-    
-    func makeCloseSessionUseCase() -> CloseSessionUseCase {
-        CloseSessionUseCase(
-            movieRepository: movieRepository,
-            profileRepository: profileRepository
-        )
-    }
-    
-    func makeMakeMovieDetailsUseCase() -> MakeMovieDetailsUseCase {
-        MakeMovieDetailsUseCase(
+
+    func makeGetMovieDetailsUseCase() -> GetMovieDetailsUseCase {
+        GetMovieDetailsUseCase(
             movieRepository: movieRepository,
             profileRepository: profileRepository
         )

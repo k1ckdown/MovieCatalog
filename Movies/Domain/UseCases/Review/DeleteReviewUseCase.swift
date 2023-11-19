@@ -9,29 +9,16 @@ import Foundation
 
 final class DeleteReviewUseCase {
 
-    private let closeSessionUseCase: CloseSessionUseCase
     private let reviewRepository: ReviewRepository
 
-    init(
-        closeSessionUseCase: CloseSessionUseCase,
-        reviewRepository: ReviewRepository
-    ) {
-        self.closeSessionUseCase = closeSessionUseCase
+    init(reviewRepository: ReviewRepository) {
         self.reviewRepository = reviewRepository
     }
 
     func execute(_ reviewId: String, movieId: String) async throws {
-        do {
-            try await reviewRepository.deleteReview(
-                reviewId: reviewId,
-                movieId: movieId
-            )
-        } catch {
-            if error as? AuthError == .unauthorized {
-                try await closeSessionUseCase.execute()
-            }
-
-            throw error
-        }
+        try await reviewRepository.deleteReview(
+            reviewId: reviewId,
+            movieId: movieId
+        )
     }
 }

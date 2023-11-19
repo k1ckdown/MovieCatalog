@@ -10,19 +10,19 @@ import Foundation
 final class FetchMovieListUseCase {
 
     private let movieRepository: MovieRepository
-    private let makeMovieDetailsUseCase: MakeMovieDetailsUseCase
+    private let getMovieDetailsUseCase: GetMovieDetailsUseCase
 
     init(
         movieRepository: MovieRepository,
-        makeMovieDetailsUseCase: MakeMovieDetailsUseCase
+        getMovieDetailsUseCase: GetMovieDetailsUseCase
     ) {
         self.movieRepository = movieRepository
-        self.makeMovieDetailsUseCase = makeMovieDetailsUseCase
+        self.getMovieDetailsUseCase = getMovieDetailsUseCase
     }
 
     func execute(page: Page?) async throws -> [MovieDetails] {
         let movieList = try await movieRepository.getMovieList(page: page)
-        let movieDetailsList = try await makeMovieDetailsUseCase.execute(movieList)
+        let movieDetailsList = try await getMovieDetailsUseCase.execute(movieList)
 
         return movieDetailsList
     }
