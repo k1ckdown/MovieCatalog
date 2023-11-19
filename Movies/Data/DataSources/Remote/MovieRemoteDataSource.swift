@@ -40,6 +40,6 @@ extension MovieRemoteDataSource {
 
     func fetchFavoriteMovies() async throws -> MoviesResponse {
         let config = FavoriteMoviesNetworkConfig.list
-        return try await networkService.request(with: config, needToken: true)
+        return try await networkService.request(with: config, useToken: true)
     }
 }
