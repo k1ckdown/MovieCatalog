@@ -13,17 +13,23 @@ final class HomeViewModel: ViewModel {
 
     private let coordinator: HomeCoordinatorProtocol
     private let fetchMovieListUseCase: FetchMovieListUseCase
+    private let getMovieDetailsUseCase: GetMovieDetailsUseCase
 
-    init(coordinator: HomeCoordinatorProtocol, fetchMovieListUseCase: FetchMovieListUseCase) {
-        self.state = .idle
+    init(
+        coordinator: HomeCoordinatorProtocol,
+        fetchMovieListUseCase: FetchMovieListUseCase,
+        getMovieDetailsUseCase: GetMovieDetailsUseCase
+    ) {
+        state = .idle
         self.coordinator = coordinator
         self.fetchMovieListUseCase = fetchMovieListUseCase
+        self.getMovieDetailsUseCase = getMovieDetailsUseCase
     }
 
     func handle(_ event: HomeViewEvent) {
         switch event {
         case .onAppear:
-            Task { await fetchMovies() }
+            Task { await retrieveMovies() }
 
         case .willDisplayLastMovie:
             Task { await loadMore() }
@@ -36,19 +42,24 @@ final class HomeViewModel: ViewModel {
 
 private extension HomeViewModel {
 
+    func fetchMovies(page: Page?) async throws -> [MovieDetails] {
+        let movies = try await fetchMovieListUseCase.execute(page: page)
+        return try await getMovieDetailsUseCase.execute(movies)
+    }
+
     func loadMore() async {
         do {
-            let movies = try await fetchMovieListUseCase.execute(page: .next)
+            let movies = try await fetchMovies(page: .next)
             let itemViewModels = makeItemViewModels(movies)
             state = state.loadedMore(itemViewModels)
-        } catch let error as MovieRepositoryImpl.MovieRepositoryError {
+        } catch let error as MovieRepositoryImplementation.MovieRepositoryError {
             state = error == .maxPagesReached ? state.unavailableLoadMore() : state.failedLoadMore()
         } catch {
             state = state.failedLoadMore()
         }
     }
 
-    func fetchMovies() async {
+    func retrieveMovies() async {
         var page: Page?
         if case .idle = state {
             state = .loading
@@ -56,7 +67,7 @@ private extension HomeViewModel {
         }
 
         do {
-            let movies = try await fetchMovieListUseCase.execute(page: page)
+            let movies = try await fetchMovies(page: page)
             state = .loaded(getViewData(movies))
         } catch {
             state = .error("\(error.localizedDescription)")

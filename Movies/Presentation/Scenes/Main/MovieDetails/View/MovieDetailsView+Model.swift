@@ -11,7 +11,7 @@ extension MovieDetailsView {
     
     struct Model: Equatable {
         let name: String
-        let rating: Double
+        let rating: Double?
         let poster: String?
         var isFavorite: Bool
         let description: String

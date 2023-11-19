@@ -11,24 +11,24 @@ final class AppFactory {
     private lazy var keychainService = KeychainService()
     private lazy var networkService = NetworkService(keychainService: keychainService)
 
-    private lazy var reviewRepository = ReviewRepositoryImpl(networkService: networkService)
-    private lazy var authRepository = AuthRepositoryImpl(
+    private lazy var reviewRepository = ReviewRepositoryImplementation(networkService: networkService)
+    private lazy var authRepository = AuthRepositoryImplementation(
         networkService: networkService,
         keychainService: keychainService
     )
 
-    private lazy var movieRepository: MovieRepositoryImpl = {
+    private lazy var movieRepository: MovieRepositoryImplementation = {
         let localDataSource = MovieLocalDataSource()
         let remoteDataSource = MovieRemoteDataSource(networkService: networkService)
 
-        return MovieRepositoryImpl(localDataSource: localDataSource, remoteDataSource: remoteDataSource)
+        return MovieRepositoryImplementation(localDataSource: localDataSource, remoteDataSource: remoteDataSource)
     }()
 
-    private lazy var profileRepository: ProfileRepositoryImpl = {
+    private lazy var profileRepository: ProfileRepositoryImplementation = {
         let localDataSource = ProfileLocalDataSource()
         let remoteDataSource = ProfileRemoteDataSource(networkService: networkService)
 
-        return ProfileRepositoryImpl(localDataSource: localDataSource, remoteDataSource: remoteDataSource)
+        return ProfileRepositoryImplementation(localDataSource: localDataSource, remoteDataSource: remoteDataSource)
     }()
 }
 
@@ -87,18 +87,16 @@ extension AppFactory {
 
 extension AppFactory {
 
-    func makeFetchMovieListUseCase() -> FetchMovieListUseCase {
-        FetchMovieListUseCase(
-            movieRepository: movieRepository,
-            getMovieDetailsUseCase: makeGetMovieDetailsUseCase()
-        )
+    func makeFetchMovieUseCase() -> FetchMovieUseCase {
+        FetchMovieUseCase(movieRepository: movieRepository)
     }
 
-    func makeFetchMovieUseCase() -> FetchMovieUseCase {
-        FetchMovieUseCase(
-            movieRepository: movieRepository,
-            getMovieDetailsUseCase: makeGetMovieDetailsUseCase()
-        )
+    func makeFetchMovieListUseCase() -> FetchMovieListUseCase {
+        FetchMovieListUseCase(movieRepository: movieRepository)
+    }
+
+    func makeGetMovieDetailsUseCase() -> GetMovieDetailsUseCase {
+        GetMovieDetailsUseCase(profileRepository: profileRepository)
     }
 }
 
@@ -106,19 +104,16 @@ extension AppFactory {
 
 extension AppFactory {
 
-    func makeDeleteFavoriteMovieUseCase() -> DeleteFavoriteMovieUseCase {
-        DeleteFavoriteMovieUseCase(movieRepository: movieRepository)
-    }
-
     func makeAddFavoriteMovieUseCase() -> AddFavoriteMovieUseCase {
         AddFavoriteMovieUseCase(movieRepository: movieRepository)
     }
 
+    func makeDeleteFavoriteMovieUseCase() -> DeleteFavoriteMovieUseCase {
+        DeleteFavoriteMovieUseCase(movieRepository: movieRepository)
+    }
+
     func makeFetchFavoriteMoviesUseCase() -> FetchFavoriteMoviesUseCase {
-        FetchFavoriteMoviesUseCase(
-            movieRepository: movieRepository,
-            getMovieDetailsUseCase: makeGetMovieDetailsUseCase()
-        )
+        FetchFavoriteMoviesUseCase(movieRepository: movieRepository)
     }
 }
 
@@ -130,21 +125,11 @@ extension AppFactory {
         AddReviewUseCase(reviewRepository: reviewRepository)
     }
 
-    func makeUpdateReviewUseCase() -> UpdateReviewUseCase {
-        UpdateReviewUseCase(reviewRepository: reviewRepository)
-    }
-
     func makeDeleteReviewUseCase() -> DeleteReviewUseCase {
         DeleteReviewUseCase(reviewRepository: reviewRepository)
     }
-}
 
-private extension AppFactory {
-
-    func makeGetMovieDetailsUseCase() -> GetMovieDetailsUseCase {
-        GetMovieDetailsUseCase(
-            movieRepository: movieRepository,
-            profileRepository: profileRepository
-        )
+    func makeUpdateReviewUseCase() -> UpdateReviewUseCase {
+        UpdateReviewUseCase(reviewRepository: reviewRepository)
     }
 }

@@ -39,7 +39,8 @@ extension ScreenFactory: HomeViewFactory {
     func makeHomeView(coordinator: HomeCoordinatorProtocol) -> HomeView {
         let viewModel = HomeViewModel(
             coordinator: coordinator,
-            fetchMovieListUseCase: appFactory.makeFetchMovieListUseCase()
+            fetchMovieListUseCase: appFactory.makeFetchMovieListUseCase(),
+            getMovieDetailsUseCase: appFactory.makeGetMovieDetailsUseCase()
         )
         let view = HomeView(viewModel: viewModel)
 
@@ -140,6 +141,7 @@ extension ScreenFactory: MovieDetailsViewFactory {
             updateReviewUseCase: appFactory.makeUpdateReviewUseCase(),
             deleteReviewUseCase: appFactory.makeDeleteReviewUseCase(),
             fetchMovieUseCase: appFactory.makeFetchMovieUseCase(),
+            getMovieDetailsUseCase: appFactory.makeGetMovieDetailsUseCase(),
             addFavoriteMovieUseCase: appFactory.makeAddFavoriteMovieUseCase(),
             deleteFavoriteMovieUseCase: appFactory.makeDeleteFavoriteMovieUseCase()
         )

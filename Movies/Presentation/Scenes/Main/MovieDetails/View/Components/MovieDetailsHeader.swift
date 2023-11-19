@@ -10,7 +10,7 @@ import SwiftUI
 struct MovieDetailsHeader: View {
 
     let movieName: String
-    let rating: Double
+    let rating: Double?
     let isFavorite: Bool
 
     @Binding var isDisappeared: Bool
@@ -19,7 +19,9 @@ struct MovieDetailsHeader: View {
 
     var body: some View {
         HStack {
-            RatingTagView(style: .titleOnly(.medium), value: rating)
+            if let rating {
+                RatingTagView(style: .titleOnly(.medium), value: rating)
+            }
 
             Spacer()
 

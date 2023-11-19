@@ -21,8 +21,10 @@ struct MovieDetailsItem: View {
                 .frame(width: Constants.MovieImage.width)
                 .clipShape(.rect(cornerRadius: Constants.MovieImage.cornerRadius))
                 .overlay(alignment: .topLeading) {
-                    RatingTagView(style: .titleOnly(.small), value: viewModel.rating)
-                        .padding([.top, .leading], Constants.MovieImage.ratingInsets)
+                    if let rating = viewModel.rating {
+                        RatingTagView(style: .titleOnly(.small), value: rating)
+                            .padding([.top, .leading], Constants.MovieImage.ratingInsets)
+                    }
                 }
 
             VStack(alignment: .leading, spacing: Constants.Details.spacing) {

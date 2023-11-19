@@ -22,7 +22,7 @@ struct MovieDetails: Equatable, Hashable {
     let budget: Int?
     let fees: Int?
     let ageLimit: Int
-    let rating: Double
+    let rating: Double?
     let userRating: Int?
     let isFavorite: Bool
 }

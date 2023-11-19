@@ -1,5 +1,5 @@
 //
-//  MovieRepositoryImpl.swift
+//  MovieRepositoryImplementation.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 30.10.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MovieRepositoryImpl: @unchecked Sendable {
+final class MovieRepositoryImplementation: @unchecked Sendable {
 
     enum MovieRepositoryError: Error {
         case maxPagesReached
@@ -30,7 +30,7 @@ final class MovieRepositoryImpl: @unchecked Sendable {
     }
 }
 
-extension MovieRepositoryImpl: MovieRepository {
+extension MovieRepositoryImplementation: MovieRepository {
 
     func deleteAllMovies() async throws {
         loadedMovies = []
@@ -133,7 +133,7 @@ extension MovieRepositoryImpl: MovieRepository {
     }
 }
 
-private extension MovieRepositoryImpl {
+private extension MovieRepositoryImplementation {
 
     func handleUnauthorizedError(_ error: Error) async throws {
         if error as? AuthError == .unauthorized {

@@ -1,5 +1,5 @@
 //
-//  ReviewRepositoryImpl.swift
+//  ReviewRepositoryImplementation.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 12.11.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ReviewRepositoryImpl {
+final class ReviewRepositoryImplementation {
 
     private let networkService: NetworkService
 
@@ -16,29 +16,29 @@ final class ReviewRepositoryImpl {
     }
 }
 
-extension ReviewRepositoryImpl: ReviewRepository {
+extension ReviewRepositoryImplementation: ReviewRepository {
 
     func deleteReview(reviewId: String, movieId: String) async throws {
         let config = ReviewNetworkConfig.delete(movieId: movieId, reviewId: reviewId)
-        try await networkService.request(with: config, needToken: true)
+        try await networkService.request(with: config, useToken: true)
     }
 
     func addReview(_ review: ReviewModify, movieId: String) async throws {
         let data = try encodeReviewModify(review)
         let config = ReviewNetworkConfig.add(movieId: movieId, review: data)
 
-        try await networkService.request(with: config, needToken: true)
+        try await networkService.request(with: config, useToken: true)
     }
 
     func updateReview(_ review: ReviewModify, reviewId: String, movieId: String) async throws {
         let data = try encodeReviewModify(review)
         let config = ReviewNetworkConfig.edit(movieId: movieId, reviewId: reviewId, review: data)
 
-        try await networkService.request(with: config, needToken: true)
+        try await networkService.request(with: config, useToken: true)
     }
 }
 
-private extension ReviewRepositoryImpl {
+private extension ReviewRepositoryImplementation {
 
     func encodeReviewModify(_ reviewModify: ReviewModify) throws -> Data {
         let reviewDto = ReviewModifyDTO(
