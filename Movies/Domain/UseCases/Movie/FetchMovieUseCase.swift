@@ -9,23 +9,19 @@ import Foundation
 
 final class FetchMovieUseCase {
 
-    private let movieRepository: MovieRepositoryProtocol
-    private let keychainRepository: KeychainRepositoryProtocol
+    private let movieRepository: MovieRepository
     private let makeMovieDetailsUseCase: MakeMovieDetailsUseCase
 
     init(
-        movieRepository: MovieRepositoryProtocol,
-        keychainRepository: KeychainRepositoryProtocol,
+        movieRepository: MovieRepository,
         makeMovieDetailsUseCase: MakeMovieDetailsUseCase
     ) {
         self.movieRepository = movieRepository
-        self.keychainRepository = keychainRepository
         self.makeMovieDetailsUseCase = makeMovieDetailsUseCase
     }
 
     func execute(movieId: String) async throws -> MovieDetails {
-        let token = try keychainRepository.retrieveToken()
-        try await movieRepository.getFavoriteMovies(token: token)
+        try await movieRepository.getFavoriteMovies()
 
         let movie = try await movieRepository.getMovie(id: movieId)
         let movieDetails = try await makeMovieDetailsUseCase.execute([movie])

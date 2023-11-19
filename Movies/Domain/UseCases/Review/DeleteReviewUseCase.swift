@@ -10,27 +10,21 @@ import Foundation
 final class DeleteReviewUseCase {
 
     private let closeSessionUseCase: CloseSessionUseCase
-    private let reviewRepository: ReviewRepositoryProtocol
-    private let keychainRepository: KeychainRepositoryProtocol
+    private let reviewRepository: ReviewRepository
 
     init(
         closeSessionUseCase: CloseSessionUseCase,
-        reviewRepository: ReviewRepositoryProtocol,
-        keychainRepository: KeychainRepositoryProtocol
+        reviewRepository: ReviewRepository
     ) {
         self.closeSessionUseCase = closeSessionUseCase
         self.reviewRepository = reviewRepository
-        self.keychainRepository = keychainRepository
     }
 
     func execute(_ reviewId: String, movieId: String) async throws {
-        let token = try keychainRepository.retrieveToken()
-
         do {
             try await reviewRepository.deleteReview(
                 reviewId: reviewId,
-                movieId: movieId,
-                token: token
+                movieId: movieId
             )
         } catch {
             if error as? AuthError == .unauthorized {

@@ -41,7 +41,7 @@ private extension HomeViewModel {
             let movies = try await fetchMovieListUseCase.execute(page: .next)
             let itemViewModels = makeItemViewModels(movies)
             state = state.loadedMore(itemViewModels)
-        } catch let error as MovieRepository.MovieRepositoryError {
+        } catch let error as MovieRepositoryImpl.MovieRepositoryError {
             state = error == .maxPagesReached ? state.unavailableLoadMore() : state.failedLoadMore()
         } catch {
             state = state.failedLoadMore()

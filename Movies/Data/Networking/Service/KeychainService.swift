@@ -1,5 +1,5 @@
 //
-//  KeychainRepository.swift
+//  KeychainService.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 27.10.2023.
@@ -8,7 +8,7 @@
 import Foundation
 import Security
 
-final class KeychainRepository {
+final class KeychainService {
 
     enum KeychainError: LocalizedError {
         case invalidData
@@ -38,7 +38,7 @@ final class KeychainRepository {
     }
 }
 
-extension KeychainRepository: KeychainRepositoryProtocol {
+extension KeychainService {
 
     func deleteToken() throws {
         let query = [
@@ -111,7 +111,7 @@ extension KeychainRepository: KeychainRepositoryProtocol {
     }
 }
 
-private extension KeychainRepository {
+private extension KeychainService {
 
     func convertError(_ status: OSStatus) -> KeychainError {
         switch status {

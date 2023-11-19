@@ -9,25 +9,20 @@ import Foundation
 
 final class AddFavoriteMovieUseCase {
 
-    private let movieRepository: MovieRepositoryProtocol
-    private let keychainRepository: KeychainRepositoryProtocol
+    private let movieRepository: MovieRepository
     private let closeSessionUseCase: CloseSessionUseCase
 
     init(
-        movieRepository: MovieRepositoryProtocol,
-        keychainRepository: KeychainRepositoryProtocol,
+        movieRepository: MovieRepository,
         closeSessionUseCase: CloseSessionUseCase
     ) {
         self.movieRepository = movieRepository
-        self.keychainRepository = keychainRepository
         self.closeSessionUseCase = closeSessionUseCase
     }
 
     func execute(_ movieId: String) async throws {
-        let token = try keychainRepository.retrieveToken()
-
         do {
-            try await movieRepository.addFavoriteMovie(movieId, token: token)
+            try await movieRepository.addFavoriteMovie(id: movieId)
         } catch {
             if error as? AuthError == .unauthorized {
                 try await closeSessionUseCase.execute()

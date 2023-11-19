@@ -9,11 +9,11 @@ import Foundation
 
 final class FetchMovieListUseCase {
 
-    private let movieRepository: MovieRepositoryProtocol
+    private let movieRepository: MovieRepository
     private let makeMovieDetailsUseCase: MakeMovieDetailsUseCase
 
     init(
-        movieRepository: MovieRepositoryProtocol,
+        movieRepository: MovieRepository,
         makeMovieDetailsUseCase: MakeMovieDetailsUseCase
     ) {
         self.movieRepository = movieRepository

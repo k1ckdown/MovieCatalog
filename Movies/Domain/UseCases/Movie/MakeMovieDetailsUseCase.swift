@@ -9,24 +9,19 @@ import Foundation
 
 final class MakeMovieDetailsUseCase {
 
-    private let movieRepository: MovieRepositoryProtocol
-    private let profileRepository: ProfileRepositoryProtocol
-    private let keychainRepository: KeychainRepositoryProtocol
+    private let movieRepository: MovieRepository
+    private let profileRepository: ProfileRepository
 
     init(
-        movieRepository: MovieRepositoryProtocol,
-        profileRepository: ProfileRepositoryProtocol,
-        keychainRepository: KeychainRepositoryProtocol
+        movieRepository: MovieRepository,
+        profileRepository: ProfileRepository
     ) {
         self.movieRepository = movieRepository
         self.profileRepository = profileRepository
-        self.keychainRepository = keychainRepository
     }
 
     func execute(_ movies: [Movie]) async throws -> [MovieDetails] {
-        let token = try keychainRepository.retrieveToken()
-        let userId = try? await profileRepository.getProfile(token: token).id
-
+        let userId = try? await profileRepository.getProfile().id
         return movies.map { makeMovieDetails(for: $0, userId: userId) }
     }
 }
@@ -55,7 +50,7 @@ private extension MakeMovieDetailsUseCase {
         let reviewDetailsList = reviews.map {
             makeReviewDetails(for: $0, isUserReview: $0.id == userReview?.id)
         }
-
+        
         return .init(
             id: movie.id,
             name: movie.name,
