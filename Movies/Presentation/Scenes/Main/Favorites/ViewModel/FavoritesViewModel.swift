@@ -43,8 +43,7 @@ private extension FavoritesViewModel {
 
         do {
             let movies = try await fetchFavoriteMoviesUseCase.execute()
-            let itemViewModels = makeMovieItemViewModels(movies)
-            state = .loaded(.init(shouldShowPlaceholder: itemViewModels.isEmpty, movieItems: itemViewModels))
+            state = .loaded(getViewData(movies))
         } catch {
             if error as? AuthError == .unauthorized {
                 coordinator.showAuthScene()
@@ -55,21 +54,23 @@ private extension FavoritesViewModel {
     }
 }
 
+// MARK: - View data
+
 private extension FavoritesViewModel {
+
+    func getViewData(_ movies: [Movie]) -> FavoritesViewState.ViewData {
+        let itemViewModels = makeMovieItemViewModels(movies)
+        return .init(shouldShowPlaceholder: itemViewModels.isEmpty, movieItems: itemViewModels)
+    }
 
     func makeMovieItemViewModels(_ movies: [Movie]) -> [MovieShortItemViewModel] {
         movies.map { movie in
-            return MovieShortItemViewModel(
+            MovieShortItemViewModel(
                 id: movie.id,
                 rating: movie.getAverageRating(),
                 name: movie.name,
                 imageUrl: movie.poster
             )
         }
-    }
-
-    func getViewData(_ movies: [Movie]) -> FavoritesViewState.ViewData {
-        let itemViewModels = makeMovieItemViewModels(movies)
-        return .init(shouldShowPlaceholder: itemViewModels.isEmpty, movieItems: itemViewModels)
     }
 }
