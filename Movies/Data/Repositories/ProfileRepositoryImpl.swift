@@ -1,5 +1,5 @@
 //
-//  ProfileRepository.swift
+//  ProfileRepositoryImpl.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 29.10.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ProfileRepository {
+final class ProfileRepositoryImpl {
 
     enum ProfileRepositoryError: LocalizedError {
         case notFound
@@ -36,18 +36,18 @@ final class ProfileRepository {
     }
 }
 
-extension ProfileRepository: ProfileRepositoryProtocol {
+extension ProfileRepositoryImpl: ProfileRepository {
 
     func deleteProfile() async {
         await localDataSource.deleteProfile()
     }
 
-    func getProfile(token: String) async throws -> Profile {
+    func getProfile() async throws -> Profile {
         if isProfileLoaded || NetworkMonitor.shared.isConnected == false,
            let localProfile = await localDataSource.fetchProfile() {
             return localProfile.toDomain()
         } else {
-            let profileDto = try await remoteDataSource.fetchProfile(token: token)
+            let profileDto = try await remoteDataSource.fetchProfile()
             let profile = profileDto.toDomain()
 
             await localDataSource.saveProfile(ProfileObject(profile))
@@ -57,7 +57,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
         }
     }
 
-    func updateProfile(_ profile: Profile, token: String) async throws {
+    func updateProfile(_ profile: Profile) async throws {
         guard NetworkMonitor.shared.isConnected else { throw NetworkError.noConnect }
 
         let profileDto = ProfileDTO(
@@ -71,7 +71,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
         )
 
         do {
-            try await remoteDataSource.updateProfile(token: token, profile: profileDto)
+            try await remoteDataSource.updateProfile(profile: profileDto)
             await localDataSource.saveProfile(ProfileObject(profile))
         } catch {
             throw ProfileRepositoryError.updateFailed

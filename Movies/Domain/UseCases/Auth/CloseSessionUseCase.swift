@@ -9,22 +9,18 @@ import Foundation
 
 final class CloseSessionUseCase {
 
-    private let movieRepository: MovieRepositoryProtocol
-    private let profileRepository: ProfileRepositoryProtocol
-    private let keychainRepository: KeychainRepositoryProtocol
+    private let movieRepository: MovieRepository
+    private let profileRepository: ProfileRepository
 
     init(
-        movieRepository: MovieRepositoryProtocol,
-        profileRepository: ProfileRepositoryProtocol,
-        keychainRepository: KeychainRepositoryProtocol
+        movieRepository: MovieRepository,
+        profileRepository: ProfileRepository
     ) {
         self.movieRepository = movieRepository
         self.profileRepository = profileRepository
-        self.keychainRepository = keychainRepository
     }
 
     func execute() async throws {
-        try keychainRepository.deleteToken()
         await profileRepository.deleteProfile()
         try await movieRepository.deleteAllMovies()
     }

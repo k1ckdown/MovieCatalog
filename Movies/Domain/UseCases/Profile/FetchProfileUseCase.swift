@@ -9,26 +9,21 @@ import Foundation
 
 final class FetchProfileUseCase {
 
-    private let profileRepository: ProfileRepositoryProtocol
-    private let keychainRepository: KeychainRepositoryProtocol
+    private let profileRepository: ProfileRepository
     private let closeSessionUseCase: CloseSessionUseCase
 
     init(
-        profileRepository: ProfileRepositoryProtocol,
-        keychainRepository: KeychainRepositoryProtocol,
+        profileRepository: ProfileRepository,
         closeSessionUseCase: CloseSessionUseCase
     ) {
         self.profileRepository = profileRepository
-        self.keychainRepository = keychainRepository
         self.closeSessionUseCase = closeSessionUseCase
     }
 
     @discardableResult
     func execute() async throws -> Profile {
-        let token = try keychainRepository.retrieveToken()
-        
         do {
-            let profile = try await profileRepository.getProfile(token: token)
+            let profile = try await profileRepository.getProfile()
             return profile
         } catch {
             if error as? AuthError == .unauthorized {

@@ -28,18 +28,18 @@ extension MovieRemoteDataSource {
         return try await networkService.request(with: config)
     }
 
-    func addFavoriteMovie(token: String, movieId: String) async throws {
+    func addFavoriteMovie(movieId: String) async throws {
         let config = FavoriteMoviesNetworkConfig.add(movieId: movieId)
-        try await networkService.request(with: config, token: token)
+        try await networkService.request(with: config, needToken: true)
     }
 
-    func deleteFavoriteMovie(token: String, movieId: String) async throws {
+    func deleteFavoriteMovie(movieId: String) async throws {
         let config = FavoriteMoviesNetworkConfig.delete(movieId: movieId)
-        try await networkService.request(with: config, token: token)
+        try await networkService.request(with: config, needToken: true)
     }
 
-    func fetchFavoriteMovies(token: String) async throws -> MoviesResponse {
+    func fetchFavoriteMovies() async throws -> MoviesResponse {
         let config = FavoriteMoviesNetworkConfig.list
-        return try await networkService.request(with: config, token: token)
+        return try await networkService.request(with: config, needToken: true)
     }
 }

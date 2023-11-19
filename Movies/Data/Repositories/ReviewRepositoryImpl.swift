@@ -1,5 +1,5 @@
 //
-//  ReviewRepository.swift
+//  ReviewRepositoryImpl.swift
 //  Movies
 //
 //  Created by Ivan Semenov on 12.11.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ReviewRepository {
+final class ReviewRepositoryImpl {
 
     private let networkService: NetworkService
 
@@ -16,29 +16,29 @@ final class ReviewRepository {
     }
 }
 
-extension ReviewRepository: ReviewRepositoryProtocol {
+extension ReviewRepositoryImpl: ReviewRepository {
 
-    func deleteReview(reviewId: String, movieId: String, token: String) async throws {
+    func deleteReview(reviewId: String, movieId: String) async throws {
         let config = ReviewNetworkConfig.delete(movieId: movieId, reviewId: reviewId)
-        try await networkService.request(with: config, token: token)
+        try await networkService.request(with: config, needToken: true)
     }
 
-    func addReview(_ review: ReviewModify, movieId: String, token: String) async throws {
+    func addReview(_ review: ReviewModify, movieId: String) async throws {
         let data = try encodeReviewModify(review)
         let config = ReviewNetworkConfig.add(movieId: movieId, review: data)
 
-        try await networkService.request(with: config, token: token)
+        try await networkService.request(with: config, needToken: true)
     }
 
-    func updateReview(_ review: ReviewModify, reviewId: String, movieId: String, token: String) async throws {
+    func updateReview(_ review: ReviewModify, reviewId: String, movieId: String) async throws {
         let data = try encodeReviewModify(review)
         let config = ReviewNetworkConfig.edit(movieId: movieId, reviewId: reviewId, review: data)
 
-        try await networkService.request(with: config, token: token)
+        try await networkService.request(with: config, needToken: true)
     }
 }
 
-private extension ReviewRepository {
+private extension ReviewRepositoryImpl {
 
     func encodeReviewModify(_ reviewModify: ReviewModify) throws -> Data {
         let reviewDto = ReviewModifyDTO(

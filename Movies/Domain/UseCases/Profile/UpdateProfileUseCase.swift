@@ -9,25 +9,20 @@ import Foundation
 
 final class UpdateProfileUseCase {
 
-    private let profileRepository: ProfileRepositoryProtocol
-    private let keychainRepository: KeychainRepositoryProtocol
+    private let profileRepository: ProfileRepository
     private let closeSessionUseCase: CloseSessionUseCase
 
     init(
-        profileRepository: ProfileRepositoryProtocol,
-        keychainRepository: KeychainRepositoryProtocol,
+        profileRepository: ProfileRepository,
         closeSessionUseCase: CloseSessionUseCase
     ) {
         self.profileRepository = profileRepository
-        self.keychainRepository = keychainRepository
         self.closeSessionUseCase = closeSessionUseCase
     }
     
     func execute(_ profile: Profile) async throws {
-        let token = try keychainRepository.retrieveToken()
-
         do {
-            try await profileRepository.updateProfile(profile, token: token)
+            try await profileRepository.updateProfile(profile)
         } catch {
             if error as? AuthError == .unauthorized {
                 try await closeSessionUseCase.execute()

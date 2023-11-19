@@ -8,20 +8,14 @@
 import Foundation
 
 final class RegisterUserUseCase {
-
-    private let authRepository: AuthRepositoryProtocol
-    private let keychainRepository: KeychainRepositoryProtocol
-
-    init(
-        authRepository: AuthRepositoryProtocol,
-        keychainRepository: KeychainRepositoryProtocol
-    ) {
+    
+    private let authRepository: AuthRepository
+    
+    init(authRepository: AuthRepository) {
         self.authRepository = authRepository
-        self.keychainRepository = keychainRepository
     }
-
+    
     func execute(_ user: UserRegister) async throws {
-        let token = try await authRepository.register(user: user)
-        try keychainRepository.saveToken(token)
+        try await authRepository.register(user: user)
     }
 }

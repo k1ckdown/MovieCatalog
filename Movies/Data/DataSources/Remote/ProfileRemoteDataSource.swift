@@ -18,15 +18,15 @@ final class ProfileRemoteDataSource {
 
 extension ProfileRemoteDataSource {
 
-    func fetchProfile(token: String) async throws -> ProfileDTO {
+    func fetchProfile() async throws -> ProfileDTO {
         let config = UserNetworkConfig.retrieveProfile
-        return try await networkService.request(with: config, token: token)
+        return try await networkService.request(with: config, needToken: true)
     }
 
-    func updateProfile(token: String, profile: ProfileDTO) async throws {
+    func updateProfile(profile: ProfileDTO) async throws {
         let data = try networkService.encode(profile)
         let config = UserNetworkConfig.updateProfile(data)
 
-        try await networkService.request(with: config, token: token)
+        try await networkService.request(with: config, needToken: true)
     }
 }

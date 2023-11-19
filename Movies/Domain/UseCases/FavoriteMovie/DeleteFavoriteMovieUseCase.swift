@@ -8,31 +8,26 @@
 import Foundation
 
 final class DeleteFavoriteMovieUseCase {
-
+    
     private let closeSessionUseCase: CloseSessionUseCase
-    private let movieRepository: MovieRepositoryProtocol
-    private let keychainRepository: KeychainRepositoryProtocol
-
+    private let movieRepository: MovieRepository
+    
     init(
         closeSessionUseCase: CloseSessionUseCase,
-        movieRepository: MovieRepositoryProtocol,
-        keychainRepository: KeychainRepositoryProtocol
+        movieRepository: MovieRepository
     ) {
         self.closeSessionUseCase = closeSessionUseCase
         self.movieRepository = movieRepository
-        self.keychainRepository = keychainRepository
     }
-
+    
     func execute(_ movieId: String) async throws {
-        let token = try keychainRepository.retrieveToken()
-
         do {
-            try await movieRepository.deleteFavoriteMovie(movieId, token: token)
+            try await movieRepository.deleteFavoriteMovie(id: movieId)
         } catch {
             if error as? AuthError == .unauthorized {
                 try await closeSessionUseCase.execute()
             }
-
+            
             throw error
         }
     }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		490297BF2AEC3F63000AFDB4 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297BE2AEC3F63000AFDB4 /* UserRegister.swift */; };
 		490297C22AEC417C000AFDB4 /* RegisterUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297C12AEC417C000AFDB4 /* RegisterUserUseCase.swift */; };
-		490297C82AEC46D7000AFDB4 /* KeychainRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297C72AEC46D7000AFDB4 /* KeychainRepositoryProtocol.swift */; };
 		490297CB2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297CA2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift */; };
 		490297CD2AEC5DFC000AFDB4 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297CC2AEC5DFC000AFDB4 /* LoginUseCase.swift */; };
 		490297CF2AEC61ED000AFDB4 /* BaseProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490297CE2AEC61ED000AFDB4 /* BaseProgressView.swift */; };
@@ -99,11 +98,11 @@
 		4977E3CC2ADBD1DE008CE679 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */; };
 		497831642AEECD8300860C41 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831632AEECD8300860C41 /* HomeViewModel.swift */; };
 		497831662AEECDAA00860C41 /* HomeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831652AEECDAA00860C41 /* HomeViewState.swift */; };
-		497831682AEED4E600860C41 /* MovieRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831672AEED4E600860C41 /* MovieRepositoryProtocol.swift */; };
+		497831682AEED4E600860C41 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831672AEED4E600860C41 /* MovieRepository.swift */; };
 		4978316A2AEED54500860C41 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831692AEED54500860C41 /* Movie.swift */; };
 		4978316C2AEED55D00860C41 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978316B2AEED55D00860C41 /* Review.swift */; };
 		4978316E2AEED57900860C41 /* UserShort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978316D2AEED57900860C41 /* UserShort.swift */; };
-		497831702AEED5E800860C41 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978316F2AEED5E800860C41 /* MovieRepository.swift */; };
+		497831702AEED5E800860C41 /* MovieRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4978316F2AEED5E800860C41 /* MovieRepositoryImpl.swift */; };
 		497831722AEEE09200860C41 /* FetchMovieListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831712AEEE09200860C41 /* FetchMovieListUseCase.swift */; };
 		497831752AEEE21F00860C41 /* String+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831742AEEE21F00860C41 /* String+Placeholder.swift */; };
 		497831772AEEE22C00860C41 /* View+Redacted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497831762AEEE22C00860C41 /* View+Redacted.swift */; };
@@ -127,8 +126,8 @@
 		499E0E142AF3354100D4EEA2 /* FavoritesCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E0E132AF3354100D4EEA2 /* FavoritesCoordinatorView.swift */; };
 		49A050F52B00AED000AFE4A7 /* ReviewDialogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050F42B00AED000AFE4A7 /* ReviewDialogViewModel.swift */; };
 		49A050F72B00D02000AFE4A7 /* ReviewModify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050F62B00D01F00AFE4A7 /* ReviewModify.swift */; };
-		49A050FA2B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050F92B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift */; };
-		49A050FC2B00D15200AFE4A7 /* ReviewRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050FB2B00D15200AFE4A7 /* ReviewRepository.swift */; };
+		49A050FA2B00D05B00AFE4A7 /* ReviewRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050F92B00D05B00AFE4A7 /* ReviewRepository.swift */; };
+		49A050FC2B00D15200AFE4A7 /* ReviewRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050FB2B00D15200AFE4A7 /* ReviewRepositoryImpl.swift */; };
 		49A050FF2B00D2D900AFE4A7 /* AddReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A050FE2B00D2D900AFE4A7 /* AddReviewUseCase.swift */; };
 		49A051012B01092400AFE4A7 /* UpdateReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A051002B01092400AFE4A7 /* UpdateReviewUseCase.swift */; };
 		49A051032B010A4200AFE4A7 /* DeleteReviewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A051022B010A4200AFE4A7 /* DeleteReviewUseCase.swift */; };
@@ -140,8 +139,8 @@
 		49A3FAD72AED81CB0043512C /* AvatarAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAD62AED81CB0043512C /* AvatarAsyncImage.swift */; };
 		49A3FADB2AED8A9A0043512C /* UpdateProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FADA2AED8A9A0043512C /* UpdateProfileUseCase.swift */; };
 		49A3FADD2AED8AE50043512C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FADC2AED8AE50043512C /* Profile.swift */; };
-		49A3FAE22AEDADA90043512C /* ProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAE12AEDADA90043512C /* ProfileRepositoryProtocol.swift */; };
-		49A3FAE52AEDAEE70043512C /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAE42AEDAEE60043512C /* ProfileRepository.swift */; };
+		49A3FAE22AEDADA90043512C /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAE12AEDADA90043512C /* ProfileRepository.swift */; };
+		49A3FAE52AEDAEE70043512C /* ProfileRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAE42AEDAEE60043512C /* ProfileRepositoryImpl.swift */; };
 		49A3FAE82AEDBB270043512C /* FetchProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3FAE72AEDBB270043512C /* FetchProfileUseCase.swift */; };
 		49A562842AE0EAD400222062 /* AuthScreenTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A562832AE0EAD400222062 /* AuthScreenTitle.swift */; };
 		49A620652AE6EBD800CEE994 /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A620642AE6EBD800CEE994 /* TintColor.swift */; };
@@ -178,9 +177,9 @@
 		49DA5D7C2AEA7B4100F96E97 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DA5D7B2AEA7B4100F96E97 /* AuthCoordinator.swift */; };
 		49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C12AE1172B00AA05C5 /* Gender.swift */; };
 		49E3A8C52AE11C3700AA05C5 /* BaseSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */; };
-		49E64D922AFB98ED0048C668 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E64D912AFB98ED0048C668 /* AuthRepository.swift */; };
-		49E64D942AFB99090048C668 /* AuthRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E64D932AFB99090048C668 /* AuthRepositoryProtocol.swift */; };
-		49E64D962AFB9BCE0048C668 /* KeychainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E64D952AFB9BCE0048C668 /* KeychainRepository.swift */; };
+		49E64D922AFB98ED0048C668 /* AuthRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E64D912AFB98ED0048C668 /* AuthRepositoryImpl.swift */; };
+		49E64D942AFB99090048C668 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E64D932AFB99090048C668 /* AuthRepository.swift */; };
+		49E64D962AFB9BCE0048C668 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E64D952AFB9BCE0048C668 /* KeychainService.swift */; };
 		49E64D992AFB9EC80048C668 /* MovieRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E64D982AFB9EC80048C668 /* MovieRemoteDataSource.swift */; };
 		49E64D9D2AFB9F3F0048C668 /* ProfileRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E64D9C2AFB9F3F0048C668 /* ProfileRemoteDataSource.swift */; };
 		49E890522AFCFFA3003C4F4F /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E890512AFCFFA3003C4F4F /* ImageCache.swift */; };
@@ -202,7 +201,6 @@
 /* Begin PBXFileReference section */
 		490297BE2AEC3F63000AFDB4 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
 		490297C12AEC417C000AFDB4 /* RegisterUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserUseCase.swift; sourceTree = "<group>"; };
-		490297C72AEC46D7000AFDB4 /* KeychainRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainRepositoryProtocol.swift; sourceTree = "<group>"; };
 		490297CA2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewModel.swift; sourceTree = "<group>"; };
 		490297CC2AEC5DFC000AFDB4 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		490297CE2AEC61ED000AFDB4 /* BaseProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProgressView.swift; sourceTree = "<group>"; };
@@ -306,11 +304,11 @@
 		4977E3CB2ADBD1DE008CE679 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		497831632AEECD8300860C41 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		497831652AEECDAA00860C41 /* HomeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewState.swift; sourceTree = "<group>"; };
-		497831672AEED4E600860C41 /* MovieRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryProtocol.swift; sourceTree = "<group>"; };
+		497831672AEED4E600860C41 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
 		497831692AEED54500860C41 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		4978316B2AEED55D00860C41 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		4978316D2AEED57900860C41 /* UserShort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShort.swift; sourceTree = "<group>"; };
-		4978316F2AEED5E800860C41 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
+		4978316F2AEED5E800860C41 /* MovieRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryImpl.swift; sourceTree = "<group>"; };
 		497831712AEEE09200860C41 /* FetchMovieListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMovieListUseCase.swift; sourceTree = "<group>"; };
 		497831742AEEE21F00860C41 /* String+Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Placeholder.swift"; sourceTree = "<group>"; };
 		497831762AEEE22C00860C41 /* View+Redacted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Redacted.swift"; sourceTree = "<group>"; };
@@ -334,8 +332,8 @@
 		499E0E132AF3354100D4EEA2 /* FavoritesCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinatorView.swift; sourceTree = "<group>"; };
 		49A050F42B00AED000AFE4A7 /* ReviewDialogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDialogViewModel.swift; sourceTree = "<group>"; };
 		49A050F62B00D01F00AFE4A7 /* ReviewModify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModify.swift; sourceTree = "<group>"; };
-		49A050F92B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRepositoryProtocol.swift; sourceTree = "<group>"; };
-		49A050FB2B00D15200AFE4A7 /* ReviewRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRepository.swift; sourceTree = "<group>"; };
+		49A050F92B00D05B00AFE4A7 /* ReviewRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRepository.swift; sourceTree = "<group>"; };
+		49A050FB2B00D15200AFE4A7 /* ReviewRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRepositoryImpl.swift; sourceTree = "<group>"; };
 		49A050FE2B00D2D900AFE4A7 /* AddReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewUseCase.swift; sourceTree = "<group>"; };
 		49A051002B01092400AFE4A7 /* UpdateReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateReviewUseCase.swift; sourceTree = "<group>"; };
 		49A051022B010A4200AFE4A7 /* DeleteReviewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteReviewUseCase.swift; sourceTree = "<group>"; };
@@ -347,8 +345,8 @@
 		49A3FAD62AED81CB0043512C /* AvatarAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarAsyncImage.swift; sourceTree = "<group>"; };
 		49A3FADA2AED8A9A0043512C /* UpdateProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileUseCase.swift; sourceTree = "<group>"; };
 		49A3FADC2AED8AE50043512C /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		49A3FAE12AEDADA90043512C /* ProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
-		49A3FAE42AEDAEE60043512C /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
+		49A3FAE12AEDADA90043512C /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
+		49A3FAE42AEDAEE60043512C /* ProfileRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryImpl.swift; sourceTree = "<group>"; };
 		49A3FAE72AEDBB270043512C /* FetchProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchProfileUseCase.swift; sourceTree = "<group>"; };
 		49A562832AE0EAD400222062 /* AuthScreenTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenTitle.swift; sourceTree = "<group>"; };
 		49A620642AE6EBD800CEE994 /* TintColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
@@ -385,9 +383,9 @@
 		49DA5D7B2AEA7B4100F96E97 /* AuthCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		49E3A8C12AE1172B00AA05C5 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		49E3A8C42AE11C3700AA05C5 /* BaseSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSegmentedPicker.swift; sourceTree = "<group>"; };
-		49E64D912AFB98ED0048C668 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
-		49E64D932AFB99090048C668 /* AuthRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryProtocol.swift; sourceTree = "<group>"; };
-		49E64D952AFB9BCE0048C668 /* KeychainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainRepository.swift; sourceTree = "<group>"; };
+		49E64D912AFB98ED0048C668 /* AuthRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryImpl.swift; sourceTree = "<group>"; };
+		49E64D932AFB99090048C668 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		49E64D952AFB9BCE0048C668 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		49E64D982AFB9EC80048C668 /* MovieRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRemoteDataSource.swift; sourceTree = "<group>"; };
 		49E64D9C2AFB9F3F0048C668 /* ProfileRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRemoteDataSource.swift; sourceTree = "<group>"; };
 		49E890512AFCFFA3003C4F4F /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -738,6 +736,7 @@
 		495F01452B07976A00258CD5 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				49E64D952AFB9BCE0048C668 /* KeychainService.swift */,
 				49330CEE2ADD663B00BFA4C6 /* NetworkService.swift */,
 				49330CF72ADD7D8600BFA4C6 /* Common */,
 				4984BE162ADC741D00364027 /* Configs */,
@@ -1106,11 +1105,10 @@
 		49A3FAE02AEDAD940043512C /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				49E64D932AFB99090048C668 /* AuthRepositoryProtocol.swift */,
-				490297C72AEC46D7000AFDB4 /* KeychainRepositoryProtocol.swift */,
-				49A3FAE12AEDADA90043512C /* ProfileRepositoryProtocol.swift */,
-				497831672AEED4E600860C41 /* MovieRepositoryProtocol.swift */,
-				49A050F92B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift */,
+				49E64D932AFB99090048C668 /* AuthRepository.swift */,
+				49A3FAE12AEDADA90043512C /* ProfileRepository.swift */,
+				497831672AEED4E600860C41 /* MovieRepository.swift */,
+				49A050F92B00D05B00AFE4A7 /* ReviewRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1118,11 +1116,10 @@
 		49A3FAE32AEDAE8E0043512C /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				49E64D912AFB98ED0048C668 /* AuthRepository.swift */,
-				49A3FAE42AEDAEE60043512C /* ProfileRepository.swift */,
-				4978316F2AEED5E800860C41 /* MovieRepository.swift */,
-				49E64D952AFB9BCE0048C668 /* KeychainRepository.swift */,
-				49A050FB2B00D15200AFE4A7 /* ReviewRepository.swift */,
+				49E64D912AFB98ED0048C668 /* AuthRepositoryImpl.swift */,
+				49A3FAE42AEDAEE60043512C /* ProfileRepositoryImpl.swift */,
+				4978316F2AEED5E800860C41 /* MovieRepositoryImpl.swift */,
+				49A050FB2B00D15200AFE4A7 /* ReviewRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1474,12 +1471,11 @@
 				495F01502B07C10D00258CD5 /* GenreObject.swift in Sources */,
 				4964A5682AF0576A0039F56B /* ExpandableText.swift in Sources */,
 				495583192AF0078700E3AA69 /* MovieDetailsViewState.swift in Sources */,
-				497831682AEED4E600860C41 /* MovieRepositoryProtocol.swift in Sources */,
+				497831682AEED4E600860C41 /* MovieRepository.swift in Sources */,
 				4908725B2B039A3A00770CAE /* URLParameterEncoder.swift in Sources */,
 				4955A38A2B089CC000BE9073 /* ReviewListSection.swift in Sources */,
 				499E0E142AF3354100D4EEA2 /* FavoritesCoordinatorView.swift in Sources */,
 				4978316E2AEED57900860C41 /* UserShort.swift in Sources */,
-				490297C82AEC46D7000AFDB4 /* KeychainRepositoryProtocol.swift in Sources */,
 				49442BE32B000E6000E972CF /* ReviewDialog.swift in Sources */,
 				49F8D0DC2AFD46040039BCE8 /* CloseSessionUseCase.swift in Sources */,
 				499B07DB2AF3599500261472 /* FavoritesViewState.swift in Sources */,
@@ -1488,7 +1484,7 @@
 				49EB265D2AECF2EF00FFD335 /* HomeView.swift in Sources */,
 				49E64D992AFB9EC80048C668 /* MovieRemoteDataSource.swift in Sources */,
 				49330CEF2ADD663B00BFA4C6 /* NetworkService.swift in Sources */,
-				49A050FA2B00D05B00AFE4A7 /* ReviewRepositoryProtocol.swift in Sources */,
+				49A050FA2B00D05B00AFE4A7 /* ReviewRepository.swift in Sources */,
 				49A3D4072B04D12A006FAC1A /* ErrorView.swift in Sources */,
 				49EB26762AED5E3900FFD335 /* GenreTag.swift in Sources */,
 				490297CB2AEC4A62000AFDB4 /* PersonalInfoViewModel.swift in Sources */,
@@ -1518,7 +1514,7 @@
 				49A050FF2B00D2D900AFE4A7 /* AddReviewUseCase.swift in Sources */,
 				49D462A32AFC219700696452 /* FavoritesCoordinatorProtocol.swift in Sources */,
 				49E3A8C22AE1172B00AA05C5 /* Gender.swift in Sources */,
-				49A050FC2B00D15200AFE4A7 /* ReviewRepository.swift in Sources */,
+				49A050FC2B00D15200AFE4A7 /* ReviewRepositoryImpl.swift in Sources */,
 				4955A38F2B08A42A00BE9073 /* MovieDetailsHeader.swift in Sources */,
 				49330CD12ADD278900BFA4C6 /* MovieShortDTO.swift in Sources */,
 				4955831D2AF0251700E3AA69 /* MovieDetailsViewState+Mutating.swift in Sources */,
@@ -1527,7 +1523,7 @@
 				498772C72AF2719600B706F6 /* FavoritesView.swift in Sources */,
 				49330CDC2ADD2E7C00BFA4C6 /* MovieDTO.swift in Sources */,
 				49D462A82AFC2BD700696452 /* AppCoordinator.swift in Sources */,
-				497831702AEED5E800860C41 /* MovieRepository.swift in Sources */,
+				497831702AEED5E800860C41 /* MovieRepositoryImpl.swift in Sources */,
 				491EBBDF2AEBF0F000075FF0 /* ValidationErrorHandler.swift in Sources */,
 				497831772AEEE22C00860C41 /* View+Redacted.swift in Sources */,
 				49330CDA2ADD2AA500BFA4C6 /* MovieNetworkConfig.swift in Sources */,
@@ -1597,7 +1593,7 @@
 				497831642AEECD8300860C41 /* HomeViewModel.swift in Sources */,
 				49C189BF2AE3F70D0029BAF9 /* Routable.swift in Sources */,
 				49330CE22ADD41B600BFA4C6 /* UserRegisterDTO.swift in Sources */,
-				49A3FAE22AEDADA90043512C /* ProfileRepositoryProtocol.swift in Sources */,
+				49A3FAE22AEDADA90043512C /* ProfileRepository.swift in Sources */,
 				49330CD22ADD278900BFA4C6 /* GenreDTO.swift in Sources */,
 				4951B0F62AF32E5E00B040EE /* ProfileCoordinatorView.swift in Sources */,
 				497BC4582AE790E70002336C /* AuthCoordinatorView.swift in Sources */,
@@ -1607,10 +1603,10 @@
 				49330D032ADD996300BFA4C6 /* ReviewNetworkConfig.swift in Sources */,
 				49330CF62ADD7C8B00BFA4C6 /* HTTPTask.swift in Sources */,
 				49295E462AEFC4DB00F09ABE /* ReviewViewModel.swift in Sources */,
-				49E64D942AFB99090048C668 /* AuthRepositoryProtocol.swift in Sources */,
+				49E64D942AFB99090048C668 /* AuthRepository.swift in Sources */,
 				49295E3E2AEFB59F00F09ABE /* AuthCoordinatorProtocol.swift in Sources */,
 				4955A38C2B089F4100BE9073 /* MoviePosterView.swift in Sources */,
-				49E64D962AFB9BCE0048C668 /* KeychainRepository.swift in Sources */,
+				49E64D962AFB9BCE0048C668 /* KeychainService.swift in Sources */,
 				4961F46F2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift in Sources */,
 				49C3CEA62AEA6026009FACF4 /* PasswordRegistrationView.swift in Sources */,
 				4961F4792AE021AC00A717AB /* LoginViewState.swift in Sources */,
@@ -1650,8 +1646,8 @@
 				49295E4A2AEFD96300F09ABE /* DateFormatter+Extensions.swift in Sources */,
 				49C189CB2AE3FC090029BAF9 /* WelcomeViewModel.swift in Sources */,
 				49EB26622AED01E200FFD335 /* MovieShort.swift in Sources */,
-				49E64D922AFB98ED0048C668 /* AuthRepository.swift in Sources */,
-				49A3FAE52AEDAEE70043512C /* ProfileRepository.swift in Sources */,
+				49E64D922AFB98ED0048C668 /* AuthRepositoryImpl.swift in Sources */,
+				49A3FAE52AEDAEE70043512C /* ProfileRepositoryImpl.swift in Sources */,
 				490297CD2AEC5DFC000AFDB4 /* LoginUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

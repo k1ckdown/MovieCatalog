@@ -10,24 +10,19 @@ import Foundation
 final class AddReviewUseCase {
 
     private let closeSessionUseCase: CloseSessionUseCase
-    private let reviewRepository: ReviewRepositoryProtocol
-    private let keychainRepository: KeychainRepositoryProtocol
+    private let reviewRepository: ReviewRepository
 
     init(
         closeSessionUseCase: CloseSessionUseCase,
-        reviewRepository: ReviewRepositoryProtocol,
-        keychainRepository: KeychainRepositoryProtocol
+        reviewRepository: ReviewRepository
     ) {
         self.closeSessionUseCase = closeSessionUseCase
         self.reviewRepository = reviewRepository
-        self.keychainRepository = keychainRepository
     }
 
     func execute(review: ReviewModify, movieId: String) async throws {
-        let token = try keychainRepository.retrieveToken()
-
         do {
-            try await reviewRepository.addReview(review, movieId: movieId, token: token)
+            try await reviewRepository.addReview(review, movieId: movieId)
         } catch {
             if error as? AuthError == .unauthorized {
                 try await closeSessionUseCase.execute()
