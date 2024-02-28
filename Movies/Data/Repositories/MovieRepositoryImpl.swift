@@ -32,12 +32,14 @@ final class MovieRepositoryImplementation: @unchecked Sendable {
 
 extension MovieRepositoryImplementation: MovieRepository {
 
+    @RealmActor
     func deleteAllMovies() async throws {
         loadedMovies = []
         isFavoritesLoaded = false
         await localDataSource.deleteAllMovies()
     }
 
+    @RealmActor
     func addFavoriteMovie(id: String) async throws {
         do {
             try await remoteDataSource.addFavoriteMovie(movieId: id)
@@ -51,6 +53,7 @@ extension MovieRepositoryImplementation: MovieRepository {
         }
     }
 
+    @RealmActor
     func deleteFavoriteMovie(id: String) async throws {
         do {
             try await remoteDataSource.deleteFavoriteMovie(movieId: id)
@@ -64,6 +67,7 @@ extension MovieRepositoryImplementation: MovieRepository {
         }
     }
 
+    @RealmActor
     func getMovie(id: String) async throws -> Movie {
         guard NetworkMonitor.shared.isConnected else {
             if let localMovie = await localDataSource.fetchMovie(id: id)?.toDomain() {
@@ -87,6 +91,7 @@ extension MovieRepositoryImplementation: MovieRepository {
         return movie
     }
 
+    @RealmActor
     func getFavoriteMovies() async throws -> [Movie] {
         guard NetworkMonitor.shared.isConnected else {
             if let localMovies = await localDataSource.fetchMovieList() {
@@ -158,13 +163,14 @@ private extension MovieRepositoryImplementation {
                 }
             }
 
-            return try await taskGroup.reduce(into: movies) { partialResult, movie in
+            return try await taskGroup.reduce(into: movies) { @RealmActor partialResult, movie in
                 loadedMovies.append(movie)
                 partialResult.append(movie)
             }
         }
     }
 
+    @RealmActor
     func loadFavoriteMovies() async throws {
         let moviesResponse = try await remoteDataSource.fetchFavoriteMovies()
         let movieShortIds = moviesResponse.movies.map { $0.toDomain().id }

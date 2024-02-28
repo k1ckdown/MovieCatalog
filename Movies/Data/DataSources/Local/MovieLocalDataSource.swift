@@ -12,16 +12,19 @@ final class MovieLocalDataSource {
 
     private let realmProvider = RealmProvider()
 
+    @RealmActor
     func fetchMovie(id: String) async -> MovieObject? {
         guard let storage = await realmProvider.realm() else { return nil }
         return storage.object(ofType: MovieObject.self, forPrimaryKey: id)
     }
 
+    @RealmActor
     func fetchMovieList() async -> Results<MovieObject>? {
         guard let storage = await realmProvider.realm() else { return nil }
         return storage.objects(MovieObject.self)
     }
 
+    @RealmActor
     func deleteAllMovies() async {
         guard let storage = await realmProvider.realm() else { return }
 
@@ -30,6 +33,7 @@ final class MovieLocalDataSource {
         }
     }
 
+    @RealmActor
     func deleteMovie(id: String) async {
         guard
             let storage = await realmProvider.realm(),
@@ -41,6 +45,7 @@ final class MovieLocalDataSource {
         }
     }
 
+    @RealmActor
     func addMovie(_ movieObject: MovieObject, update: Bool = false) async {
         guard
             let storage = await realmProvider.realm(),

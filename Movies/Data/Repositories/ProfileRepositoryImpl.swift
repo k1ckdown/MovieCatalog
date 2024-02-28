@@ -38,11 +38,13 @@ final class ProfileRepositoryImplementation {
 
 extension ProfileRepositoryImplementation: ProfileRepository {
     
+    @RealmActor
     func deleteProfile() async {
         await localDataSource.deleteProfile()
         isProfileLoaded = false
     }
     
+    @RealmActor
     func getProfile() async throws -> Profile {
         if isProfileLoaded || NetworkMonitor.shared.isConnected == false,
            let localProfile = await localDataSource.fetchProfile() {
@@ -63,6 +65,7 @@ extension ProfileRepositoryImplementation: ProfileRepository {
         }
     }
     
+    @RealmActor
     func updateProfile(_ profile: Profile) async throws {
         guard NetworkMonitor.shared.isConnected else { throw NetworkError.noConnect }
         
