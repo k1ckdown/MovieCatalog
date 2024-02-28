@@ -12,11 +12,13 @@ final class ProfileLocalDataSource {
 
     private let realmProvider = RealmProvider()
 
+    @RealmActor
     func fetchProfile() async -> ProfileObject? {
         guard let storage = await realmProvider.realm() else { return nil }
         return storage.objects(ProfileObject.self).first
     }
 
+    @RealmActor
     func saveProfile(_ profileObject: ProfileObject) async {
         guard let storage = await realmProvider.realm() else { return }
 
@@ -25,6 +27,7 @@ final class ProfileLocalDataSource {
         }
     }
 
+    @RealmActor
     func deleteProfile() async {
         guard let storage = await realmProvider.realm() else { return }
 
