@@ -26,6 +26,7 @@
 		491EBBD32AEBDA9800075FF0 /* FormItemBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EBBD22AEBDA9800075FF0 /* FormItemBackground.swift */; };
 		491EBBD62AEBDAFC00075FF0 /* FormBorderedTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EBBD52AEBDAFC00075FF0 /* FormBorderedTextFieldStyle.swift */; };
 		491EBBDF2AEBF0F000075FF0 /* ValidationErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EBBDE2AEBF0F000075FF0 /* ValidationErrorHandler.swift */; };
+		4925AEFD2B8F99CC003603EF /* RealmActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4925AEFC2B8F99CC003603EF /* RealmActor.swift */; };
 		492871282AFFCC7000B491A2 /* GenreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492871272AFFCC7000B491A2 /* GenreViewModel.swift */; };
 		4928712A2AFFD1A500B491A2 /* MovieDetailsView+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492871292AFFD1A500B491A2 /* MovieDetailsView+Model.swift */; };
 		49295E3E2AEFB59F00F09ABE /* AuthCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49295E3D2AEFB59F00F09ABE /* AuthCoordinatorProtocol.swift */; };
@@ -217,6 +218,7 @@
 		491EBBD22AEBDA9800075FF0 /* FormItemBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormItemBackground.swift; sourceTree = "<group>"; };
 		491EBBD52AEBDAFC00075FF0 /* FormBorderedTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormBorderedTextFieldStyle.swift; sourceTree = "<group>"; };
 		491EBBDE2AEBF0F000075FF0 /* ValidationErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationErrorHandler.swift; sourceTree = "<group>"; };
+		4925AEFC2B8F99CC003603EF /* RealmActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmActor.swift; sourceTree = "<group>"; };
 		492871272AFFCC7000B491A2 /* GenreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewModel.swift; sourceTree = "<group>"; };
 		492871292AFFD1A500B491A2 /* MovieDetailsView+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailsView+Model.swift"; sourceTree = "<group>"; };
 		49295E3D2AEFB59F00F09ABE /* AuthCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorProtocol.swift; sourceTree = "<group>"; };
@@ -1245,6 +1247,7 @@
 		49C5A1A72B0687B600EBC906 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				4925AEFC2B8F99CC003603EF /* RealmActor.swift */,
 				495F01432B077C8D00258CD5 /* RealmProvider.swift */,
 				493243412B0623FB00E607EB /* Models */,
 			);
@@ -1605,6 +1608,7 @@
 				49E64D962AFB9BCE0048C668 /* KeychainService.swift in Sources */,
 				4961F46F2AE00AC100A717AB /* AppNavigationTitleViewModifier.swift in Sources */,
 				49C3CEA62AEA6026009FACF4 /* PasswordRegistrationView.swift in Sources */,
+				4925AEFD2B8F99CC003603EF /* RealmActor.swift in Sources */,
 				4961F4792AE021AC00A717AB /* LoginViewState.swift in Sources */,
 				4928712A2AFFD1A500B491A2 /* MovieDetailsView+Model.swift in Sources */,
 				49115C342AEF980300B50FB9 /* HomeCoordinatorView.swift in Sources */,
